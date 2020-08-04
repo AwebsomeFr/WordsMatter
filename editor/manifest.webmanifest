@@ -1,0 +1,22 @@
+{
+  "background_color": "#111",
+  "theme_color": "#F59561",
+  "description": "WordsMatter est un outil de rédaction ultra-léger capable de générer du contenu web techniquement optimisé à des fins de blogging. Créé pour promouvoir le développement de sites Internet écoresponsables, il se veut être une alternative viable aux CMS, dont l'usage est souvent disproportionné.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "./medias/words-matter-logo-192px.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./medias/words-matter-logo-512px.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "WordsMatter",
+  "short_name": "wordsmatter",
+  "start_url": "./index.html"
+}
