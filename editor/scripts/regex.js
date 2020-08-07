@@ -6,7 +6,7 @@ const REGEX = [
 		}
 	},
 	{
-		desc: /^(?!3|4|5|6|i|\(\().+$/gm,
+		desc: /^(?!3|4|5|6|f|i|o|u).+$/gm, // All except block elements can be enclosed in a paragraph.
 		output: (content) => {
 			return '<p>' + content + '</p>';
 		}

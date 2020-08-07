@@ -6,7 +6,7 @@
 		}
 	],
 	[	
-		'desc' => '/^(?!3|4|5|6|i|\(\().+$/m',
+		'desc' => '/^(?!3|4|5|6|f|i|o|u).+$/m', // All except block elements can be enclosed in a paragraph.
 		'output' => function ($content) {
 			return '<p>' . $content[0] . '</p>';
 		} 
