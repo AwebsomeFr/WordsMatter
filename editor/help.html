@@ -32,115 +32,101 @@
 						<details>
 							<summary><h3>Utilisateurs : maîtriser l'Application WordsMatter</h3></summary>
 							<div>
+								<h4>Espace de travail</h4>
+								<p>L'interface utilisateur de WordsMatters est divisée en deux zones.</p>
+								<p>La partie supérieure de l'écran est l'espace de visualisation, la partie inférieure, l'espace de rédaction. Saisissez dans l'espace de rédaction pour immédiatement observer le résultat dans l'espace de visualisation.</p>
+								<p>Le menu principal, décrit ci-dessous, est accessible depuis le coin supérieur droit de l'espace de visualisation. La mention "en-ligne" ou "hors-ligne" qui y figure permet à tout instant de savoir si l'Application est ou non en lien avec le serveur de publication.</p>
 								<h4>Menu principal</h4>
 								<p>Cliquez sur <button disabled>Menu</button> pour dévoiler les options suivantes :</p> 
-									<ul>
-										<li>
-											<button disabled>↑ Sauvegarder</button> : Enregistrer votre post — un seul à la fois — dans la mémoire locale du navigateur Web pour être automatiquement rechargé au lancement de WordsMatter. 
-										</li>
-										<li>
-											<button class="danger" disabled>X Supprimer</button> : Supprimer de la mémoire locale du navigateur Web le post sauvegardé.
-										</li>
-										<li>
-											<button disabled>↑ Publier sur le blog</button> : Mettre en ligne le post en cours d'édition sur votre blog. Si un post portant le même nom existe déjà, WordsMatter vous proposera de l'écraser.
-										</li>
-										<li>
-											<button disabled>↓ Modifier un post publié</button> : Éditer ou supprimer un post publié sur le blog.
-										</li>
+								<ul>
+									<li>
+										<button disabled>↑ Sauvegarder</button> : Enregistrer votre post — un seul à la fois — dans la mémoire locale du navigateur Web pour être automatiquement rechargé au lancement de WordsMatter. 
+									</li>
+									<li>
+										<button class="danger" disabled>X Supprimer</button> : Supprimer de la mémoire locale du navigateur Web le post sauvegardé.
+									</li>
+									<li>
+										<button disabled>↑ Publier sur le blog</button> : Mettre en ligne le post en cours d'édition sur votre blog. Si un post portant le même nom existe déjà, WordsMatter vous proposera de l'écraser.
+									</li>
+									<li>
+										<button disabled>↓ Modifier un post publié</button> : Éditer ou supprimer un post publié sur le blog.
+									</li>
 
-										<li>
-											<button disabled>↑ Exporter vers un fichier .txt</button> : Exporter le contenu de votre post vers un fichier .txt. Utilisez ensuite l'option "↓ Importer depuis un fichier .txt" pour rouvrir le fichier.
-										</li>
-										<li>
-											<button disabled>↓ Importer depuis un fichier .txt</button> : Importer le contenu d'un fichier .txt créé avec WordsMatter avec l'option "↑ Exporter vers un fichier .txt".
-										</li>
-										<li>
-											<button disabled>☼ Thème clair / thème sombre</button> : Basculer entre le thème clair, plus lisible en extérieur, et le thème sombre, moins agressif pour les yeux.
-										</li>
-										<li>
-											<button disabled>↔ Ajuster la largeur</button> : Définir la largeur de travail de WordsMatter (minimum : 360px / maximum : 1280px).
-											<span>Cette fonctionnalité est indisponible sur les terminaux dont la largeur d'écran est inférieure à 768px.</span>
-										</li>
-										<li>
-											<button disabled>↕ Ajuster la hauteur</button> : Définir la hauteur de travail allouée à l'espace de rédaction.
-										</li>
-										<li>
-											<button disabled>? Documentation</button> : Affiche la présente documentation.
-										</li>
-									</ul>
-								<h4>Syntaxe WordsMatter</h4>
-								<p>Avec WordsMatter, votre post est ainsi découpé :</p>
-								<ul>
-									<li>Un titre principal.</li>
-									<li>Une introduction optionnelle.</li>
-									<li>Autant de sections que nécessaire.</li>
-								</ul>
-								<p>WordsMatter utilise sa propre syntaxe pour mettre en forme du contenu ; voici deux généralités à ce sujet :</p>
-								<ul>
-									<li><b>Identifiant</b> : toute mise en forme commence toujours par <span class="h">un chiffre OU une lettre</span> indiquant à WordsMatter quel type de mise en forme doit s'appliquer au contenu.</li>
-									<li><b>Conteneur</b> : l'identifiant est toujours suivi d'au moins <span class="h">un couple de parenthèses</span> autour du contenu à formater.
-										<span>Il ne doit y avoir aucun espace entre l'identifiant et le conteneur.</span>
+									<li>
+										<button disabled>↑ Exporter vers un fichier .txt</button> : Exporter le contenu de votre post vers un fichier .txt. Utilisez ensuite l'option "↓ Importer depuis un fichier .txt" pour rouvrir le fichier.
+									</li>
+									<li>
+										<button disabled>↓ Importer depuis un fichier .txt</button> : Importer le contenu d'un fichier .txt créé avec WordsMatter avec l'option "↑ Exporter vers un fichier .txt".
+									</li>
+									<li>
+										<button disabled>☼ Thème clair / thème sombre</button> : Basculer entre le thème clair, plus lisible en extérieur, et le thème sombre, moins agressif pour les yeux.
+									</li>
+									<li>
+										<button disabled>↔ Ajuster la largeur</button> : Définir la largeur de travail de WordsMatter (minimum : 360px / maximum : 1280px).
+										<span>Cette fonctionnalité est indisponible sur les terminaux dont la largeur d'écran est inférieure à 768px.</span>
+									</li>
+									<li>
+										<button disabled>↕ Ajuster la hauteur</button> : Définir la hauteur de travail allouée à l'espace de rédaction.
+									</li>
+									<li>
+										<button disabled>? Documentation</button> : Affiche la présente documentation.
 									</li>
 								</ul>
-								<p>Certaines mises en forme imbriquent plusieurs couples de parenthèses, mais rassurez-vous : le menu d'édition propose un accès assisté à chacune d'elles.</p>
+								<h4>Syntaxe WordsMatter</h4>
 								<ul>
 									<li>
 										<h5>&lt;h1&gt; : Titre du post</h5>
-										<p>Remplissez <span class="h">le champ textuel</span> dont le label est "Titre du post".
-										<span>Ce titre, d’une importance capitale en matière de référencement (<abbr title="Search Engine Optimization">SEO</abbr>), devrait présenter le sujet du contenu.</span>
-										<span>Cet élément est requis pour publier un post.</span></p>
+										Remplissez <span class="h">le champ textuel</span> dont le label est "Titre du post". <span>Ce titre, d’une importance capitale en matière de référencement (<abbr title="Search Engine Optimization">SEO</abbr>), devrait présenter le sujet du contenu.</span> <span>Cet élément est requis pour publier un post.</span>
 									</li>
 									<li>
 										<h5>&lt;h2&gt; : Titre de section</h5>
-										<p>Remplissez <span class="h">le champ textuel</span> dont le label est "Titre de section" correspondante.
-										<span>Ce titre, important en matière de référencement, devrait introduire la section qu'il précède.</span></p>
+										Remplissez <span class="h">le champ textuel</span> dont le label est "Titre de section" correspondante. <span>Ce titre, important en matière de référencement, devrait introduire la section qu'il précède.</span>
 									</li>
 									<li>
 										<h5>&lt;h3&gt; / &lt;h4&gt; / &lt;h5&gt; / &lt;h6&gt; : Sous-titre de section</h5>
-										<p>Écrivez, par exemple, <span class="h">4(</span>votre sous-titre<span class="h">)</span> ou utilisez le bouton <button>h4</button> pour transformer votre sélection en sous-titre de niveau 4. En l'absence de sélection, vous serez invité à saisir du texte.
-										<span>Vous pouvez utiliser de 3(titre de plus grande importance) à 6(titre de moindre importance). Veillez à hiérarchiser vos sous-titres.</span></p>
+										Écrivez, par exemple, <span class="h">4(</span>votre sous-titre<span class="h">)</span> ou utilisez le bouton <button>h4</button> pour transformer votre sélection en sous-titre de niveau 4. En l'absence de sélection, vous serez invité à saisir du texte.<span>Vous pouvez utiliser de 3(titre de plus grande importance) à 6(titre de moindre importance). Veillez à les hiérarchiser.</span><span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
 									<li>
 										<h5>&lt;p&gt; : Paragraphe</h5>
-										<p>Pressez la touche <span class="h"><kbd>[Enter]</kbd></span> une fois.</p>
+										Pressez la touche <span class="h"><kbd>[Enter]</kbd></span> une fois.
 									</li>
 									<li>
 										<h5>&lt;br/&gt; : Retour à la ligne</h5>
-										<p>Tapez <span class="h">deux espaces</span> en fin de ligne avant de presser la touche <span class="h"><kbd>[Enter]</kbd></span> une fois.
-										<span>Un retour à la ligne ne crée pas de nouveau paragraphe, mais permet d'aérer des idées, sans pour autant les isoler.</span></p>
+										Tapez <span class="h">deux espaces</span> en fin de ligne avant de presser la touche <span class="h"><kbd>[Enter]</kbd></span> une fois.
+										<span>Un retour à la ligne ne crée pas de nouveau paragraphe, mais permet d'aérer des idées, sans pour autant les isoler.</span>
 									</li>
 									<li>
 										<h5>&lt;strong&gt; : Texte important</h5>
-										<p>Écrivez <span class="h">s(</span>votre texte important<span class="h">)</span> ou utilisez le bouton <button>str</button> pour transformer votre sélection en texte important. En l'absence de sélection, vous serez invité à saisir du texte.
-										<span>Assurez-vous que ce texte est important dans son contexte.</span></p>
+										Écrivez <span class="h">s(</span>votre texte important<span class="h">)</span> ou utilisez le bouton <button>str</button> pour transformer votre sélection en texte important. En l'absence de sélection, vous serez invité à saisir du texte.
+										<span>Assurez-vous que ce texte est important dans son contexte.</span>
 									</li>
 									<li>
 										<h5>&lt;em&gt; : Texte avec emphase</h5>
-										<p>Écrivez <span class="h">e(</span>votre texte emphasique<span class="h">)</span> ou utilisez le bouton <button>em</button> pour transformer votre sélection en texte emphasique. En l'absence de sélection, vous serez invité à saisir du texte.
-										<span>Assurez-vous que ce texte possède une signification particulière dans son contexte.</span></p>
+										Écrivez <span class="h">e(</span>votre texte emphasique<span class="h">)</span> ou utilisez le bouton <button>em</button> pour transformer votre sélection en texte emphasique. En l'absence de sélection, vous serez invité à saisir du texte.
+										<span>Assurez-vous que ce texte possède une signification particulière dans son contexte.</span>
 									</li>
 									<li>
 										<h5>&lt;ol&gt; : Liste ordonnée</h5>
-										<p>Écrivez <span class="h">o(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ol</button> pour créer une liste ordonnée. Vous serez alors invité à saisir les uns après les autres les éléments qui composent votre liste. Une fois votre liste terminée, annulez la saisie (touche <kbd>[Echap]</kbd>, bouton Annuler...) pour valider les entrées précédemment saisies.</p>
+										Écrivez <span class="h">o(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ol</button> pour créer une liste ordonnée. Vous serez alors invité à saisir les uns après les autres les éléments qui composent votre liste. Une fois votre liste terminée, annulez la saisie (touche <kbd>[Echap]</kbd>, bouton Annuler...) pour valider les entrées précédemment saisies. <span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
 									<li>
 										<h5>&lt;ul&gt; : Liste non ordonnée</h5>
-										<p>Écrivez <span class="h">u(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ul</button> pour créer une liste non ordonnée. Vous serez alors invité à saisir les uns après les autres les éléments qui composent votre liste. Une fois votre liste terminée, annulez la saisie (touche <kbd>[Echap]</kbd>, bouton Annuler...) pour valider les entrées précédemment saisies.</p>
+										Écrivez <span class="h">u(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ul</button> pour créer une liste non ordonnée. Vous serez alors invité à saisir les uns après les autres les éléments qui composent votre liste. Une fois votre liste terminée, annulez la saisie (touche <kbd>[Echap]</kbd>, bouton Annuler...) pour valider les entrées précédemment saisies.<span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
 									<li>
 										<h5>&lt;a&gt; : Lien hypertexte</h5>
-										<p>Écrivez <span class="h">a(</span>libellé du lien<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>a</button> pour insérer un lien hypertexte. Vous serez alors invité à renseigner le libellé du lien puis son URL.
-										<span>Le libellé sera exploité par les moteurs de recherche et certains utilisateurs en situation de handicap ; il devrait donc donner une indication claire sur le contenu vers lequel il pointe.</span></p>
+										Écrivez <span class="h">a(</span>libellé du lien<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>a</button> pour insérer un lien hypertexte. Vous serez alors invité à renseigner le libellé du lien puis son URL.
+										<span>Le libellé sera exploité par les moteurs de recherche et certains utilisateurs en situation de handicap ; il devrait donc donner une indication claire sur le contenu vers lequel il pointe.</span>
 									</li>
 									<li>
 										<h5>&lt;img&gt; : Image</h5>
-									<p>Écrivez <span class="h">i(</span>description alternative<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>img</button> pour insérer une image. Vous serez alors invité à renseigner une description alternative à l'image puis l'URL à laquelle cette ressource est disponible.
-										<span>La description sera exploitée par les moteurs de recherche, certains utilisateurs en situation de handicap, et apparaîtra en lieu et place de l'image si cette dernière ne peut être affichée (adresse invalide, ressource indisponible...). Elle devrait donc être aussi descriptive et concise que possible.</span></p>
+										Écrivez <span class="h">i(</span>description alternative<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>img</button> pour insérer une image. Vous serez alors invité à renseigner une description alternative à l'image puis l'URL à laquelle cette ressource est disponible. <span>La description sera exploitée par les moteurs de recherche, certains utilisateurs en situation de handicap, et apparaîtra en lieu et place de l'image si cette dernière ne peut être affichée (adresse invalide, ressource indisponible...). Elle devrait donc être aussi descriptive et concise que possible.</span>
 									</li>
 									<li>
 										<h5>&lt;figure&gt; + &lt;figcaption&gt; : Image avec légende</h5>
-									<p>Écrivez <span class="h">f(</span>légende<span class="h">(</span>description alternative<span class="h">(</span>URL<span class="h">)))</span> ou utilisez le bouton <button>fig</button> pour insérer une figure (image avec une légende). Vous serez alors invité à renseigner la légende de l'image, une description alternative puis l'URL à laquelle cette ressource est disponible.
-										<span>La description sera exploitée par les moteurs de recherche, certains utilisateurs en situation de handicap, et apparaîtra en lieu et place de l'image si cette dernière ne peut être affichée (adresse invalide, ressource indisponible...). Elle devrait donc être aussi descriptive et concise que possible.</span></p>
+										Écrivez <span class="h">f(</span>légende<span class="h">(</span>description alternative<span class="h">(</span>URL<span class="h">)))</span> ou utilisez le bouton <button>fig</button> pour insérer une figure (image avec une légende). Vous serez alors invité à renseigner la légende de l'image, une description alternative puis l'URL à laquelle cette ressource est disponible.
+										<span>La description sera exploitée par les moteurs de recherche, certains utilisateurs en situation de handicap, et apparaîtra en lieu et place de l'image si cette dernière ne peut être affichée (adresse invalide, ressource indisponible...). Elle devrait donc être aussi descriptive et concise que possible.</span>
+										<span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
 								</ul>
 								<p><strong>Pour obtenir les meilleures performances possibles en termes de référencement (SEO on-page), respectez le rôle sémantique des éléments HTML introduits ci-dessus et produisez du contenu de qualité à destination de vos utilisateurs.</strong></p>
@@ -151,7 +137,9 @@
 						<details>
 							<summary><h3>Développeurs : installer et configurer l'API WordsMatter</h3></summary>
 							<div>
-								<h4>Technologies</h4>
+								<h4>Obtenir WordsMatter</h4>
+								<p>WordsMatter est disponible en <a href="https://github.com/AwebsomeFr/WordsMatter/archive/master.zip">téléchargement direct depuis GitHub</a>. Vous pouvez aussi <a href="https://github.com/AwebsomeFr/WordsMatter">visualiser le code source du projet</a>.</p>
+								<h4>Technologies du projet</h4>
 								<ul>
 									<li>Côté client, l'Application WordsMatter repose exclusivement sur <abbr title="Hypertext Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr> et JavaScript.</li>
 									<li>Côté serveur, l'API WordsMatter est codée en <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> natif.</li>
