@@ -22,8 +22,13 @@
 	</div>
 	<main>
 		<nav id="main-nav">
-			<button id="bt-open-menu" onclick="toggleMenu()">Menu</button>
-			<div id="nav-container" onmouseleave="toggleMenu()" class="hidden">
+			<button 
+				id="bt-open-menu" 
+				onclick="toggleMenu(true)"
+				title="Ouvrir le menu">
+				Menu
+			</button>
+			<div id="nav-container" class="hidden" onmouseleave="toggleMenu(false)">
 				<!-- Save into LocalStorage -->
 				<button 
 					class="nav-button disabled" 
@@ -109,13 +114,20 @@
 					title="Afficher la documentation">
 					Documentation ?
 				</button>
+				<button
+					class="nav-button" 
+					id="bt-close-nav"
+					onclick="toggleMenu(false)"
+					title="Fermer le menu">
+					Fermer
+				</button>
 			</div>
 		</nav>
-		<article id="output">
+		<article onclick="toggleMenu(false)">
 			<h1 id="output-art-title"></h1>
 			<div id="output-art-introduction"></div>
 		</article>
-		<article id="input">
+		<article id="input" onclick="toggleMenu(false)">
 			<label for="input-art-title">Titre du post (h1)</label>
 			<input 
 				id="input-art-title" 
@@ -134,15 +146,12 @@
 	<script defer src="./scripts/config.js"></script>
 	<script defer src="./scripts/regex.js"></script>
 	<script defer src="./scripts/functions.js"></script>
-	<script defer src="./scripts/script.js"></script>
-	
+	<script defer src="./scripts/script.js"></script>	
 	<script>
-		// Are SW supported ?
 		if('serviceWorker' in navigator) {
-			// No active SW yet ?
 			if(!navigator.serviceWorker.controller) {
 				navigator.serviceWorker.register('./service-worker.js').then(function() {
-					// console.info('A Service Worker has been successfully registered for WordsMatter.');
+						/* :) */
 				})
 			}
 		}

@@ -1,9 +1,14 @@
 /* --- User Interface --- */
 
-	toggleMenu = () => {
+	toggleMenu = (boolean) => {
 
-		document.getElementById('nav-container').classList.toggle('hidden');
-
+		if(boolean === true) {
+			document.getElementById('nav-container').classList.remove('hidden');
+		}
+		else {
+			document.getElementById('nav-container').classList.add('hidden');
+		}
+		
 	};
 
 	toggleTheme = () => {
@@ -61,6 +66,8 @@
 			document.querySelector('main').style.opacity = '1';
 			dialogElm.classList.add('hidden');
 		}
+
+		toggleMenu(false);
 
 	};
 
