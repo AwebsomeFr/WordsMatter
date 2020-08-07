@@ -20,7 +20,7 @@
 			<ul>
 				<li>WordsMatter <strong>répond strictement à un besoin</strong>: alimenter un blog. Son efficience fonctionnelle le rend <strong>plus sûr</strong>, <strong>plus rapide</strong> et <strong>bien plus indolore pour l'environnement</strong> que les solutions traditionnelles.</li>
 				<li>
-					WordsMatter fonctionne en mode hors-ligne sur la majorité des navigateurs Web, il peut être ajouté en tant que <strong>Progressive Web App</strong> (PWA) à tout terminal compatible et son interface <strong>responsive</strong> permet de l'emporter partout. 
+					WordsMatter fonctionne en <strong>mode hors-ligne</strong> sur la majorité des navigateurs Web et son <strong>interface responsive</strong> lui permet d'être exploité sur mobile comme sur tablette ou sur ordinateur. 
 				</li>
 				<li>WordsMatter n'utilise <strong>aucune dépendance</strong>. De fait, <strong>son intégrité ne tient qu'à lui et à ses utilisateurs</strong> et n'est pas conditionnée à d'incessantes mises à jour.</li>
 				<li>WordsMatter est <strong>libre de droits</strong> et <strong>distribué gratuitement</strong>.</li>
@@ -138,7 +138,7 @@
 							<summary><h3>Développeurs : installer et configurer l'API WordsMatter</h3></summary>
 							<div>
 								<h4>Obtenir WordsMatter</h4>
-								<p>WordsMatter est disponible en <a href="https://github.com/AwebsomeFr/WordsMatter/archive/master.zip">téléchargement direct depuis GitHub</a>. Vous pouvez aussi <a href="https://github.com/AwebsomeFr/WordsMatter">visualiser le code source du projet</a>.</p>
+								<p>WordsMatter est disponible en <a href="https://github.com/AwebsomeFr/WordsMatter/archive/master.zip">téléchargement direct depuis GitHub</a>. Vous pouvez aussi <a href="https://github.com/AwebsomeFr/WordsMatter">visualiser le code source du projet</a> et même <a href="https://awebsomefr.github.io/WordsMatter/editor/">l'essayer</a>.</p>
 								<h4>Technologies du projet</h4>
 								<ul>
 									<li>Côté client, l'Application WordsMatter repose exclusivement sur <abbr title="Hypertext Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr> et JavaScript.</li>
@@ -149,7 +149,7 @@
 								<p>L'archive WordsMatter est divisée en deux parties :</p>		
 								<ul>
 									<li>
-										Le dossier <code>editor</code> contient <strong>l'Application WordsMatter</strong> et la présente documentation. Il doit être téléchargé ou installé sur le ou les terminaux de l'utilisateur et <strong class="danger">ne doit en aucun cas être hébergé sur le serveur</strong>.
+										Le dossier <code>editor</code> contient <strong>l'Application WordsMatter</strong> et la présente documentation. Il doit être téléchargé sur le ou les terminaux de l'utilisateur et <strong class="danger">ne doit en aucun cas être hébergé sur le serveur</strong>.
 									</li>
 									<li>
 										Le dossier <code>publisher</code> contient <strong>l'<abbr title="Application Programming Interface, ou Interface de programmation, en français">API</abbr> WordsMatter</strong>. à placer <em>en lieu sûr</em> sur le serveur (voir explications plus bas).
@@ -224,9 +224,8 @@
 									<li> Une politique verbeuse de <strong>gestion d'erreurs</strong> a été mise en place à travers une <strong>boîte de dialogue personnalisée</strong> ayant des <strong>interactions riches avec l'utilisateur</strong> et la configuration utilisateur est testée à chaque lancement de l'Application</strong> pour ne proposer que les fonctionnalités qui peuvent effectivement être exploitées.</li>
 									<li>L'interface utilisateur a été retouchée pour offrir un <strong>confort d'utilisation accru</strong> (meilleurs contrastes, optimisation du layout...).</li>
 									<li>Le <strong>chargement différé sur les images (lazy loading)</strong> est automatiquement appliqué aux images lors de la génération du post grâce à l'attribut natif <code>loading</code>.</li>
+									<li>Les fontes personnalisées (purement esthétique), la prévisualisation du code généré depuis l'Application (intérêt limité) ainsi que la possibilité d'installer l'application en tant que PWA (modèle incompatible avec la configuration préalable requise) ont été retirés.</li>
 									<li>La documentation a été <strong>réécrite</strong> pour faciliter son appropriation par les utilisateurs et les développeurs.</li>
-									<li>Les fontes personnalisées ont été supprimées au profit de <em>Web safe fonts</em>.</li>
-									<li>La prévisualisation du code généré depuis l'Application, dont l'intérêt était limité, a également été retirée.</li>
 								</ul>
 								<span>WordsMatter version 2, anciennement TextMatters, ayant été entièrement réécrit depuis la version 1, la compatibilité ascendante n'est pas assurée.</span>
 							</div>

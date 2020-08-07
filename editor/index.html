@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<link rel="apple-touch-icon" href="./medias/words-matter-logo-192px.png">
 	<link rel="icon" href="./medias/words-matter-favicon.ico" />
-	<link rel="manifest" href="./manifest.webmanifest" />
 	<link rel="stylesheet" type="text/css" href="./styles/style.css" />
 	<meta charset="utf-8" />
 	<meta name="description" content="WordsMatter est un outil de rédaction ultra-léger capable de générer du contenu web techniquement optimisé à des fins de blogging." />
-	<meta name="theme-color" content="#F59561"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 	<title>WordsMatter | Rédaction de contenu optimisé pour le web</title>
 </head>
@@ -146,15 +143,6 @@
 	<script defer src="./scripts/config.js"></script>
 	<script defer src="./scripts/regex.js"></script>
 	<script defer src="./scripts/functions.js"></script>
-	<script defer src="./scripts/script.js"></script>	
-	<script>
-		if('serviceWorker' in navigator) {
-			if(!navigator.serviceWorker.controller) {
-				navigator.serviceWorker.register('./service-worker.js').then(function() {
-						/* :) */
-				})
-			}
-		}
-	</script>
+	<script defer src="./scripts/script.js"></script>
 </body>
 </html>
