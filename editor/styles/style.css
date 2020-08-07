@@ -150,6 +150,16 @@
 		position: absolute;
 		width: 250px;
 	}
+	#posts-list button {
+		text-align: left;
+	}
+	#posts-list {
+		padding-left: 0;
+		display: grid;
+	}
+	#posts-list li {
+		display: flex;
+	}
 	button:not(.danger):hover, #label-open-file:hover { 
 		background-color: var(--color2);
 		color: var(--color1);

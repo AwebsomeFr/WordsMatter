@@ -291,11 +291,11 @@
 				
 				if(files.length > 0) {
 
-					let message = '<p>Quel post souhaitez-vous modifier ?</p><ul>';
+					let message = '<p>Quel post souhaitez-vous modifier ?</p><ul id="posts-list">';
 					for(let file of files) {
 						message += '<li>' +
-							'<button onclick="importFromServer(this.textContent)">' + file.filename + '</button>' +
 							'<button class="danger" onclick="deleteFromServer(false, this.previousSibling.textContent)">X</button>' +
+							'<button onclick="importFromServer(this.textContent)">' + file.filename + '</button>' +
 						'</li>';
 					}
 					message += '</ul>';
