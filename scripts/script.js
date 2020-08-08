@@ -72,7 +72,7 @@ if(localStorage) {
 // Is the server available ?
 (function() {
 
-	let req = createRequest(PUBLISHER_URL + 'initServer.php');
+	let req = createRequest(API_URL + 'initServer.php');
 	req.onload = () => {
 
 		if(req.status === 200) {

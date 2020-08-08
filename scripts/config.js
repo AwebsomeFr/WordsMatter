@@ -4,4 +4,4 @@ const EDITOR_ID = 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC';
 
 /* The URL where the publisher folder is located. 
 !!! IMPORTANT : THIS FOLDER MUST BE RENAMED (please read the documentation) !!! */
-const PUBLISHER_URL = '../publisher/';
+const API_URL = './api/';
