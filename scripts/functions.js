@@ -298,7 +298,7 @@
 				
 				if(files.length > 0) {
 
-					let message = '<p>Quel post souhaitez-vous modifier ?</p><ul id="posts-list">';
+					let message = '<p>Quel post ou brouillon souhaitez-vous modifier ?</p><ul id="posts-list">';
 					for(let file of files) {
 						message += '<li>' +
 							'<button class="danger" onclick="deleteFromServer(false, this.nextSibling.textContent)">X</button>' +
@@ -332,7 +332,7 @@
 		dial(
 			'<p>Copiez-collez le contenu suivant dans un fichier et sauvegardez ce dernier avec l\'extension <i>.txt</i>.</p>' +
 			'<p id="raw-data">' + JSON.stringify(getPost()) + '</p>' +
-			'<p>Utilisez l\'option <i>Importer"</i> accessible depuis le menu pour recharger le contenu de votre fichier.</p>'
+			'<p>Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour recharger le contenu du fichier.</p>'
 		);
 
 	};

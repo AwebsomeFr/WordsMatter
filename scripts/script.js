@@ -11,8 +11,7 @@ const MESS = {
 	wsSaveFail: 
 		'<p class="b">Une erreur est survenue pendant l\'enregistrement de votre post dans la mémoire locale du navigateur web.</p>',
 	wsDelAskConf: 
-		'<p><b style="color:#ffa500">!</b> Supprimer le contenu de la mémoire locale du navigateur web ? Cette opération est irréversible.</p>' +
-		'<p>(peut-être souhaiteriez-vous <a href="#" onclick="exportToFile()">exporter votre post vers un fichier .txt</a> ou le <a href="#" onclick="releasePost()">publier sur le blog</a> avant ?)</p>' +
+		'<p><b style="color:#ffa500">!</b> Supprimer le contenu de la mémoire locale du navigateur web ? Attention : cette opération est irréversible.</p>' +
 		'<button onclick="dial()">Annuler</button>' +
 		'<button class="danger" onclick="deleteFromLocalStorage(true)">Confirmer la suppression</button>',
 	wsDelEmpty: 
@@ -23,25 +22,26 @@ const MESS = {
 	wsDelFail: 
 		'<p class="b">Une erreur est survenue pendant la suppression de votre post de la mémoire locale du navigateur web. Si le problème persiste, essayez de supprimer les données de navigation de votre navigateur.</p>',
 	loadSucc: 
-		'<p class="g">Le contenu de votre post a été chargé avec succès.</p>',
+		'<p class="g">Le contenu de votre post a été rechargé avec succès.</p>',
 	servTitleEmpty: 
-		'<p class="b">Votre post doit avoir un titre pour être publié. Précisez-ce dernier, puis réessayez.</p>',
-	serverUnavailable: 
-		'<p class="b">Le serveur est injoignable : votre post ne peut être publié. Vérifiez votre connexion Internet, réessayez dans quelques instants. Si le problème persiste, contactez le prestataire en charge de la configuration de votre blog.</p>',
+		'<p class="b">Votre post doit avoir un titre pour être publié ou être sauvegardé en tant que brouillon sur le blog. Précisez-ce dernier, puis réessayez.</p>',
+	servUnavailable: 
+		'<p class="b">Le blog est injoignable : votre post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet, réessayez dans quelques instants. Si le problème persiste, contactez le prestataire en charge de la configuration de votre blog.</p>',
 	servConfNew:
 		'<p><b style="color:#ffa500">!</b> Vous allez publier un nouveau post.</p>' +
+		'<p>Pour sauvegarder ce post sur le blog <b>en tant que brouillon</b>, sans valider sa publication, cliquez sur <i>Annuler</i>, faites précéder son titre principal (h1) du caractère <i>%</i>, puis recommencez.</p>' +
 		'<button onclick="dial()">Annuler</button>' +
 		'<button onclick="releasePost(true)">Publier le post</button>',
 	servConfUpdate:
-		'<p><b style="color:#ffa500">!</b> Attention : un post avec un titre identique a déjà été publié. Souhaitez-vous le remplacer ?</p>' +
+		'<p><b style="color:#ffa500">!</b> Attention : un post avec un titre identique a déjà été publié sur le blog. Souhaitez-vous le remplacer ?</p>' +
 		'<button onclick="dial()">Annuler</button>' +
 		'<button onclick="releasePost(true)">Mettre à jour</button>',
 	servConfDel: 
-		'<p><b style="color:#ffa500">!</b> Supprimer le post sélectionné du serveur ? Cette opération est irréversible.</p>' +
+		'<p><b style="color:#ffa500">!</b> Supprimer le post sélectionné du blog ? Cette opération est irréversible.</p>' +
 		'<button onclick="dial()">Annuler</button>' +
 		'<button class="danger" onclick="deleteFromServer(true, varTemp)">Confirmer la suppression</button>',
 	servDelSucc: 
-		'<p class="g">Votre post a bien été supprimé du serveur.</p>',
+		'<p class="g">Votre post a bien été supprimé du blog.</p>',
 	servDelFail: 
 		'<p class="b">Une erreur est survenue pendant la suppression du post du server. Réessayez. Si le problème persiste, contactez le prestataire en charge de la configuration de votre blog.</p>',
 	servSucc: 
@@ -49,7 +49,7 @@ const MESS = {
 	servFail: 
 		'<p class="b">Une erreur est survenue pendant le traitement de la mise en ligne : votre post n\'a pas été publié. Réessayez. Si le problème persiste, contactez le prestataire en charge de la configuration de votre blog.</p>',
 	servEmpty:
-		'<p class="b">Il n\'y a encore aucun post en ligne. Lorsque vous aurez publié du contenu, vos articles seront listés ici.</p>',
+		'<p class="b">Il n\'y a encore ni post ni brouillon sur le blog.</p>',
 
 };
 
