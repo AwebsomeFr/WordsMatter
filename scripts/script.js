@@ -12,7 +12,7 @@ const MESS = {
 		'<p class="b">Une erreur est survenue pendant l\'enregistrement de votre post dans la mémoire locale du navigateur web.</p>',
 	wsDelAskConf: 
 		'<p><b style="color:#ffa500">!</b> Supprimer le contenu de la mémoire locale du navigateur web ? Cette opération est irréversible.</p>' +
-		'<p>(peut-être souhaiteriez-vous <a href="#" onclick="exportToFile()">exporter votre post vers un fichier .txt</a> ou le <a href="#" onclick="servPost()">publier sur le blog</a> avant ?)</p>' +
+		'<p>(peut-être souhaiteriez-vous <a href="#" onclick="exportToFile()">exporter votre post vers un fichier .txt</a> ou le <a href="#" onclick="releasePost()">publier sur le blog</a> avant ?)</p>' +
 		'<button onclick="dial()">Annuler</button>' +
 		'<button class="danger" onclick="deleteFromLocalStorage(true)">Confirmer la suppression</button>',
 	wsDelEmpty: 
