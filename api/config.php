@@ -11,12 +11,12 @@ define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC')
 will be created by WordsMatter when connecting 
 to the server for the first time. */
 
-// Where the original files (input) will be placed (.txt).
-define('INPUT_FOLDER', '../blog/sources/'); 
+// Where the original files and drafts (input) will be placed (.txt).
+define('INPUT_FOLDER', '../blog/drafts/'); 
 // Where the generated files (output) will be placed (.html by default).
 define('OUTPUT_FOLDER', '../blog/posts/'); 
 // Where the list of the posts will be placed (.json).
-define('LIST_OF_POSTS', '../blog/list-of-posts.json'); 
+define('POSTS_INDEX', '../blog/index.json'); 
  
 /* The following extensions can be changed. */
 define('OUTPUT_EXTENSION', '.html');

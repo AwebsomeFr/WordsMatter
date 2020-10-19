@@ -167,18 +167,19 @@
 		
 	};
 
-	releasePost = (validation = false) => {
+	pushPost = (validation = false) => {
 
 		// Has a title been specified ?
 		if(document.getElementById('output-art-title').textContent.trim() != '') { 
 
-			let req = createRequest(API_URL + 'releasePost.php');
+			let req = createRequest(API_URL + 'pushPost.php');
+				
 			req.onload = () => {
 
 				// Is the server available ?
 				if(req.status === 200) {
 
-					// New post ? Ask confirm release.
+					// New post ? Ask confirm push.
 					if(req.responseText == 'release') {
 						dial(MESS.servConfNew);
 					}
@@ -297,12 +298,11 @@
 				let files = JSON.parse(req.responseText);
 				
 				if(files.length > 0) {
-
-					let message = '<p>Quel post ou brouillon souhaitez-vous modifier ?</p><ul id="posts-list">';
+					let message = '<p>Quel post souhaitez-vous modifier depuis le blog ?</p><ul id="posts-list">';
 					for(let file of files) {
-						message += '<li>' +
-							'<button class="danger" onclick="deleteFromServer(false, this.nextSibling.textContent)">X</button>' +
-							'<button onclick="importFromServer(this.textContent)">' + file.filename + '</button>' +
+						message += '<li >' +
+							'<button class="danger" onclick="deleteFromServer(false, this.nextSibling.textContent)" title="Supprimer l\'élément du blog">X</button>' +
+							'<button class="' + (file.draft ? 'draft' : 'release') + '" onclick="importFromServer(this.textContent)" title="Ouvrir cet élément pour édition">' + file.filename + '</button>' +
 						'</li>';
 					}
 					message += '</ul>';

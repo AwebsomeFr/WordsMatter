@@ -80,6 +80,11 @@
 		color: #d25;
 		content: "✘ ";
 	}
+	.a::before {
+		color:#ffa500;
+		content:  "!";
+		font-weight: bold;
+	}
 
 /* navigation and interface */
 
@@ -129,6 +134,16 @@
 	button, #label-open-file  {
 		color: var(--color1);
 		font-weight: bold;
+	}
+	.draft::after {
+		color: #ffa500;
+		content:  " (brouillon)";
+		font-weight: normal;
+	}
+	.release::after {
+		color: #8d2;
+		content:  " (publié)";
+		font-weight: normal;
 	}
 	.nav-button {
 		display: block;

@@ -8,7 +8,7 @@ if(isset($_POST['EditorId'])) {
 	// Is the user legitimate ?	
 	if($_POST['EditorId'] == EDITOR_ID) {
 
-		echo file_get_contents(LIST_OF_POSTS);
+		echo file_get_contents(POSTS_INDEX);
 
 	}
 

@@ -17,7 +17,7 @@ if(isset($_POST['EditorId']) && isset($_POST['filename'])) {
 			&& !file_exists(OUTPUT_FOLDER . $_POST['filename'] . OUTPUT_EXTENSION)) {
 
 			// Update the list.
-			$posts = json_decode(file_get_contents(LIST_OF_POSTS));
+			$posts = json_decode(file_get_contents(POSTS_INDEX));
 
 			for($i = 0, $l = count($posts); $i < $l; $i++) {
 
@@ -31,7 +31,7 @@ if(isset($_POST['EditorId']) && isset($_POST['filename'])) {
 
 			}
 
-			file_put_contents(LIST_OF_POSTS, json_encode($posts));
+			file_put_contents(POSTS_INDEX, json_encode($posts));
 
 			echo 'success';
 

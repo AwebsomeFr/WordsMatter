@@ -12,8 +12,8 @@ if($_POST['EditorId'] == EDITOR_ID) {
 	if(!is_dir(OUTPUT_FOLDER)) {
 		mkdir(OUTPUT_FOLDER, 0777, true);
 	}
-	if(!file_exists(LIST_OF_POSTS)) {
-		file_put_contents(LIST_OF_POSTS, '[]');
+	if(!file_exists(POSTS_INDEX)) {
+		file_put_contents(POSTS_INDEX, '[]');
 	}
 
 }

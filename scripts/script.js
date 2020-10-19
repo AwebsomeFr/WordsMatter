@@ -7,47 +7,49 @@ const MESS = {
 	wsUnavailable: 
 		'<p class="b">Votre post ne peut être sauvegardé ou supprimé : l\'API <i>Web Storage</i> semble indisponible ou a été désactivée sur votre navigateur web.</p>',
 	wsSaveSucc: 
-		'<p class="g">Le contenu de votre post a été enregistré dans la mémoire locale du navigateur web.</p>',
+		'<p class="g">Le contenu de votre post a été enregistré avec succès dans la mémoire locale du navigateur web.</p>',
 	wsSaveFail: 
 		'<p class="b">Une erreur est survenue pendant l\'enregistrement de votre post dans la mémoire locale du navigateur web.</p>',
 	wsDelAskConf: 
-		'<p><b style="color:#ffa500">!</b> Supprimer le contenu de la mémoire locale du navigateur web ? Attention : cette opération est irréversible.</p>' +
+		'<p class="a"> Supprimer le contenu de la mémoire locale du navigateur web ? Attention : cette opération est irréversible.</p>' +
 		'<button onclick="dial()">Annuler</button>' +
 		'<button class="danger" onclick="deleteFromLocalStorage(true)">Confirmer la suppression</button>',
 	wsDelEmpty: 
 		'<p class="b">Il n\'y a rien à supprimer de la mémoire du navigateur web ! Pour pouvoir supprimer quelque chose, commencez par <a href="#" onclick="saveIntoLocalStorage()">sauvegarder</a> votre post dans la mémoire du navigateur web.</p>' +
 			'<p>(Vous souhaitiez simplement réinitialiser WordsMatter ? Vous pouvez <a href="#" onclick="refresh()">recharger la page</a> ?)</p>',
 	wsDelSucc: 
-		'<p class="g">Le contenu de votre post a bien été supprimé de la mémoire locale du navigateur web.</p>',
+		'<p class="g">Le contenu de votre post a été supprimé avec succès de la mémoire locale du navigateur web.</p>',
 	wsDelFail: 
 		'<p class="b">Une erreur est survenue pendant la suppression de votre post de la mémoire locale du navigateur web. Si le problème persiste, essayez de supprimer les données de navigation de votre navigateur.</p>',
 	loadSucc: 
 		'<p class="g">Le contenu de votre post a été rechargé avec succès.</p>',
 	servTitleEmpty: 
-		'<p class="b">Votre post doit avoir un titre pour être publié ou être sauvegardé en tant que brouillon sur le blog. Précisez-ce dernier, puis réessayez.</p>',
+		'<p class="b">Votre post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.</p>',
 	servUnavailable: 
-		'<p class="b">Le blog est injoignable : votre post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet, réessayez dans quelques instants. Si le problème persiste, contactez le prestataire en charge de la configuration de votre blog.</p>',
+		'<p class="b">Le serveur est injoignable : votre post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet, réessayez dans quelques instants. Si le problème persiste, contactez le prestataire en charge de la configuration de votre WordsMatter.</p>',
 	servConfNew:
-		'<p><b style="color:#ffa500">!</b> Vous allez publier un nouveau post.</p>' +
-		'<p>Pour sauvegarder ce post sur le blog <b>en tant que brouillon</b>, sans valider sa publication, cliquez sur <i>Annuler</i>, faites précéder son titre principal (h1) du caractère <i>%</i>, puis recommencez.</p>' +
+		'<p class="a"> Vous allez envoyer du contenu vers le blog.</p>' +
+		'<p>Si le titre principal (h1) de votre post est précédé d\'un %, il sera sauvegardé en tant que <b>brouillon</b>, mais ne sera pas rendu public.</p>' +
+		'<p>Pour valider la <b>publication</b> de votre post, assurez-vous que son titre principal (h1) ne débute pas par %.</p>' +
 		'<button onclick="dial()">Annuler</button>' +
-		'<button onclick="releasePost(true)">Publier le post</button>',
+		'<button onclick="pushPost(true)">Valider</button>',
 	servConfUpdate:
-		'<p><b style="color:#ffa500">!</b> Attention : un post avec un titre identique a déjà été publié sur le blog. Souhaitez-vous le remplacer ?</p>' +
+		'<p class="a"> Attention : un post avec un titre identique est déjà présent sur le blog. Souhaitez-vous le remplacer ?</p>' +
+		'<p>Pour rappel, vous pouvez transformer ce post en brouillon en faisant précéder d\'un % son titre principal (h1) ou le rendre public, en supprimant le %.</p>' +
 		'<button onclick="dial()">Annuler</button>' +
-		'<button onclick="releasePost(true)">Mettre à jour</button>',
+		'<button onclick="pushPost(true)">Mettre à jour</button>',
 	servConfDel: 
-		'<p><b style="color:#ffa500">!</b> Supprimer le post sélectionné du blog ? Cette opération est irréversible.</p>' +
+		'<p class="a"> Supprimer le post sélectionné du blog ? Cette opération est irréversible.</p>' +
 		'<button onclick="dial()">Annuler</button>' +
 		'<button class="danger" onclick="deleteFromServer(true, varTemp)">Confirmer la suppression</button>',
 	servDelSucc: 
-		'<p class="g">Votre post a bien été supprimé du blog.</p>',
+		'<p class="g">Votre post été supprimé avec succès du blog.</p>',
 	servDelFail: 
-		'<p class="b">Une erreur est survenue pendant la suppression du post du server. Réessayez. Si le problème persiste, contactez le prestataire en charge de la configuration de votre blog.</p>',
+		'<p class="b">Une erreur est survenue pendant la suppression du post du server. Réessayez. Si le problème persiste, contactez le prestataire en charge de la configuration de WordsMatter.</p>',
 	servSucc: 
-		'<p class="g">Félicitations : votre post a été publié avec succès.</p>',
+		'<p class="g">Félicitations : votre post a été envoyé avec succès vers le blog.</p>',
 	servFail: 
-		'<p class="b">Une erreur est survenue pendant le traitement de la mise en ligne : votre post n\'a pas été publié. Réessayez. Si le problème persiste, contactez le prestataire en charge de la configuration de votre blog.</p>',
+		'<p class="b">Une erreur est survenue pendant le traitement de la mise en ligne : votre post n\'a pas été publié. Réessayez. Si le problème persiste, contactez le prestataire en charge de la configuration de WordsMatter.</p>',
 	servEmpty:
 		'<p class="b">Il n\'y a encore ni post ni brouillon sur le blog.</p>',
 

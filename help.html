@@ -31,7 +31,7 @@
 								<h4 id="user-ui">Découvrir l'interface utilisateur</h4>
 								<p>L'interface utilisateur de WordsMatter est divisée en deux zones.</p>
 								<p>La partie supérieure de l'écran est l'espace de visualisation, la partie inférieure, l'espace de rédaction. Saisissez dans l'espace de rédaction pour immédiatement observer le résultat dans l'espace de visualisation.</p>
-								<p>Le menu principal, décrit ci-dessous, est accessible depuis le coin supérieur droit de l'espace de visualisation. La mention "en-ligne" ou "hors-ligne" y figurant permet à tout instant de savoir si l'application est ou non en lien avec le serveur de publication.</p>
+								<p>Le menu principal, décrit ci-dessous, est accessible depuis le coin supérieur droit de l'espace de visualisation. La mention "en-ligne" ou "hors-ligne" y figurant permet à tout instant de savoir si l'application est ou non connectée avec l'API du blog.</p>
 								<p>Cliquez sur <button disabled>Menu</button> pour dévoiler les options suivantes :</p> 
 								<ul>
 									<li>
@@ -41,10 +41,10 @@
 										<button class="danger" disabled>X Supprimer</button> : Supprimer de la mémoire locale du navigateur Web le post sauvegardé.
 									</li>
 									<li>
-										<button disabled>↑ Publier sur le blog</button> : Mettre en ligne le post en cours d'édition sur votre blog. Si un post portant le même nom existe déjà, WordsMatter vous proposera de l'écraser.
+										<button disabled>↑ Envoyer vers le blog</button> : Publier ou sauvegarder en tant que brouillon le post en cours d'édition sur votre blog. Un titre principal (h1) commençant par un % sera sauvegardé comme brouillon et ne sera pas rendu public. Si un post portant le même nom existe déjà, WordsMatter vous proposera de l'écraser.
 									</li>
 									<li>
-										<button disabled>↓ Modifier un post publié</button> : Éditer ou supprimer un post publié sur le blog.
+										<button disabled>↓ Modifier depuis le blog</button> : Lister les posts et brouillons envoyés sur le blog pour édition ou suppression.
 									</li>
 
 									<li>
@@ -71,7 +71,7 @@
 								<ul>
 									<li>
 										<h5>&lt;h1&gt; : Titre du post</h5>
-										Remplissez <span class="h">le champ textuel</span> dont le label est "Titre du post". <span>Ce titre, d’une importance capitale en matière de référencement (SEO), devrait présenter le sujet du contenu.</span> <span>Cet élément est requis pour publier un post.</span>
+										Remplissez <span class="h">le champ textuel</span> dont le label est "Titre du post". <span>Ce titre, d’une importance capitale en matière de référencement (SEO), devrait présenter le sujet du contenu.</span> <span>Cet élément est requis pour publier un post.</span> <span>Faites précéder ce titre d'un % pour spécifier à WordsMatter qu'il s'agit d'un brouillon lorsque vous envoyez du contenu vers le blog.</span>
 									</li>
 									<li>
 										<h5>&lt;h2&gt; : Titre de section</h5>
@@ -154,7 +154,7 @@
 									<li>WordsMatter est <strong>libre de droits</strong> et <strong>distribué gratuitement</strong>.</li>
 								</ul>
 								<h4 id="dev-concept">Le concept en quelques mots</h4>
-								<p>Le fonctionnement de WordsMatter est le suivant : l'éditeur, utilisé en local, communique avec l'API, hébergée sur le site Web où le blog doit être alimenté. La mise en relation se fait sans friction, de façon sécurisée, grâce à un identifiant commun, connu des deux parties. L'éditeur envoie à l'API le contenu à publier et cette dernière génère du HTML valide à une adresse déterminée par sa configuration. De son côté, l'API peut lister et renvoyer à l'éditeur le contenu publié pour édition ou suppression.</p>
+								<p>Le fonctionnement de WordsMatter est le suivant : l'application, utilisée en local, communique avec l'API, hébergée sur le site Web où le blog doit être alimenté. La mise en relation se fait sans friction, de façon sécurisée, grâce à un identifiant commun, connu des deux parties. L'application envoie à l'API le contenu à publier ou à sauvegarder en tant que brouillon. Dans le premier cas (publication), l'API génère du HTML valide à une adresse déterminée par sa configuration. Dans le second (brouillon), elle se contente d'héberger les données brutes, jusqu'à suppression ou transformation en publication par l'utilisateur. L'API peut par ailleurs lister le contenu (brouillons & posts) pour édition ou suppression depuis l'application.</p>
 								<h4 id="dev-tech-license">Technologies et licence</h4>
 								<ul>
 									<li>Côté client, l'application WordsMatter repose exclusivement sur HTML, CSS et JavaScript Vanilla.</li>
@@ -202,7 +202,7 @@
 										<ul>
 											<li><code>EDITOR_ID</code> doit être égale à la constante du même nom décrite ci-dessus.</li>
 											<li>
-												<code>INPUT_FOLDER</code> doit pointer vers l'adresse où les posts rédigés seront sauvegardés pour modification éventuelle (format .txt).
+												<code>INPUT_FOLDER</code> doit pointer vers l'adresse où les posts et brouillons seront sauvegardés pour édition éventuelle (format .txt).
 												<span>Ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.</span>
 											</li>
 											<li>
@@ -210,7 +210,7 @@
 												<span>Ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.</span>
 											</li>
 											<li>
-												<code>LIST_OF_POSTS</code> doit pointer vers un fichier au format .json où seront listés les posts avec leur titre, leur nom de fichier et leur dernière date publication.
+												<code>POSTS_INDEX</code> doit pointer vers un fichier au format .json où seront listés les posts avec leur titre, leur nom de fichier, leur dernière date d'édition et leur statut (brouillon ou non).
 												<span>Ce fichier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.</span>
 											</li>
 										</ul>
@@ -226,6 +226,10 @@
 									<li>
 										<strong>Identification de la source et protection de la cible</strong> : Aucun mot de passe ne sera jamais demandé à l'utilisateur ni par l'application ni par l'API. Ces dernières sont configurées pour échanger dès lors que l'identifiant d'éditeur établi dans les fichiers <code>config.js</code> et <code>config.php</code> concordent. Pour éviter les attaques de force brute liées à une URL d'API prévisible, <strong class="danger">il est impératif de renommer le dossier <code>api</code> dans le but de créer une adresse impossible à deviner</strong>. Dans la mesure où ce nom de dossier <strong>doit pouvoir constituer une URL valide</strong>, cela exclut l'utilisation de certains caractères. Une solution peut être de combiner minuscules, majuscules et chiffres (sans accents) dans la longueur. Par exemple, un intitulé de 100 caractères tel que "<code style="word-break: break-all;">KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpwVXrpFnQwEvSfc5fEh2EeAbhpFDWd3MPAbNMFNXYASHHr4CACcv</code>" pourrait donner lieu à une URL imprévisible telle que "<code style="word-break: break-all;">https://votre-site-.fr/KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpwVXrpFnQwEvSfc5fEh2EeAbhpFDWd3MPAbNMFNXYASHHr4CACcv/</code>".
 										<span>Attention : pour que cette protection soit efficace, il faut interdire l'exploration de l'arborescence du site (exemple : <code>.htaccess</code> à la racine du site contenant la directive <code>Options -Indexes</code>).</span>
+									</li>
+									<li>
+										<strong>HTTPS</strong> : Il est vivement conseillé d'utiliser WordsMatter dans un contexte HTTPS afin d'éviter l'interception d'informations lors des échanges entre l'application et l'API. 
+									</li>
 								</ul>
 								<h4 id="dev-go-further">Considérations</h4>
 								<p>WordsMatter est <strong>tout à fait fonctionnel</strong> en l'état, cependant :</p>
@@ -235,7 +239,7 @@
 									</li>
 									<li>
 										WordsMatter ne génère pas de sommaire de blog prêt à l'emploi. Il existe bien des manières de procéder : à vous d'implémenter la vôtre.
-										<span>Le fichier <code>list-of-posts.json</code> créé dans le dossier <code>blog</code> que l'application utilise pour lister les posts peut facilement être exploité dans ce but.</span>
+										<span>Le fichier <code>index.json</code> créé dans le dossier <code>blog</code> que l'application utilise pour lister les posts peut facilement être exploité dans ce but (attention toutefois à y faire une sélection entre publications et brouillons).</span>
 									</li>
 									<li>WordsMatter ne produit aucun sitemap.</li> 
 								</ul>
