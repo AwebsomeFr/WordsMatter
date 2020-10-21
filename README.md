@@ -2,7 +2,7 @@
 
 FR
 
-WordsMatter est un éditeur de texte ultra léger capable de **générer du contenu Web techniquement optimisé** à des fins de blogging, même en contexte d'utilisation mobile. Créé pour **promouvoir le développement de [sites Internet écoresponsables](https://awebsome.fr/posts/site-internet-ecoresponsable-la-theorie)**, WordsMatter est **une alternative viable aux Systèmes de Gestion de Contenu (CMS)**, peu performants et énergivores.
+Rédigez depuis l'Application ; partagez grâce à l'API connectée ! Compatible avec tout type d'architecture de site Internet, WordsMatter est **un module de gestion de blog autonome et cross-device** (exploitable sur ordinateur, tablette, téléphone...). Ultra léger et efficient, WordsMatter est **une alternative écoresponsable** aux Systèmes de Gestion de Contenu (CMS) traditionnels.
 
 * [Essayer l'éditeur](https://awebsomefr.github.io/WordsMatter/)
 * [Lire la documentation](https://awebsomefr.github.io/WordsMatter/help.html)
@@ -12,7 +12,7 @@ WordsMatter est un éditeur de texte ultra léger capable de **générer du cont
 
 EN
 
-WordsMatter is an ultralight text editor capable of **generating technically optimized web content** for blogging purposes, even in the context of mobile use. Created to **promote the development of [eco-responsible websites](https://awebsome.fr/posts/site-internet-ecoresponsable-la-theorie)** (fr), WordsMatter is **a viable alternative to inefficient and energy-consuming content management systems (CMS)**.
+Write with the Application ; share with the connected API ! Compatible with any type of website architecture, WordsMatter is an autonomous and cross-device (usable on computer, tablet, smartphone...) blog management module. Ultra light and efficient, WordsMatter is an eco-responsible alternative to traditional Content Management Systems (CMS).
 
 * [Try the editor](https://awebsomefr.github.io/WordsMatter/) (fr)
 * [Read the doc](https://awebsomefr.github.io/WordsMatter/help.html) (fr)
