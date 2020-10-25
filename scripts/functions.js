@@ -2,12 +2,9 @@
 
 	toggleMenu = (boolean) => {
 
-		if(boolean === true) {
-			document.getElementById('nav-container').classList.remove('hidden');
-		}
-		else {
+		boolean ?
+			document.getElementById('nav-container').classList.remove('hidden') :
 			document.getElementById('nav-container').classList.add('hidden');
-		}
 		
 	};
 
@@ -20,13 +17,13 @@
 	setHeight = () => {
 
 		dial(
-			'<p>Déplacez le curseur pour modifier la répartition verticale entre les deux zones.</p>' +
+			'<p>Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.</p>' +
 			'<input ' +
-				 'type="range"' + 
-				 'min="0.25"' +
 				 'max="4"' +
+				 'min="0.25"' +
+				 'oninput="document.querySelector(\'main\').style.gridTemplateRows = \'auto 1fr \' + this.value + \'fr\'" ' +
 				 'step="0.25"' +
-				 'oninput="document.querySelector(\'main\').style.gridTemplateRows = \'auto 1fr \' + this.value + \'fr\'" />'
+				 'type="range" />'
 		);
 
 	};
@@ -36,11 +33,11 @@
 		dial(
 			'<p>Déplacez le curseur pour ajuster la largeur de travail utile.</p>' +
 			'<input ' +
-				 'type="range"' + 
-				 'min="25"' +
 				 'max="100"' +
+				 'min="25"' +
+				 'oninput="document.querySelector(\'main\').style.width = this.value + \'%\'" ' +
 				 'step="5"' +
-				 'oninput="document.querySelector(\'main\').style.width = this.value + \'%\'" />'
+				 'type="range" />'
 		);
 
 	};
@@ -68,12 +65,6 @@
 		}
 
 		toggleMenu(false);
-
-	};
-
-	refresh = () => {
-
-		window.location.reload();
 
 	};
 
@@ -654,7 +645,7 @@
 			case 'ol': case 'ul':
 				formElm.body =
 					'<label for="list-values">Eléments composant la liste (délimiteur : %%) :</label>' +
-					'<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..."></textarea>'
+					'<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..." required></textarea>'
 				break;
 
 			case 'a':
@@ -706,10 +697,7 @@
 
 			switch(object.tag) {
 
-				case 'h3':
-				case 'h4':
-				case 'h5':
-				case 'h6':
+				case 'h3': case 'h4': case 'h5': case 'h6':
 					output = '\n' + object.tag.substring(1,2) + '(' + e.target.elements[0].value + ')\n';
 					break;
 
