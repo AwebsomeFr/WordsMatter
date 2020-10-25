@@ -12,7 +12,6 @@ const MESS = {
 		'<p class="b">Une erreur est survenue pendant l\'enregistrement de votre post dans la mémoire locale du navigateur web.</p>',
 	wsDelAskConf: 
 		'<p class="a"> Supprimer le contenu de la mémoire locale du navigateur web ? Attention : cette opération est irréversible.</p>' +
-		'<button onclick="dial()">Annuler</button>' +
 		'<button class="danger" onclick="deleteFromLocalStorage(true)">Confirmer la suppression</button>',
 	wsDelEmpty: 
 		'<p class="b">Il n\'y a rien à supprimer de la mémoire du navigateur web ! Pour pouvoir supprimer quelque chose, commencez par <a href="#" onclick="saveIntoLocalStorage()">sauvegarder</a> votre post dans la mémoire du navigateur web.</p>' +
@@ -31,16 +30,13 @@ const MESS = {
 		'<p class="a"> Vous allez envoyer du contenu vers le blog.</p>' +
 		'<p>Si le titre principal (h1) de votre post est précédé d\'un %, il sera sauvegardé en tant que <b>brouillon</b>, mais ne sera pas rendu public.</p>' +
 		'<p>Pour valider la <b>publication</b> de votre post, assurez-vous que son titre principal (h1) ne débute pas par %.</p>' +
-		'<button onclick="dial()">Annuler</button>' +
 		'<button onclick="pushPost(true)">Valider</button>',
 	servConfUpdate:
 		'<p class="a"> Attention : un post avec un titre identique est déjà présent sur le blog. Souhaitez-vous le remplacer ?</p>' +
 		'<p>Pour rappel, vous pouvez transformer ce post en brouillon en faisant précéder d\'un % son titre principal (h1) ou le rendre public, en supprimant le %.</p>' +
-		'<button onclick="dial()">Annuler</button>' +
 		'<button onclick="pushPost(true)">Mettre à jour</button>',
 	servConfDel: 
 		'<p class="a"> Supprimer le post sélectionné du blog ? Cette opération est irréversible.</p>' +
-		'<button onclick="dial()">Annuler</button>' +
 		'<button class="danger" onclick="deleteFromServer(true, varTemp)">Confirmer la suppression</button>',
 	servDelSucc: 
 		'<p class="g">Votre post été supprimé avec succès du blog.</p>',

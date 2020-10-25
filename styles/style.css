@@ -62,7 +62,6 @@
 /* dial */
 
 	#dial {
-		background-color: var(--color3);
 		color: var(--color5);
 		max-height: 85vh;
 		max-width: 500px;
@@ -201,6 +200,12 @@
 	article label {
 		left: -9999px;
 		position: absolute;
+	}
+	#dial label, #dial input, #dial textarea {
+		display: block;
+		margin: 10px 0;
+		width:  100%;
+		box-sizing: border-box;
 	}
 	#raw-data {
 		color: var(--color1);

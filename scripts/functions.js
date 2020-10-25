@@ -57,7 +57,7 @@
 		
 		if(mess != undefined) {
 			dialogElm.querySelector('div').innerHTML = mess;
-			document.querySelector('main').style.opacity = '0.3';
+			document.querySelector('main').style.opacity = '0.1';
 			dialogElm.classList.remove('hidden');
 		}
 
@@ -554,7 +554,7 @@
 						event: {
 							type: 'click',
 							callback () {
-								formatContent(inputSecElm.querySelector('textarea'), 'h' + i);
+								formatContent(inputSecElm.querySelector('textarea'), 	{ title: 'Insérer un sous-titre de niveau ' + i, tag: 'h' + i });
 							}
 						}
 					}
@@ -564,13 +564,13 @@
 
 		// Quick insertion for strong, em, ol, ul, a, img, figure.
 		for(let elmToCreate of [
-			{ text: 'str', title: 'Insérer texte important', type: 'strong' },
-			{ text: 'em', title: 'Insérer texte emphasique', type: 'em' },
-			{ text: 'ol', title: 'Insérer liste ordonnée', type: 'ol' },
-			{ text: 'ul', title: 'Insérer liste non ordonnée', type: 'ul' },
-			{ text: 'a', title: 'Insérer lien hypertexte', type: 'a' },
-			{ text: 'img', title: 'Insérer image', type: 'img' },
-			{ text: 'fig', title: 'Insérer figure', type: 'figure' }
+			{ text: 'str', title: 'Insérer du texte important', tag: 'strong' },
+			{ text: 'em', title: 'Insérer du texte emphasique', tag: 'em' },
+			{ text: 'ol', title: 'Insérer une liste ordonnée', tag: 'ol' },
+			{ text: 'ul', title: 'Insérer une liste non ordonnée', tag: 'ul' },
+			{ text: 'a', title: 'Insérer un lien hypertexte', tag: 'a' },
+			{ text: 'img', title: 'Insérer une image', tag: 'img' },
+			{ text: 'fig', title: 'Insérer une figure', tag: 'figure' }
 		]) {
 			inputSecElm.appendChild(
 				chess(
@@ -583,7 +583,7 @@
 						event: {
 							type: 'click',
 							callback () {
-								formatContent(inputSecElm.querySelector('textarea'), elmToCreate.type);
+								formatContent(inputSecElm.querySelector('textarea'), elmToCreate);
 							}
 						}
 					}
@@ -622,74 +622,147 @@
 
 	};
 
-	formatContent = (targetElm, tag) => {
+	formatContent = (targetElm, object) => {
 
-		let highlightedContent = targetElm.value.substring(targetElm.selectionStart, targetElm.selectionEnd);
-		let formatedContent;
-		switch(tag) {
-			case 'h3':
-			case 'h4':
-			case 'h5':
-			case 'h6':
-				let level = tag.substring(1,2);
-				formatedContent = 
-					level + '(' +
-					(highlightedContent !== '' ? highlightedContent : prompt('Titre de niveau ' + level + ' :')) +
-					')\n';
+		// Form parts.
+		let formElm = {
+			header: '<form><h2>' + object.title + '</h2>',
+			body : '', // Declared into the next switch.
+			footer: 	'<button type="submit">Valider</button></form>'	
+		};
+
+		// Case 1 : Input comes from highlighted text.
+		// Case 2 : Input will come from modal.
+		let input = targetElm.value.substring(targetElm.selectionStart, targetElm.selectionEnd);
+		let urlRegex = /^https?:\/\/.+\.[a-z]{2,}$/i;
+
+		// Body of the form.
+		switch(object.tag) {
+
+			case 'h3': case 'h4': case 'h5': case 'h6':
+				formElm.body =
+					'<label for="h-value">Texte à transformer :</label>' +
+					'<input id="h-value" type="text" value="' + input + '" required />';
 				break;
-			case 'strong':
-				formatedContent = 
-					's(' +
-					(highlightedContent !== '' ? highlightedContent : prompt('Texte "important" :')) +
-					') ';
+
+			case 'strong': case 'em':
+				formElm.body =
+					'<label for="inline-value">Texte à transformer :</label>' +
+					'<input id="inline-value" type="text" value="' + input + '" required />'
 				break;
-			case 'em':
-				formatedContent = 
-					'e(' +
-					(highlightedContent !== '' ? highlightedContent : prompt('Texte "emphasique" :')) +
-					') ';
+
+			case 'ol': case 'ul':
+				formElm.body =
+					'<label for="list-values">Eléments composant la liste (délimiteur : %%) :</label>' +
+					'<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..."></textarea>'
 				break;
+
 			case 'a':
-				formatedContent =
-					'a(' +
-					prompt('Libellé du lien hypertexte :') +
-					'(' + (prompt('Url du lien hypertexte.\nExemple (sans guillemets) : "https://exemple.fr".')) +
-					')) ';
+				formElm.body =
+					'<label for="a-value">URL cible :</label>' +
+					'<input id="a-value" type="url" placeholder="https://exemple.fr" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
+					'<label for="a-label">Libellé explicite du lien :</label>' +
+					'<input id="a-label" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />';
 				break;
-			case 'ol':
-			case 'ul':
-				let added;
-				let mess = 'Ajouter à la liste :\n(Terminé ? Annuler pour valider la liste)\n\n'; 
-				formatedContent = tag === 'ol' ? 'o(' : 'u('; // Prefix the parenthesis to identify the sorting method
-				while(added = prompt(mess)) {
-					formatedContent += '((' + added + '))';
-					mess += '"' + added + '"\n';
-				}
-				formatedContent += ')';
-				break;
+
 			case 'img':
-				formatedContent =
-					'i(' +
-					prompt('Description alternative de l\'image :') +
-					'(' + (prompt('Url à laquelle l\'image est disponible.\nExemple (sans guillemets) : "https://exemple.fr/image.png".')) +
-					')) ';
+				formElm.body =
+					'<label for="img-src">URL à laquelle l\'image est accessible :</label>' +
+					'<input id="img-src" type="url" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
+					'<label for="img-alt">Description (alternative) :</label>' +
+					'<input id="img-alt" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />';
 				break;
+
 			case 'figure':
-				formatedContent =
-					'f(' +
-					prompt('Légende de l\'image :') +
-					'(' + prompt('Description alternative à l\'image :') +
-					'(' + (prompt('Url à laquelle l\'image est disponible.\nExemple (sans guillemets) : "https://exemple.fr/image.png".')) +
-					'))) ';
+				formElm.body =
+					'<label for="fig-src">URL à laquelle l\'image est accessible :</label>' +
+					'<input id="fig-src" type="url" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
+					'<label for="fig-legend">Légende de l\'image :</label>' +
+					'<input id="fig-legend" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />' +
+					'<label for="fig-alt">Description (alternative) :</label>' +
+					'<input id="fig-alt" type="text" required />';
 				break;
+
+		};
+
+		dial(
+			formElm.header +
+			formElm.body +
+			formElm.footer
+		);
+
+		// Give the focus on the first input or textarea available.
+		if(object.tag === 'ol' || object.tag === 'ul') {
+			document.querySelector('#dial textarea').focus()
 		}
-		// Prefix and suffix the formatted data of the rest of the content.
-		targetElm.value = 
-			targetElm.value.substring(0, targetElm.selectionStart) +
-			formatedContent +
-			targetElm.value.substring(targetElm.selectionEnd);
-		// Give focus to the user.
-		runEditor(targetElm.id);
-		targetElm.focus();
+		else {
+			document.querySelector('#dial input').focus();
+		}
+
+		// Build the corresponding output when the form is submitted.
+		document.querySelector('#dial form').onsubmit = (e) => {
+
+			let output;
+
+			switch(object.tag) {
+
+				case 'h3':
+				case 'h4':
+				case 'h5':
+				case 'h6':
+					output = '\n' + object.tag.substring(1,2) + '(' + e.target.elements[0].value + ')\n';
+					break;
+
+				case 'strong': 
+					output = 's(' + e.target.elements[0].value + ')';
+					break;
+
+				case 'em':
+					output = 'e(' + e.target.elements[0].value + ')';
+					break;
+
+				case 'ol':
+					output = 'o(';
+					for(let elm of e.target.elements[0].value.split('%%')) {
+						output += '((' + elm.trim() + '))';
+					}
+					output += ')';
+					break;
+
+				 case 'ul':
+					output = 'u(';
+					for(let elm of e.target.elements[0].value.split('%%')) {
+						output += '((' + elm.trim() + '))';
+					}
+					output += ')';
+				 	break;
+
+				case 'a':
+					output = 'a(' + e.target.elements[1].value + '(' + e.target.elements[0].value + '))';
+					break;
+
+				case 'img':
+					output = 'i(' + e.target.elements[1].value + '(' + e.target.elements[0].value + '))';
+					break;
+
+				case 'figure':
+					output = 'f(' + e.target.elements[1].value + '(' + e.target.elements[2].value + '(' + e.target.elements[0].value + ')))';
+					break;
+
+			};
+
+			// Replace input by output.
+			targetElm.value = 
+				targetElm.value.substring(0, targetElm.selectionStart) +
+				output + 
+				targetElm.value.substring(targetElm.selectionEnd);
+
+			// Actualize.
+			e.preventDefault();
+			runEditor(targetElm.id);
+			targetElm.focus();
+			dial();
+
+		};
 
 	};
