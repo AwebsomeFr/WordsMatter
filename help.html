@@ -28,19 +28,21 @@
 									<li><a href="#user-syntax">Apprivoiser la syntaxe WordsMatter</a></li>
 								</ul>
 								<h4 id="user-ui">Découvrir l'interface utilisateur</h4>
+								<h5>Interface</h5>
 								<p>L'interface utilisateur de WordsMatter est divisée en deux zones.</p>
 								<p>La partie supérieure de l'écran est l'espace de visualisation, la partie inférieure, l'espace de rédaction. Saisissez dans l'espace de rédaction pour immédiatement observer le résultat dans l'espace de visualisation.</p>
 								<p>Le menu principal, décrit ci-dessous, est accessible depuis le coin supérieur droit de l'espace de visualisation. La mention "en-ligne" ou "hors-ligne" y figurant permet à tout instant de savoir si l'application est ou non connectée avec l'API du blog.</p>
+								<h5>Menu principal</h5>
 								<p>Cliquez sur <button disabled>Menu</button> pour dévoiler les options suivantes :</p> 
 								<ul>
 									<li>
-										<button disabled>↑ Sauvegarder</button> : Enregistrer votre post — un seul à la fois — dans la mémoire locale du navigateur Web pour être automatiquement rechargé au lancement de WordsMatter. 
+										<button disabled>↑ Sauvegarder</button> : Enregistrer votre post — un seul à la fois — dans la mémoire locale du navigateur Web pour être automatiquement chargé au lancement de WordsMatter. 
 									</li>
 									<li>
 										<button class="danger" disabled>X Supprimer</button> : Supprimer de la mémoire locale du navigateur Web le post sauvegardé.
 									</li>
 									<li>
-										<button disabled>↑ Envoyer vers le blog</button> : Publier ou sauvegarder en tant que brouillon le post en cours d'édition sur votre blog. Un titre principal (h1) commençant par un % sera sauvegardé comme brouillon et ne sera pas rendu public. Si un post portant le même nom existe déjà, WordsMatter vous proposera de l'écraser.
+										<button disabled>↑ Envoyer vers le blog</button> : Publier ou sauvegarder en tant que brouillon le post en cours d'édition sur votre blog. Un titre principal (h1) commençant par un % sera sauvegardé comme brouillon et ne sera pas rendu public. Si un post du même nom existe déjà, WordsMatter vous proposera de l'écraser.
 									</li>
 									<li>
 										<button disabled>↓ Modifier depuis le blog</button> : Lister les posts et brouillons envoyés sur le blog pour édition ou suppression.
@@ -63,22 +65,28 @@
 										<button disabled>↕ Ajuster la hauteur</button> : Définir la hauteur de travail allouée à l'espace de rédaction.
 									</li>
 									<li>
-										<button disabled>? Documentation</button> : Affiche la présente documentation.
+										<button disabled>? Documentation</button> : Affiche cette documentation.
 									</li>
 								</ul>
 								<h4 id="user-syntax">Apprivoiser la syntaxe WordsMatter</h4>
 								<ul>
 									<li>
 										<h5>&lt;h1&gt; : Titre du post</h5>
-										Remplissez <span class="h">le champ textuel</span> dont le label est "Titre du post". <span>Ce titre, d’une importance capitale en matière de référencement (SEO), devrait présenter le sujet du contenu.</span> <span>Cet élément est requis pour publier un post.</span> <span>Faites précéder ce titre d'un % pour spécifier à WordsMatter qu'il s'agit d'un brouillon lorsque vous envoyez du contenu vers le blog.</span>
+										Remplissez <span class="h">le champ textuel</span> supérieur, dont le label est "Titre du post". 
+										<span>Ce titre, d’une importance capitale en matière de référencement (SEO), devrait présenter le sujet du contenu.</span>
+										<span>Faites précéder cet élément d'un % pour spécifier à WordsMatter qu'il s'agit d'un brouillon lorsque vous envoyez du contenu vers le blog.</span>
+										<span>Cet élément est requis pour publier un post.</span>
 									</li>
 									<li>
 										<h5>&lt;h2&gt; : Titre de section</h5>
-										Remplissez <span class="h">le champ textuel</span> dont le label est "Titre de section" correspondante. <span>Ce titre, important en matière de référencement, devrait introduire la section qu'il précède.</span>
+										Remplissez <span class="h">le champ textuel</span> supérieur à chaque section, dont le label est "Titre de section".
+										<span>Ce titre, important en matière de référencement, devrait introduire la section qu'il précède.</span>
 									</li>
 									<li>
 										<h5>&lt;h3&gt; / &lt;h4&gt; / &lt;h5&gt; / &lt;h6&gt; : Sous-titre de section</h5>
-										Écrivez, par exemple, <span class="h">4(</span>votre sous-titre<span class="h">)</span> ou utilisez le bouton <button>h4</button> pour transformer votre sélection en sous-titre de niveau 4. En l'absence de sélection, vous serez invité à saisir du texte.<span>Vous pouvez utiliser de 3(titre de plus grande importance) à 6(titre de moindre importance). Veillez à les hiérarchiser.</span><span>Cette mise en forme nécessite un retour à la ligne.</span>
+										Écrivez, par exemple, <span class="h">4(</span>votre sous-titre<span class="h">)</span> ou utilisez le bouton <button>h4</button> pour créer un sous-titre de niveau 4.
+										<span>Vous pouvez utiliser de 3(titre de plus grande importance) à 6(titre de moindre importance). Veillez à les hiérarchiser.</span>
+										<span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
 									<li>
 										<h5>&lt;p&gt; : Paragraphe</h5>
@@ -91,34 +99,37 @@
 									</li>
 									<li>
 										<h5>&lt;strong&gt; : Texte important</h5>
-										Écrivez <span class="h">s(</span>votre texte important<span class="h">)</span> ou utilisez le bouton <button>str</button> pour transformer votre sélection en texte important. En l'absence de sélection, vous serez invité à saisir du texte.
+										Écrivez <span class="h">s(</span>votre texte important<span class="h">)</span> ou utilisez le bouton <button>str</button> pour insérer du texte important.
 										<span>Assurez-vous que ce texte est important dans son contexte.</span>
 									</li>
 									<li>
 										<h5>&lt;em&gt; : Texte avec emphase</h5>
-										Écrivez <span class="h">e(</span>votre texte emphasique<span class="h">)</span> ou utilisez le bouton <button>em</button> pour transformer votre sélection en texte emphasique. En l'absence de sélection, vous serez invité à saisir du texte.
+										Écrivez <span class="h">e(</span>votre texte emphasique<span class="h">)</span> ou utilisez le bouton <button>em</button> pour insérer du texte emphasique.
 										<span>Assurez-vous que ce texte possède une signification particulière dans son contexte.</span>
 									</li>
 									<li>
 										<h5>&lt;ol&gt; : Liste ordonnée</h5>
-										Écrivez <span class="h">o(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ol</button> pour créer une liste ordonnée. Vous serez alors invité à saisir les uns après les autres les éléments qui composent votre liste. Une fois votre liste terminée, annulez la saisie (touche <kbd>[Echap]</kbd>, bouton Annuler...) pour valider les entrées précédemment saisies. <span>Cette mise en forme nécessite un retour à la ligne.</span>
+										Écrivez <span class="h">o(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ol</button> pour créer une liste ordonnée. Dans ce deuxième cas, chaque élément de liste devrait être séparé par %%.
+										<span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
 									<li>
 										<h5>&lt;ul&gt; : Liste non ordonnée</h5>
-										Écrivez <span class="h">u(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ul</button> pour créer une liste non ordonnée. Vous serez alors invité à saisir les uns après les autres les éléments qui composent votre liste. Une fois votre liste terminée, annulez la saisie (touche <kbd>[Echap]</kbd>, bouton Annuler...) pour valider les entrées précédemment saisies.<span>Cette mise en forme nécessite un retour à la ligne.</span>
+										Écrivez <span class="h">u(((</span>premier élément<span class="h">))((</span>deuxième élément<span class="h">))((</span>énième élément<span class="h">)))</span> ou utilisez le bouton <button>ul</button> pour créer une liste non ordonnée. Dans ce deuxième cas, chaque élément de liste devrait être séparé par %%.
+										<span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
 									<li>
 										<h5>&lt;a&gt; : Lien hypertexte</h5>
-										Écrivez <span class="h">a(</span>libellé du lien<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>a</button> pour insérer un lien hypertexte. Vous serez alors invité à renseigner le libellé du lien puis son URL.
+										Écrivez <span class="h">a(</span>libellé du lien<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>a</button> pour insérer un lien hypertexte. 
 										<span>Le libellé sera exploité par les moteurs de recherche et certains utilisateurs en situation de handicap ; il devrait donner une indication claire sur le contenu vers lequel il pointe.</span>
 									</li>
 									<li>
 										<h5>&lt;img&gt; : Image</h5>
-										Écrivez <span class="h">i(</span>description alternative<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>img</button> pour insérer une image. Vous serez alors invité à renseigner une description alternative à l'image puis l'URL à laquelle cette ressource est disponible. <span>La description sera exploitée par les moteurs de recherche, certains utilisateurs en situation de handicap, et apparaîtra en lieu et place de l'image si cette dernière ne peut être affichée (adresse invalide, ressource indisponible...). Elle devrait être aussi descriptive et concise que possible.</span>
+										Écrivez <span class="h">i(</span>description alternative<span class="h">(</span>URL<span class="h">))</span> ou utilisez le bouton <button>img</button> pour insérer une image.
+										<span>La description sera exploitée par les moteurs de recherche, certains utilisateurs en situation de handicap, et apparaîtra en lieu et place de l'image si cette dernière ne peut être affichée (adresse invalide, ressource indisponible...). Elle devrait être aussi descriptive et concise que possible.</span>
 									</li>
 									<li>
 										<h5>&lt;figure&gt; + &lt;figcaption&gt; : Image avec légende</h5>
-										Écrivez <span class="h">f(</span>légende<span class="h">(</span>description alternative<span class="h">(</span>URL<span class="h">)))</span> ou utilisez le bouton <button>fig</button> pour insérer une figure (image avec une légende). Vous serez alors invité à renseigner la légende de l'image, une description alternative puis l'URL à laquelle cette ressource est disponible.
+										Écrivez <span class="h">f(</span>légende<span class="h">(</span>description alternative<span class="h">(</span>URL<span class="h">)))</span> ou utilisez le bouton <button>fig</button> pour insérer une figure (image avec une légende).
 										<span>La description sera exploitée par les moteurs de recherche, certains utilisateurs en situation de handicap, et apparaîtra en lieu et place de l'image si cette dernière ne peut être affichée (adresse invalide, ressource indisponible...). Elle devrait être aussi descriptive et concise que possible.</span>
 										<span>Cette mise en forme nécessite un retour à la ligne.</span>
 									</li>
