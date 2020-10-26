@@ -645,7 +645,7 @@
 			case 'ol': case 'ul':
 				formElm.body =
 					'<label for="list-values">Eléments composant la liste (délimiteur : %%) :</label>' +
-					'<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..." required></textarea>'
+					'<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..." required>' + input + '</textarea>'
 				break;
 
 			case 'a':
