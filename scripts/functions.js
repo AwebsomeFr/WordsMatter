@@ -625,7 +625,7 @@
 		// Case 1 : Input comes from highlighted text.
 		// Case 2 : Input will come from modal.
 		let input = targetElm.value.substring(targetElm.selectionStart, targetElm.selectionEnd);
-		let urlRegex = /^https?:\/\/.+\.[a-z]{2,}$/i;
+		let urlRegex = /^https?/i;
 
 		// Body of the form.
 		switch(object.tag) {
@@ -651,7 +651,7 @@
 			case 'a':
 				formElm.body =
 					'<label for="a-value">URL cible :</label>' +
-					'<input id="a-value" type="url" placeholder="https://exemple.fr" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
+					'<input id="a-value" type="text" placeholder="https://exemple.fr" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
 					'<label for="a-label">Libellé explicite du lien :</label>' +
 					'<input id="a-label" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />';
 				break;
@@ -659,7 +659,7 @@
 			case 'img':
 				formElm.body =
 					'<label for="img-src">URL à laquelle l\'image est accessible :</label>' +
-					'<input id="img-src" type="url" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
+					'<input id="img-src" type="text" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
 					'<label for="img-alt">Description (alternative) :</label>' +
 					'<input id="img-alt" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />';
 				break;
@@ -667,7 +667,7 @@
 			case 'figure':
 				formElm.body =
 					'<label for="fig-src">URL à laquelle l\'image est accessible :</label>' +
-					'<input id="fig-src" type="url" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
+					'<input id="fig-src" type="text" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
 					'<label for="fig-legend">Légende de l\'image :</label>' +
 					'<input id="fig-legend" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />' +
 					'<label for="fig-alt">Description (alternative) :</label>' +
