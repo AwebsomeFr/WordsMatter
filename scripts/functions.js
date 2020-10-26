@@ -709,20 +709,15 @@
 					output = 'e(' + e.target.elements[0].value + ')';
 					break;
 
-				case 'ol':
-					output = 'o(';
-					for(let elm of e.target.elements[0].value.split('%%')) {
-						output += '((' + elm.trim() + '))';
+				case 'ol': case 'ul':
+				 	let mod = object.tag.substring(0,1); // Is modifier is "o" or "u" ?
+					output = mod + '(';
+					for(let elm of e.target.elements[0].value.split('%%')) { 
+						if(elm.trim() !== '') {
+							output += '((' + elm.trim() + '))'; // Append each elm separatly IF not empty.
+						}
 					}
-					output += ')';
-					break;
-
-				 case 'ul':
-					output = 'u(';
-					for(let elm of e.target.elements[0].value.split('%%')) {
-						output += '((' + elm.trim() + '))';
-					}
-					output += ')';
+					output !== mod + '(' ? output += ')' : output = ''; // Close only if there at least is one valid value, else reinitialize.
 				 	break;
 
 				case 'a':
