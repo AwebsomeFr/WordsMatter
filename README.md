@@ -2,7 +2,7 @@
 
 FR
 
-Rédigez depuis l'Application ; partagez grâce à l'API connectée ! Compatible avec tout type d'architecture de site Internet, WordsMatter est **un module de gestion de blog autonome et cross-device** (exploitable sur ordinateur, tablette, téléphone...). Ultra léger et efficient, WordsMatter est **une alternative écoresponsable** aux Systèmes de Gestion de Contenu (CMS) traditionnels.
+Rédigez depuis l'Application ; partagez grâce à l'API connectée. WordsMatter est un module de gestion de blog 100% autonome, libre et gratuit. Son efficience en fait une alternative écoresponsable aux Systèmes de Gestion de Contenu traditionnels (CMS).
 
 * [Essayer l'éditeur](https://awebsomefr.github.io/WordsMatter/)
 * [Lire la documentation](https://awebsomefr.github.io/WordsMatter/help.html)
@@ -12,7 +12,7 @@ Rédigez depuis l'Application ; partagez grâce à l'API connectée ! Compatible
 
 EN
 
-Write with the Application ; share with the connected API ! Compatible with any type of website architecture, WordsMatter is an autonomous and cross-device (usable on computer, tablet, smartphone...) blog management module. Ultra light and efficient, WordsMatter is an eco-responsible alternative to traditional Content Management Systems (CMS).
+Write from the web application; share with the API. WordsMatter is a 100% autonomous, open-source and free blog management module. Its efficiency makes it an eco-responsible alternative to traditional content management systems (CMS).
 
 * [Try the editor](https://awebsomefr.github.io/WordsMatter/) (fr)
 * [Read the doc](https://awebsomefr.github.io/WordsMatter/help.html) (fr)
