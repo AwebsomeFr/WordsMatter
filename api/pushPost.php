@@ -48,9 +48,12 @@ if(isset($_POST['EditorId']) && isset($_POST['post']) && isset($_POST['validatio
 			// Export the corresponding WordsMatter backup.
 			file_put_contents(INPUT_FOLDER . FILENAME . INPUT_EXTENSION, $_POST['post']);
 		
-			// If draft : remove output file if existing.
+			// If draft : remove output file (if existing).
 			if($draft) {
-				unlink(OUTPUT_FOLDER . FILENAME . OUTPUT_EXTENSION);
+				if(file_exists(OUTPUT_FOLDER . FILENAME . OUTPUT_EXTENSION)) {
+					unlink(OUTPUT_FOLDER . FILENAME . OUTPUT_EXTENSION);
+				}	
+			
 			}
 
 			// If release : build and add the corresponding output file.
