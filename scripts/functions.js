@@ -300,8 +300,19 @@
 					let message = '<p>Quel post souhaitez-vous modifier depuis le blog ?</p><ul id="posts-list">';
 					for(let file of files) {
 						message += '<li >' +
-							'<button class="danger" onclick="deleteFromServer(false, this.nextSibling.textContent)" title="Supprimer l\'élément du blog">X</button>' +
-							'<button class="' + (file.draft ? 'draft' : 'release') + '" onclick="importFromServer(this.textContent)" title="Ouvrir cet élément pour édition">' + file.filename + '</button>' +
+							'<button ' +
+								'class="danger" '+
+								'onclick="deleteFromServer(false, this.nextSibling.value)" ' +
+								'title="Supprimer l\'élément du blog">' +
+								'X' +
+							'</button>' +
+							'<button ' + 
+								'class="' + (file.draft ? 'draft' : 'release') + '" ' + 
+								'onclick="importFromServer(this.value)" ' +
+								'title="Ouvrir cet élément pour édition" ' +
+								'value="' + file.filename + '">' + // WordsMatter uses filename behind the scene...
+								file.title + // ...But user sees title.
+							'</button>' +
 						'</li>';
 					}
 					message += '</ul>';
