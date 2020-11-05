@@ -197,7 +197,15 @@
 
 			};
 
-			req.send('post=' + JSON.stringify(getPost()) + '&EditorId=' + EDITOR_ID + '&validation=' + validation);
+			req.send('post=' + 
+				encodeURI( // Prevent unexpected php conversions when datas contain the % character (like %E, %F8, ...).
+					JSON.stringify(
+						getPost()
+					)
+				) 
+				+ '&EditorId=' + EDITOR_ID 
+				+ '&validation=' + validation
+			);
 
 		}
 
