@@ -21,7 +21,6 @@
 		display: grid;
 		gap: 2px;
 		grid-template-rows: auto 1fr 1fr;
-		height: 100vh;
 		max-width: 1280px;
 		min-width: 360px;
 		padding: 2px;

@@ -1,5 +1,11 @@
 /* --- User Interface --- */
 
+	setViewportHeight = () => {
+
+		document.querySelector('main').style.height = window.innerHeight + 'px';
+		
+	}
+
 	toggleMenu = (boolean) => {
 
 		boolean ?
