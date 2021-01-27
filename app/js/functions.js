@@ -28,25 +28,27 @@
 
 	const setHeight = () => {
 		dial(
-			'<p>Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.</p>' +
-			'<input ' +
-				 'max="4"' +
-				 'min="0.25"' +
-				 'oninput="document.querySelector(\'main\').style.gridTemplateRows = \'auto 1fr \' + this.value + \'fr\'" ' +
-				 'step="0.25"' +
-				 'type="range" />'
+			`<p>Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.</p>
+			'<input 
+				max="4"
+				min="0.25" 
+				oninput="document.querySelector('main').style.gridTemplateRows = 'auto 1fr ' + this.value + 'fr'" 
+				step="0.25" 
+				type="range" 
+			/>`
 		);
 	};
 
 	const setWidth = () => {
 		dial(
-			'<p>Déplacez le curseur pour ajuster la largeur de travail utile.</p>' +
-			'<input ' +
-				 'max="100"' +
-				 'min="25"' +
-				 'oninput="document.querySelector(\'main\').style.width = this.value + \'%\'" ' +
-				 'step="5"' +
-				 'type="range" />'
+			`<p>Déplacez le curseur pour ajuster la largeur de travail utile.</p>
+			<input
+				 max="100"
+				 min="25"
+				 oninput="document.querySelector('main').style.width = this.value + '%'"
+				 step="5"
+				 type="range"
+			/>`
 		);
 	};
 
@@ -295,28 +297,31 @@
 				let files = JSON.parse(req.responseText);
 				
 				if(files.length > 0) {
-					let message = '<p>Quel post souhaitez-vous modifier depuis le blog ?</p><ul id="posts-list">';
+
+					let message = 
+					`<p>Quel post souhaitez-vous modifier depuis le blog ?</p>
+					<ul id="posts-list">`;
 					for(let file of files) {
-						message += '<li >' +
-							'<button ' +
-								'class="danger" '+
-								'onclick="deleteFromServer(false, this.nextSibling.value)" ' +
-								'title="Supprimer l\'élément du blog">' +
-								'X' +
-							'</button>' +
-							'<button ' + 
-								'class="' + (file.draft ? 'draft' : 'release') + '" ' + 
-								'onclick="importFromServer(this.value)" ' +
-								'title="Ouvrir cet élément pour édition" ' +
-								'value="' + file.dir + '">' + // WordsMatter uses dir behind the scene...
-								file.title + // ...But user sees title.
-							'</button>' +
-						'</li>';
+						message += `<li >
+							<button
+								class="danger"
+								onclick="deleteFromServer(false, this.nextSibling.value)"
+								title="Supprimer l'élément du blog">
+								X
+							</button>
+							<button
+								class="${file.draft ? 'draft' : 'release'}" 
+								onclick="importFromServer(this.value)"
+								title="Ouvrir cet élément pour édition"
+								value="${file.dir}">
+								${file.title}
+							</button>
+						</li>`;
 					}
 					message += '</ul>';
-
+					
 					dial(message);
-
+			
 				}
 
 				else {
@@ -338,9 +343,8 @@
 	const exportToFile = () => {
 
 		dial(
-			'<p>Copiez-collez le contenu suivant dans un fichier et sauvegardez ce dernier avec l\'extension <i>.txt</i>.</p>' +
-			'<p id="raw-data">' + JSON.stringify(getPost()) + '</p>' +
-			'<p>Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour recharger le contenu du fichier.</p>'
+			`<p>Copiez-collez le contenu suivant dans un fichier et sauvegardez ce dernier avec l'extension <i>.txt</i>. Utilisez l'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour recharger le contenu du fichier.</p>
+			<p id="raw-data">${JSON.stringify(getPost())}</p>`
 		);
 
 	};
@@ -649,46 +653,46 @@
 
 			case 'h3': case 'h4': case 'h5': case 'h6':
 				formElm.body =
-					'<label for="h-value">Texte à transformer :</label>' +
-					'<input id="h-value" type="text" value="' + input + '" required />';
+					`<label for="h-value">Texte à transformer :</label>
+					<input id="h-value" type="text" value="${input}" required />`;
 				break;
 
 			case 'strong': case 'em':
 				formElm.body =
-					'<label for="inline-value">Texte à transformer :</label>' +
-					'<input id="inline-value" type="text" value="' + input + '" required />'
+					`<label for="inline-value">Texte à transformer :</label>
+					<input id="inline-value" type="text" value="${input}" required />`
 				break;
 
 			case 'ol': case 'ul':
 				formElm.body =
-					'<label for="list-values">Eléments composant la liste (délimiteur : %%) :</label>' +
-					'<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..." required>' + input + '</textarea>'
+					`<label for="list-values">Eléments composant la liste (délimiteur : %%) :</label>
+					<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..." required>${input}</textarea>`
 				break;
 
 			case 'a':
 				formElm.body =
-					'<label for="a-value">URL cible :</label>' +
-					'<input id="a-value" type="text" placeholder="https://exemple.fr" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
-					'<label for="a-label">Libellé explicite du lien :</label>' +
-					'<input id="a-label" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />';
+					`<label for="a-value">URL cible :</label>
+					<input id="a-value" type="text" placeholder="https://exemple.fr" value="${input.match(urlRegex) != null ? input : ''}" required />
+					<label for="a-label">Libellé explicite du lien :</label>
+					<input id="a-label" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
 			case 'img':
 				formElm.body =
-					'<label for="img-src">URL à laquelle l\'image est accessible :</label>' +
-					'<input id="img-src" type="text" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
-					'<label for="img-alt">Description (alternative) :</label>' +
-					'<input id="img-alt" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />';
+					`<label for="img-src">URL à laquelle l'image est accessible :</label>
+					<input id="img-src" type="text" placeholder="https://exemple.fr/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
+					<label for="img-alt">Description (alternative) :</label>
+					<input id="img-alt" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
 			case 'figure':
 				formElm.body =
-					'<label for="fig-src">URL à laquelle l\'image est accessible :</label>' +
-					'<input id="fig-src" type="text" placeholder="https://exemple.fr/image.png" value="' + (input.match(urlRegex) != null ? input : '') + '" required />' +
-					'<label for="fig-legend">Légende de l\'image :</label>' +
-					'<input id="fig-legend" type="text" value="' + (input.match(urlRegex) != null ? '' : input) + '" required />' +
-					'<label for="fig-alt">Description (alternative) :</label>' +
-					'<input id="fig-alt" type="text" required />';
+					`<label for="fig-src">URL à laquelle l'image est accessible :</label>
+					<input id="fig-src" type="text" placeholder="https://exemple.fr/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
+					<label for="fig-legend">Légende de l'image :</label>
+					<input id="fig-legend" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />
+					<label for="fig-alt">Description (alternative) :</label>
+					<input id="fig-alt" type="text" required />`;
 				break;
 
 		};
