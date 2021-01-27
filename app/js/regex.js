@@ -1,3 +1,5 @@
+"use strict";
+
 const REGEX = [
 	{
 		desc: /\s{2}\n/g,

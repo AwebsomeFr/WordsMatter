@@ -1,12 +1,14 @@
+"use strict";
+
 /* --- User Interface --- */
 
-	setViewportHeight = () => {
+	const setViewportHeight = () => {
 
 		document.querySelector('main').style.height = window.innerHeight + 'px';
 		
 	}
 
-	toggleMenu = (boolean) => {
+	const toggleMenu = (boolean) => {
 
 		boolean ?
 			document.getElementById('nav-container').classList.remove('hidden') :
@@ -14,13 +16,13 @@
 		
 	};
 
-	toggleTheme = () => {
+	const toggleTheme = () => {
 
 		document.body.classList.toggle('light-theme');
 
 	};
 
-	setHeight = () => {
+	const setHeight = () => {
 
 		dial(
 			'<p>Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.</p>' +
@@ -34,7 +36,7 @@
 
 	};
 
-	setWidth = () => {
+	const setWidth = () => {
 
 		dial(
 			'<p>Déplacez le curseur pour ajuster la largeur de travail utile.</p>' +
@@ -48,13 +50,13 @@
 
 	};
 
-	onHelp = () => {
+	const onHelp = () => {
 
 		window.open('./help.html');
 
 	}; 
 
-	dial = (mess) => {
+	const dial = (mess) => {
 		
 		let dialogElm = document.getElementById('dial');
 		
@@ -76,7 +78,7 @@
 
 /* --- Web storage API --- */
 
-	saveIntoLocalStorage = () => {
+	const saveIntoLocalStorage = () => {
 
 		let datasContent = JSON.stringify(getPost());
 
@@ -101,7 +103,7 @@
 
 	};
 
-	importFromLocalStorage = (post) => {
+	const importFromLocalStorage = (post) => {
 
 		resetPost();
 		setPost(post);
@@ -109,7 +111,7 @@
 
 	};
 
-	deleteFromLocalStorage = (validation = false) => {
+	const deleteFromLocalStorage = (validation = false) => {
 
 		// Web Storage available ?
 		if(localStorage) {
@@ -155,7 +157,7 @@
 
 /* --- Server --- */
 
-	createRequest = (url) => {
+	const createRequest = (url) => {
 
 		let req = new XMLHttpRequest();
 		req.open('POST', url, true);
@@ -164,7 +166,7 @@
 		
 	};
 
-	pushPost = (validation = false) => {
+	const pushPost = (validation = false) => {
 
 		// Has a title been specified ?
 		if(document.getElementById('output-art-title').textContent.trim() != '') { 
@@ -221,7 +223,7 @@
 
 	};
 
-	deleteFromServer = (validation = false, dirName) => {
+	const deleteFromServer = (validation = false, dirName) => {
 	
 		// User confirmation ?
 		if(validation) {
@@ -260,7 +262,7 @@
 
 	};
 
-	importFromFile = (file) => {
+	const importFromFile = (file) => {
 
 		let reader = new FileReader();
 		
@@ -276,7 +278,7 @@
 
 	};
 
-	importFromServer = (dirName) => {
+	const importFromServer = (dirName) => {
 
 		let req = createRequest(API_URL + 'open.php');
 		req.onload = () => {
@@ -293,7 +295,7 @@
 
 	};
 
-	getFiles = () => {
+	const getFiles = () => {
 
 		let req = createRequest(API_URL + 'get.php');
 		req.onload = () => {
@@ -343,7 +345,7 @@
 
 	};
 
-	exportToFile = () => {
+	const exportToFile = () => {
 
 		dial(
 			'<p>Copiez-collez le contenu suivant dans un fichier et sauvegardez ce dernier avec l\'extension <i>.txt</i>.</p>' +
@@ -356,7 +358,7 @@
 /* --- Core features --- */
 
 	// Create HTML Elements Shortest Syntax (CHESS). Documentation : https://github.com/AwebsomeFr/chess
-	chess = (object) => {
+	const chess = (object) => {
 
 		let htmlElm = document.createElement(object.type);  
 		
@@ -384,7 +386,7 @@
 
 	};
 
-	runEditor = (inputId) => {
+	const runEditor = (inputId) => {
 
 		let inputElm = document.getElementById(inputId);
 		let outputElm = document.getElementById(inputId.replace('input', 'output')); 
@@ -403,7 +405,7 @@
 
 	};
 
-	getPost = () => {
+	const getPost = () => {
 		
 		let post = {
 			title: document.getElementById('input-art-title').value,
@@ -434,7 +436,7 @@
 		
 	};
 
-	setPost = (post) => {
+	const setPost = (post) => {
 		
 		document.getElementById('input-art-title').value = post.title;
 		runEditor('input-art-title');
@@ -461,7 +463,7 @@
 
 	};
 
-	resetPost = () => {
+	const resetPost = () => {
 
 		// Reset main title.
 		document.getElementById('input-art-title').value = '';
@@ -481,7 +483,7 @@
 
 	};
 
-	addSection = () => {
+	const addSection = () => {
 
 		let currentMarker = marker;
 
@@ -638,7 +640,7 @@
 
 	};
 
-	formatContent = (targetElm, object) => {
+	const formatContent = (targetElm, object) => {
 
 		// Form parts.
 		let formElm = {

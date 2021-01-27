@@ -1,3 +1,5 @@
+"use strict";
+
 document.body.onload = () => {
 
 	resetPost();

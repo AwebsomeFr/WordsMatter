@@ -1,3 +1,5 @@
+"use strict";
+
 let marker = 0;
 let varTemp;
 const DATA_NAME = 'post';

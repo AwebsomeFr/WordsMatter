@@ -1,7 +1,7 @@
-/* Must be equal to the id specified in the file : 'publisher/config.php'. 
-!!! IMPORTANT : CREATE YOUR OWN AND COMPLEX ID !!! */
+"use strict";
+
+/* Must be equal to the id specified in 'api/config.php'. Please create your own and complex ID. */
 const EDITOR_ID = 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC';
 
-/* The URL where the publisher folder is located. 
-!!! IMPORTANT : THIS FOLDER MUST BE RENAMED (please read the documentation) !!! */
+/* The URL where the api directory is located. Please rename it (see the documentation). */
 const API_URL = './api/';
