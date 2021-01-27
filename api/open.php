@@ -1,18 +1,12 @@
-<?php
+<?php 
 
-// Are all value given ?
-if(isset($_POST['EditorId']) && isset($_POST['filename'])) { 
+require './config.php';
 
-	require './config.php';
-
-	// Is the user legitimate ?	
-	if($_POST['EditorId'] == EDITOR_ID) {
-
-		// Proceed (return the content of the selected post).
-		echo file_get_contents(
-			INPUT_DIR . $_POST['filename'] . 'txt'
-		);
-
-	}
-
+if(
+	isset($_POST['EditorId']) && 
+	isset($_POST['dirName']) &&
+	$_POST['EditorId'] === EDITOR_ID
+) { 
+	define('DRAFT', INPUT_DIR . '/' . $_POST['dirName'] . '/draft.txt');
+	echo file_get_contents(DRAFT);
 }

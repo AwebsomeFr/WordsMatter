@@ -15,9 +15,9 @@ will be created by WordsMatter when connecting
 to the server for the first time. */
 
 // Directory where will be placed the drafts, published or not.
-define('INPUT_DIR', '../blog/drafts/'); 
+define('INPUT_DIR', '../blog/drafts'); 
 // Directory where the generated files will be placed.
-define('OUTPUT_DIR', '../blog/posts/'); 
+define('OUTPUT_DIR', '../blog/posts'); 
 // File where the list of published articles will be saved.
 define('POSTS_INDEX', '../blog/index.json');
 

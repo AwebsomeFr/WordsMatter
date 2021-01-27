@@ -1,123 +1,109 @@
-<?php if(
-	isset($_POST['EditorId']) && 
+<?php 
+
+require './config.php';
+
+if(
+	isset($_POST['EditorId']) &&  
 	isset($_POST['post']) && 
-	isset($_POST['validation'])) 
-{ 
+	isset($_POST['validation']) &&
+	$_POST['EditorId'] === EDITOR_ID
+){ 
 
-	require './config.php';
+	require './functions.php';
 
-	// Is the user legitimate ?
-	if($_POST['EditorId'] == EDITOR_ID) {
+	$rawTitle = json_decode($_POST['post'])->title;
+		
+	define('DIR_NAME', buildDirName($rawTitle)); // Name of the post, represented by its parent directory.
+	define('OUTPUT_DIR_PATH', OUTPUT_DIR . '/' . DIR_NAME); 
+	define('OUTPUT_FILE_NAME', 'index' . $extension);
+	define('INPUT_DIR_PATH', INPUT_DIR . '/' . DIR_NAME); 
+	define('INPUT_FILE_NAME', 'draft.txt');
+	
+	// Validation is false ? Ask user confirmation first !
+	if($_POST['validation'] === 'false') {		
+		echo is_dir(INPUT_DIR_PATH) ? 
+			'update' : // Update a existing post. 
+			'release'; // Publish a new post. 
+		exit;
+	}
 
-		require './functions.php';
-		require './template.php';
+	// Validation is true ? Proceed !
+	else if($_POST['validation'] === 'true') {
 
-		// Is it a draft (title start with %) or a release (title don't start with %) ?
-		$rawTitle = json_decode($_POST['post'])->title;
+		// Export / update raw content for future edition.
+		if(!is_dir(INPUT_DIR_PATH)) {
+			mkdir(INPUT_DIR_PATH);
+		}
+		file_put_contents(INPUT_DIR_PATH . '/' . INPUT_FILE_NAME, $_POST['post']);
+		
+		// If it is only a draft, remove any output content...
 		$draft = $rawTitle[0] === '%' ? true : false;
-
-		// Define an acceptable filename based on the provided title.
-		define('FILENAME', buildFileName($rawTitle));
-
-		// Validation is false ? Ask user confirmation !
-		if($_POST['validation'] == 'false') {
-
-			// New post ?
-			if(!file_exists(INPUT_DIR . FILENAME . 'txt')) {
-				echo 'release';
-				exit;
+		if($draft) {
+			if(is_dir(OUTPUT_DIR_PATH)) {
+				if(is_file(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME)) {
+					unlink(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME);
+				}
+				rmdir(OUTPUT_DIR_PATH);
 			}
-
-			// Existing post ?
-			else {
-				echo 'update';
-				exit;	
-			}
-
 		}
 
-		// Validation is true ? Proceed !
-		else if($_POST['validation'] == 'true') {
+		// ...Else, build it and export / update it too.
+		else {
 
-			// Raw datas.
+			require './template.php';
+			require './regex.php';
+
 			$input = (object) array(
 				'title' => json_decode($_POST['post'])->title,
 				'introduction' => json_decode($_POST['post'])->introduction,
 				'sections' => json_decode($_POST['post'])->sections
 			);
 
-			// Export the corresponding WordsMatter backup.
-			file_put_contents(INPUT_DIR . FILENAME . 'txt', $_POST['post']);
-		
-			// If draft : remove output file (if existing).
-			if($draft) {
-				if(file_exists(OUTPUT_DIR . FILENAME . $extension)) {
-					unlink(OUTPUT_DIR . FILENAME . $extension);
-				}	
-			
-			}
-
-			// If release : build and add the corresponding output file.
-			else {
-
-				require './regex.php';
-
-				// HTML produced.
-				$output = (object) array(
-					'title' => $input->title,
-					'introduction' => runEditor($input->introduction, $regex, true),
-					'sections' => []
-				);
-				if($input->sections != null) {
-					foreach ($input->sections as $section) {
-						array_push($output->sections, 
-							(object) array(
-								'title' => $section->title,
-								'content' => runEditor($section->content, $regex, true)
-							)
-						);
-					}
-				}
-
-				// Build with the template.
-				define('POST', buildPost($output)); 
-
-				// Export generated content.
-				file_put_contents(OUTPUT_DIR . FILENAME . $extension, POST);
-
-			}
-
-			// Update the list.
-			$posts = json_decode(file_get_contents(POSTS_INDEX));
-
-			for($i = 0, $l = count($posts); $i < $l; $i++) {
-
-				// Is the post already listed into the JSON file ?
-				if($posts[$i]->filename === FILENAME) {
-
-					// If yes, remove from the list.
-					array_splice($posts, $i, 1);
-					break;
-
-				}
-
-			}
-
-			// List the post at the start of the array.
-			array_unshift($posts, 
-				(object) array(
-					"date" => date('Y/m/d'),
-					"title" => $input->title,
-					"filename" => FILENAME,
-					"draft" => $draft
-				)
+			$output = (object) array(
+				'title' => $input->title,
+				'introduction' => runEditor($input->introduction, $regex),
+				'sections' => []
 			);
-			
-			file_put_contents(POSTS_INDEX, json_encode($posts));
 
-			echo 'success';
+			if($input->sections != null) {
+				foreach ($input->sections as $section) {
+					array_push($output->sections, 
+						(object) array(
+							'title' => $section->title,
+							'content' => runEditor($section->content, $regex)
+						)
+					);
+				}
+			}
+
+			if(!is_dir(OUTPUT_DIR_PATH)) {
+				mkdir(OUTPUT_DIR_PATH);
+			}
+			file_put_contents(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME, buildPost($output));
 
 		}
+
+		$posts = json_decode(file_get_contents(POSTS_INDEX));
+		
+		// If the post is already in, remove from the list first.
+		for($i = 0, $l = count($posts); $i < $l; $i++) {
+			if($posts[$i]->dir === DIR_NAME) {
+				array_splice($posts, $i, 1);
+				break;
+			}
+		}
+		// Then list the post at the start of the array.
+		array_unshift($posts, 
+			(object) array(
+				"date" => date('Y/m/d'),
+				"title" => json_decode($_POST['post'])->title,
+				"dir" => DIR_NAME,
+				"draft" => $draft
+			)
+		);
+		file_put_contents(POSTS_INDEX, json_encode($posts));
+
+		echo 'success';
 
 	}
 

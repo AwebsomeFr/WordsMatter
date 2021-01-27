@@ -1,46 +1,45 @@
-<?php
+<?php 
 
-// Are all value given ?
-if(isset($_POST['EditorId']) && isset($_POST['filename'])) { 
+require './config.php';
 
-	require './config.php';
+if(
+	isset($_POST['EditorId']) && 
+	isset($_POST['dirName']) &&
+	$_POST['EditorId'] === EDITOR_ID
+) { 
 
-	// Is the user legitimate ?	
-	if($_POST['EditorId'] == EDITOR_ID) {
+	define('DIR_NAME', $_POST['dirName']);
+	define('OUTPUT_DIR_PATH', OUTPUT_DIR . '/' . DIR_NAME); 
+	define('OUTPUT_FILE_NAME', 'index' . $extension);
+	define('INPUT_DIR_PATH', INPUT_DIR . '/' . DIR_NAME); 
+	define('INPUT_FILE_NAME', 'draft.txt');
 
-		// Proceed (delete the selected post).
-		// Remove input file.
-		unlink(INPUT_DIR . $_POST['filename'] . 'txt');
-		// Remove output file (if existing).
-		if(file_exists(OUTPUT_DIR . $_POST['filename'] . $extension)) {
-			unlink(OUTPUT_DIR . $_POST['filename'] . $extension);
+	// Delete output content.
+	if(is_dir(OUTPUT_DIR_PATH)) {
+		if(is_file(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME)) {
+			unlink(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME);
 		}
-
-		// Success ?
-		if(!file_exists(INPUT_DIR . $_POST['filename'] . 'txt') 
-			&& !file_exists(OUTPUT_DIR . $_POST['filename'] . $extension)) {
-
-			// Update the list.
-			$posts = json_decode(file_get_contents(POSTS_INDEX));
-
-			for($i = 0, $l = count($posts); $i < $l; $i++) {
-
-				if($posts[$i]->filename === $_POST['filename']) {
-
-					// Remove from the list.
-					array_splice($posts, $i, 1);
-					break;
-
-				}
-
-			}
-
-			file_put_contents(POSTS_INDEX, json_encode($posts));
-
-			echo 'success';
-
-		}
-
+		rmdir(OUTPUT_DIR_PATH);
 	}
+
+	// Delete input content.
+	if(is_dir(INPUT_DIR_PATH)) {
+		if(is_file(INPUT_DIR_PATH . '/' . INPUT_FILE_NAME)) {
+			unlink(INPUT_DIR_PATH . '/' . INPUT_FILE_NAME);
+		}
+		rmdir(INPUT_DIR_PATH);
+	}
+		
+	// Delete the element from the JSON index.
+	$posts = json_decode(file_get_contents(POSTS_INDEX));
+	for($i = 0, $l = count($posts); $i < $l; $i++) {
+		if($posts[$i]->dir === $_POST['dirName']) {
+			array_splice($posts, $i, 1);
+			break;
+		}
+	}
+	file_put_contents(POSTS_INDEX, json_encode($posts));
+
+	echo 'success';
 
 }

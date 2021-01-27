@@ -177,17 +177,17 @@
 				if(req.status === 200) {
 
 					// New post ? Ask confirm push.
-					if(req.responseText == 'release') {
+					if(req.responseText === 'release') {
 						dial(MESS.servConfNew);
 					}
 
 					// Existing post ? Ask confirm update.
-					else if(req.responseText == 'update') {
+					else if(req.responseText === 'update') {
 						dial(MESS.servConfUpdate);
 					}
 
 					// Success ?
-					else if(req.responseText == 'success') {
+					else if(req.responseText === 'success') {
 						dial(MESS.servSucc);
 					}
 
@@ -221,7 +221,7 @@
 
 	};
 
-	deleteFromServer = (validation = false, filename) => {
+	deleteFromServer = (validation = false, dirName) => {
 	
 		// User confirmation ?
 		if(validation) {
@@ -233,7 +233,7 @@
 				if(req.status === 200) {
 
 					// Success ?
-					if(req.responseText == 'success') {
+					if(req.responseText === 'success') {
 						dial(MESS.servDelSucc); 
 					}
 
@@ -246,14 +246,14 @@
 			};
 
 			// Proceed.
-			req.send('EditorId=' + EDITOR_ID + '&filename=' + filename);
+			req.send('EditorId=' + EDITOR_ID + '&dirName=' + dirName);
 
 		}
 
 		else {
 
 			// Note for dev : is there a way to avoid this global ? 
-			varTemp = filename;
+			varTemp = dirName;
 			dial(MESS.servConfDel); 
 
 		}
@@ -276,7 +276,7 @@
 
 	};
 
-	importFromServer = (filename) => {
+	importFromServer = (dirName) => {
 
 		let req = createRequest(API_URL + 'open.php');
 		req.onload = () => {
@@ -289,7 +289,7 @@
 
 		};
 
-		req.send('EditorId=' + EDITOR_ID + '&filename=' + filename);
+		req.send('EditorId=' + EDITOR_ID + '&dirName=' + dirName);
 
 	};
 
@@ -316,7 +316,7 @@
 								'class="' + (file.draft ? 'draft' : 'release') + '" ' + 
 								'onclick="importFromServer(this.value)" ' +
 								'title="Ouvrir cet élément pour édition" ' +
-								'value="' + file.filename + '">' + // WordsMatter uses filename behind the scene...
+								'value="' + file.dir + '">' + // WordsMatter uses dir behind the scene...
 								file.title + // ...But user sees title.
 							'</button>' +
 						'</li>';
