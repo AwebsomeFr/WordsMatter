@@ -3,9 +3,9 @@
 require './config.php';
 
 if(
-	isset($_POST['EditorId']) && 
+	isset($_POST['editorId']) && 
 	isset($_POST['dirName']) &&
-	$_POST['EditorId'] === EDITOR_ID
+	$_POST['editorId'] === EDITOR_ID
 ) { 
 
 	define('DIR_NAME', $_POST['dirName']);

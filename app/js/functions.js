@@ -203,7 +203,7 @@
 						getPost()
 					)
 				) 
-				+ '&EditorId=' + EDITOR_ID 
+				+ '&editorId=' + EDITOR_ID 
 				+ '&validation=' + validation
 			);
 
@@ -240,7 +240,7 @@
 			};
 
 			// Proceed.
-			req.send('EditorId=' + EDITOR_ID + '&dirName=' + dirName);
+			req.send('editorId=' + EDITOR_ID + '&dirName=' + dirName);
 
 		}
 
@@ -283,7 +283,7 @@
 
 		};
 
-		req.send('EditorId=' + EDITOR_ID + '&dirName=' + dirName);
+		req.send('editorId=' + EDITOR_ID + '&dirName=' + dirName);
 
 	};
 
@@ -336,7 +336,7 @@
 
 		};
 
-		req.send('EditorId=' + EDITOR_ID);
+		req.send('editorId=' + EDITOR_ID);
 
 	};
 

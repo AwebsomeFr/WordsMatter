@@ -3,10 +3,10 @@
 require './config.php';
 
 if(
-	isset($_POST['EditorId']) &&  
+	isset($_POST['editorId']) &&  
 	isset($_POST['post']) && 
 	isset($_POST['validation']) &&
-	$_POST['EditorId'] === EDITOR_ID
+	$_POST['editorId'] === EDITOR_ID
 ){ 
 
 	require './functions.php';

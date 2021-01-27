@@ -3,8 +3,8 @@
 require './config.php';
 
 if(
-	isset($_POST['EditorId']) && 
-	$_POST['EditorId'] === EDITOR_ID
+	isset($_POST['editorId']) && 
+	$_POST['editorId'] === EDITOR_ID
 ) { 
 	echo file_get_contents(POSTS_INDEX);
 }

@@ -36,8 +36,8 @@ document.body.onload = () => {
 		}
 
 	};
-	
-	req.send('EditorId=' + EDITOR_ID);
+
+	req.send('editorId=' + EDITOR_ID);
 
 	// Autoset viewport.
 	setViewportHeight();

@@ -3,7 +3,7 @@
 require './config.php';
 
 // Is the user legitimate ?
-if($_POST['EditorId'] === EDITOR_ID) {
+if($_POST['editorId'] === EDITOR_ID) {
 
 	// Are the folders created ?
 	if(!is_dir(INPUT_DIR)) {
