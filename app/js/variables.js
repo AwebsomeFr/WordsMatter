@@ -1,5 +1,5 @@
-var marker = 0;
-var varTemp;
+let marker = 0;
+let varTemp;
 const DATA_NAME = 'post';
 const MESS = {
 

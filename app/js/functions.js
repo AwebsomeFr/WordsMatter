@@ -358,14 +358,14 @@
 	// Create HTML Elements Shortest Syntax (CHESS). Documentation : https://github.com/AwebsomeFr/chess
 	chess = (object) => {
 
-		var htmlElm = document.createElement(object.type);  
+		let htmlElm = document.createElement(object.type);  
 		
 		if(object.text) {
 			htmlElm.innerHTML = object.text;
 		}
 		
 		if(object.attributes) {
-			for(var attribute in object.attributes) {
+			for(let attribute in object.attributes) {
 				htmlElm.setAttribute(attribute, object.attributes[attribute]);
 			}	
 		}
@@ -375,7 +375,7 @@
 		}
 
 		if(object.children) {
-			for(var i = 0, l = object.children.length; i < l; i++) {
+			for(let i = 0, l = object.children.length; i < l; i++) {
 				htmlElm.appendChild(chess(object.children[i]));
 			}
 		}
