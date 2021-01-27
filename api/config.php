@@ -3,7 +3,7 @@
 /* The configuration below must be defined BEFORE the first launch of the Application. 
 If you have already opened WordsMatter, simply delete the "blog" folder before to start here. */
 
-/* Must be equal to the id specified in the file : 'scripts/config.js'. 
+/* Must be equal to the id specified in the file : 'app/js/config.js'. 
 !!! CREATE YOUR OWN AND COMPLEX ID !!! */
 define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC');
 
