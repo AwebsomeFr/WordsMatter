@@ -10,7 +10,7 @@ if(isset($_POST['EditorId']) && isset($_POST['filename'])) {
 
 		// Proceed (return the content of the selected post).
 		echo file_get_contents(
-			INPUT_FOLDER . $_POST['filename'] . 'txt'
+			INPUT_DIR . $_POST['filename'] . 'txt'
 		);
 
 	}

@@ -6,11 +6,11 @@ require './config.php';
 if($_POST['EditorId'] == EDITOR_ID) {
 
 	// Are the folders created ?
-	if(!is_dir(INPUT_FOLDER)) {
-		mkdir(INPUT_FOLDER, 0777, true);
+	if(!is_dir(INPUT_DIR)) {
+		mkdir(INPUT_DIR, 0777, true);
 	} 
-	if(!is_dir(OUTPUT_FOLDER)) {
-		mkdir(OUTPUT_FOLDER, 0777, true);
+	if(!is_dir(OUTPUT_DIR)) {
+		mkdir(OUTPUT_DIR, 0777, true);
 	}
 	if(!file_exists(POSTS_INDEX)) {
 		file_put_contents(POSTS_INDEX, '[]');

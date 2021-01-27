@@ -23,7 +23,7 @@
 		if($_POST['validation'] == 'false') {
 
 			// New post ?
-			if(!file_exists(INPUT_FOLDER . FILENAME . 'txt')) {
+			if(!file_exists(INPUT_DIR . FILENAME . 'txt')) {
 				echo 'release';
 				exit;
 			}
@@ -47,12 +47,12 @@
 			);
 
 			// Export the corresponding WordsMatter backup.
-			file_put_contents(INPUT_FOLDER . FILENAME . 'txt', $_POST['post']);
+			file_put_contents(INPUT_DIR . FILENAME . 'txt', $_POST['post']);
 		
 			// If draft : remove output file (if existing).
 			if($draft) {
-				if(file_exists(OUTPUT_FOLDER . FILENAME . OUTPUT_EXTENSION)) {
-					unlink(OUTPUT_FOLDER . FILENAME . OUTPUT_EXTENSION);
+				if(file_exists(OUTPUT_DIR . FILENAME . $extension)) {
+					unlink(OUTPUT_DIR . FILENAME . $extension);
 				}	
 			
 			}
@@ -83,7 +83,7 @@
 				define('POST', buildPost($output)); 
 
 				// Export generated content.
-				file_put_contents(OUTPUT_FOLDER . FILENAME . OUTPUT_EXTENSION, POST);
+				file_put_contents(OUTPUT_DIR . FILENAME . $extension, POST);
 
 			}
 

@@ -10,15 +10,15 @@ if(isset($_POST['EditorId']) && isset($_POST['filename'])) {
 
 		// Proceed (delete the selected post).
 		// Remove input file.
-		unlink(INPUT_FOLDER . $_POST['filename'] . 'txt');
+		unlink(INPUT_DIR . $_POST['filename'] . 'txt');
 		// Remove output file (if existing).
-		if(file_exists(OUTPUT_FOLDER . $_POST['filename'] . OUTPUT_EXTENSION)) {
-			unlink(OUTPUT_FOLDER . $_POST['filename'] . OUTPUT_EXTENSION);
+		if(file_exists(OUTPUT_DIR . $_POST['filename'] . $extension)) {
+			unlink(OUTPUT_DIR . $_POST['filename'] . $extension);
 		}
 
 		// Success ?
-		if(!file_exists(INPUT_FOLDER . $_POST['filename'] . 'txt') 
-			&& !file_exists(OUTPUT_FOLDER . $_POST['filename'] . OUTPUT_EXTENSION)) {
+		if(!file_exists(INPUT_DIR . $_POST['filename'] . 'txt') 
+			&& !file_exists(OUTPUT_DIR . $_POST['filename'] . $extension)) {
 
 			// Update the list.
 			$posts = json_decode(file_get_contents(POSTS_INDEX));
