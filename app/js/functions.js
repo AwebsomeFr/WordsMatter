@@ -169,7 +169,7 @@
 		// Has a title been specified ?
 		if(document.getElementById('output-art-title').textContent.trim() != '') { 
 
-			let req = createRequest(API_URL + 'pushPost.php');
+			let req = createRequest(API_URL + 'push.php');
 				
 			req.onload = () => {
 
@@ -226,7 +226,7 @@
 		// User confirmation ?
 		if(validation) {
 
-			let req = createRequest(API_URL + 'deletePost.php');
+			let req = createRequest(API_URL + 'delete.php');
 			req.onload = () => {
 
 				// Is the server available ?
@@ -278,7 +278,7 @@
 
 	importFromServer = (filename) => {
 
-		let req = createRequest(API_URL + 'openPost.php');
+		let req = createRequest(API_URL + 'open.php');
 		req.onload = () => {
 
 			if(req.status === 200) {
@@ -295,7 +295,7 @@
 
 	getFiles = () => {
 
-		let req = createRequest(API_URL + 'getPosts.php');
+		let req = createRequest(API_URL + 'get.php');
 		req.onload = () => {
 
 			if(req.status === 200) {

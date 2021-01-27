@@ -19,7 +19,7 @@ document.body.onload = () => {
 
 	// #2. Is the server available ?
 
-	let req = createRequest(API_URL + 'initServer.php');
+	let req = createRequest(API_URL + 'init.php');
 
 	req.onload = () => {
 
