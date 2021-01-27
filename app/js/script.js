@@ -28,10 +28,10 @@ document.body.onload = () => {
 	
 	req.onload = () => {
 	
-		if(req.status === 200) {
+		if(req.status == 200) {
 			// Enable features.
-			document.getElementById('bt-list-work').style.display = 'block';
-			document.getElementById('bt-release-work').style.display = 'block';
+			document.getElementById('bt-list-work').classList.remove('disabled');
+			document.getElementById('bt-release-work').classList.remove('disabled');
 			document.getElementById('bt-open-menu').setAttribute('class', 'online'); 
 		}
 
