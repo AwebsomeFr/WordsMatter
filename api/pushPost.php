@@ -1,7 +1,8 @@
-<?php
-
-// Are all value given ?
-if(isset($_POST['EditorId']) && isset($_POST['post']) && isset($_POST['validation'])) { 
+<?php if(
+	isset($_POST['EditorId']) && 
+	isset($_POST['post']) && 
+	isset($_POST['validation'])) 
+{ 
 
 	require './config.php';
 
@@ -22,7 +23,7 @@ if(isset($_POST['EditorId']) && isset($_POST['post']) && isset($_POST['validatio
 		if($_POST['validation'] == 'false') {
 
 			// New post ?
-			if(!file_exists(INPUT_FOLDER . FILENAME . INPUT_EXTENSION)) {
+			if(!file_exists(INPUT_FOLDER . FILENAME . 'txt')) {
 				echo 'release';
 				exit;
 			}
@@ -46,7 +47,7 @@ if(isset($_POST['EditorId']) && isset($_POST['post']) && isset($_POST['validatio
 			);
 
 			// Export the corresponding WordsMatter backup.
-			file_put_contents(INPUT_FOLDER . FILENAME . INPUT_EXTENSION, $_POST['post']);
+			file_put_contents(INPUT_FOLDER . FILENAME . 'txt', $_POST['post']);
 		
 			// If draft : remove output file (if existing).
 			if($draft) {
