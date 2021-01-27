@@ -1,11 +1,6 @@
 /* main containers */
 
 	body {
-		--color1: #F59561;
-		--color2: #234;
-		--color3: #111;
-		--color4: #222;
-		--color5: #fff;
 		align-items: center;
 		background-color: var(--color3);
 		display: flex;
@@ -15,6 +10,18 @@
 		margin: 0;
 		position: fixed;
 		width: 100%;
+		--color1: #234;
+		--color2: #F59561;
+		--color4: #eee;
+		--color3: #fff;
+		--color5: #222;
+	}
+	.dark {
+		--color1: #F59561;
+		--color2: #234;
+		--color3: #111;
+		--color4: #222;
+		--color5: #fff;
 	}
 	main {
 		box-sizing: border-box;
@@ -178,6 +185,10 @@
 		display: flex;
 	}
 	button:not(.danger):hover, #label-open-file:hover { 
+		background-color: var(--color1);
+		color: var(--color4);
+	}
+	.dark button:not(.danger):hover, .dark #label-open-file:hover { 
 		background-color: var(--color2);
 		color: var(--color1);
 	}
@@ -212,20 +223,6 @@
 	}
 	#raw-data {
 		color: var(--color1);
-	}
-
-/* user pref */
-
-	.light-theme {
-		--color1: #234;
-		--color2: #F59561;
-		--color4: #eee;
-		--color3: #fff;
-		--color5: #222;
-	}
-	.light-theme button:not(.danger):hover, .light-theme #label-open-file:hover { 
-		background-color: var(--color1);
-		color: var(--color4);
 	}
 	.hidden { 
 		transform: scale(0);

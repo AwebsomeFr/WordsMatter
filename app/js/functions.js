@@ -2,28 +2,31 @@
 
 /* --- User Interface --- */
 
-	const setViewportHeight = () => {
-
-		document.querySelector('main').style.height = window.innerHeight + 'px';
-		
-	}
+	const setViewportHeight = () => document.querySelector('main').style.height = window.innerHeight + 'px';
 
 	const toggleMenu = (boolean) => {
-
 		boolean ?
 			document.getElementById('nav-container').classList.remove('hidden') :
-			document.getElementById('nav-container').classList.add('hidden');
-		
+			document.getElementById('nav-container').classList.add('hidden')
 	};
+
+	const toDarkTheme = () => {	
+		document.body.classList.add('dark');
+		localStorage.setItem('theme', 'dark');
+	}
+
+	const toLightTheme = () => {
+		document.body.classList.remove('dark');
+		localStorage.setItem('theme', 'light');
+	}
 
 	const toggleTheme = () => {
-
-		document.body.classList.toggle('light-theme');
-
-	};
+		document.body.classList.contains('dark') ?
+			toLightTheme():
+			toDarkTheme();
+	}
 
 	const setHeight = () => {
-
 		dial(
 			'<p>Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.</p>' +
 			'<input ' +
@@ -33,11 +36,9 @@
 				 'step="0.25"' +
 				 'type="range" />'
 		);
-
 	};
 
 	const setWidth = () => {
-
 		dial(
 			'<p>Déplacez le curseur pour ajuster la largeur de travail utile.</p>' +
 			'<input ' +
@@ -47,14 +48,9 @@
 				 'step="5"' +
 				 'type="range" />'
 		);
-
 	};
 
-	const onHelp = () => {
-
-		window.open('./help.html');
-
-	}; 
+	const onHelp = () => window.open('./help.html');
 
 	const dial = (mess) => {
 		
@@ -82,19 +78,13 @@
 
 		let datasContent = JSON.stringify(getPost());
 
-		// Web Storage available ?
-		if(localStorage) {
-			
-			// Proceed.
+		if(localStorage) {			
 			localStorage.setItem(DATA_NAME, datasContent);
-			
-			// Success ?
 			dial(
 				localStorage.getItem(DATA_NAME) === datasContent ?	
 				MESS.wsSaveSucc :
 				MESS.wsSaveFail
 			);
-
 		}
 
 		else {
