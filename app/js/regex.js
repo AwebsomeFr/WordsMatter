@@ -38,22 +38,22 @@ const REGEX = [
 	{
 		desc: /I\([^()]+\([^()]+\){2}/gi, // i(alternative(url))
 		output: (content) => {
-			$dt = content.substring(2, content.length -2).split('('); // Remove i( from start and )) from end then split values by using the separator (.
-			return '<img src="' + $dt[1] + '" alt="' + $dt[0] + '" />'; 
+			let dt = content.substring(2, content.length -2).split('('); // Remove i( from start and )) from end then split values by using the separator (.
+			return '<img src="' + dt[1] + '" alt="' + dt[0] + '" />'; 
 		}
 	},
 	{
 		desc: /F\([^)]+\([^)]+\([^)]+\){3}/gi, // f(legend(alternative(url)))
 		output: (content) => {
-			$dt = content.substring(2, content.length -3).split('('); // Remove f( from start and ))) from end then split values by using the separator (.
-			return '<figure><img src="' + $dt[2] + '" alt="' + $dt[1] + '" /><figcaption>' + $dt[0] + '</figcaption></figure>';
+			let dt = content.substring(2, content.length -3).split('('); // Remove f( from start and ))) from end then split values by using the separator (.
+			return '<figure><img src="' + dt[2] + '" alt="' + dt[1] + '" /><figcaption>' + dt[0] + '</figcaption></figure>';
 		}
 	},
 	{
 		desc: /A\([^()]+\([^()]+\){2}/gi, // a(label(url))
 		output: (content) => {
-			$dt = content.substring(2, content.length -2).split('('); // Remove a( from start and )) from end then split values by using the separator (.
-			return '<a href="' + $dt[1] + '">' + $dt[0] + '</a>';
+			let dt = content.substring(2, content.length -2).split('('); // Remove a( from start and )) from end then split values by using the separator (.
+			return '<a href="' + dt[1] + '">' + dt[0] + '</a>';
 	}
 	},
 	{	
