@@ -250,7 +250,6 @@ let varTemp;
 
 		else {
 
-			// Note for dev : is there a way to avoid this global ? 
 			varTemp = dirName;
 			dial(LAB.dial.servConfDel); 
 
@@ -309,13 +308,13 @@ let varTemp;
 						message += `<li >
 							<button
 								class="danger"
-								onclick="deleteFromServer(false, this.nextSibling.value)"
+								onclick="deleteFromServer(false, \'${file.dir}\')"
 								title="${LAB.bt.delete}">
 								X
 							</button>
 							<button
 								class="${file.draft ? 'draft' : 'release'}" 
-								onclick="importFromServer(this.value)"
+								onclick="importFromServer(\'${file.dir}\')"
 								title="${LAB.bt.open}"
 								value="${file.dir}">
 								${file.title}
