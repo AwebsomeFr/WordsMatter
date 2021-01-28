@@ -18,47 +18,46 @@
 	if(LANG === 'fr') {
 
 		LAB.bt = {
-			addHeader: 'Insérer un sous-titre de niveau ',
-			addSection: 'Ajouter une section',
+			addA: 'Créer un lien hypertexte',
+			addEm: 'Créer du texte emphasique',
+			addFig: 'Créer une figure',
+			addHx: 'Créer un sous-titre de niveau ',
+			addImg: 'Créer une image',
+			addOl: 'Créer une liste ordonnée',
+			addSec: 'Ajouter une section',
+			addStr: 'Créer du texte important',
+			addUl: 'Créer une liste non ordonnée',
 			close: 'Fermer',
-			delSection: 'Supprimer la section',
+			delSec: 'Supprimer la section',
 			delete: 'Supprimer',
 			doc: 'Documentation ?',
-			export: 'Exporter vers fichier .txt ↑',
-			height: 'Ajuster la hauteur ↕',
-			import: 'Importer depuis fichier .txt ↓',
-			list: 'Modifier depuis le blog ↓',
-			open: 'Ouvrir',
+			exportPost: 'Exporter vers fichier .txt ↑',
+			importPost: 'Importer depuis fichier .txt ↓',
+			listPost: 'Modifier depuis le blog ↓',
 			menu: 'Menu',
-			push: 'Envoyer vers le blog ↑',
+			open: 'Ouvrir',
+			pushPost: 'Envoyer vers le blog ↑',
 			save: 'Sauvegarder ↑',
-			theme: 'Thème clair / thème sombre ☼',
-			width: 'Ajuster la largeur ↔',
-			addStr: 'Insérer du texte important',
-			addEm: 'Insérer du texte emphasique',
-			addOl: 'Insérer une liste ordonnée',
-			addUl: 'Insérer une liste non ordonnée',
-			addA: 'Insérer un lien hypertexte',
-			addImg: 'Insérer une image',
-			addFigure: 'Insérer une figure'
+			setHeight: 'Ajuster la hauteur ↕',
+			setTheme: 'Thème clair / thème sombre ☼',
+			setWidth: 'Ajuster la largeur ↔'
 		};
 
 		LAB.input = {
+			lib: 'Libellé',
 			content: 'Contenu de section',
 			h1: 'Titre du post (h1)',
 			h2: 'Titre de section (h2)',
+			alt: 'Description (alternative)',
+			leg: 'Légende de l\'image',
 			intro: 'Introduction optionnelle',
-			textToTransform: 'Texte à transformer',
-			imgUrl: 'URL à laquelle l\'image est accessible',
-			imgAlt: 'Description (alternative)',
-			imgLeg: 'Légende de l\'image',
-			aLab: 'Libellé explicite du lien',
-			aUrl: 'URL cible',
-			list: 'Eléments composant la liste (délimiteur : %%)'
+			list: 'Eléments composant la liste (délimiteur : %%)',
+			txtToTransf: 'Texte à transformer',
+			url: 'Adresse (URL)'
 		};
 
 		LAB.dial = {
-			export: `Copiez-collez le contenu suivant dans un fichier et sauvegardez ce dernier avec l'extension <i>.txt</i>. Utilisez l'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour recharger le contenu du fichier.`,
+			export: `Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.`,
 			modify: `Quel post souhaitez-vous modifier depuis le blog ?`,
 			delSection: `Le contenu de cette section sera perdu.`,
 			wsUnavailable: `<p class="b">Le post ne peut être sauvegardé/supprimé : l'API <i>Web Storage</i> est indisponible ou a été désactivée sur ce navigateur web.</p>`,
@@ -74,8 +73,7 @@
 			servTitleEmpty: `<p class="b">Le post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.</p>`,
 			servUnavailable: `<p class="b">Serveur injoignable : le post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
 			servConfNew:
-				`<p class="a"> Vous allez envoyer du contenu vers le blog.</p>
-				<p>Note : Si le titre principal (h1) du post est précédé d'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.</p>
+				`<p class="a"> Vous allez envoyer du contenu vers le blog. Si le titre principal (h1) du post est précédé d'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.</p>
 				<button onclick="pushPost(true)">Envoyer</button>`,
 			servConfUpdate:
 				`<p class="a"> Un post avec un titre identique existe déjà sur le blog. Le remplacer ?</p>
@@ -85,16 +83,12 @@
 				`<p class="a"> Supprimer définitivement le post sélectionné du blog ?</p>
 				<button class="danger" onclick="deleteFromServer(true, varTemp)">Confirmer la suppression</button>`,
 			servDelSucc: `<p class="g">Post supprimé du blog.</p>`,
-			servDelFail: `<p class="b">Erreur lors de la suppression du post du serveur. Si le problème persiste, contactez le prestataire en charge de la configuration de WordsMatter.</p>`,
+			servDelFail: `<p class="b">Erreur lors de la suppression du post du blog. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
 			servSucc: `<p class="g">Post envoyé avec succès vers le blog.</p>`,
 			servFail: `<p class="b">Erreur lors de la mise en ligne : le post n'a pas été publié. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
 			servEmpty: `<p class="b">Impossible : il n'y a encore ni post ni brouillon sur le blog.</p>`,
-
-			setHeight: 'Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.',
-			setWidth: 'Déplacez le curseur pour ajuster la largeur de travail utile.'
-
-
-
+			setHeight: 'Déplacez le curseur pour modifier la hauteur de prévisualisation.',
+			setWidth: 'Déplacez le curseur pour modifier la largeur de travail.'
 		};
 
 	}

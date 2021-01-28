@@ -82,7 +82,7 @@ document.body.onload = () => {
 								class: "nav-button disabled",
 								onclick: "pushPost()" 
 							},
-							text: LAB.bt.push,
+							text: LAB.bt.pushPost,
 						},
 						{
 							type: 'button',
@@ -91,7 +91,7 @@ document.body.onload = () => {
 								class: "nav-button disabled",
 								onclick: "getFiles()" 
 							},
-							text: LAB.bt.list,
+							text: LAB.bt.listPost,
 						},
 						{
 							type: 'button',
@@ -100,7 +100,7 @@ document.body.onload = () => {
 								class: "nav-button",
 								onclick: "exportToFile()" 
 							},
-							text: LAB.bt.export,
+							text: LAB.bt.exportPost,
 						},
 						{
 							type: 'div',
@@ -111,7 +111,7 @@ document.body.onload = () => {
 										id: 'label-open-file',
 										class: 'nav-button'
 									},
-									text: LAB.bt.import,
+									text: LAB.bt.importPost,
 									children: [
 										{
 											type: 'input',
@@ -133,7 +133,7 @@ document.body.onload = () => {
 								class: "nav-button",
 								onclick: "toggleTheme()" 
 							},
-							text: LAB.bt.theme,
+							text: LAB.bt.setTheme,
 						},
 						{
 							type: 'button',
@@ -142,7 +142,7 @@ document.body.onload = () => {
 								class: "nav-button disabled",
 								onclick: "setWidth()" 
 							},
-							text: LAB.bt.width,
+							text: LAB.bt.setWidth,
 						},
 						{
 							type: 'button',
@@ -151,7 +151,7 @@ document.body.onload = () => {
 								class: "nav-button",
 								onclick: "setHeight()" 
 							},
-							text: LAB.bt.height,
+							text: LAB.bt.setHeight,
 						},
 						{
 							type: 'button',
@@ -244,7 +244,7 @@ document.body.onload = () => {
 						id: 'bt-add-section',
 						onclick: 'addSection()'
 					},
-					text: LAB.bt.addSection
+					text: LAB.bt.addSec
 				}
 			]
 		});

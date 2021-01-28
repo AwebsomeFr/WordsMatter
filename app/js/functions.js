@@ -559,12 +559,12 @@ let varTemp;
 					type: 'button',
 					text: 'h' + i,
 					attributes: {
-						title: LAB.bt.addHeader + i
+						title: LAB.bt.addHx + i
 					},
 					events: [
 						{
 							type: 'click',
-							function: () => formatContent(inputSecElm.querySelector('textarea'), { title: LAB.bt.addHeader + i, tag: 'h' + i })
+							function: () => formatContent(inputSecElm.querySelector('textarea'), { title: LAB.bt.addHx + i, tag: 'h' + i })
 						}
 					]
 				})
@@ -579,7 +579,7 @@ let varTemp;
 			{ text: 'ul', title: LAB.bt.addUl, tag: 'ul' },
 			{ text: 'a', title: LAB.bt.addA, tag: 'a' },
 			{ text: 'img', title: LAB.bt.addImg, tag: 'img' },
-			{ text: 'fig', title: LAB.bt.addFigure, tag: 'figure' }
+			{ text: 'fig', title: LAB.bt.addFig, tag: 'figure' }
 		]) {
 			inputSecElm.appendChild(
 				chess({
@@ -605,7 +605,7 @@ let varTemp;
 				text: 'X',
 				attributes: {
 					class: 'danger',
-					title: LAB.bt.delSection
+					title: LAB.bt.delSec
 				},
 				events: [
 					{
@@ -649,13 +649,13 @@ let varTemp;
 
 			case 'h3': case 'h4': case 'h5': case 'h6':
 				formElm.body =
-					`<label for="h-value">${LAB.input.textToTransform}</label>
+					`<label for="h-value">${LAB.input.txtToTransf}</label>
 					<input id="h-value" type="text" value="${input}" required />`;
 				break;
 
 			case 'strong': case 'em':
 				formElm.body =
-					`<label for="inline-value">${LAB.input.textToTransform}</label>
+					`<label for="inline-value">${LAB.input.txtToTransf}</label>
 					<input id="inline-value" type="text" value="${input}" required />`
 				break;
 
@@ -667,27 +667,27 @@ let varTemp;
 
 			case 'a':
 				formElm.body =
-					`<label for="a-value">${LAB.input.aUrl}</label>
+					`<label for="a-value">${LAB.input.url}</label>
 					<input id="a-value" type="text" placeholder="https://example.com" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="a-label">${LAB.input.aLab}</label>
+					<label for="a-label">${LAB.input.lib}</label>
 					<input id="a-label" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
 			case 'img':
 				formElm.body =
-					`<label for="img-src">${LAB.input.imgUrl}</label>
-					<input id="img-src" type="text" placeholder="https://exemple.fr/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="img-alt">${LAB.input.imgAlt}</label>
+					`<label for="img-src">${LAB.input.url}</label>
+					<input id="img-src" type="text" placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
+					<label for="img-alt">${LAB.input.alt}</label>
 					<input id="img-alt" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
 			case 'figure':
 				formElm.body =
-					`<label for="fig-src">${LAB.input.imgUrl}</label>
+					`<label for="fig-src">${LAB.input.url}</label>
 					<input id="fig-src" type="text" placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="fig-legend">${LAB.input.imgLeg}</label>
+					<label for="fig-legend">${LAB.input.leg}</label>
 					<input id="fig-legend" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />
-					<label for="fig-alt">${LAB.input.imgAlt}</label>
+					<label for="fig-alt">${LAB.input.alt}</label>
 					<input id="fig-alt" type="text" required />`;
 				break;
 
