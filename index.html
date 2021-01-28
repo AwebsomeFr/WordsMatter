@@ -1,148 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
 	<link rel="icon" href="./app/img/words-matter-favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="./app/css/style.css" />
 	<meta charset="utf-8" />
-	<meta name="description" content="WordsMatter est un outil de rédaction ultra-léger capable de générer du contenu web techniquement optimisé à des fins de blogging." />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-	<title>WordsMatter | Rédaction de contenu optimisé pour le web</title>
+	<title>WordsMatter</title>
 </head>
-<body id="text-matters" class="dark">	
-	<div id="dial" class="hidden">
-		<button 
-			id="bt-close-dial"
-			onclick="dial()">
-			Fermer
-		</button>
-		<div id="dial-content"></div>
-	</div>
-	<main>
-		<nav id="main-nav">
-			<button 
-				id="bt-open-menu" 
-				onclick="toggleMenu(true)"
-				title="Ouvrir le menu">
-				Menu
-			</button>
-			<div id="nav-container" class="hidden" onmouseleave="toggleMenu(false)">
-				<!-- Save into LocalStorage -->
-				<button 
-					class="nav-button disabled" 
-					id="bt-save-work" 
-					onclick="saveIntoLocalStorage()"  
-					title="Enregistrer votre post dans la mémoire locale du navigateur web">
-					Sauvegarder ↑
-				</button>
-				<!-- Delete from localStorage -->
-				<button
-					class="nav-button danger disabled" 
-					id="bt-delete-work"
-					onclick="deleteFromLocalStorage()"
-					title="Supprimer votre post de la mémoire locale du navigateur">
-					Supprimer X
-				</button>
-				<!-- Release -->
-				<button 
-					class="nav-button disabled" 
-					id="bt-release-work" 
-					onclick="pushPost()" 
-					title="Publier ou sauvegarder en tant que brouillon votre post sur le blog">
-					Envoyer vers le blog ↑
-				</button>
-				<!-- Open from server -->
-				<button 
-					class="nav-button disabled" 
-					id="bt-list-work"
-					onclick="getFiles()" 
-					title="Lister les posts et brouillons envoyés sur le blog pour édition ou suppression" >
-					Modifier depuis le blog ↓
-				</button>
-				<!-- Export to file -->
-				<button 
-					class="nav-button" 
-					id="bt-export-work"
-					onclick="exportToFile()" 
-					title="Exporter votre post dans un fichier .txt">
-					Exporter vers fichier .txt ↑ 
-				</button>
-				<!-- Import from file -->
-				<div>
-					<label class="nav-button" id="label-open-file">
-						<input 
-							accept="text/plain" 
-							id="input-open-file"
-							onchange="importFromFile(this.files[0])" 
-							title="Importer du contenu depuis un fichier .txt"
-							type="file" />
-						Importer depuis fichier .txt ↓
-					</label>
-				</div>
-				<!-- Switch theme -->
-				<button 
-					class="nav-button" 
-					id="bt-switch-theme" 
-					onclick="toggleTheme()" 
-					title="Basculer entre le thème sombre et le thème clair">
-					Thème clair / thème sombre ☼
-				</button>
-				<!-- set width -->
-				<button 
-					class="nav-button disabled" 
-					id="bt-set-width" 
-					onclick="setWidth()"  
-					title="Ajuster la largeur de post">
-					Ajuster la largeur ↔
-				</button>
-				<!-- set height -->
-				<button 
-					class="nav-button" 
-					id="bt-set-height" 
-					onclick="setHeight()" 
-					title="Ajuster la hauteur de travail allouée à l'espace de rédaction">
-					Ajuster la hauteur ↕
-				</button>
-				<!-- Open help -->
-				<button
-					class="nav-button" 
-					id="bt-read-help"
-					onclick="onHelp()"
-					title="Afficher la documentation">
-					Documentation ?
-				</button>
-				<button
-					class="nav-button" 
-					id="bt-close-nav"
-					onclick="toggleMenu(false)"
-					title="Fermer le menu">
-					Fermer
-				</button>
-			</div>
-		</nav>
-		<article id="output" onclick="toggleMenu(false)">
-			<h1 id="output-art-title"></h1>
-			<div id="output-art-introduction"></div>
-		</article>
-		<article id="input" onclick="toggleMenu(false)">
-			<label for="input-art-title">Titre du post (h1)</label>
-			<input 
-				id="input-art-title" 
-				oninput="runEditor('input-art-title')" 
-				placeholder="Titre du post (h1)"
-				type="text" />
-			<label for="input-art-introduction">Introduction optionnelle</label>
-			<textarea 
-				id="input-art-introduction" 
-				oninput="runEditor('input-art-introduction')" 
-				placeholder="Introduction optionnelle">
-			</textarea>
-			<button id="bt-add-section" onclick="addSection()">Ajouter une section</button>
-		</article>
-	</main>
+<body id="text-matters" class="dark">
 	<script defer src="./app/js/config.js"></script>
-	<script defer src="./app/js/regex.js"></script>
-	<script defer src="./app/js/variables.js"></script>
 	<script defer src="./app/js/functions.js"></script>
-	<script defer src="./app/js/script.js"></script>
+	<script defer src="./app/js/start.js"></script>
 </body>
 </html>

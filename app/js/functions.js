@@ -1,5 +1,9 @@
 "use strict";
 
+// These variables should not exist.
+let marker = 0;
+let varTemp;
+
 /* --- User Interface --- */
 
 	const setViewportHeight = () => document.querySelector('main').style.height = window.innerHeight + 'px';
@@ -29,7 +33,7 @@
 	const setHeight = () => {
 		dial(
 			`<p>Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.</p>
-			'<input 
+			<input 
 				max="4"
 				min="0.25" 
 				oninput="document.querySelector('main').style.gridTemplateRows = 'auto 1fr ' + this.value + 'fr'" 
@@ -81,16 +85,16 @@
 		let datasContent = JSON.stringify(getPost());
 
 		if(localStorage) {			
-			localStorage.setItem(DATA_NAME, datasContent);
+			localStorage.setItem(post, datasContent);
 			dial(
-				localStorage.getItem(DATA_NAME) === datasContent ?	
-				MESS.wsSaveSucc :
-				MESS.wsSaveFail
+				localStorage.getItem(post) === datasContent ?	
+				LAB.dial.wsSaveSucc :
+				LAB.dial.wsSaveFail
 			);
 		}
 
 		else {
-			dial(MESS.wsUnavailable);
+			dial(LAB.dial.wsUnavailable);
 		}
 
 	};
@@ -99,7 +103,7 @@
 
 		resetPost();
 		setPost(post);
-		dial(MESS.loadSucc);
+		dial(LAB.dial.loadSucc);
 
 	};
 
@@ -109,40 +113,40 @@
 		if(localStorage) {
 
 			// Is there something to delete ?
-			if(localStorage.getItem(DATA_NAME)) {
+			if(localStorage.getItem(post)) {
 
 				// User confirmation ?
 				if(validation) {
 
 					// Proceed
-					localStorage.removeItem(DATA_NAME);
+					localStorage.removeItem(post);
 
 					// Success ?
-					if(!localStorage.getItem(DATA_NAME)) {
+					if(!localStorage.getItem(post)) {
 						resetPost();
-						dial(MESS.wsDelSucc);
+						dial(LAB.dial.wsDelSucc);
 					}
 
 					else {
-						dial(MESS.wsDelFail);
+						dial(LAB.dial.wsDelFail);
 					}
 
 				}
 
 				else {
-					dial(MESS.wsDelAskConf);
+					dial(LAB.dial.wsDelAskConf);
 				}
 
 			}
 
 			else {
-				dial(MESS.wsDelEmpty);
+				dial(LAB.dial.wsDelEmpty);
 			}
 
 		}
 
 		else {
-			dial(MESS.wsUnavailable);
+			dial(LAB.dial.wsUnavailable);
 		}
 
 	};
@@ -172,27 +176,27 @@
 
 					// New post ? Ask confirm push.
 					if(req.responseText === 'release') {
-						dial(MESS.servConfNew);
+						dial(LAB.dial.servConfNew);
 					}
 
 					// Existing post ? Ask confirm update.
 					else if(req.responseText === 'update') {
-						dial(MESS.servConfUpdate);
+						dial(LAB.dial.servConfUpdate);
 					}
 
 					// Success ?
 					else if(req.responseText === 'success') {
-						dial(MESS.servSucc);
+						dial(LAB.dial.servSucc);
 					}
 
 					else {
-						dial(MESS.servFail);
+						dial(LAB.dial.servFail);
 					}
 				
 				}
 
 				else {
-					dial(MESS.servUnavailable);
+					dial(LAB.dial.servUnavailable);
 				}
 
 			};
@@ -210,7 +214,7 @@
 		}
 
 		else {
-			dial(MESS.servTitleEmpty);
+			dial(LAB.dial.servTitleEmpty);
 		}
 
 	};
@@ -228,11 +232,11 @@
 
 					// Success ?
 					if(req.responseText === 'success') {
-						dial(MESS.servDelSucc); 
+						dial(LAB.dial.servDelSucc); 
 					}
 
 					else {
-						dial(MESS.servDelFail); 
+						dial(LAB.dial.servDelFail); 
 					}
 
 				}
@@ -248,7 +252,7 @@
 
 			// Note for dev : is there a way to avoid this global ? 
 			varTemp = dirName;
-			dial(MESS.servConfDel); 
+			dial(LAB.dial.servConfDel); 
 
 		}
 
@@ -262,7 +266,7 @@
 
 			resetPost();
 			setPost(JSON.parse(e.target.result));
-			dial(MESS.loadSucc);
+			dial(LAB.dial.loadSucc);
 
 			};
 
@@ -325,13 +329,13 @@
 				}
 
 				else {
-					dial(MESS.servEmpty);
+					dial(LAB.dial.servEmpty);
 				}
 
 			}
 
 			else {
-				dial(MESS.servUnavailable);
+				dial(LAB.dial.servUnavailable);
 			}
 
 		};
@@ -351,34 +355,39 @@
 
 /* --- Core features --- */
 
-	// Create HTML Elements Shortest Syntax (CHESS). Documentation : https://github.com/AwebsomeFr/chess
-	const chess = (object) => {
+	function chess(obj) { // = Create HTML Elements Short Syntax.
 
-		let htmlElm = document.createElement(object.type);  
-		
-		if(object.text) {
-			htmlElm.innerHTML = object.text;
+		let elm = document.createElement(obj.type); // REQUIRED. Define <tag> type.
+
+		// OPTIONAL : define textual or HTML content. Only one is permitted.	
+		if(obj.text) {
+			elm.textContent = obj.text;
 		}
-		
-		if(object.attributes) {
-			for(let attribute in object.attributes) {
-				htmlElm.setAttribute(attribute, object.attributes[attribute]);
-			}	
-		}
-		
-		if(object.event) {
-			htmlElm.addEventListener(object.event.type, object.event.callback);
+		else if(obj.html) {
+			elm.innerHTML = obj.html;
 		}
 
-		if(object.children) {
-			for(let i = 0, l = object.children.length; i < l; i++) {
-				htmlElm.appendChild(chess(object.children[i]));
+		if(obj.attributes) { // OPTIONAL : define attributes (id, class, title, basic events...).
+			for(let attribute in obj.attributes) {
+				elm.setAttribute(attribute, obj.attributes[attribute]);
 			}
 		}
 		
-		return htmlElm;
+		if(obj.events) { // OPTIONAL : define advanced events.
+			for(let event of obj.events) {
+				elm.addEventListener(event.type, event.function);
+			}
+		}
 
-	};
+		if(obj.children) { // OPTIONAL : append children.	
+			for(let child of obj.children) {
+				elm.appendChild(chess(child));
+			}
+		}
+
+		return elm;
+
+	}
 
 	const runEditor = (inputId) => {
 
@@ -482,55 +491,49 @@
 		let currentMarker = marker;
 
 		document.getElementById('output').appendChild(
-			chess(
-				{
-					type: 'section',
-					attributes: {
-						id: 'output-sec-' + marker
-					},
-					children: [
-						{ 
-							type: 'h2',
-							attributes: {
-								id: 'output-sec-title-' + marker
-							}
-						},
-						{ 
-							type: 'div',
-							attributes: {
-								id: 'output-sec-content-' + marker
-							}
-						}
-					]
-				}
-			)
-		);
-
-		let inputSecElm = chess(
-			{
+			chess({
 				type: 'section',
 				attributes: {
-					class: 'input-section',
-					id: 'input-sec-' + marker
-				}
-			}
+					id: 'output-sec-' + marker
+				},
+				children: [
+					{ 
+						type: 'h2',
+						attributes: {
+							id: 'output-sec-title-' + marker
+						}
+					},
+					{ 
+						type: 'div',
+						attributes: {
+							id: 'output-sec-content-' + marker
+						}
+					}
+				]
+			})
 		);
 
+		let inputSecElm = chess({
+			type: 'section',
+			attributes: {
+				class: 'input-section',
+				id: 'input-sec-' + marker
+			}
+		});
+
 		for (let elmToCreate of [
-			{ type: 'input', id: 'input-sec-title-' + marker, placeholder: 'Titre de section (h2)' },
-			{ type: 'textarea', id: 'input-sec-content-' + marker, placeholder: 'Contenu' }
+			{ type: 'input', id: 'input-sec-title-' + marker, placeholder: LAB.input.h2 },
+			{ type: 'textarea', id: 'input-sec-content-' + marker, placeholder: LAB.input.content }
 
 		]){
 			inputSecElm.appendChild(
-				chess(
-					{
-						type: 'label',
-						text: elmToCreate.placeholder,
-						attributes: {
-							for: elmToCreate.id,
-						}
+				chess({
+					type: 'label',
+					text: elmToCreate.placeholder,
+					attributes: {
+						for: elmToCreate.id,
 					}
-				)
+				})
 			);
 			inputSecElm.appendChild(
 				chess(
@@ -538,15 +541,11 @@
 						type: elmToCreate.type,
 						attributes: {
 							id: elmToCreate.id,
+							oninput: 'runEditor(this.attributes.id.value)',
 							placeholder: elmToCreate.placeholder,
-							type: 'text'
+							type: 'text',
 						},
-						event: {
-							type: 'input',
-							callback () {
-								runEditor(this.attributes.id.value);
-							}
-						}
+						
 					}
 				)
 			);
@@ -556,21 +555,19 @@
 		// Quick insertion for titles.
 		for(let i = 3; i <= 6; i++) {
 			inputSecElm.appendChild(
-				chess(
-					{
-						type: 'button',
-						text: 'h' + i,
-						attributes: {
-							title: 'Insérer sous-titre de niveau ' + i
-						},
-						event: {
+				chess({
+					type: 'button',
+					text: 'h' + i,
+					attributes: {
+						title: LAB.bt.addHeader + i
+					},
+					events: [
+						{
 							type: 'click',
-							callback () {
-								formatContent(inputSecElm.querySelector('textarea'), 	{ title: 'Insérer un sous-titre de niveau ' + i, tag: 'h' + i });
-							}
+							function: () => formatContent(inputSecElm.querySelector('textarea'), { title: LAB.bt.addHeader + i, tag: 'h' + i })
 						}
-					}
-				)
+					]
+				})
 			);
 		}
 
@@ -585,47 +582,46 @@
 			{ text: 'fig', title: 'Insérer une figure', tag: 'figure' }
 		]) {
 			inputSecElm.appendChild(
-				chess(
-					{
-						type: 'button',
-						text: elmToCreate.text,
-						attributes: {
-							title: elmToCreate.title
-						},
-						event: {
+				chess({
+					type: 'button',
+					text: elmToCreate.text,
+					attributes: {
+						title: elmToCreate.title
+					},
+					events: [
+						{
 							type: 'click',
-							callback () {
-								formatContent(inputSecElm.querySelector('textarea'), elmToCreate);
-							}
+							function: () => formatContent(inputSecElm.querySelector('textarea'), elmToCreate)
 						}
-					}
-				)
+					]
+				})
 			);
 		}
 
 		// Del a section.
 		inputSecElm.appendChild(
-			chess(
-				{
-					type: 'button',
-					text: 'X',
-					attributes: {
-						class: 'danger',
-						title: 'Supprimer la section'
-					},
-					event: {
+			chess({
+				type: 'button',
+				text: 'X',
+				attributes: {
+					class: 'danger',
+					title: LAB.bt.delSection
+				},
+				events: [
+					{
 						type: 'click',
-						callback () {
-							if(confirm('Le contenu de cette section sera perdu.'))
-							{
-								document.getElementById('input-sec-' + currentMarker).remove();
-								document.getElementById('output-sec-' + currentMarker).remove();
-							}
+						function: () => {
+							if(confirm(LAB.dial.delSection))
+								{
+									document.getElementById('input-sec-' + currentMarker).remove();
+									document.getElementById('output-sec-' + currentMarker).remove();
+								}
+
 						}
 					}
-				}
-			)
-		);
+				]
+			})
+	);
 
 		document.getElementById('input').insertBefore(inputSecElm, document.getElementById('bt-add-section'));
 		// Scroll down to the new section.
