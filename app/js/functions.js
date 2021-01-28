@@ -32,7 +32,7 @@ let varTemp;
 
 	const setHeight = () => {
 		dial(
-			`<p>Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.</p>
+			`<p>${LAB.dial.setHeight}</p>
 			<input 
 				max="4"
 				min="0.25" 
@@ -45,7 +45,7 @@ let varTemp;
 
 	const setWidth = () => {
 		dial(
-			`<p>Déplacez le curseur pour ajuster la largeur de travail utile.</p>
+			`<p>${LAB.dial.setWidth}</p>
 			<input
 				 max="100"
 				 min="25"
@@ -303,20 +303,20 @@ let varTemp;
 				if(files.length > 0) {
 
 					let message = 
-					`<p>Quel post souhaitez-vous modifier depuis le blog ?</p>
+					`<p>${LAB.dial.modify}</p>
 					<ul id="posts-list">`;
 					for(let file of files) {
 						message += `<li >
 							<button
 								class="danger"
 								onclick="deleteFromServer(false, this.nextSibling.value)"
-								title="Supprimer l'élément du blog">
+								title="${LAB.bt.delete}">
 								X
 							</button>
 							<button
 								class="${file.draft ? 'draft' : 'release'}" 
 								onclick="importFromServer(this.value)"
-								title="Ouvrir cet élément pour édition"
+								title="${LAB.bt.open}"
 								value="${file.dir}">
 								${file.title}
 							</button>
@@ -347,7 +347,7 @@ let varTemp;
 	const exportToFile = () => {
 
 		dial(
-			`<p>Copiez-collez le contenu suivant dans un fichier et sauvegardez ce dernier avec l'extension <i>.txt</i>. Utilisez l'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour recharger le contenu du fichier.</p>
+			`<p>${LAB.dial.export}</p>
 			<p id="raw-data">${JSON.stringify(getPost())}</p>`
 		);
 
@@ -573,13 +573,13 @@ let varTemp;
 
 		// Quick insertion for strong, em, ol, ul, a, img, figure.
 		for(let elmToCreate of [
-			{ text: 'str', title: 'Insérer du texte important', tag: 'strong' },
-			{ text: 'em', title: 'Insérer du texte emphasique', tag: 'em' },
-			{ text: 'ol', title: 'Insérer une liste ordonnée', tag: 'ol' },
-			{ text: 'ul', title: 'Insérer une liste non ordonnée', tag: 'ul' },
-			{ text: 'a', title: 'Insérer un lien hypertexte', tag: 'a' },
-			{ text: 'img', title: 'Insérer une image', tag: 'img' },
-			{ text: 'fig', title: 'Insérer une figure', tag: 'figure' }
+			{ text: 'str', title: LAB.bt.addStr, tag: 'strong' },
+			{ text: 'em', title: LAB.bt.addEm, tag: 'em' },
+			{ text: 'ol', title: LAB.bt.addOl, tag: 'ol' },
+			{ text: 'ul', title: LAB.bt.addUl, tag: 'ul' },
+			{ text: 'a', title: LAB.bt.addA, tag: 'a' },
+			{ text: 'img', title: LAB.bt.addImg, tag: 'img' },
+			{ text: 'fig', title: LAB.bt.addFigure, tag: 'figure' }
 		]) {
 			inputSecElm.appendChild(
 				chess({
@@ -636,7 +636,7 @@ let varTemp;
 		let formElm = {
 			header: '<form><h2>' + object.title + '</h2>',
 			body : '', // Declared into the next switch.
-			footer: 	'<button type="submit">Valider</button></form>'	
+			footer: '<button type="submit">Valider</button></form>'	
 		};
 
 		// Case 1 : Input comes from highlighted text.
@@ -649,45 +649,45 @@ let varTemp;
 
 			case 'h3': case 'h4': case 'h5': case 'h6':
 				formElm.body =
-					`<label for="h-value">Texte à transformer :</label>
+					`<label for="h-value">${LAB.input.textToTransform}</label>
 					<input id="h-value" type="text" value="${input}" required />`;
 				break;
 
 			case 'strong': case 'em':
 				formElm.body =
-					`<label for="inline-value">Texte à transformer :</label>
+					`<label for="inline-value">${LAB.input.textToTransform}</label>
 					<input id="inline-value" type="text" value="${input}" required />`
 				break;
 
 			case 'ol': case 'ul':
 				formElm.body =
-					`<label for="list-values">Eléments composant la liste (délimiteur : %%) :</label>
-					<textarea id="list-values" placeholder="Premier élément %% Deuxième élément %% ..." required>${input}</textarea>`
+					`<label for="list-values">${LAB.input.list}</label>
+					<textarea id="list-values" required>${input}</textarea>`
 				break;
 
 			case 'a':
 				formElm.body =
-					`<label for="a-value">URL cible :</label>
-					<input id="a-value" type="text" placeholder="https://exemple.fr" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="a-label">Libellé explicite du lien :</label>
+					`<label for="a-value">${LAB.input.aUrl}</label>
+					<input id="a-value" type="text" placeholder="https://example.com" value="${input.match(urlRegex) != null ? input : ''}" required />
+					<label for="a-label">${LAB.input.aLab}</label>
 					<input id="a-label" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
 			case 'img':
 				formElm.body =
-					`<label for="img-src">URL à laquelle l'image est accessible :</label>
+					`<label for="img-src">${LAB.input.imgUrl}</label>
 					<input id="img-src" type="text" placeholder="https://exemple.fr/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="img-alt">Description (alternative) :</label>
+					<label for="img-alt">${LAB.input.imgAlt}</label>
 					<input id="img-alt" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
 			case 'figure':
 				formElm.body =
-					`<label for="fig-src">URL à laquelle l'image est accessible :</label>
-					<input id="fig-src" type="text" placeholder="https://exemple.fr/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="fig-legend">Légende de l'image :</label>
+					`<label for="fig-src">${LAB.input.imgUrl}</label>
+					<input id="fig-src" type="text" placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
+					<label for="fig-legend">${LAB.input.imgLeg}</label>
 					<input id="fig-legend" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />
-					<label for="fig-alt">Description (alternative) :</label>
+					<label for="fig-alt">${LAB.input.imgAlt}</label>
 					<input id="fig-alt" type="text" required />`;
 				break;
 

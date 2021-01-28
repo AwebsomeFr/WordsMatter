@@ -22,28 +22,45 @@
 			addSection: 'Ajouter une section',
 			close: 'Fermer',
 			delSection: 'Supprimer la section',
-			delete: 'Supprimer X',
+			delete: 'Supprimer',
 			doc: 'Documentation ?',
 			export: 'Exporter vers fichier .txt ↑',
 			height: 'Ajuster la hauteur ↕',
 			import: 'Importer depuis fichier .txt ↓',
 			list: 'Modifier depuis le blog ↓',
+			open: 'Ouvrir',
 			menu: 'Menu',
 			push: 'Envoyer vers le blog ↑',
 			save: 'Sauvegarder ↑',
 			theme: 'Thème clair / thème sombre ☼',
-			width: 'Ajuster la largeur ↔'
+			width: 'Ajuster la largeur ↔',
+			addStr: 'Insérer du texte important',
+			addEm: 'Insérer du texte emphasique',
+			addOl: 'Insérer une liste ordonnée',
+			addUl: 'Insérer une liste non ordonnée',
+			addA: 'Insérer un lien hypertexte',
+			addImg: 'Insérer une image',
+			addFigure: 'Insérer une figure'
 		};
 
 		LAB.input = {
 			content: 'Contenu de section',
 			h1: 'Titre du post (h1)',
 			h2: 'Titre de section (h2)',
-			intro: 'Introduction optionnelle'
+			intro: 'Introduction optionnelle',
+			textToTransform: 'Texte à transformer',
+			imgUrl: 'URL à laquelle l\'image est accessible',
+			imgAlt: 'Description (alternative)',
+			imgLeg: 'Légende de l\'image',
+			aLab: 'Libellé explicite du lien',
+			aUrl: 'URL cible',
+			list: 'Eléments composant la liste (délimiteur : %%)'
 		};
 
 		LAB.dial = {
-			delSection: 'Le contenu de cette section sera perdu.',
+			export: `Copiez-collez le contenu suivant dans un fichier et sauvegardez ce dernier avec l'extension <i>.txt</i>. Utilisez l'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour recharger le contenu du fichier.`,
+			modify: `Quel post souhaitez-vous modifier depuis le blog ?`,
+			delSection: `Le contenu de cette section sera perdu.`,
 			wsUnavailable: `<p class="b">Le post ne peut être sauvegardé/supprimé : l'API <i>Web Storage</i> est indisponible ou a été désactivée sur ce navigateur web.</p>`,
 			wsSaveSucc: `<p class="g">Post enregistré dans la mémoire locale du navigateur web.</p>`,
 			wsSaveFail: `<p class="b">Erreur lors de l'enregistrement du post dans la mémoire locale du navigateur web.</p>`,
@@ -72,6 +89,12 @@
 			servSucc: `<p class="g">Post envoyé avec succès vers le blog.</p>`,
 			servFail: `<p class="b">Erreur lors de la mise en ligne : le post n'a pas été publié. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
 			servEmpty: `<p class="b">Impossible : il n'y a encore ni post ni brouillon sur le blog.</p>`,
+
+			setHeight: 'Déplacez le curseur pour ajuster la répartition verticale entre les deux zones.',
+			setWidth: 'Déplacez le curseur pour ajuster la largeur de travail utile.'
+
+
+
 		};
 
 	}

@@ -73,7 +73,7 @@ document.body.onload = () => {
 								class: "nav-button danger disabled",
 								onclick: "deleteFromLocalStorage()" 
 							},
-							text: LAB.bt.delete,
+							text: LAB.bt.delete + ' X',
 						},
 						{
 							type: 'button',
