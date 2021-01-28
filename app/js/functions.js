@@ -85,9 +85,9 @@ let varTemp;
 		let datasContent = JSON.stringify(getPost());
 
 		if(localStorage) {			
-			localStorage.setItem(post, datasContent);
+			localStorage.setItem('post', datasContent);
 			dial(
-				localStorage.getItem(post) === datasContent ?	
+				localStorage.getItem('post') === datasContent ?	
 				LAB.dial.wsSaveSucc :
 				LAB.dial.wsSaveFail
 			);
@@ -113,16 +113,16 @@ let varTemp;
 		if(localStorage) {
 
 			// Is there something to delete ?
-			if(localStorage.getItem(post)) {
+			if(localStorage.getItem('post')) {
 
 				// User confirmation ?
 				if(validation) {
 
 					// Proceed
-					localStorage.removeItem(post);
+					localStorage.removeItem('post');
 
 					// Success ?
-					if(!localStorage.getItem(post)) {
+					if(!localStorage.getItem('post')) {
 						resetPost();
 						dial(LAB.dial.wsDelSucc);
 					}
