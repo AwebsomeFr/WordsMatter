@@ -1,0 +1,1 @@
+<?php  define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC'); define('INPUT_DIR', '../blog/drafts'); define('OUTPUT_DIR', '../blog/posts'); define('POSTS_INDEX', '../blog/index.json'); define('SITE_TYPE', 'static'); $extension = '.html'; if(SITE_TYPE === 'dynamic') { $extension = '.php'; }

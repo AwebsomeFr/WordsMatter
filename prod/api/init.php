@@ -1,0 +1,1 @@
+<?php  require './config.php'; if($_POST['editorId'] === EDITOR_ID) { if(!is_dir(INPUT_DIR)) { mkdir(INPUT_DIR, 0777, true); } if(!is_dir(OUTPUT_DIR)) { mkdir(OUTPUT_DIR, 0777, true); } if(!file_exists(POSTS_INDEX)) { file_put_contents(POSTS_INDEX, '[]'); } }
