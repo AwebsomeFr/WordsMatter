@@ -9,7 +9,7 @@
 	const API_URL = './api/';
 
 	// Supported : fr.
-	const LANG = 'fr'; 
+	const LANG = 'en'; 
 
 /* --- i18n --- */
 
@@ -26,15 +26,17 @@
 		addStr: 'Add strong text',
 		addUl: 'Add an unordered list',
 		close: 'Close',
+		confirm: 'Confirm',
 		delSec: 'Delete the section',
 		delete: 'Delete',
 		doc: 'Documentation ?',
-		exportPost: 'Export to file .txt ↑',
-		importPost: 'Import from file .txt ↓',
+		exportPost: 'Export to .txt file ↑',
+		importPost: 'Import from .txt file ↓',
 		listPost: 'Edit from the blog ↓',
 		menu: 'Menu',
 		open: 'Open',
 		pushPost: 'Push to the blog ↑',
+		update: 'Update',
 		save: 'Save ↑',
 		setHeight: 'Adjust height ↕',
 		setTheme: 'Light theme / dark theme ☼',
@@ -54,39 +56,33 @@
 		url: 'Address (URL)'
 	};
 
+	LAB.notice = {
+		loadSucc: 'Post successfully loaded.',
+		servDelFail: 'Error while deleting blog post.',
+		servDelSucc: 'Post deleted from blog.',
+		servEmpty: 'Impossible: there is no post or draft on the blog yet.',
+		servFail: 'Error while uploading: the post was not published.',
+		servSucc: 'Message sent on the blog successfully.',
+		servTitleEmpty: 'Impossible: the post must have a title to be published or saved as a draft on the blog.',
+		servUnavailable: 'Unreachable server: the post cannot be sent to the blog. Check your internet connection.',
+		wsDelEmpty: 'Nothing to delete from the local memory of the web browser.',
+		wsDelFail: 'Error while deleting the post from the local memory of the web browser.',
+		wsDelSucc: 'Post deleted from the local memory of the web browser.',
+		wsSaveFail: 'Error while saving the post in the local memory of the web browser.',
+		wsSaveSucc: 'Post saved in the local memory of the web browser.',
+		wsUnavailable: 'Post cannot be saved / deleted: The <i>Web Storage</i> API is unavailable.'
+	};
+
 	LAB.dial = {
-		export: `Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.`,
-		modify: `Quel post souhaitez-vous modifier depuis le blog ?`,
-		delSection: `Le contenu de cette section sera perdu.`,
-		wsUnavailable: `<p class="b">Le post ne peut être sauvegardé/supprimé : l'API <i>Web Storage</i> est indisponible ou a été désactivée sur ce navigateur web.</p>`,
-		wsSaveSucc: `<p class="g">Post enregistré dans la mémoire locale du navigateur web.</p>`,
-		wsSaveFail: `<p class="b">Erreur lors de l'enregistrement du post dans la mémoire locale du navigateur web.</p>`,
-		wsDelAskConf: 
-			`<p class="a"> Supprimer définitivement le post de la mémoire locale du navigateur web ?</p>
-			<button class="danger" onclick="deleteFromLocalStorage(true)">Confirmer la suppression</button>`,
-		wsDelEmpty: `<p class="b">Rien à supprimer de la mémoire locale du navigateur web.</p>`,
-		wsDelSucc: `<p class="g">Post supprimé de la mémoire locale du navigateur web.</p>`,
-		wsDelFail: `<p class="b">Erreur lors de la suppression du post de la mémoire locale du navigateur web. Si le problème persiste, supprimez les données de navigation du navigateur web.</p>`,
-		loadSucc: `<p class="g">Post chargé avec succès.</p>`,
-		servTitleEmpty: `<p class="b">Le post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.</p>`,
-		servUnavailable: `<p class="b">Serveur injoignable : le post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
-		servConfNew:
-			`<p class="a"> Vous allez envoyer du contenu vers le blog. Si le titre principal (h1) du post est précédé d'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.</p>
-			<button onclick="pushPost(true)">Envoyer</button>`,
-		servConfUpdate:
-			`<p class="a"> Un post avec un titre identique existe déjà sur le blog. Le remplacer ?</p>
-			<p>Note : Si le titre principal (h1) du post est précédé d'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.</p>
-			<button onclick="pushPost(true)">Mettre à jour</button>`,
-		servConfDel: 
-			`<p class="a"> Supprimer définitivement le post sélectionné du blog ?</p>
-			<button class="danger" onclick="deleteFromServer(true, varTemp)">Confirmer la suppression</button>`,
-		servDelSucc: `<p class="g">Post supprimé du blog.</p>`,
-		servDelFail: `<p class="b">Erreur lors de la suppression du post du blog. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
-		servSucc: `<p class="g">Post envoyé avec succès vers le blog.</p>`,
-		servFail: `<p class="b">Erreur lors de la mise en ligne : le post n'a pas été publié. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
-		servEmpty: `<p class="b">Impossible : il n'y a encore ni post ni brouillon sur le blog.</p>`,
-		setHeight: 'Déplacez le curseur pour modifier la hauteur de prévisualisation.',
-		setWidth: 'Déplacez le curseur pour modifier la largeur de travail.'
+		exportPost: 'Copy and paste the following content into a .txt file. Use the <i>Import from .txt file</i> option accessible from the menu to reload it.',
+		editPost: 'Which post do you want to edit from the blog?',
+		delSection: 'The content of this section will be lost.',
+		setHeight: 'Move the slider to change the preview height.',
+		setWidth: 'Move the slider to change the working width.',
+		wsDelAskConf: 'Permanently delete the post from the local memory of the web browser?',
+		servConfNew: 'You will now send content to the blog. If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
+		servConfDel: 'Permanently delete the selected post from the blog?',
+		servConfUpdate: 'A post with an identical title already exists on the blog. Replace it ? Note: If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.'
 	};
 
 	if(LANG === 'fr') {
@@ -102,6 +98,7 @@
 			addStr: 'Créer du texte important',
 			addUl: 'Créer une liste non ordonnée',
 			close: 'Fermer',
+			confirm: 'Confirmer',
 			delSec: 'Supprimer la section',
 			delete: 'Supprimer',
 			doc: 'Documentation ?',
@@ -110,6 +107,7 @@
 			listPost: 'Modifier depuis le blog ↓',
 			menu: 'Menu',
 			open: 'Ouvrir',
+			update: 'Mettre à jour',
 			pushPost: 'Envoyer vers le blog ↑',
 			save: 'Sauvegarder ↑',
 			setHeight: 'Ajuster la hauteur ↕',
@@ -129,40 +127,34 @@
 			txtToTransf: 'Texte à transformer',
 			url: 'Adresse (URL)'
 		};
-	
+
+		LAB.notice = {
+			loadSucc: 'Post chargé avec succès.',
+			servDelFail: 'Erreur lors de la suppression du post du blog.',
+			servDelSucc: 'Post supprimé du blog.',
+			servEmpty: 'Impossible : il n\'y a encore ni post ni brouillon sur le blog.',
+			servFail: 'Erreur lors de la mise en ligne : le post n\'a pas été publié.',
+			servSucc: 'Post envoyé avec succès vers le blog.',
+			servTitleEmpty: 'Impossible : le post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.',
+			servUnavailable: 'Serveur injoignable : le post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet.',
+			wsDelEmpty: 'Rien à supprimer de la mémoire locale du navigateur web.',
+			wsDelFail: 'Erreur lors de la suppression du post de la mémoire locale du navigateur web.',
+			wsDelSucc: 'Post supprimé de la mémoire locale du navigateur web.',
+			wsSaveFail: 'Erreur lors de l\'enregistrement du post dans la mémoire locale du navigateur web.',
+			wsSaveSucc: 'Post enregistré dans la mémoire locale du navigateur web.',
+			wsUnavailable: 'Le post ne peut être sauvegardé / supprimé : l\'API <i>Web Storage</i> est indisponible.'
+		};
+
 		LAB.dial = {
-			export: '<p>Enregistrez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> pour le recharger.</p>',
-			modify: '<p>Que souhaitez-vous modifier depuis le blog ?</p>',
-			delSection: '<p>Le contenu de cette section sera perdu.</p>',
-			wsUnavailable: `<p class="b">Le post ne peut être sauvegardé/supprimé : l'API <i>Web Storage</i> est indisponible.</p>`,
-			wsSaveSucc: `<p class="g">Post enregistré dans la mémoire locale du navigateur web.</p>`,
-			wsSaveFail: `<p class="b">Erreur lors de l'enregistrement du post dans la mémoire locale du navigateur web.</p>`,
-			wsDelAskConf: 
-				`<p class="a"> Supprimer définitivement le post de la mémoire locale du navigateur web ?</p>
-				<button class="danger" onclick="deleteFromLocalStorage(true)">Confirmer la suppression</button>`,
-			wsDelEmpty: `<p class="b">Rien à supprimer de la mémoire locale du navigateur web.</p>`,
-			wsDelSucc: `<p class="g">Post supprimé de la mémoire locale du navigateur web.</p>`,
-			wsDelFail: `<p class="b">Erreur lors de la suppression du post de la mémoire locale du navigateur web. Si le problème persiste, supprimez les données de navigation du navigateur web.</p>`,
-			loadSucc: `<p class="g">Post chargé avec succès.</p>`,
-			servTitleEmpty: `<p class="b">Le post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.</p>`,
-			servUnavailable: `<p class="b">Serveur injoignable : le post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
-			servConfNew:
-				`<p class="a"> Vous allez envoyer du contenu vers le blog. Si le titre principal (h1) du post est précédé d'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.</p>
-				<button onclick="pushPost(true)">Envoyer</button>`,
-			servConfUpdate:
-				`<p class="a"> Un post avec un titre identique existe déjà sur le blog. Le remplacer ?</p>
-				<p>Note : Si le titre principal (h1) du post est précédé d'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.</p>
-				<button onclick="pushPost(true)">Mettre à jour</button>`,
-			servConfDel: 
-				`<p class="a"> Supprimer définitivement le post sélectionné du blog ?</p>
-				<button class="danger" onclick="deleteFromServer(true, varTemp)">Confirmer la suppression</button>`,
-			servDelSucc: `<p class="g">Post supprimé du blog.</p>`,
-			servDelFail: `<p class="b">Erreur lors de la suppression du post du blog. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
-			servSucc: `<p class="g">Post envoyé avec succès vers le blog.</p>`,
-			servFail: `<p class="b">Erreur lors de la mise en ligne : le post n'a pas été publié. Si le problème persiste, contactez le prestataire en charge de votre blog.</p>`,
-			servEmpty: `<p class="b">Impossible : il n'y a encore ni post ni brouillon sur le blog.</p>`,
+			exportPost: 'Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.',
+			editPost: 'Quel post souhaitez-vous modifier depuis le blog ?',
+			delSection: 'Le contenu de cette section sera perdu.',
 			setHeight: 'Déplacez le curseur pour modifier la hauteur de prévisualisation.',
-			setWidth: 'Déplacez le curseur pour modifier la largeur de travail.'
+			setWidth: 'Déplacez le curseur pour modifier la largeur de travail.',
+			wsDelAskConf: 'Supprimer définitivement le post de la mémoire locale du navigateur web ?',
+			servConfNew: 'Vous allez maintenant envoyer du contenu vers le blog. Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
+			servConfDel: 'Supprimer définitivement le post sélectionné du blog ?',
+			servConfUpdate: 'Un post avec un titre identique existe déjà sur le blog. Le remplacer ? Note : Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.'	
 		};
 	
 	}

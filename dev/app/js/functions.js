@@ -78,6 +78,16 @@ let varTemp;
 
 	};
 
+	const goodNotice = (notice) => {
+		dial();
+		console.log(notice);
+	}
+	
+	const badNotice = (notice) => {
+		dial();
+		console.error(notice);
+	};
+
 /* --- Web storage API --- */
 
 	const saveIntoLocalStorage = () => {
@@ -85,16 +95,21 @@ let varTemp;
 		let datasContent = JSON.stringify(getPost());
 
 		if(localStorage) {			
+			
 			localStorage.setItem('post', datasContent);
-			dial(
-				localStorage.getItem('post') === datasContent ?	
-				LAB.dial.wsSaveSucc :
-				LAB.dial.wsSaveFail
-			);
+			
+			if(localStorage.getItem('post') === datasContent) {
+				goodNotice(LAB.notice.wsSaveSucc);
+			}
+			
+			else {
+				badNotice(LAB.notice.wsSaveFail);
+			}
+		
 		}
 
 		else {
-			dial(LAB.dial.wsUnavailable);
+			badNotice(LAB.notice.wsUnavailable);
 		}
 
 	};
@@ -124,29 +139,36 @@ let varTemp;
 					// Success ?
 					if(!localStorage.getItem('post')) {
 						resetPost();
-						dial(LAB.dial.wsDelSucc);
+						goodNotice(LAB.notice.wsDelSucc);
 					}
 
 					else {
-						dial(LAB.dial.wsDelFail);
+						badNotice(LAB.notice.wsDelFail);
 					}
 
 				}
 
 				else {
-					dial(LAB.dial.wsDelAskConf);
+
+
+					dial(
+						`<p> ${LAB.dial.wsDelAskConf}</p> 
+						<button class="danger" onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
+					);
+				
+				
 				}
 
 			}
 
 			else {
-				dial(LAB.dial.wsDelEmpty);
+				badNotice(LAB.notice.wsDelEmpty);
 			}
 
 		}
 
 		else {
-			dial(LAB.dial.wsUnavailable);
+			badNotice(LAB.notice.wsUnavailable);
 		}
 
 	};
@@ -176,27 +198,33 @@ let varTemp;
 
 					// New post ? Ask confirm push.
 					if(req.responseText === 'release') {
-						dial(LAB.dial.servConfNew);
+						dial(
+							`<p>${LAB.dial.servConfNew}</p>
+							<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
+						);
 					}
 
 					// Existing post ? Ask confirm update.
 					else if(req.responseText === 'update') {
-						dial(LAB.dial.servConfUpdate);
+						dial(
+							`<p>${LAB.dial.servConfUpdate}</p>
+							<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
+						);
 					}
 
 					// Success ?
 					else if(req.responseText === 'success') {
-						dial(LAB.dial.servSucc);
+						goodNotice(LAB.notice.servSucc);
 					}
 
 					else {
-						dial(LAB.dial.servFail);
+						badNotice(LAB.notice.servFail);
 					}
 				
 				}
 
 				else {
-					dial(LAB.dial.servUnavailable);
+					badNotice(LAB.notice.servUnavailable);
 				}
 
 			};
@@ -214,7 +242,7 @@ let varTemp;
 		}
 
 		else {
-			dial(LAB.dial.servTitleEmpty);
+			badNotice(LAB.notice.servTitleEmpty);
 		}
 
 	};
@@ -232,11 +260,11 @@ let varTemp;
 
 					// Success ?
 					if(req.responseText === 'success') {
-						dial(LAB.dial.servDelSucc); 
+						goodNotice(LAB.notice.servDelSucc); 
 					}
 
 					else {
-						dial(LAB.dial.servDelFail); 
+						badNotice(LAB.notice.servDelFail); 
 					}
 
 				}
@@ -251,7 +279,10 @@ let varTemp;
 		else {
 
 			varTemp = dirName;
-			dial(LAB.dial.servConfDel); 
+			dial(
+				`<p>${LAB.dial.servConfDel}</p>
+				<button class="danger" onclick="deleteFromServer(true, varTemp)">${LAB.bt.confirm}</button>`
+			); 
 
 		}
 
@@ -302,7 +333,7 @@ let varTemp;
 				if(files.length > 0) {
 
 					let message = 
-					`<p>${LAB.dial.modify}</p>
+					`<p>${LAB.dial.editPost}</p>
 					<ul id="posts-list">`;
 					for(let file of files) {
 						message += `<li >
@@ -328,13 +359,13 @@ let varTemp;
 				}
 
 				else {
-					dial(LAB.dial.servEmpty);
+					badNotice(LAB.notice.servEmpty);
 				}
 
 			}
 
 			else {
-				dial(LAB.dial.servUnavailable);
+				badNotice(LAB.notice.servUnavailable);
 			}
 
 		};
@@ -346,7 +377,7 @@ let varTemp;
 	const exportToFile = () => {
 
 		dial(
-			`<p>${LAB.dial.export}</p>
+			`<p>${LAB.dial.exportPost}</p>
 			<p id="raw-data">${JSON.stringify(getPost())}</p>`
 		);
 
