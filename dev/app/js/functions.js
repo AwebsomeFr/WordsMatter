@@ -668,7 +668,7 @@ let varTemp;
 		let formElm = {
 			header: '<form><h2>' + object.title + '</h2>',
 			body : '', // Declared into the next switch.
-			footer: '<button type="submit">Valider</button></form>'	
+			footer: `<button type="submit">${LAB.bt.confirm}</button></form`	
 		};
 
 		// Case 1 : Input comes from highlighted text.
