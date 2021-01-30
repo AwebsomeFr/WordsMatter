@@ -116,13 +116,15 @@
 		overflow-y: auto;
 		padding: 10px;
 		position: absolute;
+		transform: scale(0);
 		width: 85%;
 		z-index: 2;
 	}
+	#dial.visible { transform: initial; }
 	#bt-close-dial {
 		display: block;
 		margin-left: auto;
-	}	
+	}
 
 /* navigation and interface */
 
@@ -142,6 +144,10 @@
 	#nav-container {
 		background-color: var(--color3);
 		position: fixed;
+		transform: scale(0);
+	}
+	.visible #nav-container {
+		transform: initial;
 	}
 	.input-section {
 		display: grid;
@@ -246,7 +252,7 @@
 	#raw-data {
 		color: var(--color1);
 	}
-	.hidden { 
+	#dial .hidden { 
 		transform: scale(0);
 	}
 

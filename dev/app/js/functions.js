@@ -10,8 +10,8 @@ let varTemp;
 
 	const toggleMenu = (boolean) => {
 		boolean ?
-			document.getElementById('nav-container').classList.remove('hidden') :
-			document.getElementById('nav-container').classList.add('hidden')
+			UI.nav.classList.add('visible'):
+			UI.nav.classList.remove('visible')
 	};
 
 	const toDarkTheme = () => {	
@@ -63,13 +63,13 @@ let varTemp;
 		if(mess != undefined) {
 			UI.dial.querySelector('div').innerHTML = mess;
 			UI.main.style.opacity = '0.1';
-			UI.dial.classList.remove('hidden');
+			UI.dial.classList.add('visible');
 		}
-
+		
 		else {
 			UI.dial.querySelector('div').innerHTML = '';
 			UI.main.style.opacity = '1';
-			UI.dial.classList.add('hidden');
+			UI.dial.classList.remove('visible');
 		}
 
 		toggleMenu(false);

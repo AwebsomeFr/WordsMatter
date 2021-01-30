@@ -19,7 +19,6 @@
 		type: 'div',
 		attributes: {
 			id: 'dial',
-			class: 'hidden'
 		},
 		children: [
 			{
@@ -43,7 +42,7 @@
 	UI.nav = chess({
 		type: 'nav',
 		attributes: {
-			id: 'main-nav'
+			id: 'main-nav',
 		}, 
 		children: [
 			{
@@ -59,7 +58,6 @@
 				type: 'div',
 				attributes: {
 					id: 'nav-container',
-					class: 'hidden',
 					onmouseleave: 'toggleMenu(false)'
 				},
 				children: [
