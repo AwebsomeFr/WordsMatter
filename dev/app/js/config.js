@@ -85,7 +85,7 @@
 		confUpdateServ: 'A post with an identical title already exists on the blog. Replace it ? Note: If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
 		editPost: 'Which post do you want to edit from the blog?',
 		exportPost: 'Copy and paste the following content into a .txt file. Use the <i>Import from .txt file</i> option accessible from the menu to reload it.',
-		setHeight: 'Select the vertical screen fraction used by the writing space.',
+		setHeight: 'Choose how the writing and writing areas should occupy the height space.',
 		setWidth: 'Select the MAXIMUM width used by WordsMatter.'
 	};
 
@@ -160,7 +160,7 @@
 			confUpdateServ: 'Un post avec un titre identique existe déjà sur le blog. Le remplacer ? Note : Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
 			editPost: 'Quel post souhaitez-vous modifier depuis le blog ?',
 			exportPost: 'Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.',
-			setHeight: 'Sélectionnez la fraction d\'écran verticale utilisée par l\'espace de rédaction.',
+			setHeight: 'Choisissez de quelle manière les zones d\'écriture et de rédaction doivent occuper l\'espace dans la hauteur. ',
 			setWidth: 'Choisissez la largeur MAXIMALE utilisée par WordsMatter.'
 		};
 	
