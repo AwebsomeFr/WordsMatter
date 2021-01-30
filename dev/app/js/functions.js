@@ -6,7 +6,7 @@ let varTemp;
 
 /* --- User Interface --- */
 
-	const setViewportHeight = () => document.querySelector('main').style.height = window.innerHeight + 'px';
+	const setViewportHeight = () => UI.main.style.height = window.innerHeight + 'px';
 
 	const toggleMenu = (boolean) => {
 		boolean ?
@@ -36,7 +36,7 @@ let varTemp;
 			<input 
 				max="4"
 				min="0.25" 
-				oninput="document.querySelector('main').style.gridTemplateRows = 'auto 1fr ' + this.value + 'fr'" 
+				oninput="UI.main.style.gridTemplateRows = 'auto 1fr ' + this.value + 'fr'" 
 				step="0.25" 
 				type="range" 
 			/>`
@@ -49,7 +49,7 @@ let varTemp;
 			<input
 				 max="100"
 				 min="25"
-				 oninput="document.querySelector('main').style.width = this.value + '%'"
+				 oninput="UI.main.style.width = this.value + '%'"
 				 step="5"
 				 type="range"
 			/>`
@@ -60,18 +60,16 @@ let varTemp;
 
 	const dial = (mess) => {
 		
-		let dialogElm = document.getElementById('dial');
-		
 		if(mess != undefined) {
-			dialogElm.querySelector('div').innerHTML = mess;
-			document.querySelector('main').style.opacity = '0.1';
-			dialogElm.classList.remove('hidden');
+			UI.dial.querySelector('div').innerHTML = mess;
+			UI.main.style.opacity = '0.1';
+			UI.dial.classList.remove('hidden');
 		}
 
 		else {
-			dialogElm.querySelector('div').innerHTML = '';
-			document.querySelector('main').style.opacity = '1';
-			dialogElm.classList.add('hidden');
+			UI.dial.querySelector('div').innerHTML = '';
+			UI.main.style.opacity = '1';
+			UI.dial.classList.add('hidden');
 		}
 
 		toggleMenu(false);
@@ -522,7 +520,7 @@ let varTemp;
 
 		let currentMarker = marker;
 
-		document.getElementById('output').appendChild(
+		UI.output.appendChild(
 			chess({
 				type: 'section',
 				attributes: {
@@ -655,7 +653,7 @@ let varTemp;
 			})
 	);
 
-		document.getElementById('input').insertBefore(inputSecElm, document.getElementById('bt-add-section'));
+		UI.input.insertBefore(inputSecElm, document.getElementById('bt-add-section'));
 		// Scroll down to the new section.
 		document.location.replace(document.location.pathname + '#input-sec-title-' + marker);
 		marker++;
