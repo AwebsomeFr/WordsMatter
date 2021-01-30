@@ -76,7 +76,7 @@ let varTemp;
 
 	};
 
-	const onHelp = () => window.open('./help.html');
+	const openLink = (link) => window.open(link);
 
 	const dial = (mess) => {
 		
@@ -354,7 +354,7 @@ let varTemp;
 
 					let message = 
 					`<p>${LAB.dial.editPost}</p>
-					<ul id="posts-list">`;
+					<ul>`;
 					for(let file of files) {
 						message += `<li >
 							<button
@@ -369,8 +369,8 @@ let varTemp;
 								value="${file.dir}">
 								${file.title} 
 								${file.draft ? 
-									`<span class="private">| ${LAB.bt.private}</span>` : 
-									`<span class="published">| ${LAB.bt.published}</span>`
+									`<span class="private"><br/>${LAB.bt.private}</span>` : 
+									`<span class="published"><br/>${LAB.bt.published}</span>`
 								}
 							</button>
 						</li>`;
@@ -401,7 +401,7 @@ let varTemp;
 
 		dial(
 			`<p>${LAB.dial.exportPost}</p>
-			<p id="raw-data">${JSON.stringify(getPost())}</p>`
+			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>`
 		);
 
 	};

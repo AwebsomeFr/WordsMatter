@@ -48,7 +48,6 @@
 			{
 				type: 'button',
 				attributes: {
-					id: "bt-open-menu",
 					title: LAB.bt.menu,
 					onclick: "toggleMenu(true)" 
 				},
@@ -57,7 +56,6 @@
 			{
 				type: 'div',
 				attributes: {
-					id: 'nav-container',
 					onmouseleave: 'toggleMenu(false)'
 				},
 				children: [
@@ -68,16 +66,16 @@
 							class: "nav-button ws-required",
 							onclick: "saveIntoLocalStorage()" 
 						},
-						text: LAB.bt.save,
+						html: '<span>↑</span>' + LAB.bt.save,
 					},
 					{
 						type: 'button',
 						attributes: {
 							id: "bt-delete-work",
-							class: "nav-button danger ws-required",
+							class: "nav-button ws-required",
 							onclick: "deleteFromLocalStorage()" 
 						},
-						text: LAB.bt.delete + ' X',
+						html: '<span>X</span>' + LAB.bt.delete,
 					},
 					{
 						type: 'button',
@@ -86,7 +84,7 @@
 							class: "nav-button serv-required",
 							onclick: "pushPost()" 
 						},
-						text: LAB.bt.pushPost,
+						html: '<span>↑</span>' + LAB.bt.pushPost,
 					},
 					{
 						type: 'button',
@@ -95,7 +93,7 @@
 							class: "nav-button serv-required",
 							onclick: "getFiles()" 
 						},
-						text: LAB.bt.listPost,
+						html: '<span>↓</span>' + LAB.bt.listPost,
 					},
 					{
 						type: 'button',
@@ -104,29 +102,23 @@
 							class: "nav-button",
 							onclick: "exportToFile()" 
 						},
-						text: LAB.bt.exportPost,
+						html: '<span>↑</span>' + LAB.bt.exportPost,
 					},
 					{
-						type: 'div',
+						type: 'label',
+						attributes: {
+							id: 'label-open-file',
+							class: 'nav-button'
+						},
+						html: '<span>↓</span>' + LAB.bt.importPost,
 						children: [
-							{	
-								type: 'label',
+							{
+								type: 'input',
 								attributes: {
-									id: 'label-open-file',
-									class: 'nav-button'
-								},
-								text: LAB.bt.importPost,
-								children: [
-									{
-										type: 'input',
-										attributes: {
-											accept: 'text/plain',
-											id: 'input-open-file',
-											onchange: 'importFromFile(this.files[0])',
-											type: 'file'
-										}
-									}
-								]
+									accept: 'text/plain',
+									onchange: 'importFromFile(this.files[0])',
+									type: 'file'
+								}
 							}
 						]
 					},
@@ -137,7 +129,7 @@
 							class: "nav-button",
 							onclick: "toggleTheme()" 
 						},
-						text: LAB.bt.setTheme,
+						html: '<span>☼</span>' + LAB.bt.setTheme,
 					},
 					{
 						type: 'button',
@@ -146,7 +138,7 @@
 							class: "nav-button",
 							onclick: "setWidth()" 
 						},
-						text: LAB.bt.setWidth,
+						html: '<span>↔</span>' + LAB.bt.setWidth,
 					},
 					{
 						type: 'button',
@@ -155,25 +147,31 @@
 							class: "nav-button",
 							onclick: "setHeight()" 
 						},
-						text: LAB.bt.setHeight,
+						html: '<span>↕</span>' + LAB.bt.setHeight,
 					},
 					{
 						type: 'button',
 						attributes: {
 							id: "bt-read-help",
 							class: "nav-button",
-							onclick: "onHelp()" 
+							onclick: "openLink('./help.html')"
 						},
-						text: LAB.bt.doc,
+						html: '<span>?</span>' + LAB.bt.doc,
 					},
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-close-nav",
 							class: "nav-button",
-							onclick: "toggleMenu(false)" 
+							onclick: "openLink('https://awebsome.fr')" 
 						},
-						text: LAB.bt.close,
+						html: 
+						`<span>
+							<img src="./app/img/logo-julien-wilhelm-awebsome.png" alt="Logo Julien Wilhelm Awebsome" />	
+						</span>
+						<p style="margin:0;">
+							<b>Julien Wilhelm | Awebsome</b><br/>
+							${LAB.bt.awebsome}
+						</p>`,
 					}
 				]
 			}
