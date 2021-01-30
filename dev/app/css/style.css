@@ -3,6 +3,7 @@
 	body {
 		align-items: center;
 		background-color: var(--color3);
+		color: var(--color5);
 		display: flex;
 		font-family: Arial, Helvetica, Liberation Sans, FreeSans, sans-serif;
 		font-size: 0.95em;
@@ -15,6 +16,8 @@
 		--color4: #eee;
 		--color3: #fff;
 		--color5: #222;
+		--bad-color: #d22;
+		--good-color: #282;
 	}
 	.dark {
 		--color1: #F59561;
@@ -22,6 +25,8 @@
 		--color3: #111;
 		--color4: #222;
 		--color5: #fff;
+		--bad-color: #f33;
+		--good-color: #3f3;
 	}
 	main {
 		box-sizing: border-box;
@@ -34,7 +39,6 @@
 		width: 100%;
 	}
 	article {
-		color: var(--color5);
 		display: flex;
 		flex-direction: column;
 		overflow-y: scroll;
@@ -65,6 +69,33 @@
 		text-align: center;
 	}
 
+/* notice */
+
+	#notice {
+		background-color: var(--color3);
+		box-sizing: border-box;
+		font-weight: bold;
+		left: 0;
+		margin: 0;
+		padding: 10px;
+		position: fixed;
+		right: 0;
+		text-align: center;
+		top: 0;
+		transform: translateY(-300px);
+		transition: transform 0.275s ease;
+		z-index: 2;
+	}
+	#notice.visible { transform: initial; }
+	#notice.good::before {
+		color: var(--good-color);
+		content: "✔ ";
+	}
+	#notice.bad::before {
+		color: var(--bad-color);
+		content: "✘ ";
+	}
+
 /* dial */
 
 	#dial {
@@ -80,20 +111,7 @@
 	#bt-close-dial {
 		display: block;
 		margin-left: auto;
-	}
-	.g::before {
-		color: #8d2;
-		content: "✔ ";
-	}
-	.b::before {
-		color: #d25;
-		content: "✘ ";
-	}
-	.a::before {
-		color:#ffa500;
-		content:  "!";
-		font-weight: bold;
-	}
+	}	
 
 /* navigation and interface */
 
@@ -193,7 +211,7 @@
 		color: var(--color1);
 	}
 	.danger {
-		background-color: #f33;
+		background-color: var(--bad-color);
 		color: #fff;
 		opacity: 0.85;
 	}

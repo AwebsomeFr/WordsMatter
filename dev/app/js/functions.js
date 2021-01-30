@@ -78,15 +78,17 @@ let varTemp;
 
 	};
 
-	const goodNotice = (notice) => {
+	const setNotice = (notice, state) => {
 		dial();
-		console.log(notice);
+		UI.notice.setAttribute('class', '');
+		UI.notice.textContent = notice;
+		UI.notice.setAttribute('class', 'visible ' + state);
+		setTimeout(() => {
+			UI.notice.setAttribute('class', '');
+		}, 2500);
 	}
-	
-	const badNotice = (notice) => {
-		dial();
-		console.error(notice);
-	};
+	const badNotice = (notice) => setNotice(notice, 'bad');
+	const goodNotice = (notice) => setNotice(notice, 'good');
 
 /* --- Web storage API --- */
 
@@ -118,7 +120,7 @@ let varTemp;
 
 		resetPost();
 		setPost(post);
-		dial(LAB.dial.load1);
+		goodNotice(LAB.notice.load1);
 
 	};
 
