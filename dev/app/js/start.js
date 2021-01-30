@@ -83,7 +83,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-release-work",
-							class: "nav-button online-required",
+							class: "nav-button serv-required",
 							onclick: "pushPost()" 
 						},
 						text: LAB.bt.pushPost,
@@ -92,7 +92,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-list-work",
-							class: "nav-button online-required",
+							class: "nav-button serv-required",
 							onclick: "getFiles()" 
 						},
 						text: LAB.bt.listPost,
@@ -296,7 +296,7 @@
 	req.onload = () => {
 		if(req.status == 200) {
 			// Enable features.
-			document.body.classList.add('online');
+			document.body.classList.add('serv-available');
 		}
 	};
 	req.send('editorId=' + EDITOR_ID);

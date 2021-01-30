@@ -32,12 +32,12 @@
 	}
 
 	/* Hide unusable features. Applied on body. */
-	.online-required, .ws-require {
+	.serv-required, .ws-require {
 		display: none !important;
 	}
 
 	/* Reveal usable features. Applied on elements. */
-	.online .online-required, .ws-available .ws-required {
+	.serv-available .serv-required, .ws-available .ws-required {
 		display: block !important;
 	}
 
@@ -170,7 +170,7 @@
 		fill: var(--bad-color);
 	}
 
-	.online #bt-open-menu { 
+	.serv-available #bt-open-menu { 
 		fill: var(--good-color);
 	}
 
