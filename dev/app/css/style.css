@@ -48,6 +48,8 @@
 		grid-template-rows: auto 1fr 1fr;
 		min-width: 360px;
 		padding: 1px;
+		max-width: 100%;
+		transition: max-width 0.25s ease, grid-template-rows 0.25s ease;
 		width: 100%;
 	}
 
@@ -109,7 +111,7 @@
 		text-align: center;
 		top: 0;
 		transform: translateY(-300px);
-		transition: transform 0.275s ease;
+		transition: transform 0.25s ease;
 		z-index: 2;
 	}
 
