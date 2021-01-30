@@ -363,12 +363,15 @@ let varTemp;
 								title="${LAB.bt.delete}">
 								X
 							</button>
-							<button
-								class="${file.draft ? 'draft' : 'release'}" 
+							<button 
 								onclick="importFromServer(\'${file.dir}\')"
 								title="${LAB.bt.open}"
 								value="${file.dir}">
-								${file.title}
+								${file.title} 
+								${file.draft ? 
+									`<span class="private">| ${LAB.bt.private}</span>` : 
+									`<span class="published">| ${LAB.bt.published}</span>`
+								}
 							</button>
 						</li>`;
 					}

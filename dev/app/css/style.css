@@ -223,15 +223,13 @@
 		font-weight: bold;
 	}
 
-	.draft::after {
+	.private {
 		color: #ffa500;
-		content:  " (brouillon)";
 		font-weight: normal;
 	}
 
-	.release::after {
+	.published {
 		color: var(--good-color);
-		content:  " (publié)";
 		font-weight: normal;
 	}
 
