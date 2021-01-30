@@ -168,7 +168,7 @@
 		font-weight: normal;
 	}
 	.release::after {
-		color: #8d2;
+		color: var(--good-color);
 		content:  " (publié)";
 		font-weight: normal;
 	}
@@ -190,6 +190,7 @@
 		opacity: 0;
 		padding: 0;
 		position: absolute;
+		top: -45px;
 		width: 250px;
 	}
 	#posts-list button {
