@@ -31,16 +31,22 @@ let varTemp;
 	}
 
 	const setHeight = () => {
+		
+		let options = '';
+
+		for(let height of [
+			['0.75fr 0.25fr', LAB.bt.advReading], 
+			['0.5fr 0.5fr', LAB.bt.balanced], 
+			['0.25fr 1.5fr', LAB.bt.advWriting]
+		]) {
+			options += `<button onclick="UI.main.style.gridTemplateRows = 'auto ${height[0]}', dial()">${height[1]}</button>`;
+		}
+
 		dial(
 			`<p>${LAB.dial.setHeight}</p>
-			<input 
-				max="4"
-				min="0.25" 
-				oninput="UI.main.style.gridTemplateRows = 'auto 1fr ' + this.value + 'fr'" 
-				step="0.25" 
-				type="range" 
-			/>`
+			${options}`
 		);
+
 	};
 
 	const setWidth = () => {
@@ -55,7 +61,7 @@ let varTemp;
 			`<p>${LAB.dial.setWidth}</p>
 			${options}`
 		);
-		
+
 	};
 
 	const onHelp = () => window.open('./help.html');

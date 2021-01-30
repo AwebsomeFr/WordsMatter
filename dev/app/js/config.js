@@ -25,6 +25,9 @@
 		addSec: 'Add a section',
 		addStr: 'Add strong text',
 		addUl: 'Add an unordered list',
+		advReading: 'Advantage reading',
+		advWriting: 'Advantage writing',
+		balanced: 'Balanced',
 		close: 'Close',
 		confirm: 'Confirm',
 		delSec: 'Delete the section',
@@ -82,7 +85,7 @@
 		confUpdateServ: 'A post with an identical title already exists on the blog. Replace it ? Note: If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
 		editPost: 'Which post do you want to edit from the blog?',
 		exportPost: 'Copy and paste the following content into a .txt file. Use the <i>Import from .txt file</i> option accessible from the menu to reload it.',
-		setHeight: 'Move the slider to change the preview height.',
+		setHeight: 'Select the vertical screen fraction used by the writing space.',
 		setWidth: 'Select the MAXIMUM width used by WordsMatter.'
 	};
 
@@ -98,6 +101,9 @@
 			addSec: 'Ajouter une section',
 			addStr: 'Créer du texte important',
 			addUl: 'Créer une liste non ordonnée',
+			advReading: 'Avantager lecture',
+			advWriting: 'Avantager écriture',	
+			balanced: 'Equilibré',
 			close: 'Fermer',
 			confirm: 'Confirmer',
 			delSec: 'Supprimer la section',
@@ -154,7 +160,7 @@
 			confUpdateServ: 'Un post avec un titre identique existe déjà sur le blog. Le remplacer ? Note : Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
 			editPost: 'Quel post souhaitez-vous modifier depuis le blog ?',
 			exportPost: 'Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.',
-			setHeight: 'Déplacez le curseur pour modifier la hauteur de prévisualisation.',
+			setHeight: 'Sélectionnez la fraction d\'écran verticale utilisée par l\'espace de rédaction.',
 			setWidth: 'Choisissez la largeur MAXIMALE utilisée par WordsMatter.'
 		};
 	
