@@ -28,6 +28,17 @@
 		--bad-color: #f33;
 		--good-color: #3f3;
 	}
+	.online #bt-open-menu {
+		fill: var(--good-color);
+	}
+	.online-required, 
+	.ws-require {
+		display: none !important;
+   	}
+	.online .online-required, 
+	.ws-available .ws-required {
+		display: block !important;
+	}
 	main {
 		box-sizing: border-box;
 		display: grid;
@@ -119,19 +130,14 @@
 		display: flex;
 		justify-content: flex-end;
 	}
-	#bt-open-menu::before {
-		color: #fff;
-		content: "";
+	#bt-open-menu {
+		display: flex;
+		align-items: center;
+	}
+	#bt-open-menu svg {
+		fill: inherit;
 		margin-right: 5px;
-		padding: 3px 5px;
-	}
-	#bt-open-menu::before {
-		background-color: 	#d25;
-		content:  "hors ligne";
-	}
-	#bt-open-menu.online::before {
-		background-color: #8d2;
-		content:  "en ligne";
+		width: 15px;
 	}
 	#nav-container {
 		background-color: var(--color3);
@@ -180,9 +186,6 @@
 	 #label-open-file {
 	 	width: initial;
 	 }
-	.disabled {
-	 	display: none;
-	}
 	#input-open-file {		
 		display: block;
 		height: 34px;
@@ -249,10 +252,13 @@
 
 /* media queries */
 
-	@media screen and (min-width: 768px) {
-	
+	@media screen and (max-width: 768px) {
 		#bt-set-width {
-			display: block !important;
+			display: none;
 		}
-	
+	}
+	@media screen and (min-width: 768px) {
+		#bt-set-width {
+			display: block;
+		}
 	}

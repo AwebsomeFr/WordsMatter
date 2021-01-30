@@ -12,7 +12,6 @@
 		attributes: {
 			id: 'notice'
 		},
-		text: 'coucou'
 	});
 
 	// Dial.
@@ -54,7 +53,7 @@
 					title: LAB.bt.menu,
 					onclick: "toggleMenu(true)" 
 				},
-				text: LAB.bt.menu,
+				html: '<svg viewBox="0 0 24 24"><path d="M14 12h-4v-12h4v12zm4.213-10.246l-1.213 1.599c2.984 1.732 5 4.955 5 8.647 0 5.514-4.486 10-10 10s-10-4.486-10-10c0-3.692 2.016-6.915 5-8.647l-1.213-1.599c-3.465 2.103-5.787 5.897-5.787 10.246 0 6.627 5.373 12 12 12s12-5.373 12-12c0-4.349-2.322-8.143-5.787-10.246z"/></svg>' + LAB.bt.menu,
 			},
 			{
 				type: 'div',
@@ -68,7 +67,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-save-work",
-							class: "nav-button disabled",
+							class: "nav-button ws-required",
 							onclick: "saveIntoLocalStorage()" 
 						},
 						text: LAB.bt.save,
@@ -77,7 +76,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-delete-work",
-							class: "nav-button danger disabled",
+							class: "nav-button danger ws-required",
 							onclick: "deleteFromLocalStorage()" 
 						},
 						text: LAB.bt.delete + ' X',
@@ -86,7 +85,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-release-work",
-							class: "nav-button disabled",
+							class: "nav-button online-required",
 							onclick: "pushPost()" 
 						},
 						text: LAB.bt.pushPost,
@@ -95,7 +94,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-list-work",
-							class: "nav-button disabled",
+							class: "nav-button online-required",
 							onclick: "getFiles()" 
 						},
 						text: LAB.bt.listPost,
@@ -146,7 +145,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-set-width",
-							class: "nav-button disabled",
+							class: "nav-button",
 							onclick: "setWidth()" 
 						},
 						text: LAB.bt.setWidth,
@@ -271,8 +270,7 @@
 	if(localStorage) {
 		
 		// Enable features.
-		document.getElementById('bt-save-work').classList.remove('disabled');
-		document.getElementById('bt-delete-work').classList.remove('disabled');
+		document.body.classList.add('ws-available');
 
 		// Reload content.
 		if(localStorage.getItem('post')) {
@@ -291,9 +289,7 @@
 	req.onload = () => {
 		if(req.status == 200) {
 			// Enable features.
-			document.getElementById('bt-list-work').classList.remove('disabled');
-			document.getElementById('bt-release-work').classList.remove('disabled');
-			document.getElementById('bt-open-menu').setAttribute('class', 'online'); 
+			document.body.classList.add('online');
 		}
 	};
 	req.send('editorId=' + EDITOR_ID);
