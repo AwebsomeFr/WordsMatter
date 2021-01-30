@@ -51,6 +51,14 @@
 		width: 100%;
 	}
 
+	/* Limit width. Applied on main. */
+	.mw360 { max-width: 360px; }
+	.mw540 { max-width: 540px; }
+	.mw768 { max-width: 768px; }
+	.mw1024 { max-width: 1024px; }
+	.mw1280 { max-width: 1280px; }
+	
+
 	article {
 		display: flex;
 		flex-direction: column;

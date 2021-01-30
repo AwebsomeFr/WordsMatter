@@ -267,17 +267,26 @@
 	// Is the Web Storage API available ?
 	if(localStorage) {
 		
-		// Enable features.
+		// Enable WS features.
 		document.body.classList.add('ws-available');
 
-		// Reload content.
-		if(localStorage.getItem('post')) {
-			importFromLocalStorage(JSON.parse(localStorage.getItem('post')));
+		let wsData;
+
+		// Try to reload content.
+		if(wsData = localStorage.getItem('post')) {
+			importFromLocalStorage(JSON.parse(wsData));
 		}
 
-		// Reload theme. 
-		if(localStorage.getItem('theme') === 'light') {
-			toLightTheme();
+		let wsPref;
+
+		// Try to restore preferences. 
+		if(wsPref = localStorage.getItem('color-scheme')) {
+			if(wsPref === 'dark') {
+				toDarkTheme();
+			}			
+		}
+		if(wsPref = localStorage.getItem('max-width')) {
+			UI.main.setAttribute('class', wsPref);
 		}
 
 	}

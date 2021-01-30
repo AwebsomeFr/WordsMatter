@@ -8,6 +8,12 @@ let varTemp;
 
 	const setViewportHeight = () => UI.main.style.height = window.innerHeight + 'px';
 
+	const savePref = (name, value) => {
+		if(localStorage) {
+			localStorage.setItem(name, value);
+		}
+	};
+
 	const toggleMenu = (boolean) => {
 		boolean ?
 			UI.nav.classList.add('visible'):
@@ -16,12 +22,12 @@ let varTemp;
 
 	const toDarkTheme = () => {	
 		document.body.classList.add('dark');
-		localStorage.setItem('theme', 'dark');
+		savePref('color-scheme', 'dark');
 	}
 
 	const toLightTheme = () => {
 		document.body.classList.remove('dark');
-		localStorage.setItem('theme', 'light');
+		savePref('color-scheme', 'light');
 	}
 
 	const toggleTheme = () => {
@@ -53,8 +59,14 @@ let varTemp;
 
 		let options = '';
 
-		for(let width of ['360px', '540px', '768px', '1024px', '1280px', '100%']) {
-			options += `<button onclick="UI.main.style.width = '${width}', dial()">${width}</button>`;
+		for(let width of [360, 540, 768, 1024, 1280, 'Max']) {
+			options += 
+				`<button onclick="
+					UI.main.setAttribute('class', 'mw${width}'),
+					savePref('max-width', 'mw${width}'),
+					dial()">
+					${width}${isNaN(width) ? '': 'px'}
+				</button>`;
 		}
 
 		dial(
