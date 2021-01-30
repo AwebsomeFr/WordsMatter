@@ -36,53 +36,54 @@
 		menu: 'Menu',
 		open: 'Open',
 		pushPost: 'Push to the blog ↑',
-		update: 'Update',
 		save: 'Save ↑',
 		setHeight: 'Adjust height ↕',
 		setTheme: 'Light theme / dark theme ☼',
-		setWidth: 'Adjust width ↔'
+		setWidth: 'Adjust width ↔',
+		update: 'Update'
 	};
 
 	LAB.input = {
-		lib: 'Label',
-		content: 'Content of the section',
+		imgAlt: 'Description (alternative)',
+		secContent: 'Content of the section',
 		h1: 'Title of the post (h1)',
 		h2: 'Title of the section (h2)',
-		alt: 'Description (alternative)',
-		leg: 'Image caption',
-		intro: 'Optional introduction',
+		secIntro: 'Optional introduction',
+		imgLeg: 'Image caption',
+		lab: 'Label',
 		list: 'Elements making up the list (delimiter: %%)',
 		txtToTransf: 'Text to transform',
 		url: 'Address (URL)'
 	};
 
+	// 0: fail, 1: success, X: unavailable, Y: empty.
 	LAB.notice = {
-		loadSucc: 'Post successfully loaded.',
-		servDelFail: 'Error while deleting blog post.',
-		servDelSucc: 'Post deleted from blog.',
-		servEmpty: 'Impossible: there is no post or draft on the blog yet.',
-		servFail: 'Error while uploading: the post was not published.',
-		servSucc: 'Message sent on the blog successfully.',
-		servTitleEmpty: 'Impossible: the post must have a title to be published or saved as a draft on the blog.',
-		servUnavailable: 'Unreachable server: the post cannot be sent to the blog. Check your internet connection.',
-		wsDelEmpty: 'Nothing to delete from the local memory of the web browser.',
-		wsDelFail: 'Error while deleting the post from the local memory of the web browser.',
-		wsDelSucc: 'Post deleted from the local memory of the web browser.',
-		wsSaveFail: 'Error while saving the post in the local memory of the web browser.',
-		wsSaveSucc: 'Post saved in the local memory of the web browser.',
-		wsUnavailable: 'Post cannot be saved / deleted: The <i>Web Storage</i> API is unavailable.'
+		load1: 'Post successfully loaded.',
+		serv0: 'Error while uploading: the post was not published.',
+		serv1: 'Message sent on the blog successfully.',
+		servContentY: 'Impossible: there is no post or draft on the blog yet.',
+		servDel0: 'Error while deleting blog post.',
+		servDel1: 'Post deleted from blog.',
+		servTitleY: 'Impossible: the post must have a title to be published or saved as a draft on the blog.',
+		servX: 'Unreachable server: the post cannot be sent to the blog. Check your internet connection.',
+		wsDel0: 'Error while deleting the post from the local memory of the web browser.',
+		wsDel1: 'Post deleted from the local memory of the web browser.',
+		wsDelY: 'Nothing to delete from the local memory of the web browser.',
+		wsSave0: 'Error while saving the post in the local memory of the web browser.',
+		wsSave1: 'Post saved in the local memory of the web browser.',
+		wsX: 'Post cannot be saved / deleted: The <i>Web Storage</i> API is unavailable.'
 	};
 
 	LAB.dial = {
-		exportPost: 'Copy and paste the following content into a .txt file. Use the <i>Import from .txt file</i> option accessible from the menu to reload it.',
+		confDelSec: 'The content of this section will be lost.',
+		confDelServ: 'Permanently delete the selected post from the blog?',
+		confDelWs: 'Permanently delete the post from the local memory of the web browser?',
+		confPushServ: 'You will now send content to the blog. If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
+		confUpdateServ: 'A post with an identical title already exists on the blog. Replace it ? Note: If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
 		editPost: 'Which post do you want to edit from the blog?',
-		delSection: 'The content of this section will be lost.',
+		exportPost: 'Copy and paste the following content into a .txt file. Use the <i>Import from .txt file</i> option accessible from the menu to reload it.',
 		setHeight: 'Move the slider to change the preview height.',
-		setWidth: 'Move the slider to change the working width.',
-		wsDelAskConf: 'Permanently delete the post from the local memory of the web browser?',
-		servConfNew: 'You will now send content to the blog. If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
-		servConfDel: 'Permanently delete the selected post from the blog?',
-		servConfUpdate: 'A post with an identical title already exists on the blog. Replace it ? Note: If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.'
+		setWidth: 'Move the slider to change the working width.'
 	};
 
 	if(LANG === 'fr') {
@@ -107,54 +108,54 @@
 			listPost: 'Modifier depuis le blog ↓',
 			menu: 'Menu',
 			open: 'Ouvrir',
-			update: 'Mettre à jour',
 			pushPost: 'Envoyer vers le blog ↑',
 			save: 'Sauvegarder ↑',
 			setHeight: 'Ajuster la hauteur ↕',
 			setTheme: 'Thème clair / thème sombre ☼',
-			setWidth: 'Ajuster la largeur ↔'
+			setWidth: 'Ajuster la largeur ↔',
+			update: 'Mettre à jour'
 		};
 
 		LAB.input = {
-			lib: 'Libellé',
-			content: 'Contenu de section',
+			imgAlt: 'Description (alternative)',
+			secContent: 'Contenu de section',
 			h1: 'Titre du post (h1)',
 			h2: 'Titre de section (h2)',
-			alt: 'Description (alternative)',
-			leg: 'Légende de l\'image',
-			intro: 'Introduction optionnelle',
+			secIntro: 'Introduction optionnelle',
+			imgLeg: 'Légende de l\'image',
+			lab: 'Libellé',
 			list: 'Eléments composant la liste (délimiteur : %%)',
 			txtToTransf: 'Texte à transformer',
 			url: 'Adresse (URL)'
 		};
 
 		LAB.notice = {
-			loadSucc: 'Post chargé avec succès.',
-			servDelFail: 'Erreur lors de la suppression du post du blog.',
-			servDelSucc: 'Post supprimé du blog.',
-			servEmpty: 'Impossible : il n\'y a encore ni post ni brouillon sur le blog.',
-			servFail: 'Erreur lors de la mise en ligne : le post n\'a pas été publié.',
-			servSucc: 'Post envoyé avec succès vers le blog.',
-			servTitleEmpty: 'Impossible : le post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.',
-			servUnavailable: 'Serveur injoignable : le post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet.',
-			wsDelEmpty: 'Rien à supprimer de la mémoire locale du navigateur web.',
-			wsDelFail: 'Erreur lors de la suppression du post de la mémoire locale du navigateur web.',
-			wsDelSucc: 'Post supprimé de la mémoire locale du navigateur web.',
-			wsSaveFail: 'Erreur lors de l\'enregistrement du post dans la mémoire locale du navigateur web.',
-			wsSaveSucc: 'Post enregistré dans la mémoire locale du navigateur web.',
-			wsUnavailable: 'Le post ne peut être sauvegardé / supprimé : l\'API <i>Web Storage</i> est indisponible.'
+			load1: 'Post chargé avec succès.',
+			serv0: 'Erreur lors de la mise en ligne : le post n\'a pas été publié.',
+			serv1: 'Post envoyé avec succès vers le blog.',
+			servContentY: 'Impossible : il n\'y a encore ni post ni brouillon sur le blog.',
+			servDel0: 'Erreur lors de la suppression du post du blog.',
+			servDel1: 'Post supprimé du blog.',
+			servTitleY: 'Impossible : le post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.',
+			servX: 'Serveur injoignable : le post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet.',
+			wsDel0: 'Erreur lors de la suppression du post de la mémoire locale du navigateur web.',
+			wsDel1: 'Post supprimé de la mémoire locale du navigateur web.',
+			wsDelY: 'Rien à supprimer de la mémoire locale du navigateur web.',
+			wsSave0: 'Erreur lors de l\'enregistrement du post dans la mémoire locale du navigateur web.',
+			wsSave1: 'Post enregistré dans la mémoire locale du navigateur web.',
+			wsX: 'Le post ne peut être sauvegardé / supprimé : l\'API <i>Web Storage</i> est indisponible.'
 		};
 
 		LAB.dial = {
-			exportPost: 'Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.',
+			confDelSec: 'Le contenu de cette section sera perdu.',
+			confDelServ: 'Supprimer définitivement le post sélectionné du blog ?',
+			confDelWs: 'Supprimer définitivement le post de la mémoire locale du navigateur web ?',
+			confPushServ: 'Vous allez maintenant envoyer du contenu vers le blog. Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
+			confUpdateServ: 'Un post avec un titre identique existe déjà sur le blog. Le remplacer ? Note : Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
 			editPost: 'Quel post souhaitez-vous modifier depuis le blog ?',
-			delSection: 'Le contenu de cette section sera perdu.',
+			exportPost: 'Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.',
 			setHeight: 'Déplacez le curseur pour modifier la hauteur de prévisualisation.',
-			setWidth: 'Déplacez le curseur pour modifier la largeur de travail.',
-			wsDelAskConf: 'Supprimer définitivement le post de la mémoire locale du navigateur web ?',
-			servConfNew: 'Vous allez maintenant envoyer du contenu vers le blog. Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
-			servConfDel: 'Supprimer définitivement le post sélectionné du blog ?',
-			servConfUpdate: 'Un post avec un titre identique existe déjà sur le blog. Le remplacer ? Note : Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.'	
+			setWidth: 'Déplacez le curseur pour modifier la largeur de travail.'
 		};
 	
 	}

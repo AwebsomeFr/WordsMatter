@@ -228,14 +228,14 @@ document.body.onload = () => {
 					attributes: {
 						for: 'input-art-introduction'
 					},
-					text: LAB.input.intro
+					text: LAB.input.secIntro
 				},
 				{
 					type: 'textarea',
 					attributes: {
 						id: 'input-art-introduction',
 						oninput: 'runEditor(\'input-art-introduction\')',
-						placeholder: LAB.input.intro
+						placeholder: LAB.input.secIntro
 					}
 				},
 				{

@@ -99,17 +99,17 @@ let varTemp;
 			localStorage.setItem('post', datasContent);
 			
 			if(localStorage.getItem('post') === datasContent) {
-				goodNotice(LAB.notice.wsSaveSucc);
+				goodNotice(LAB.notice.wsSave1);
 			}
 			
 			else {
-				badNotice(LAB.notice.wsSaveFail);
+				badNotice(LAB.notice.wsSave0);
 			}
 		
 		}
 
 		else {
-			badNotice(LAB.notice.wsUnavailable);
+			badNotice(LAB.notice.wsX);
 		}
 
 	};
@@ -118,7 +118,7 @@ let varTemp;
 
 		resetPost();
 		setPost(post);
-		dial(LAB.dial.loadSucc);
+		dial(LAB.dial.load1);
 
 	};
 
@@ -139,11 +139,11 @@ let varTemp;
 					// Success ?
 					if(!localStorage.getItem('post')) {
 						resetPost();
-						goodNotice(LAB.notice.wsDelSucc);
+						goodNotice(LAB.notice.wsDel1);
 					}
 
 					else {
-						badNotice(LAB.notice.wsDelFail);
+						badNotice(LAB.notice.wsDel0);
 					}
 
 				}
@@ -152,7 +152,7 @@ let varTemp;
 
 
 					dial(
-						`<p> ${LAB.dial.wsDelAskConf}</p> 
+						`<p> ${LAB.dial.confDelWs}</p> 
 						<button class="danger" onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
 					);
 				
@@ -162,13 +162,13 @@ let varTemp;
 			}
 
 			else {
-				badNotice(LAB.notice.wsDelEmpty);
+				badNotice(LAB.notice.wsDelY);
 			}
 
 		}
 
 		else {
-			badNotice(LAB.notice.wsUnavailable);
+			badNotice(LAB.notice.wsX);
 		}
 
 	};
@@ -199,7 +199,7 @@ let varTemp;
 					// New post ? Ask confirm push.
 					if(req.responseText === 'release') {
 						dial(
-							`<p>${LAB.dial.servConfNew}</p>
+							`<p>${LAB.dial.confPushServ}</p>
 							<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
 						);
 					}
@@ -207,24 +207,24 @@ let varTemp;
 					// Existing post ? Ask confirm update.
 					else if(req.responseText === 'update') {
 						dial(
-							`<p>${LAB.dial.servConfUpdate}</p>
+							`<p>${LAB.dial.confUpdateServ}</p>
 							<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
 						);
 					}
 
 					// Success ?
 					else if(req.responseText === 'success') {
-						goodNotice(LAB.notice.servSucc);
+						goodNotice(LAB.notice.serv1);
 					}
 
 					else {
-						badNotice(LAB.notice.servFail);
+						badNotice(LAB.notice.serv0);
 					}
 				
 				}
 
 				else {
-					badNotice(LAB.notice.servUnavailable);
+					badNotice(LAB.notice.servX);
 				}
 
 			};
@@ -242,7 +242,7 @@ let varTemp;
 		}
 
 		else {
-			badNotice(LAB.notice.servTitleEmpty);
+			badNotice(LAB.notice.servTitleY);
 		}
 
 	};
@@ -260,11 +260,11 @@ let varTemp;
 
 					// Success ?
 					if(req.responseText === 'success') {
-						goodNotice(LAB.notice.servDelSucc); 
+						goodNotice(LAB.notice.servDel1); 
 					}
 
 					else {
-						badNotice(LAB.notice.servDelFail); 
+						badNotice(LAB.notice.servDel0); 
 					}
 
 				}
@@ -280,7 +280,7 @@ let varTemp;
 
 			varTemp = dirName;
 			dial(
-				`<p>${LAB.dial.servConfDel}</p>
+				`<p>${LAB.dial.confDelServ}</p>
 				<button class="danger" onclick="deleteFromServer(true, varTemp)">${LAB.bt.confirm}</button>`
 			); 
 
@@ -296,7 +296,7 @@ let varTemp;
 
 			resetPost();
 			setPost(JSON.parse(e.target.result));
-			dial(LAB.dial.loadSucc);
+			dial(LAB.dial.load1);
 
 			};
 
@@ -359,13 +359,13 @@ let varTemp;
 				}
 
 				else {
-					badNotice(LAB.notice.servEmpty);
+					badNotice(LAB.notice.servContentY);
 				}
 
 			}
 
 			else {
-				badNotice(LAB.notice.servUnavailable);
+				badNotice(LAB.notice.servX);
 			}
 
 		};
@@ -553,7 +553,7 @@ let varTemp;
 
 		for (let elmToCreate of [
 			{ type: 'input', id: 'input-sec-title-' + marker, placeholder: LAB.input.h2 },
-			{ type: 'textarea', id: 'input-sec-content-' + marker, placeholder: LAB.input.content }
+			{ type: 'textarea', id: 'input-sec-content-' + marker, placeholder: LAB.input.secContent }
 
 		]){
 			inputSecElm.appendChild(
@@ -641,7 +641,7 @@ let varTemp;
 					{
 						type: 'click',
 						function: () => {
-							if(confirm(LAB.dial.delSection))
+							if(confirm(LAB.dial.confDelSec))
 								{
 									document.getElementById('input-sec-' + currentMarker).remove();
 									document.getElementById('output-sec-' + currentMarker).remove();
@@ -699,7 +699,7 @@ let varTemp;
 				formElm.body =
 					`<label for="a-value">${LAB.input.url}</label>
 					<input id="a-value" type="text" placeholder="https://example.com" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="a-label">${LAB.input.lib}</label>
+					<label for="a-label">${LAB.input.lab}</label>
 					<input id="a-label" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
@@ -707,7 +707,7 @@ let varTemp;
 				formElm.body =
 					`<label for="img-src">${LAB.input.url}</label>
 					<input id="img-src" type="text" placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="img-alt">${LAB.input.alt}</label>
+					<label for="img-alt">${LAB.input.imgAlt}</label>
 					<input id="img-alt" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
 				break;
 
@@ -715,9 +715,9 @@ let varTemp;
 				formElm.body =
 					`<label for="fig-src">${LAB.input.url}</label>
 					<input id="fig-src" type="text" placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="fig-legend">${LAB.input.leg}</label>
+					<label for="fig-legend">${LAB.input.imgLeg}</label>
 					<input id="fig-legend" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />
-					<label for="fig-alt">${LAB.input.alt}</label>
+					<label for="fig-alt">${LAB.input.imgAlt}</label>
 					<input id="fig-alt" type="text" required />`;
 				break;
 
