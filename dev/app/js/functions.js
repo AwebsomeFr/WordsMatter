@@ -44,16 +44,18 @@ let varTemp;
 	};
 
 	const setWidth = () => {
+
+		let options = '';
+
+		for(let width of ['360px', '540px', '768px', '1024px', '1280px', '100%']) {
+			options += `<button onclick="UI.main.style.width = '${width}', dial()">${width}</button>`;
+		}
+
 		dial(
 			`<p>${LAB.dial.setWidth}</p>
-			<input
-				 max="100"
-				 min="25"
-				 oninput="UI.main.style.width = this.value + '%'"
-				 step="5"
-				 type="range"
-			/>`
+			${options}`
 		);
+		
 	};
 
 	const onHelp = () => window.open('./help.html');

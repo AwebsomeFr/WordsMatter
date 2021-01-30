@@ -83,7 +83,7 @@
 		editPost: 'Which post do you want to edit from the blog?',
 		exportPost: 'Copy and paste the following content into a .txt file. Use the <i>Import from .txt file</i> option accessible from the menu to reload it.',
 		setHeight: 'Move the slider to change the preview height.',
-		setWidth: 'Move the slider to change the working width.'
+		setWidth: 'Select the MAXIMUM width used by WordsMatter.'
 	};
 
 	if(LANG === 'fr') {
@@ -155,7 +155,7 @@
 			editPost: 'Quel post souhaitez-vous modifier depuis le blog ?',
 			exportPost: 'Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.',
 			setHeight: 'Déplacez le curseur pour modifier la hauteur de prévisualisation.',
-			setWidth: 'Déplacez le curseur pour modifier la largeur de travail.'
+			setWidth: 'Choisissez la largeur MAXIMALE utilisée par WordsMatter.'
 		};
 	
 	}
