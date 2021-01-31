@@ -27,15 +27,15 @@
 		</header>
 		<article>
 			<h2 id="install">Installation</h2>
-			<p>Pour installer WordsMatter, veuillez vous reporter à <a href="https://github.com/AwebsomeFr/WordsMatter/blob/master/README.md">la documentation technique du projet</a> (connexion Internet requise). Vous y trouverez, en préambule, des informations sur l'auteur et ses motivations.</p>
+			<p>Cette documentation traite exclusivement de l'application WordsMatter. Pour installer l'API WordsMatter, veuillez vous reporter à <a href="https://github.com/AwebsomeFr/WordsMatter/blob/master/README.md">la documentation technique</a> du projet (connexion Internet requise). Vous y trouverez, en préambule, des informations sur <strong>Julien Wilhelm</strong> (<a href="https://awebsome.fr">Awebsome</a>), le créateur de WordsMatter, et ses motivations.</p>
 		</article>
 		<article>
 			<h2 id="ui">Interface Utilisateur</h2>
 			<section>
 				<h3>Interface</h3>
-				<p>L'interface utilisateur de WordsMatter est divisée en deux zones.</p>
-				<p>La partie supérieure de l'écran est l'<strong>espace de visualisation</strong>, la partie inférieure, l'<strong>espace de rédaction</strong>. Rédigez dans l'espace de rédaction ; l'espace de visualisation est actualisé en temps réel et vous donne un aperçu de la mise finale en forme générée.</p>
-				<p>Le <strong>menu principal</strong> de l'application est accessible depuis le coin supérieur droit de l'écran, avec le bouton
+				<p>L'interface utilisateur de l'application WordsMatter est divisée en deux zones.</p>
+				<p>La partie supérieure de l'écran est l'<strong>espace de visualisation</strong>, la partie inférieure, l'<strong>espace de rédaction</strong>. Rédigez depuis l'espace de rédaction ; l'espace de visualisation est actualisé en temps réel et vous donne un aperçu de la mise finale en forme générée.</p>
+				<p>Le <strong>menu principal</strong> de l'application WordsMatter est accessible depuis le coin supérieur droit de l'écran, avec le bouton
 					<button disabled>Menu</button>.</p>
 				<figure>
 					<svg viewBox="0 0 24 24">
@@ -47,17 +47,17 @@
 			<section>
 				<h3>Menu principal</h3>
 				<p>Cliquez sur
-					<button disabled>Menu</button>pour dévoiler les options suivantes :</p>
+					<button disabled>Menu</button>, dans l'application WordsMatter, pour dévoiler les options suivantes :</p>
 				<button class="nav-bt" disabled><span>↑</span>Sauvegarder</button>
-				<p>Enregistre votre post, un seul à la fois, dans la mémoire locale du navigateur Web.	<span>Votre post sera rechargé à l'ouverture de l'application.</span>
+				<p>Enregistre votre post, un seul à la fois, dans la mémoire locale du navigateur Web.	<span>Votre post sera restauré à l'ouverture de l'application WordsMatter.</span>
 					<span>Cette fonctionnalité requiert l'API Web Storage.</span>
 				</p>
 				<button class="nav-bt" disabled><span>X</span>Supprimer</button>
 				<p>Supprime le post sauvegardé de la mémoire locale du navigateur Web.	<span>Cette fonctionnalité requiert l'API Web Storage.</span>
 				</p>
 				<button class="nav-bt" disabled><span>↑</span>Envoyer vers le blog</button>
-				<p>Publie ou sauvegarde en tant que brouillon le post en cours d'édition sur le serveur.	<span>Un titre principal (h1) commençant par un % sera sauvegardé comme brouillon et ne sera pas rendu public.</span>
-					<span>Si un post ou un brouillon du même nom existe déjà, WordsMatter vous proposera de l'écraser.</span>
+				<p>Met en ligne sur le serveur le post en cours d'édition dans l'application WordsMatter.	<span>Un titre principal (h1) commençant par un % sera sauvegardé comme <strong>brouillon</strong> et ne sera pas rendu public.</span>
+					<span>Si un post ou un brouillon du même nom existe déjà, l'application WordsMatter vous proposera de l'écraser.</span>
 					<span>Cette fonctionnalité requiert une connexion au serveur.</span>
 				</p>
 				<button class="nav-bt" disabled><span>↓</span>Modifier depuis le blog</button>
@@ -68,13 +68,13 @@
 				<button class="nav-bt" disabled><span>↓</span>Importer depuis fichier .txt</button>
 				<p>Importe le contenu d'un fichier .txt créé avec l'option précédente.</p>
 				<button class="nav-bt" disabled><span>☼</span>Thème clair / thème sombre</button>
-				<p>Bascule entre thème clair, plus lisible en extérieur, et thème sombre, moins agressif pour les yeux.	<span>Si l'API Web Storage est disponible, votre choix sera automatiquement appliqué à l'ouverture de l'application.</span>
+				<p>Bascule entre thème clair, plus lisible en extérieur, et thème sombre, moins agressif pour les yeux.	<span>Si l'API Web Storage est disponible, votre choix sera restauré à l'ouverture de l'application WordsMatter.</span>
 				</p>
 				<button class="nav-bt" disabled><span>↔</span>Ajuster la largeur</button>
-				<p>Permet d'appliquer à l'application une largeur de travail (valeurs prédéfinies).	<span>Cette fonctionnalité est indisponible sur les terminaux dont la largeur d'écran est inférieure à 768px.</span>
+				<p>Permet de limiter la largeur d'écran occupée par l'application WordsMatter (valeurs prédéfinies).	<span>Cette fonctionnalité est disponible pour les terminaux dont la largeur d'écran est supérieure à 768px.</span> <span>Si l'API Web Storage est disponible, votre choix sera restauré à l'ouverture de l'application WordsMatter.</span>
 				</p>
 				<button class="nav-bt" disabled><span>↕</span>Ajuster la hauteur</button>
-				<p>Permet de définir la hauteur de travail allouée à l'espace de rédaction.</p>
+				<p>Permet d'avantager, dans la hauteur de l'application WordsMatter, un espace (rédaction, prévisualisation) par rapport à l'autre, ou d'équilibrer leur distribution.</p>
 				<button class="nav-bt" disabled><span>?</span>Documentation</button>
 				<p>Affiche cette aide.</p>
 			</section>
