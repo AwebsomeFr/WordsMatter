@@ -11,12 +11,12 @@
     *   [Concept](#concept)
 * [Installer et configurer WordsMatter](#installer-et-configurer-wordsMatter)
     *   [Technologies](#technologies)
-    *   [License](#license)
-    *   [Téléchargement](#telechargement)
+    *   [Licence](#licence)
+    *   [Obtenir](#obtenir)
     *   [Premiers pas](#premiers-pas)
     *   [Configuration](#configuration)
-    *   [Considérations](#considerations)
     *   [i18n](#i18n)
+    *   [Remarques](#remarques)
     *   [Contributions](#contributions)
     *   [Garantie et support](#garantie-et-support)
 
@@ -29,9 +29,9 @@
 
 ## Le projet
 
-### Pourquoi WordsMatter ?
+### Pourquoi WordsMatter
 
-C'est **un besoin récurrent** de mes clients professionnels : pouvoir mettre en ligne, en parfaite autonomie, du contenu rédactionnel sur leur site web écoresponsable. Encore aujourd'hui et pour de nombreux prestataires, il s'agit d'un *gap* infranchissable, **la fonctionnalité rédhibitoire** qui interdit de proposer un site web codé en dur alors que tout le reste s'y prête. S'orienter alors vers un Système de Gestion de Contenu (ou Content Management System, en anglais) comme c'est bien souvent le cas apporte **un degré de complexité technique élevé**. A l'administration comme à utilisation, cette approche entraîne d'**importants inconvénients** (consommation en données et en énergie excessive, lenteurs et instabilités, vulnérabilités...). C'est à l'encontre de **l'effort qui est attendu de nous**, développeurs web, dans le cadre du déploiement de services en ligne raisonnés.
+C'est **un besoin récurrent** de mes clients professionnels : pouvoir mettre en ligne, en parfaite autonomie, du contenu rédactionnel sur leur site web écoresponsable. Encore aujourd'hui et pour de nombreux prestataires, il s'agit d'un *gap* infranchissable, **la fonctionnalité rédhibitoire** qui interdit de proposer un site web codé en dur alors que tout le reste s'y prête. S'orienter alors vers un Système de Gestion de Contenu (ou Content Management System, en anglais) comme c'est bien souvent le cas apporte **un degré de complexité technique élevé**. À l'administration comme à utilisation, cette approche entraîne d'**importants inconvénients** (consommation en données et en énergie excessive, lenteurs et instabilités, vulnérabilités...). C'est à l'encontre de **l'effort qui est attendu de nous**, développeurs web, dans le cadre du déploiement de services en ligne raisonnés.
 
 Vous avez à charge de créer un site vitrine simple et efficient comportant toutefois un espace de blog ? 
 
@@ -42,7 +42,7 @@ Vous avez à charge de créer un site vitrine simple et efficient comportant tou
 Quelques arguments supplémentaires : 
 
 *   WordsMatter **répond strictement à un besoin** : alimenter un blog. Son efficience fonctionnelle le rend **plus sûr**, **plus rapide** et **bien plus neutre pour l'environnement** que les solutions traditionnellement plébiscitées.
-*   WordsMatter fonctionne en **mode hors-ligne** sur la majorité des navigateurs Web et son **interface responsive** lui permet d'être exploité sur mobile comme sur tablette ou sur ordinateur.
+*   WordsMatter fonctionne en **mode hors-ligne** sur la majorité des navigateurs web et son **interface responsive** lui permet d'être exploité sur mobile comme sur tablette ou sur ordinateur.
 *   WordsMatter n'utilise **aucune dépendance**. De fait, **son intégrité ne tient qu'à lui et à ses utilisateurs** et n'est pas conditionnée à d'incessantes mises à jour.
 *   WordsMatter est **ultra léger** : moins de 100ko, documentation comprise.
 *   WordsMatter est **libre de droits** et **distribué gratuitement**.
@@ -67,7 +67,7 @@ L'application peut **envoyer du contenu** brut à l'API (publier, sauvegarder en
 
 Dans l'intérêt de **l'efficience, de l'inclusion et de la sobriété numérique**, [WordsMatter est proposé sous licence GNU GPL version 3 ou ultérieure](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-### Téléchargement
+### Obtenir
 
 *   [Téléchargement direct](https://github.com/AwebsomeFr/WordsMatter/archive/master.zip)
 *   [Explorer le code source](https://github.com/AwebsomeFr/WordsMatter)
@@ -78,7 +78,7 @@ L'archive du dépôt WordsMatter contient un dossier `dev` et un dossier `prod`.
 
 Ces répertoires contiennent :
 
-* L'application WordsMatter. Elle dépend des fichiers `index.html`, `help.html` et du dossier `app`. **Attention : en l'absence de mot de passe, quiconque accède à une version donnée de l'application WordsMatter peut se connecter à l'API correspondante. L'application ne doit donc en aucun cas être hébergée sur le serveur web destinaire**.
+* L'application WordsMatter. Elle dépend des fichiers `index.html`, `help.html` et du dossier `app`. **Attention : en l'absence de mot de passe, quiconque accède à une version donnée de l'application WordsMatter peut se connecter à l'API correspondante. L'application ne doit donc en aucun cas être hébergée sur le serveur web destinataire**.
 * L'API WordsMatter. Elle dépend du dossier `api`. **Cette API est à placer en lieu sûr sur le serveur web destinataire**.
 
 Après avoir copié le dossier `dev` ou `prod` sur votre terminal, ouvrez le fichier `index.html` placé à la racine pour lancer l'application web en mode hors-ligne (fonctionnalités limitées). Atteignez ce point d'entrée depuis un serveur web local pour pouvoir vous connecter à l'API.  
@@ -120,18 +120,18 @@ Intéressons-nous enfin aux deux derniers fichiers :
 *   `/api/template.php` est le modèle de page par défaut auquel est injecté le html valide lors de la publication d'un post. Ce modèle, dépourvu de CSS, est un bon point de départ pour créer un site web écoresponsable et unique. A vous de vous l'approprier.
 *   `/api/push.php` définit la procédure à suivre lors de la publication d'un post. Si quelque chose ne vous convient pas, où que vous souhaitez aller plus loin, il faut sans doute commencer par ici.
 
-### Considérations
+### i18n
+
+À ce jour :
+
+* L'application WordsMatter est entièrement traduite en français et en anglais.
+* Seule la version française des documentations techniques / utilisateur est disponible.
+* Le code source est exclusivement commenté en anglais.
+
+### Remarques
 
 *   WordsMatter ne génère pas de sommaire de blog prêt à l'emploi. Il existe bien des manières de procéder : à vous d'implémenter la vôtre. Le fichier `index.json` (nom par défaut) créé dans le dossier `blog` et tenu à jour par l'application WordsMatter peut facilement être exploité dans ce but.
 *   De même, WordsMatter ne produit aucun sitemap.
-
-### i18n
-
-A ce jour :
-
-* L'application WordsMatter est entièrement traduite en français et en anglais.
-* Seule la version française des documentations technique / utilisateur est disponible.
-* Le code source est exclusivement commenté en anglais.
 
 ### Contributions
 
@@ -139,4 +139,4 @@ A ce jour :
 
 ### Garantie et support
 
-WordsMatter est proposé en l'état, **sans garantie aucune** quant à son fonctionnement dans des conditions différentes à celles de son développement. S'agissant d'**un travail bénévole**, il est de la responsabilité de chacun de prendre les disposition qui s'imposent pour garantir l'intégrité de son travail. Tout dysfonctionnement éventuel lié à WordsMatter ne saurait être reproché à Awebsome. Par ailleurs, **le support client de ce projet n'est assuré par Awebsome que POUR les clients Awebsome. Si WordsMatter vous a été installé par un prestataire différent, merci d'adresser vos questions à ce dernier.**
+WordsMatter est proposé en l'état, **sans garantie aucune** quant à son fonctionnement dans des conditions différentes à celles de son développement. S'agissant d'**un travail bénévole**, il est de la responsabilité de chacun de prendre les dispositions qui s'imposent pour garantir l'intégrité de son travail. Tout dysfonctionnement éventuel lié à WordsMatter ne saurait être reproché à Awebsome. Par ailleurs, **le support client de ce projet n'est assuré par Awebsome que POUR les clients Awebsome. Si WordsMatter vous a été installé par un prestataire différent, merci d'adresser vos questions à ce dernier.**
