@@ -23,7 +23,7 @@
 ### Liens externes
 
 *   [Essayer l'éditeur en live](https://awebsomefr.github.io/WordsMatter/)
-*   [Afficher la documentation utilisateur](https://awebsomefr.github.io/WordsMatter/prod/index.html)
+*   [Afficher la documentation utilisateur](https://awebsomefr.github.io/WordsMatter/prod/help.html)
 *   [WordsMatter en action](https://awebsome.fr/blog-awebsome)
 *   [Awebsome.fr](https://awebsome.fr)
 
