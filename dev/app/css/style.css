@@ -34,7 +34,7 @@
 		border: none;
 		box-sizing: border-box;
 		color: var(--color5);
-		font-family: "Assistant", sans-serif;
+		font-family: inherit;
 		font-size: 1em;
 		margin: 1px;
 		padding: 8px;
