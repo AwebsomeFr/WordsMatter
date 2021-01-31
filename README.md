@@ -6,18 +6,19 @@
 
 ### Sur cette page
 
-*   [Pourquoi WordsMatter ?](#pourquoi-wordsmatter)
-*   [Concept](#concept)
-*   [Technologies](#technologies)
-*   [License](#license)
-*   [Téléchargement](#telechargement)
-*   [Configuration et politique de sécurité](#dev-configure)
-*   [Considérations](#dev-go-further)
-*   [Évolutions et contributions](#dev-evolve)
-*   [i18n](#i18n)
-*   [Garantie et support](#garantie-et-support)
-
-
+* [Le projet](#le-projet)
+    *   [Pourquoi WordsMatter ?](#pourquoi-wordsmatter)
+    *   [Concept](#concept)
+* [Installer et configurer WordsMatter](#installer-et-configurer-wordsMatter)
+    *   [Technologies](#technologies)
+    *   [License](#license)
+    *   [Téléchargement](#telechargement)
+    *   [Premiers pas](#premiers-pas)
+    *   [Configuration](#configuration)
+    *   [Considérations](#considerations)
+    *   [i18n](#i18n)
+    *   [Contributions](#contributions)
+    *   [Garantie et support](#garantie-et-support)
 
 ### Liens externes
 
@@ -26,7 +27,7 @@
 *   [WordsMatter en action](https://awebsome.fr/blog-awebsome)
 *   [Awebsome.fr](https://awebsome.fr)
 
-## Présentation du projet
+## Le projet
 
 ### Pourquoi WordsMatter ?
 
@@ -48,7 +49,11 @@ Quelques arguments supplémentaires :
 
 ### Concept
 
-Le fonctionnement de WordsMatter est simpliste : l'**application web**, utilisée depuis un téléphone, une tablette ou un ordinateur, communique avec l'**API**, hébergée sur le serveur du blog à alimenter. L'application peut **envoyer du contenu** brut à l'API (publier, sauvegarder en tant que brouillon) ou **en recevoir** de sa part (modifier / supprimer un post ou un brouillon). Leur mise en relation se fait sans friction et de façon sécurisée grâce à **un identifiant commun** connu des deux parties.
+Le fonctionnement de WordsMatter est simpliste : l'**application web**, utilisée depuis un téléphone, une tablette ou un ordinateur, communique avec l'**API**, hébergée sur le serveur du blog à alimenter. 
+
+L'application peut **envoyer du contenu** brut à l'API (publier, sauvegarder en tant que brouillon) ou **en recevoir** de sa part (modifier / supprimer un post ou un brouillon).
+
+ Leur mise en relation se fait sans friction et de façon sécurisée grâce à **un identifiant commun** connu des deux parties.
 
 ## Installer et configurer WordsMatter
 
@@ -67,57 +72,71 @@ Dans l'intérêt de **l'efficience, de l'inclusion et de la sobriété numériqu
 *   [Téléchargement direct](https://github.com/AwebsomeFr/WordsMatter/archive/master.zip)
 *   [Explorer le code source](https://github.com/AwebsomeFr/WordsMatter)
 
-### Configuration et politique de sécurité
+### Premiers pas
 
-Une fois l'archive décompressée, le dossier WordsMatter contient :
+L'archive du dépôt WordsMatter contient un dossier `dev` et un dossier `prod`. Ces deux répertoires sont **similaires**, à une exception près : les fichiers du dossier `prod` ont été minifiés pour un déploiement immédiat en production (ce qui est possible, mais toutefois limité et risqué, comme expliqué plus loin). 
 
-*   L'**application WordsMatter** à télécharger sur le ou les terminaux utilisateur. **Elle ne doit en aucun cas être hébergée sur le serveur**.
-*   L'**API WordsMatter** à extraire de l'archive (dossier `api`) et **à placer en lieu sûr sur le serveur** (explications plus bas). Ce dossier est **le seul à devoir être hébergé**.
+Ces répertoires contiennent :
 
-S'agissant d'une application Web, WordsMatter est prêt à l'emploi.
+* L'application WordsMatter. Elle dépend des fichiers `index.html`, `help.html` et du dossier `app`. **Attention : en l'absence de mot de passe, quiconque accède à une version donnée de l'application WordsMatter peut se connecter à l'API correspondante. L'application ne doit donc en aucun cas être hébergée sur le serveur web destinaire**.
+* L'API WordsMatter. Elle dépend du dossier `api`. **Cette API est à placer en lieu sûr sur le serveur web destinataire**.
 
-Toutefois, les fichiers :
+Après avoir copié le dossier `dev` ou `prod` sur votre terminal, ouvrez le fichier `index.html` placé à la racine pour lancer l'application web en mode hors-ligne (fonctionnalités limitées). Atteignez ce point d'entrée depuis un serveur web local pour pouvoir vous connecter à l'API.  
+
+*Note : sur certains systèmes d'exploitation mobiles, scripts et styles sont désactivés si vous tentez d'ouvrir le fichier directement. Il est alors nécessaire d'accéder à l'application depuis un chemin interne propre au média de stockage.*
+
+#### Configuration
+
+Dans la pratique, il est plus simple de configurer WordsMatter depuis des fichiers non compressés (`dev`).
+
+Voici les fichiers où il est utile d'intervenir : 
 
 *   `/app/js/config.js`
 *   `/api/config.php`
+*   `/api/template.php`
+*   (`/api/push.php`)
 
-Contiennent tous deux des constantes à personnaliser avant tout lancement de WordsMatter dans le but de **créer une configuration sécurisée**. Si vous avez lancé WordsMatter avant d'avoir édité ces fichiers, supprimez le dossier `blog` généré à la racine du projet avant de commencer ici.
+Les deux premiers contiennent des constantes à personnaliser avant tout lancement de WordsMatter dans le but de **créer une configuration sécurisée**. Si vous avez lancé WordsMatter avant d'avoir édité ces fichiers, veillez à supprimer le dossier `blog` généré à la racine du projet avant de commencer ici.
 
-*   config.js :
-    *   `EDITOR_ID` est un identifiant unique attribué à l'éditeur et stocké en clair. <span>Pour des raisons évidentes de sécurité, cette valeur devrait être la plus complexe possible.</span>
-    *   `API_URL` doit pointer vers l'adresse du site Web où le dossier de l'API est hébergé. <span>Ce dossier doit être renommé (explications plus bas).</span>
-*   config.php :
+*   `/app/js/config.js`
+    *   `EDITOR_ID` est un identifiant unique et stocké en clair à attribuer à votre application WordsMatter.
+    *   `API_URL` indique où le répertoire de l'API WordsMatter est hébergé. Ce dossier aura été **renommé** avant d'être placé sur **un serveur distant** (explications à suivre).
+    *   `LANG` définit la langue de l'interface utilisateur de l'application WordsMatter. Valeurs disponibles : 'fr' pour français, 'en' pour anglais. 
+*  `/api/config.php`
     *   `EDITOR_ID` doit être égale à la constante du même nom décrite ci-dessus.
-    *   `INPUT_DIR` doit pointer vers l'adresse où les posts et brouillons seront sauvegardés pour édition éventuelle (format .txt). <span>Ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.</span>
-    *   `OUTPUT_DIR` doit pointer vers l'adresse où les posts formatés seront exportés pour publication sur le site Web (format HTML, par défaut). <span>Ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.</span>
-    *   `POSTS_INDEX` doit pointer vers un fichier au format .json où seront listés les posts avec leur titre, leur nom de fichier, leur dernière date d'édition et leur statut (brouillon ou non). <span>Ce fichier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.</span>
+    *   `INPUT_DIR` indique où les backups et les brouillons seront sauvegardés pour édition ultérieure. S'il n'existe pas, ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.
+    *   `OUTPUT_DIR` indique où les posts formatés et publiés sur le site web seront stockés. S'il n'existe pas, ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.
+    *   `POSTS_INDEX` indique un fichier au format .json où seront listés les posts avec leur titre, leur nom de fichier, leur dernière date d'édition et leur statut (brouillon ou non). S'il n'existe pas, ce fichier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.
+    *   `SITE_TYPE` précise le format de sortie des fichiers. La valeur par défaut, 'static', produit des fichiers HTML à la manière des générateurs de sites statiques, sans toutefois (encore) reconstruire le site tout entier. Une valeur 'dynamic' génère des fichiers PHP et donc, des pages dynamiques.
 
-Parce que garder la maîtriser des opérations en lien avec le serveur est capital, voici les points à retenir :
+Quelques points **importants** à retenir :
 
-*   **Requêtes CORS** : Pour que l'application puisse échanger avec l'API, les requêtes CORS (Cross-origin resource sharing) doivent être autorisées par le serveur. Le dossier `api` contient un fichier `.htaccess` configuré en ce sens. <span>Par précautions, sauf besoins contraires, l'acceptation des requêtes CORS devrait se limiter à ce seul dossier.</span> <span>Le fichier `.htaccess` est un fichier caché. Assurez-vous de l'inclure lorsque vous déplacez des fichiers ou de sélectionner le dossier `api` tout entier.</span>
-*   **Identification de la source et protection de la cible** : Aucun mot de passe ne sera jamais demandé à l'utilisateur ni par l'application ni par l'API. Ces dernières sont configurées pour échanger dès lors que l'identifiant d'éditeur établi dans les fichiers `config.js` et `config.php` concordent. Pour éviter les attaques de force brute liées à une URL d'API prévisible, **il est impératif de renommer le dossier `api` dans le but de créer une adresse impossible à deviner**. Dans la mesure où ce nom de dossier **doit pouvoir constituer une URL valide**, cela exclut l'utilisation de certains caractères. Une solution peut être de combiner minuscules, majuscules et chiffres (sans accents) dans la longueur. Par exemple, un intitulé de 100 caractères tel que "`KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpwVXrpFnQwEvSfc5fEh2EeAbhpFDWd3MPAbNMFNXYASHHr4CACcv`" pourrait donner lieu à une URL imprévisible telle que "`https://votre-site-.fr/KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpwVXrpFnQwEvSfc5fEh2EeAbhpFDWd3MPAbNMFNXYASHHr4CACcv/`". <span>Attention : pour que cette protection soit efficace, il faut interdire l'exploration de l'arborescence du site (exemple : `.htaccess` à la racine du site contenant la directive `Options -Indexes`).</span>
-*   **HTTPS** : Il est vivement conseillé d'utiliser WordsMatter dans un contexte HTTPS afin d'éviter l'interception d'informations lors des échanges entre l'application et l'API.
+*   **Requêtes CORS** : Pour que l'application puisse échanger avec l'API, les requêtes CORS (Cross-origin resource sharing) doivent être autorisées par le serveur. Le dossier `api` contient un fichier `.htaccess` configuré en ce sens. Par précautions, sauf besoins contraires, l'acceptation des requêtes CORS devrait se limiter à ce seul dossier. Le fichier `.htaccess` est un fichier caché. Assurez-vous de l'inclure lorsque vous déplacez des fichiers ou de sélectionner le dossier `api` tout entier.
+*   **Identification de la source et protection de la cible** : Aucun mot de passe ne sera jamais demandé à l'utilisateur ni par l'application ni par l'API. Ces dernières sont configurées pour échanger dès lors que l'identifiant d'éditeur établi dans les fichiers `config.js` et `config.php` concordent. Pour éviter les attaques de force brute liées à une URL d'API prévisible, **il est impératif de renommer le dossier `api` dans le but de créer une adresse impossible à deviner**. Dans la mesure où ce nom de dossier **doit pouvoir constituer une URL valide**, cela exclut l'utilisation de certains caractères. Une solution peut être de combiner minuscules, majuscules et chiffres (sans accents) dans la longueur. Par exemple, un intitulé de 100 caractères tel que "`KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpwVXrpFnQwEvSfc5fEh2EeAbhpFDWd3MPAbNMFNXYASHHr4CACcv`" pourrait donner lieu à une URL imprévisible telle que "`https://votre-site-.fr/KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpwVXrpFnQwEvSfc5fEh2EeAbhpFDWd3MPAbNMFNXYASHHr4CACcv/`". Attention : pour que cette protection soit efficace, pensez à interdire l'exploration de l'arborescence du site (exemple : `.htaccess` à la racine du site contenant la directive `Options -Indexes`).
+*   **HTTPS** : Il est vivement conseillé d'utiliser WordsMatter dans un contexte HTTPS afin d'éviter l'interception d'informations lors des échanges entre application et API.
+
+Intéressons-nous enfin aux deux derniers fichiers :
+
+*   `/api/template.php` est le modèle de page par défaut auquel est injecté le html valide lors de la publication d'un post. Ce modèle, dépourvu de CSS, est un bon point de départ pour créer un site web écoresponsable et unique. A vous de vous l'approprier.
+*   `/api/push.php` définit la procédure à suivre lors de la publication d'un post. Si quelque chose ne vous convient pas, où que vous souhaitez aller plus loin, il faut sans doute commencer par ici.
 
 ### Considérations
 
-WordsMatter est **tout à fait fonctionnel** en l'état, cependant :
-
-*   Le modèle de page fourni par l'API est basique et dépourvu de CSS. Ce modèle, décrit dans le fichier `template.php`, est un bon point de départ pour créer un site Internet écoresponsable et unique ; à vous de vous l'approprier. <span>Créer un sous-dossier dédié ici ou ailleurs est tout à fait envisageable (et même préférable) du moment que correspondance est faite avec fichier `releasePost.php`.</span>
-*   WordsMatter ne génère pas de sommaire de blog prêt à l'emploi. Il existe bien des manières de procéder : à vous d'implémenter la vôtre. <span>Le fichier `index.json` créé dans le dossier `blog` que l'application utilise pour lister les posts peut facilement être exploité dans ce but (attention toutefois à y faire une sélection entre publications et brouillons).</span>
-*   WordsMatter ne produit aucun sitemap.
-
-### Évolutions et contributions
-
-**L'objectif de WordsMatter est de répondre, avec efficience, à un besoin précis**. Si toutefois vous pensez qu'il manque une fonctionnalité **essentielle**, découvrez un bug quelconque ou remarquez une coquille ici ou ailleurs, [merci de me le faire savoir en ouvrant une nouvelle _Issue_ sur GitHub](https://github.com/AwebsomeFr/WordsMatter/issues). Votre contribution est par ailleurs la bienvenue sur les Issues éventuellement ouvertes.
+*   WordsMatter ne génère pas de sommaire de blog prêt à l'emploi. Il existe bien des manières de procéder : à vous d'implémenter la vôtre. Le fichier `index.json` (nom par défaut) créé dans le dossier `blog` et tenu à jour par l'application WordsMatter peut facilement être exploité dans ce but.
+*   De même, WordsMatter ne produit aucun sitemap.
 
 ### i18n
 
 A ce jour :
 
 * L'application WordsMatter est entièrement traduite en français et en anglais.
-* Seule la version française des documentations techniques / utilisateur est disponible.
+* Seule la version française des documentations technique / utilisateur est disponible.
 * Le code source est exclusivement commenté en anglais.
+
+### Contributions
+
+**L'objectif de WordsMatter est de répondre, avec efficience, à un besoin précis**. Si toutefois vous pensez qu'il manque une fonctionnalité **essentielle**, découvrez un bug quelconque ou remarquez une coquille ici ou ailleurs, [merci d'ouvrir une nouvelle _Issue_ sur GitHub](https://github.com/AwebsomeFr/WordsMatter/issues). Votre contribution est par ailleurs la bienvenue sur les Issues éventuellement ouvertes.
 
 ### Garantie et support
 
-WordsMatter est proposé en l'état, **sans garantie aucune** quant à son fonctionnement dans des conditions différentes à celles de son développement. S'agissant d'**un travail bénévole**, il est de la responsabilité de chacun de prendre les disposition qui s'imposent pour garantir l'intégrité de son travail. Tout dysfonctionnement éventuel lié à WordsMatter ne saurait être reproché à Awebsome. Par ailleurs, **le support client de ce projet n'est assuré par Awebsome que POUR les clients Awebsome. Si WordsMatter vous a été installé par un prestataire différent, merci d'adresser vos remarques, vos questions à ce dernier.**
+WordsMatter est proposé en l'état, **sans garantie aucune** quant à son fonctionnement dans des conditions différentes à celles de son développement. S'agissant d'**un travail bénévole**, il est de la responsabilité de chacun de prendre les disposition qui s'imposent pour garantir l'intégrité de son travail. Tout dysfonctionnement éventuel lié à WordsMatter ne saurait être reproché à Awebsome. Par ailleurs, **le support client de ce projet n'est assuré par Awebsome que POUR les clients Awebsome. Si WordsMatter vous a été installé par un prestataire différent, merci d'adresser vos questions à ce dernier.**
