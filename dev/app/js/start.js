@@ -251,12 +251,39 @@
 		]
 	});
 
+	// Shortcuts.
+	document.onkeydown = (e) => {
+	
+		if(e.code === 'Escape') {
+			dial();
+		}
+
+		else if(e.ctrlKey || e.metaKey) {
+			switch(e.code) {
+				case 'KeyS':
+					saveIntoLocalStorage();
+					e.preventDefault();
+					break;
+				case 'KeyP':
+					pushPost();
+					e.preventDefault();
+					break;
+				case 'KeyO':
+					getFiles();
+					e.preventDefault();
+					break;
+			}
+		}
+	}
+
 	document.body.appendChild(UI.notice);
 	document.body.appendChild(UI.dial);
 	UI.main.appendChild(UI.nav);
 	UI.main.appendChild(UI.output);
 	UI.main.appendChild(UI.input);
 	document.body.appendChild(UI.main);
+
+	document.documentElement.lang = LANG;
 
 /* --- 2. Enable features under conditions --- */
 
@@ -305,5 +332,3 @@
 	window.onresize = () => {
 		setViewportHeight();
 	}
-
-	document.documentElement.lang = LANG;
