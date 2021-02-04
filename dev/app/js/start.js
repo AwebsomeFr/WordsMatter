@@ -292,7 +292,8 @@
 	// Is the server available ?
 	let req = createRequest(API_URL + 'init.php');
 	req.onload = () => {
-		if(req.status == 200) {
+		let permission = req.responseText;
+		if(permission === 'true') {
 			// Enable features.
 			document.body.classList.add('serv-available');
 		}
