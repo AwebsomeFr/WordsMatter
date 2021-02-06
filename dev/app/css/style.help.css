@@ -16,9 +16,7 @@
 /* containers */
 
 	body {
-		--bad-color: #f33;
 		--color1: #F59561;
-		--color2: #234;
 		--color3: #111;
 		--color4: #222;
 		--color5: #fff;
@@ -45,33 +43,46 @@
 	}
 	
 	h2 {
+		border-bottom: solid 1px var(--color5);
 		margin-top: 30px;
+		padding-bottom: 5px;
 	}
-
-	h4 {
+	h3 {
+		margin-top: 30px;
 		margin-bottom: 0;
 	}
 
-	h4 + p {
-		margin-top: 0;
-	}
-
-	p span {
+	.n { /* n is for notice */
 		color: #999;
 		display: block;
 		font-style: italic;
+		margin: 0;
 	}
 
-	p span:not(.h)::before {
-		color: var(--bad-color);
+	.n::before {
+		color: var(--color1);
 		content: "!";
+		font-weight: bold;
 		padding-right: 5px;
 	}
-
-	.h { 
+	
+	.h { /* h is for help with background */
+		background-color: var(--color4);
+		padding: 15px;
 		color: var(--color1);
-		display: inline;
+		font-weight: bold;
+	}
+	
+	.h i {
+		color: var(--color5);
 		font-style: normal;
+		font-weight: normal;
+	}
+
+	.h-i, kbd {  /* h-i is for inline help */
+		font-size: 1em;
+		font-family: inherit;
+		color: var(--color1);
 		font-weight: bold;
 	}
 
@@ -86,7 +97,6 @@
 /* buttons */
 
 	button {
-		align-items: center;
 		background-color: var(--color4);
 		border: none;
 		box-sizing: border-box;
@@ -94,44 +104,22 @@
 		font-family: inherit;
 		font-size: 1em;
 		font-weight: bold;
-		gap: 5px;
-		margin-bottom: 10px;
-		text-align: left;
-	}
-
-	.nav-bt {
-		display: grid;
-		grid-template-columns: 30px auto;
-		margin-bottom: 15px;
-		margin-top: 30px;
-		width: 300px;
-	}
-
-	button span {
-		color: var(--color5);
-		font-size: 1.25em;
-		font-weight: normal;
-		text-align: center;
 	}
 
 /* medias */
 
 	img {
-		width: 100%;
-		max-width: 100px;
 		display: block;
 		margin: 30px auto;
+		max-width: 100px;
+		width: 100%;
 	}
 
-	figure {
-		margin: 30px auto;
-		text-align: center;
-		max-width: 360px;
-	}
 	svg {
 		fill: var(--good-color);
-		margin-bottom: 20px;
-		width: 60px;
+		margin: 5px;
+		vertical-align: middle;
+		width: 20px;
 }
 
 /* responsive */
@@ -148,9 +136,6 @@
 		img {
 			max-width: 150px;
 			margin-right: 20px;
-		}
-		.nav-bt {
-			width: 320px;
 		}
 
 	}
