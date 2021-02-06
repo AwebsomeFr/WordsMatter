@@ -1,89 +1,99 @@
 <?php $regex = [
-	[
+	[ // <br>
 		'desc' => '/\s{2}\n/i',
-		'output' => function ($content) {
+		'output' => function ($ct) {
 			return '<br/>';
 		}
 	],
-	[	
-		'desc' => '/^(?!3|4|5|6|f|i|o|u).+$/m', // All except block elements can be enclosed in a paragraph.
-		'output' => function ($content) {
-			return '<p>' . $content[0] . '</p>';
+	[ // Only inline elements (strong, em, img) should be enclosed in a <p>.
+		'desc' => '/^(?!3_|4_|5_|6_|_\s|__\s|\!\[[^\]]+\]\([^\)]+\)).+$/m',
+		'output' => function ($ct) {
+			return '<p>' . $ct[0] . '</p>';
+		}
+	],
+	[ // <h3>	
+		'desc' => '/^3_.+$/mi', // 3_title
+		'output' => function ($ct) {
+			return '<h3>' . substr($ct[0], 2) . '</h3>';
 		} 
 	],
-	[	
-		'desc' => '/^3\([^)]+\)$/mi', // 3(title)
-		'output' => function ($content) {
-			return '<h3>' . substr($content[0], 2, -1) . '</h3>';
+	[ // <h4>
+		'desc' => '/^4_.+$/mi', // 4_title
+		'output' => function ($ct) {
+			return '<h4>' . substr($ct[0], 2) . '</h4>';
 		} 
 	],
-	[	
-		'desc' => '/^4\([^)]+\)$/mi', // 4(title)
-		'output' => function ($content) {
-			return '<h4>' . substr($content[0], 2, -1) . '</h4>';
+	[ // <h5>
+		'desc' => '/^5_.+$/mi', // 5_title
+		'output' => function ($ct) {
+			return '<h5>' . substr($ct[0], 2) . '</h5>';
 		} 
 	],
-	[	
-		'desc' => '/^5\([^)]+\)$/mi', // 5(title)
-		'output' => function ($content) {
-			return '<h5>' . substr($content[0], 2, -1) . '</h5>';
+	[ // <h6>
+		'desc' => '/^6_.+$/mi', // 6_title
+		'output' => function ($ct) {
+			return '<h6>' . substr($ct[0], 2) . '</h6>';
 		} 
 	],
-	[	
-		'desc' => '/^6\([^)]+\)$/mi', // 6(title)
-		'output' => function ($content) {
-			return '<h6>' . substr($content[0], 2, -1) . '</h6>';
-		} 
-	],
-	[
-		'desc' => '/I\([^()]+\([^()]+\){2}/i', // i(alternative(url))
-		'output' => function ($content) {
-			$values = explode('(', substr($content[0], 2, -2)); // Remove i( from start and )) from end then split values by using the separator (.
-			return '<img loading="lazy" src="' . $values[1] . '" alt="' . $values[0] . '" />';
+	[ // <img> / <figure>
+		'desc' => '/\!\[[^\]]+\]\([^\)]+\)/i', // ![alt|legend](img_url)
+		'output' => function ($ct) {
+			$dt = explode('](', substr($ct[0], 2, -1));
+			$dt[0] = explode('|', $dt[0]); 
+			return count($dt[0]) > 1 ? // Is there a legend ?
+				'<figure>' .
+					'<img loading="lazy" src="' . $dt[1] . '" alt="' . $dt[0][0] . '" />' .
+					'<figcaption>' .	 $dt[0][1] . '</figcaption>' .
+				'</figure>' :
+				'<img loading="lazy" src="' . $dt[1] . '" alt="' . $dt[0][0] . '" />';
+
 		}
 	],
-	[
-		'desc' => '/F\([^)]+\([^)]+\([^)]+\){3}/i', // f(legend(alternative(url)))
-		'output' => function ($content) {
-			$values = explode('(', substr($content[0], 2, -3)); // Remove f( from start and ))) from end then split values by using the separator (.
-			return '<figure><img loading="lazy" src="' . $values[2] . '" alt="' . $values[1] . '" /><figcaption>' . $values[0] . '</figcaption></figure>';
+	[ // <a>
+		'desc' => '/\[[^\]]+\]\([^\)]+\)/i', // [label](url)
+		'output' => function ($ct) {
+			$dt = explode('](', substr($ct[0], 1, -1));
+			return '<a href="' . $dt[1] . '">' . $dt[0] . '</a>';
 		}
 	],
-	[
-		'desc' => '/A\([^()]+\([^()]+\){2}/i', // a(label(url))
-		'output' => function ($content) {
-			$values = explode('(', substr($content[0], 2, -2)); // Remove a( from start and )) from end then split values by using the separator (.
-			return '<a href="' . $values[1] . '">' . $values[0] . '</a>';
+	[ // <ol>
+		'desc' => '/(^__\s.*\n){1,}/im',
+		'output' => function ($ct) {
+			return '<ol>' . $ct[0] . '</ol>';
 		}
 	],
-	[
-		'desc' => '/S\([^)]+\)/i', // s(text)
-		'output' => function ($content) {
-			return '<strong>' . substr($content[0], 2, -1) . '</strong>';
+	[ // <li>
+		'desc' => '/^(<ol>)?__\s.+/im', // __ ordered list item (the first element will be preceeding by <ol>)
+		'output' => function ($ct) {
+			return strpos($ct[0], '<ol>__') === 0 ?
+				'<ol><li>' . substr($ct[0], 7) . '</li>' :
+				'<li>' . substr($ct[0], 3) . '</li>';
 		}
 	],
-	[
-		'desc' => '/E\([^)]+\)/i', // e(text)
-		'output' => function ($content) {
-			return '<em>' . substr($content[0], 2, -1) . '</em>';
+	[ // <ul>
+		'desc' => '/(^_\s.*\n){1,}/im',
+		'output' => function ($ct) {
+			return '<ul>' . $ct[0] . '</ul>';
 		}
 	],
-	[
-		'desc' => '/O\({3}.+\){3}/i', // o(((value)))
-		'output' => function ($content) {
-			return '<ol>' . substr($content[0], 2, -1) . '</ol>';
+	[ // <li>
+		'desc' => '/^(<ul>)?_\s.+/im', // _ unordered list item (the first element will be preceeding by <ul>)
+		'output' => function ($ct) {
+			return strpos($ct[0], '<ul>_') === 0 ?
+				'<ul><li>' . substr($ct[0], 6) . '</li>' :
+				'<li>' . substr($ct[0], 2) . '</li>';
 		}
 	],
-	[
-		'desc' => '/U\({3}.+\){3}/i', // u(((value)))
-		'output' => function ($content) {
-			return '<ul>' . substr($content[0], 2, -1) . '</ul>';
+	[ // <strong>
+		'desc' => '/_{2}[^_]+_{2}/i', // __strong text__
+		'output' => function ($ct) {
+			return '<strong>' . substr($ct[0], 2, -2) . '</strong>';
 		}
 	],
-	[
-		'desc' => '/\({2}[^()]+\){2}/i', // ((value)) only inside o() or u()
-		'output' => function ($content) {
-			return '<li>' . substr($content[0], 2, -2) . '</li>';
+	[ // <em>
+		'desc' => '/_[^_]+_/i', // _emphasic text_
+		'output' => function ($ct) {
+			return '<em>' . substr($ct[0], 1, -1) . '</em>';
 		}
-	]
+	],
 ];
