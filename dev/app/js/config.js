@@ -57,7 +57,7 @@
 		secIntro: 'Optional introduction',
 		imgLeg: 'Image caption',
 		lab: 'Label',
-		list: 'Elements making up the list (delimiter: %%)',
+		list: 'Elements making up the list (one by line)',
 		txtToTransf: 'Text to transform',
 		url: 'Address (URL)'
 	};
@@ -136,7 +136,7 @@
 			secIntro: 'Introduction optionnelle',
 			imgLeg: 'Légende de l\'image',
 			lab: 'Libellé',
-			list: 'Eléments composant la liste (délimiteur : %%)',
+			list: 'Eléments composant la liste (un par ligne)',
 			txtToTransf: 'Texte à transformer',
 			url: 'Adresse (URL)'
 		};
@@ -175,69 +175,79 @@
 /* --- Regexes --- */
 
 	const REGEX = [
-		{
+
+		{ // <br>
 			desc: /\s{2}\n/g,
 			output: () => '<br/>'
 		},
-		{
-			desc: /^(?!3|4|5|6|f|i|o|u).+$/gm, // All except block elements can be enclosed in a paragraph.
-			output: (content) => `<p>${content}</p>`
+		{ // Only inline elements (strong, em, img) should be enclosed in a <p>.
+			desc: /^(?!3_|4_|5_|6_|_\s|__\s|\!\[[^\]]+\]\([^\)]+\)).+$/gm, 
+			output: (ct) => `<p>${ct}</p>`
 		},
-		{
-			desc: /^3\([^)]+\)$/gim, // 3(title)
-			output: (content) => `<h3>${content.substring(2, content.length - 1)}</h3>`
+		{ // <h3>
+			desc: /^3_.+$/gim, // 3_title
+			output: (ct) => `<h3>${ct.substring(2)}</h3>`
 		},
-		{
-			desc: /^4\([^)]+\)$/gim, // 4(title)
-			output: (content) => `<h4>${content.substring(2, content.length - 1)}</h4>`
+		{ // <h4>
+			desc: /^4_.+$/gim, // 4_title
+			output: (ct) => `<h4>${ct.substring(2)}</h4>`
 		},
-		{
-			desc: /^5\([^)]+\)$/gim, // 5(title)
-			output: (content) => `<h5>${content.substring(2, content.length - 1)}</h5>`
+		{ // <h5>
+			desc: /^5_.+$/gim, // 5_title
+			output: (ct) => `<h5>${ct.substring(2)}</h5>`
 		},
-		{
-			desc: /^6\([^)]+\)$/gim, // 6(title)
-			output: (content) => `<h6>${content.substring(2, content.length - 1)}</h6>`
+		{ // <h6>
+			desc: /^6_.+$/gim, // 6_title
+			output: (ct) => `<h6>${ct.substring(2)}</h6>`
 		},
-		{
-			desc: /I\([^()]+\([^()]+\){2}/gi, // i(alternative(url))
-			output: (content) => {
-				let dt = content.substring(2, content.length -2).split('('); // Remove i( from start and )) from end then split values by using the separator (.
-				return `<img src="${dt[1]}" alt="${dt[0]}" />`; 
+		{ // <img> / <figure>
+			desc: /\!\[[^\]]+\]\([^\)]+\)/gi, // ![alt|legend](img_url)
+			output: (ct) => {
+				let dt = ct.substring(2, ct.length -1).split('](');
+				dt[0] = dt[0].split('|');
+				return dt[0].length > 1 ? // Is there a legend ?
+					`<figure>
+						<img src="${dt[1]}" alt="${dt[0][0]}" />
+						<figcaption>${dt[0][1]}</figcaption>
+					</figure>`:
+					`<img src="${dt[1]}" alt="${dt[0][0]}" />`;
 			}
 		},
-		{
-			desc: /F\([^)]+\([^)]+\([^)]+\){3}/gi, // f(legend(alternative(url)))
-			output: (content) => {
-				let dt = content.substring(2, content.length -3).split('('); // Remove f( from start and ))) from end then split values by using the separator (.
-				return `<figure><img src="${dt[2]}" alt="${dt[1]}" /><figcaption>${dt[0]}</figcaption></figure>`;
-			}
-		},
-		{
-			desc: /A\([^()]+\([^()]+\){2}/gi, // a(label(url))
-			output: (content) => {
-				let dt = content.substring(2, content.length -2).split('('); // Remove a( from start and )) from end then split values by using the separator (.
+		{ // <a>
+			desc: /\[[^\]]+\]\([^\)]+\)/gi, // [label](url)
+			output: (ct) => {
+				let dt = ct.substring(1, ct.length - 1).split('](');
 				return `<a href="${dt[1]}">${dt[0]}</a>`;
-		}
+			}
 		},
-		{	
-			desc: /S\([^)]+\)/gi, // s(text)
-			output: (content) => `<strong>${content.substring(2, content.length - 1)}</strong>`
+		{ // <ol>
+			desc: /(^__\s.*\n){1,}/gim,
+			output: (ct) => `<ol>${ct}</ol>`
 		},
-		{
-			desc: /E\([^)]+\)/gi, // e(text)
-			output: (content) => `<em>${content.substring(2, (content.length - 1))}</em>`
+		{ // <li>
+			desc: /^(<ol>)?__\s.+/gim, // __ ordered list item (the first element will be preceeding by <ol>)
+			output: (ct) =>
+				ct.startsWith('<ol>__') ?
+					`<ol><li>${ct.substring(7,ct.length)}</li>` :
+					`<li>${ct.substring(3,ct.length)}</li>`
 		},
-		{
-			desc: /O\({3}.+\){3}/gi, // o(((value)))
-			output: (content) => `<ol>${content.substring(2, content.length - 1)}</ol>`
+		{ // <ul>
+			desc: /(^_\s.*\n){1,}/gim,
+			output: (ct) => `<ul>${ct}</ul>`
 		},
-		{
-			desc: /U\({3}.+\){3}/gi, // u(((value)))
-			output: (content) => `<ul>${content.substring(2, content.length - 1)}</ul>`
+		{ // <li>
+			desc: /^(<ul>)?_\s.+/gim, // _ unordered list items (the first element will be preceeding by <ul>)
+			output: (ct) =>
+				ct.startsWith('<ul>_') ?
+					`<ul><li>${ct.substring(6,ct.length)}</li>` :
+					`<li>${ct.substring(2,ct.length)}</li>`
 		},
-		{
-			desc: /\({2}[^()]+\){2}/gi, // ((value)) only inside o() or u()
-			output: (content) => `<li>${content.substring(2, content.length - 2)}</li>`
-		}
+		{ // <strong>
+			desc: /_{2}[^_]+_{2}/gi, // __strong text__
+			output: (ct) => `<strong>${ct.substring(2, ct.length - 2)}</strong>`
+		},
+		{ // <em>
+			desc: /_[^_]+_/gi, // _emphasic text_
+			output: (ct) => `<em>${ct.substring(1, ct.length - 1)}</em>`
+		},
 	];

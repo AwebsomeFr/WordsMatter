@@ -457,7 +457,6 @@ let varTemp;
 		}
 
 		outputElm.innerHTML = content;
-		return content;
 
 	};
 
@@ -767,39 +766,42 @@ let varTemp;
 
 			switch(object.tag) {
 
-				case 'h3': case 'h4': case 'h5': case 'h6':
-					output = '\n' + object.tag.substring(1,2) + '(' + e.target.elements[0].value + ')\n';
+				case 'h3': 
+				case 'h4': 
+				case 'h5': 
+				case 'h6':
+					output = `\n${object.tag.substring(1,2)}_${e.target.elements[0].value}\n`;
 					break;
 
 				case 'strong': 
-					output = 's(' + e.target.elements[0].value + ')';
+					output = `__${e.target.elements[0].value}__`;
 					break;
 
 				case 'em':
-					output = 'e(' + e.target.elements[0].value + ')';
+					output = `_${e.target.elements[0].value}_`;
 					break;
 
-				case 'ol': case 'ul':
-				 	let mod = object.tag.substring(0,1); // Is modifier is "o" or "u" ?
-					output = mod + '(';
-					for(let elm of e.target.elements[0].value.split('%%')) { 
+				case 'ol':
+				case 'ul':
+					let nScore = object.tag === 'ol' ? '__' : '_'; 
+					output = '\n'
+					for(let elm of e.target.elements[0].value.split('\n')) { 
 						if(elm.trim() !== '') {
-							output += '((' + elm.trim() + '))'; // Append each elm separatly IF not empty.
+							output += `${nScore} ${elm.trim()}\n`; 
 						}
 					}
-					output !== mod + '(' ? output += ')' : output = ''; // Close only if there at least is one valid value, else reinitialize.
-				 	break;
+					break;
 
 				case 'a':
-					output = 'a(' + e.target.elements[1].value + '(' + e.target.elements[0].value + '))';
+					output = `[${e.target.elements[1].value}](${e.target.elements[0].value})`;
 					break;
 
 				case 'img':
-					output = 'i(' + e.target.elements[1].value + '(' + e.target.elements[0].value + '))';
+					output = `![${e.target.elements[1].value}](${e.target.elements[0].value})`;
 					break;
 
 				case 'figure':
-					output = 'f(' + e.target.elements[1].value + '(' + e.target.elements[2].value + '(' + e.target.elements[0].value + ')))';
+					output = `![${e.target.elements[2].value}|${e.target.elements[1].value}](${e.target.elements[0].value})`;
 					break;
 
 			};
