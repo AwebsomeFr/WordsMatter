@@ -231,55 +231,84 @@
 		},
 		children: [
 			{
-				type: 'div',
+				type: 'details',
+				attributes: {
+					class: 'input-config'
+				},
 				children: [
 					{
+						type: 'summary',
+						text: LAB.bt.configuration
+
+					},
+
+					{
 						type: 'label',
-						attributes: {
-							for: 'input-art-class'
-						},
+						children: [
+							{
+								type: 'input',
+								attributes: {
+									id: 'input-art-class',
+									type: 'text'
+								}
+							},
+						],
 						text: LAB.input.postClass
 					},
+					
 					{
-						type: 'input',
-						attributes: {
-							id: 'input-art-class',
-							placeholder: LAB.input.postClass,
-							type: 'text'
-						}
+						type: 'label',
+						children: [
+							{
+								type: 'input',
+								attributes: {
+									id: 'input-art-draft',
+									type: 'checkbox'
+								}
+							}
+						],
+						text: LAB.input.postDraft
 					},
 				]
 			},
 			{
-				type: 'label',
+				type: 'div',
 				attributes: {
-					for: 'input-art-title'
+					class: 'input-content'
 				},
-				text: LAB.input.h1
-			},
-			{
-				type: 'input',
-				attributes: {
-					id: 'input-art-title',
-					oninput: 'runEditor(\'input-art-title\')',
-					placeholder: LAB.input.h1,
-					type: 'text'
-				}
-			},
-			{
-				type: 'label',
-				attributes: {
-					for: 'input-art-introduction'
-				},
-				text: LAB.input.secIntro
-			},
-			{
-				type: 'textarea',
-				attributes: {
-					id: 'input-art-introduction',
-					oninput: 'runEditor(\'input-art-introduction\')',
-					placeholder: LAB.input.secIntro
-				}
+				children: [
+					{
+						type: 'label',
+						attributes: {
+							for: 'input-art-title'
+						},
+						text: LAB.input.h1
+					},
+					{
+						type: 'input',
+						attributes: {
+							id: 'input-art-title',
+							oninput: 'runEditor(\'input-art-title\')',
+							placeholder: LAB.input.h1,
+							type: 'text'
+						}
+					},
+					{
+						type: 'label',
+						attributes: {
+							for: 'input-art-introduction'
+						},
+						text: LAB.input.secIntro
+					},
+					{
+						type: 'textarea',
+						attributes: {
+							id: 'input-art-introduction',
+							oninput: 'runEditor(\'input-art-introduction\')',
+							placeholder: LAB.input.secIntro
+						}
+					},
+				]
 			},
 			{
 				type: 'button',

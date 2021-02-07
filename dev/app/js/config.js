@@ -30,6 +30,7 @@
 		awb: 'WordsMatter is offered with enthusiasm by',
 		balanced: 'Balanced',
 		close: 'Close',
+		configuration: 'configuration',
 		confirm: 'Confirm',
 		delSec: 'Delete the section',
 		delete: 'Delete',
@@ -53,6 +54,7 @@
 
 	LAB.input = {
 		postClass: 'Class (optional)',
+		postDraft: 'Save as a draft ?',
 		imgAlt: 'Description (alternative)',
 		secContent: 'Content of the section',
 		h1: 'Title of the post (h1)',
@@ -87,8 +89,8 @@
 		confDelSec: 'The content of this section will be lost.',
 		confDelServ: 'Permanently delete the selected post from the blog?',
 		confDelWs: 'Permanently delete the post from the local memory of the web browser?',
-		confPushServ: 'You will now send content to the blog. If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
-		confUpdateServ: 'A post with an identical title already exists on the blog. Replace it ? Note: If the main title (h1) of the post is preceded by a %, it will be saved as a draft, but will not be made public.',
+		confPushServ: 'You will now send content to the blog.',
+		confUpdateServ: 'A post with an identical title already exists on the blog. Replace it ?',
 		editPost: 'Which post do you want to edit from the blog?',
 		exportPost: 'Copy and paste the following content into a .txt file. Use the <i>Import from .txt file</i> option accessible from the menu to reload it.',
 		setHeight: 'Choose how the writing and writing areas should occupy the height space.',
@@ -112,6 +114,7 @@
 			awb: 'WordsMatter est proposé avec enthousiasme par',	
 			balanced: 'Equilibré',
 			close: 'Fermer',
+			configuration: 'configuration',
 			confirm: 'Confirmer',
 			delSec: 'Supprimer la section',
 			delete: 'Supprimer',
@@ -135,6 +138,7 @@
 
 		LAB.input = {
 			postClass: 'Classe (optionnelle)',
+			postDraft: 'Sauvegarder en tant que brouillon ?',
 			imgAlt: 'Description (alternative)',
 			secContent: 'Contenu de section',
 			h1: 'Titre du post (h1)',
@@ -168,8 +172,8 @@
 			confDelSec: 'Le contenu de cette section sera perdu.',
 			confDelServ: 'Supprimer définitivement le post sélectionné du blog ?',
 			confDelWs: 'Supprimer définitivement le post de la mémoire locale du navigateur web ?',
-			confPushServ: 'Vous allez maintenant envoyer du contenu vers le blog. Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
-			confUpdateServ: 'Un post avec un titre identique existe déjà sur le blog. Le remplacer ? Note : Si le titre principal (h1) du post est précédé d\'un %, il sera sauvegardé en tant que brouillon, mais ne sera pas rendu public.',
+			confPushServ: 'Vous allez maintenant envoyer du contenu vers le blog.',
+			confUpdateServ: 'Un post avec un titre identique existe déjà sur le blog. Le remplacer ?',
 			editPost: 'Quel post souhaitez-vous modifier depuis le blog ?',
 			exportPost: 'Copiez-collez le contenu suivant dans un fichier .txt. Utilisez l\'option <i>Importer depuis fichier .txt</i> accessible depuis le menu pour le recharger.',
 			setHeight: 'Choisissez de quelle manière les zones d\'écriture et de rédaction doivent occuper l\'espace dans la hauteur. ',

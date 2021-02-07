@@ -368,7 +368,7 @@ let varTemp;
 								title="${LAB.bt.open}"
 								value="${file.dir}">
 								${file.title} 
-								${file.draft ? 
+								${file.isDraft ? 
 									`<span class="private"><br/>${LAB.bt.private}</span>` : 
 									`<span class="published"><br/>${LAB.bt.published}</span>`
 								}
@@ -463,6 +463,7 @@ let varTemp;
 	const getPost = () => {
 		
 		let post = {
+			isDraft: document.getElementById('input-art-draft').checked,
 			class: document.getElementById('input-art-class').value,
 			title: document.getElementById('input-art-title').value,
 			introduction: document.getElementById('input-art-introduction').value,
@@ -493,6 +494,8 @@ let varTemp;
 	};
 
 	const setPost = (post) => {
+
+		document.getElementById('input-art-draft').checked = post.isDraft;
 		
 		document.getElementById('input-art-class').value = post.class;
 
@@ -678,7 +681,7 @@ let varTemp;
 			})
 	);
 
-		UI.input.insertBefore(inputSecElm, document.getElementById('bt-add-section'));
+		UI.input.querySelector('div').appendChild(inputSecElm);
 		// Scroll down to the new section.
 		document.location.replace(document.location.pathname + '#input-sec-title-' + marker);
 		marker++;

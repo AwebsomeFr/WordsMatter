@@ -348,35 +348,57 @@
 
 /* --- #input --- */
 
-	.input-section {
-		display: grid;
-		grid-template-areas:
-		"title title title" 
-		"but but content"
-		"but but content"
-		"but but content"
-		"but but content"
-		"but but content"
-		"but but content";
-		grid-template-columns: repeat(2, 40px) 1fr;
-	}
-	
-	#input label {
-		left: -9999px;
-		position: absolute;
-	}
+	/* --- #input | configuration --- */
 
-	#input input { 
-		grid-area: title;
-	}
+		.input-config {
+			padding: 10px;
+		}
 
-	textarea {
-		grid-area: content;
-		min-height: 150px; 
-		resize: vertical;
-		scrollbar-color: var(--color1) var(--color4);
-		scrollbar-width: thin;
-	}
+		.input-config label {
+			display: block;
+			margin-top: 10px;
+		}
+
+		.input-config input {
+			display: block;
+		}
+
+	/* --- #input | content --- */
+
+		.input-content {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.input-section {
+			display: grid;
+			grid-template-areas:
+			"title title title" 
+			"but but content"
+			"but but content"
+			"but but content"
+			"but but content"
+			"but but content"
+			"but but content";
+			grid-template-columns: repeat(2, 40px) 1fr;
+		}
+
+		.input-content input { /* Target input for h1 and h2 */
+			grid-area: title;
+		}
+
+		.input-content textarea {
+			grid-area: content;
+			min-height: 150px; 
+			resize: vertical;
+			scrollbar-color: var(--color1) var(--color4);
+			scrollbar-width: thin;
+		}
+
+		.input-content label {
+			left: -9999px;
+			position: absolute;
+		}
 
 /* --- responsive --- */
 

@@ -37,8 +37,8 @@ if(
 		file_put_contents(INPUT_DIR_PATH . '/' . INPUT_FILE_NAME, $_POST['post']);
 		
 		// If it is only a draft, remove any output content...
-		$draft = $rawTitle[0] === '%' ? true : false;
-		if($draft) {
+		$isDraft = json_decode($_POST['post'])->isDraft;
+		if($isDraft) {
 			if(is_dir(OUTPUT_DIR_PATH)) {
 				if(is_file(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME)) {
 					unlink(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME);
@@ -100,7 +100,7 @@ if(
 				"date" => date('Y/m/d'),
 				"title" => json_decode($_POST['post'])->title,
 				"dir" => DIR_NAME,
-				"draft" => $draft
+				"isDraft" => $isDraft
 			)
 		);
 		file_put_contents(POSTS_INDEX, json_encode($posts));
