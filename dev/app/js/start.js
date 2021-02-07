@@ -231,6 +231,26 @@
 		},
 		children: [
 			{
+				type: 'div',
+				children: [
+					{
+						type: 'label',
+						attributes: {
+							for: 'input-art-class'
+						},
+						text: LAB.input.postClass
+					},
+					{
+						type: 'input',
+						attributes: {
+							id: 'input-art-class',
+							placeholder: LAB.input.postClass,
+							type: 'text'
+						}
+					},
+				]
+			},
+			{
 				type: 'label',
 				attributes: {
 					for: 'input-art-title'

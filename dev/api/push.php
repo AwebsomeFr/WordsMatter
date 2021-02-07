@@ -13,7 +13,7 @@ if(
 
 	$rawTitle = json_decode($_POST['post'])->title;
 		
-	define('DIR_NAME', buildDirName($rawTitle)); // Name of the post, represented by its parent directory.
+	define('DIR_NAME', buildName($rawTitle)); // Name of the post, represented by its parent directory.
 	define('OUTPUT_DIR_PATH', OUTPUT_DIR . '/' . DIR_NAME); 
 	define('OUTPUT_FILE_NAME', 'index' . $extension);
 	define('INPUT_DIR_PATH', INPUT_DIR . '/' . DIR_NAME); 
@@ -54,12 +54,14 @@ if(
 			require './regex.php';
 
 			$input = (object) array(
+				'class' => buildName(json_decode($_POST['post'])->class),
 				'title' => json_decode($_POST['post'])->title,
 				'introduction' => json_decode($_POST['post'])->introduction,
 				'sections' => json_decode($_POST['post'])->sections
 			);
 
 			$output = (object) array(
+				'class' => $input->class,
 				'title' => $input->title,
 				'introduction' => runEditor($input->introduction, $regex),
 				'sections' => []

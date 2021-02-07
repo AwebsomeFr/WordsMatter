@@ -15,7 +15,7 @@ function runEditor ($inputContent, $regex) {
 		
 }
 
-function buildDirName ($titlePost) {
+function buildName ($titlePost) {
 
 // 1. To lowercase > 2. No accents > 3. No spaces, no hyphens > 4. No special characters except dashes > 5. If necessary, remove any extra dashes > 6. If necessary, remove dash from start > 7. If necessary, remove dash from end.
 

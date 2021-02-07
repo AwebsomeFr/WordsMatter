@@ -463,6 +463,7 @@ let varTemp;
 	const getPost = () => {
 		
 		let post = {
+			class: document.getElementById('input-art-class').value,
 			title: document.getElementById('input-art-title').value,
 			introduction: document.getElementById('input-art-introduction').value,
 			sections: null
@@ -493,6 +494,8 @@ let varTemp;
 
 	const setPost = (post) => {
 		
+		document.getElementById('input-art-class').value = post.class;
+
 		document.getElementById('input-art-title').value = post.title;
 		runEditor('input-art-title');
 

@@ -52,11 +52,12 @@
 	};
 
 	LAB.input = {
+		postClass: 'Class (optional)',
 		imgAlt: 'Description (alternative)',
 		secContent: 'Content of the section',
 		h1: 'Title of the post (h1)',
 		h2: 'Title of the section (h2)',
-		secIntro: 'Optional introduction',
+		secIntro: 'Introduction (optional)',
 		imgLeg: 'Image caption',
 		lab: 'Label',
 		list: 'Elements making up the list (one by line)',
@@ -133,11 +134,12 @@
 		};
 
 		LAB.input = {
+			postClass: 'Classe (optionnelle)',
 			imgAlt: 'Description (alternative)',
 			secContent: 'Contenu de section',
 			h1: 'Titre du post (h1)',
 			h2: 'Titre de section (h2)',
-			secIntro: 'Introduction optionnelle',
+			secIntro: 'Introduction (optionnelle)',
 			imgLeg: 'Légende de l\'image',
 			lab: 'Libellé',
 			list: 'Eléments composant la liste (un par ligne)',
