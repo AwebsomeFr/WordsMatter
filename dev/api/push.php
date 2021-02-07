@@ -30,6 +30,8 @@ if(
 	// Validation is true ? Proceed !
 	else if($_POST['validation'] === 'true') {
 
+		$post = json_decode($_POST['post']);
+
 		// Export / update raw content for future edition.
 		if(!is_dir(INPUT_DIR_PATH)) {
 			mkdir(INPUT_DIR_PATH);
@@ -37,7 +39,7 @@ if(
 		file_put_contents(INPUT_DIR_PATH . '/' . INPUT_FILE_NAME, $_POST['post']);
 		
 		// If it is only a draft, remove any output content...
-		$isDraft = json_decode($_POST['post'])->isDraft;
+		$isDraft = $post->isDraft;
 		if($isDraft) {
 			if(is_dir(OUTPUT_DIR_PATH)) {
 				if(is_file(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME)) {
@@ -53,22 +55,15 @@ if(
 			require './template.php';
 			require './regex.php';
 
-			$input = (object) array(
-				'class' => buildName(json_decode($_POST['post'])->class),
-				'title' => json_decode($_POST['post'])->title,
-				'introduction' => json_decode($_POST['post'])->introduction,
-				'sections' => json_decode($_POST['post'])->sections
-			);
-
 			$output = (object) array(
-				'class' => $input->class,
-				'title' => $input->title,
-				'introduction' => runEditor($input->introduction, $regex),
+				'class' => buildName($post->class),
+				'title' => $post->title,
+				'introduction' => runEditor($post->introduction, $regex),
 				'sections' => []
 			);
 
-			if($input->sections != null) {
-				foreach ($input->sections as $section) {
+			if($post->sections != null) {
+				foreach ($post->sections as $section) {
 					array_push($output->sections, 
 						(object) array(
 							'title' => $section->title,
@@ -85,17 +80,17 @@ if(
 
 		}
 
-		$posts = json_decode(file_get_contents(POSTS_INDEX));
+		$list = json_decode(file_get_contents(POSTS_INDEX));
 		
 		// If the post is already in, remove from the list first.
-		for($i = 0, $l = count($posts); $i < $l; $i++) {
-			if($posts[$i]->dir === DIR_NAME) {
-				array_splice($posts, $i, 1);
+		for($i = 0, $l = count($list); $i < $l; $i++) {
+			if($list[$i]->dir === DIR_NAME) {
+				array_splice($list, $i, 1);
 				break;
 			}
 		}
 		// Then list the post at the start of the array.
-		array_unshift($posts, 
+		array_unshift($list, 
 			(object) array(
 				"date" => json_decode($_POST['post'])->date,
 				"title" => json_decode($_POST['post'])->title,
@@ -103,7 +98,7 @@ if(
 				"isDraft" => $isDraft
 			)
 		);
-		file_put_contents(POSTS_INDEX, json_encode($posts));
+		file_put_contents(POSTS_INDEX, json_encode($list));
 
 		echo 'success';
 
