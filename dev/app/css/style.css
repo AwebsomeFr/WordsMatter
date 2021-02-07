@@ -350,27 +350,27 @@
 
 	/* --- #input | configuration --- */
 
-		.input-config {
+		.in-config {
 			padding: 10px;
 		}
 
-		.input-config summary {
+		.in-config summary {
 			font-weight: bold;
 			color: var(--color1);
 		}
 
-		.input-config label {
+		.in-config label {
 			display: block;
 			margin: 15px 10px 10px 10px;
 		}
 		
-		.input-config label:last-child {
+		.in-config label:last-child {
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: start;
 		}
 
-		.input-config input {
+		.in-config input {
 			display: block;
 			margin-right: 5px;
 			max-width: 125px;
@@ -378,12 +378,12 @@
 
 	/* --- #input | content --- */
 
-		.input-content {
+		.in-content {
 			display: flex;
 			flex-direction: column;
 		}
 
-		.input-section {
+		.in-section {
 			display: grid;
 			grid-template-areas:
 			"title title title" 
@@ -396,11 +396,11 @@
 			grid-template-columns: repeat(2, 40px) 1fr;
 		}
 
-		.input-content input { /* Target input for h1 and h2 */
+		.in-content input { /* Target input for h1 and h2 */
 			grid-area: title;
 		}
 
-		.input-content textarea {
+		.in-content textarea {
 			grid-area: content;
 			min-height: 150px; 
 			resize: vertical;
@@ -408,7 +408,7 @@
 			scrollbar-width: thin;
 		}
 
-		.input-content label {
+		.in-content label {
 			left: -9999px;
 			position: absolute;
 		}

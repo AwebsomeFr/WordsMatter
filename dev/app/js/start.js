@@ -210,13 +210,13 @@
 			{
 				type: 'h1',
 				attributes: {
-					id: "output-art-title"
+					id: "out-h1"
 				}
 			},
 			{
 				type: 'div',
 				attributes: {
-					id: "output-art-introduction"
+					id: "out-intro"
 				}
 			}
 		]
@@ -233,7 +233,7 @@
 			{
 				type: 'details',
 				attributes: {
-					class: 'input-config'
+					class: 'in-config'
 				},
 				children: [
 					{
@@ -247,7 +247,7 @@
 							{
 								type: 'input',
 								attributes: {
-									id: 'input-art-class',
+									id: 'art-class',
 									type: 'text'
 								}
 							},
@@ -260,7 +260,7 @@
 							{
 								type: 'input',
 								attributes: {
-									id: 'input-art-date',
+									id: 'art-date',
 									type: 'date'
 								}
 							},
@@ -273,7 +273,7 @@
 							{
 								type: 'input',
 								attributes: {
-									id: 'input-art-draft',
+									id: 'art-draft',
 									type: 'checkbox'
 								}
 							}
@@ -285,21 +285,21 @@
 			{
 				type: 'div',
 				attributes: {
-					class: 'input-content'
+					class: 'in-content'
 				},
 				children: [
 					{
 						type: 'label',
 						attributes: {
-							for: 'input-art-title'
+							for: 'in-h1'
 						},
 						text: LAB.input.h1
 					},
 					{
 						type: 'input',
 						attributes: {
-							id: 'input-art-title',
-							oninput: 'runEditor(\'input-art-title\')',
+							id: 'in-h1',
+							oninput: 'runEditor(\'in-h1\')',
 							placeholder: LAB.input.h1,
 							type: 'text'
 						}
@@ -307,15 +307,15 @@
 					{
 						type: 'label',
 						attributes: {
-							for: 'input-art-introduction'
+							for: 'in-intro'
 						},
 						text: LAB.input.secIntro
 					},
 					{
 						type: 'textarea',
 						attributes: {
-							id: 'input-art-introduction',
-							oninput: 'runEditor(\'input-art-introduction\')',
+							id: 'in-intro',
+							oninput: 'runEditor(\'in-intro\')',
 							placeholder: LAB.input.secIntro
 						}
 					},

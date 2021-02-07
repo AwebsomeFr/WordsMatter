@@ -207,7 +207,7 @@ let varTemp;
 	const pushPost = (validation = false) => {
 
 		// Has a title been specified ?
-		if(document.getElementById('output-art-title').textContent.trim() != '') { 
+		if(document.getElementById('out-h1').textContent.trim() != '') { 
 
 			let req = createRequest(API_URL + 'push.php');
 				
@@ -445,7 +445,7 @@ let varTemp;
 	const runEditor = (inputId) => {
 
 		let inputElm = document.getElementById(inputId);
-		let outputElm = document.getElementById(inputId.replace('input', 'output')); 
+		let outputElm = document.getElementById(inputId.replace('in', 'out')); 
 		let content = inputElm.value.replace(/(<([^>]+)>)/ig, ''); // Striping source tags to prevent unexpected HTML.	
 
 		if(inputElm.type === 'textarea') {
@@ -463,15 +463,15 @@ let varTemp;
 	const getPost = () => {
 		
 		let post = {
-			date: document.getElementById('input-art-date').value,
-			isDraft: document.getElementById('input-art-draft').checked,
-			class: document.getElementById('input-art-class').value,
-			title: document.getElementById('input-art-title').value,
-			introduction: document.getElementById('input-art-introduction').value,
+			date: document.getElementById('art-date').value,
+			isDraft: document.getElementById('art-draft').checked,
+			class: document.getElementById('art-class').value,
+			title: document.getElementById('in-h1').value,
+			introduction: document.getElementById('in-intro').value,
 			sections: null
 		};
 		
-		let sectionElms = document.getElementsByClassName('input-section');		
+		let sectionElms = document.getElementsByClassName('in-section');		
 		
 		if(sectionElms.length > 0) {
 
@@ -496,17 +496,17 @@ let varTemp;
 
 	const setPost = (post) => {
 
-		document.getElementById('input-art-date').value = post.date;
+		document.getElementById('art-date').value = post.date;
 
-		document.getElementById('input-art-draft').checked = post.isDraft;
+		document.getElementById('art-draft').checked = post.isDraft;
 		
-		document.getElementById('input-art-class').value = post.class;
+		document.getElementById('art-class').value = post.class;
 
-		document.getElementById('input-art-title').value = post.title;
-		runEditor('input-art-title');
+		document.getElementById('in-h1').value = post.title;
+		runEditor('in-h1');
 
-		document.getElementById('input-art-introduction').value = post.introduction;
-		runEditor('input-art-introduction');
+		document.getElementById('in-intro').value = post.introduction;
+		runEditor('in-intro');
 
 		if(post.sections) {
 		
@@ -515,11 +515,11 @@ let varTemp;
 				let currentMarker = marker;
 				document.getElementById('bt-add-section').click();
 
-				document.getElementById('input-sec-title-' + currentMarker).value = section.title;
-				runEditor('input-sec-title-' + currentMarker);
+				document.getElementById('in-sec-title-' + currentMarker).value = section.title;
+				runEditor('in-sec-title-' + currentMarker);
 
-				document.getElementById('input-sec-content-' + currentMarker).value = section.content;
-				runEditor('input-sec-content-' + currentMarker);
+				document.getElementById('in-sec-content-' + currentMarker).value = section.content;
+				runEditor('in-sec-content-' + currentMarker);
 
 			}
 
@@ -530,17 +530,17 @@ let varTemp;
 	const resetPost = () => {
 
 		// Reset main title.
-		document.getElementById('input-art-title').value = '';
-		runEditor('input-art-title');
+		document.getElementById('in-h1').value = '';
+		runEditor('in-h1');
 		
 		// Reset introduction.
-		document.getElementById('input-art-introduction').value = '';
-		runEditor('input-art-introduction');
+		document.getElementById('in-intro').value = '';
+		runEditor('in-intro');
 
 		// For each section...
-		for(let sectionElm of document.getElementsByClassName('input-section')) {
+		for(let sectionElm of document.getElementsByClassName('in-section')) {
 			// ...Remove output part.
-			document.getElementById(sectionElm.id.replace('input', 'output')).remove();
+			document.getElementById(sectionElm.id.replace('in', 'out')).remove();
 			// ...Remove input part.
 			sectionElm.remove();
 		}
@@ -555,19 +555,19 @@ let varTemp;
 			chess({
 				type: 'section',
 				attributes: {
-					id: 'output-sec-' + marker
+					id: 'out-sec-' + marker
 				},
 				children: [
 					{ 
 						type: 'h2',
 						attributes: {
-							id: 'output-sec-title-' + marker
+							id: 'out-sec-title-' + marker
 						}
 					},
 					{ 
 						type: 'div',
 						attributes: {
-							id: 'output-sec-content-' + marker
+							id: 'out-sec-content-' + marker
 						}
 					}
 				]
@@ -577,14 +577,14 @@ let varTemp;
 		let inputSecElm = chess({
 			type: 'section',
 			attributes: {
-				class: 'input-section',
-				id: 'input-sec-' + marker
+				class: 'in-section',
+				id: 'in-sec-' + marker
 			}
 		});
 
 		for (let elmToCreate of [
-			{ type: 'input', id: 'input-sec-title-' + marker, placeholder: LAB.input.h2 },
-			{ type: 'textarea', id: 'input-sec-content-' + marker, placeholder: LAB.input.secContent }
+			{ type: 'input', id: 'in-sec-title-' + marker, placeholder: LAB.input.h2 },
+			{ type: 'textarea', id: 'in-sec-content-' + marker, placeholder: LAB.input.secContent }
 
 		]){
 			inputSecElm.appendChild(
@@ -674,8 +674,8 @@ let varTemp;
 						function: () => {
 							if(confirm(LAB.dial.confDelSec))
 								{
-									document.getElementById('input-sec-' + currentMarker).remove();
-									document.getElementById('output-sec-' + currentMarker).remove();
+									document.getElementById('in-sec-' + currentMarker).remove();
+									document.getElementById('out-sec-' + currentMarker).remove();
 								}
 
 						}
@@ -686,7 +686,7 @@ let varTemp;
 
 		UI.input.querySelector('div').appendChild(inputSecElm);
 		// Scroll down to the new section.
-		document.location.replace(document.location.pathname + '#input-sec-title-' + marker);
+		document.location.replace(document.location.pathname + '#in-sec-title-' + marker);
 		marker++;
 
 	};
