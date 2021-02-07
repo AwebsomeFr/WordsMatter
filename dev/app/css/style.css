@@ -115,7 +115,6 @@
 			min-width: 360px;
 			padding: 1px;
 			max-width: 100%;
-			transition: max-width 0.25s ease, grid-template-rows 0.25s ease;
 			width: 100%;
 		}
 
@@ -139,9 +138,7 @@
 		nav > div {
 			background-color: var(--color3);
 			position: fixed;
-			transform: scale(0);
-			transition: transform 0.25s ease;
-			transform-origin: top right;
+			transform: scale(0);;
 		}
 
 		nav.visible > div {
@@ -173,16 +170,7 @@
 		nav > button {
 			display: flex;
 			align-items: center;
-		}
-
-		nav svg {
-			fill: var(--bad-color);
-			margin-right: 10px;
-			width: 15px;
-		}
-
-		.serv-available nav svg {
-			fill: var(--good-color);
+			padding: 8px 32px;
 		}
 
 	/* nav | "button" import from file */
@@ -199,6 +187,39 @@
 			gap: 10px;
 			grid-template-columns: 75px auto;
 			line-height: 20px;
+		}
+
+/* --- status (show if connected or not to the API) --- */
+
+	/* status | body */
+	
+		#status {
+			position: fixed;
+			display: flex;
+			top: -5px;
+			left: 15px;
+		}
+
+	/* status | offline */
+
+		#status svg {
+			fill: var(--bad-color);
+			margin-right: 5px;
+			width: 15px;
+		}
+
+		.online, .serv-available .offline {
+			display: none;
+		}
+		
+	/* status | online */
+
+		.serv-available .online {
+			display: block;
+		}
+
+		.serv-available #status svg {
+			fill: var(--good-color);
 		}
 
 /* --- article --- */
