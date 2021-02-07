@@ -185,7 +185,7 @@
 		.nav-button:last-of-type {
 			font-weight: normal;
 			gap: 10px;
-			grid-template-columns: 75px auto;
+			grid-template-columns: 50px auto;
 			line-height: 20px;
 		}
 

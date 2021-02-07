@@ -191,13 +191,8 @@
 							onclick: "openLink('https://awebsome.fr')" 
 						},
 						html: 
-						`<span>
-							<img src="./app/img/logo-julien-wilhelm-awebsome.png" alt="Logo Julien Wilhelm Awebsome" />	
-						</span>
-						<p style="margin:0;">
-							<b>Julien Wilhelm | Awebsome</b><br/>
-							${LAB.bt.awebsome}
-						</p>`,
+						`<span><img src="./app/img/words-matter-logo-100px.png" alt="Logo WordsMatter" /></span>
+						<p>${LAB.bt.awb} <u>Awebsome</u>.</p>`
 					}
 				]
 			}
