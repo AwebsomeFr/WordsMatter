@@ -463,6 +463,7 @@ let varTemp;
 	const getPost = () => {
 		
 		let post = {
+			date: document.getElementById('input-art-date').value,
 			isDraft: document.getElementById('input-art-draft').checked,
 			class: document.getElementById('input-art-class').value,
 			title: document.getElementById('input-art-title').value,
@@ -494,6 +495,8 @@ let varTemp;
 	};
 
 	const setPost = (post) => {
+
+		document.getElementById('input-art-date').value = post.date;
 
 		document.getElementById('input-art-draft').checked = post.isDraft;
 		

@@ -241,7 +241,6 @@
 						text: LAB.bt.configuration
 
 					},
-
 					{
 						type: 'label',
 						children: [
@@ -255,7 +254,19 @@
 						],
 						text: LAB.input.postClass
 					},
-					
+					{
+						type: 'label',
+						children: [
+							{
+								type: 'input',
+								attributes: {
+									id: 'input-art-date',
+									type: 'date'
+								}
+							},
+						],
+						text: LAB.input.postDate
+					},
 					{
 						type: 'label',
 						children: [

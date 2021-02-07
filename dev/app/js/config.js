@@ -54,6 +54,7 @@
 
 	LAB.input = {
 		postClass: 'Class (optional)',
+		postDate: 'Publication date',
 		postDraft: 'Save as a draft ?',
 		imgAlt: 'Description (alternative)',
 		secContent: 'Content of the section',
@@ -138,6 +139,7 @@
 
 		LAB.input = {
 			postClass: 'Classe (optionnelle)',
+			postDate: 'Date de publication',
 			postDraft: 'Sauvegarder en tant que brouillon ?',
 			imgAlt: 'Description (alternative)',
 			secContent: 'Contenu de section',

@@ -97,7 +97,7 @@ if(
 		// Then list the post at the start of the array.
 		array_unshift($posts, 
 			(object) array(
-				"date" => date('Y/m/d'),
+				"date" => json_decode($_POST['post'])->date,
 				"title" => json_decode($_POST['post'])->title,
 				"dir" => DIR_NAME,
 				"isDraft" => $isDraft

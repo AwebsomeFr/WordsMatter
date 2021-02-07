@@ -354,13 +354,26 @@
 			padding: 10px;
 		}
 
+		.input-config summary {
+			font-weight: bold;
+			color: var(--color1);
+		}
+
 		.input-config label {
 			display: block;
-			margin-top: 10px;
+			margin: 15px 10px 10px 10px;
+		}
+		
+		.input-config label:last-child {
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: start;
 		}
 
 		.input-config input {
 			display: block;
+			margin-right: 5px;
+			max-width: 125px;
 		}
 
 	/* --- #input | content --- */
