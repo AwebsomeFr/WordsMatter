@@ -2,7 +2,6 @@
 
 // These variables should not exist.
 let marker = 0;
-let varTemp;
 
 /* --- User Interface --- */
 
@@ -298,10 +297,10 @@ let varTemp;
 
 		else {
 
-			varTemp = dirName;
+	
 			dial(
 				`<p>${LAB.dial.confDelServ}</p>
-				<button class="danger" onclick="deleteFromServer(true, varTemp)">${LAB.bt.confirm}</button>`
+				<button class="danger" onclick="deleteFromServer(true, '${dirName}')">${LAB.bt.confirm}</button>`
 			); 
 
 		}
