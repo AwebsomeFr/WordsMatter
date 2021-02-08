@@ -684,8 +684,11 @@ let marker = 0;
 	);
 
 		UI.input.querySelector('div').appendChild(inputSecElm);
-		// Scroll down to the new section.
+		
+		// Scroll down and focus to the new section.
 		document.location.replace(document.location.pathname + '#in-sec-title-' + marker);
+		inputSecElm.children[1].focus();
+	
 		marker++;
 
 	};

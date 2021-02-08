@@ -1,0 +1,1 @@
+e.shiftKey&&"Tab"===e.code&&"bt-save-work"===e.target.id&&(document.getElementById("bt-about-dev").focus(),e.preventDefault()),e.shiftKey||"Tab"!==e.code||"bt-about-dev"===e.target.id&&(document.getElementById("bt-save-work").focus(),e.preventDefault());

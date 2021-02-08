@@ -138,11 +138,11 @@
 		nav > div {
 			background-color: var(--color3);
 			position: fixed;
-			transform: scale(0);;
+			display: none;
 		}
 
 		nav.visible > div {
-			transform: initial;
+			display: initial;
 		}
 
 	/* nav | symbols preceding buttons */
@@ -283,18 +283,18 @@
 	
 		#dial {
 			color: var(--color5);
+			display: none;
 			max-height: 85vh;
 			max-width: 500px;
 			overflow-y: auto;
 			padding: 10px;
 			position: absolute;
-			transform: scale(0);
 			width: 85%;
 			z-index: 2;
 		}
 
 		#dial.visible { 
-			transform: initial;
+			display: block;
 		}
 
 		#dial>div {

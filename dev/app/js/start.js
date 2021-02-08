@@ -187,6 +187,7 @@
 					{
 						type: 'button',
 						attributes: {
+							id: "bt-about-dev",
 							class: "nav-button",
 							onclick: "openLink('https://awebsome.fr')" 
 						},
@@ -331,14 +332,34 @@
 			}
 		]
 	});
-
-	// Shortcuts.
-	document.onkeydown = (e) => {
 	
+	// Keyboard navigation
+	document.onkeydown = (e) => {
+		
+		// Close dial with Escape.
 		if(e.code === 'Escape') {
 			dial();
 		}
+		
+		// Focus trap for main menu.
+		if(e.code === 'Tab') {
+			// Backward.
+			if(e.shiftKey) {
+				if(e.target.id === 'bt-save-work') {
+					document.getElementById('bt-about-dev').focus();
+					e.preventDefault();
+				}
+			}
+			// Forward. 
+			else {
+				if(e.target.id === 'bt-about-dev') {
+					document.getElementById('bt-save-work').focus();
+					e.preventDefault();
+				}
+			}
+		}
 
+		// Shortcuts.
 		else if(e.ctrlKey || e.metaKey) {
 			switch(e.code) {
 				case 'KeyS':
