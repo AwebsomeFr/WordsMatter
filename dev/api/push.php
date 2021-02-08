@@ -10,10 +10,9 @@ if(
 ){ 
 
 	require './functions.php';
-
-	$rawTitle = json_decode($_POST['post'])->title;
+	$post = json_decode($_POST['post']);
 		
-	define('DIR_NAME', buildName($rawTitle)); // Name of the post, represented by its parent directory.
+	define('DIR_NAME', buildName($post->title)); // Name of the post, represented by its parent directory.
 	define('OUTPUT_DIR_PATH', OUTPUT_DIR . '/' . DIR_NAME); 
 	define('OUTPUT_FILE_NAME', 'index' . $extension);
 	define('INPUT_DIR_PATH', INPUT_DIR . '/' . DIR_NAME); 
@@ -29,8 +28,6 @@ if(
 
 	// Validation is true ? Proceed !
 	else if($_POST['validation'] === 'true') {
-
-		$post = json_decode($_POST['post']);
 
 		// Export / update raw content for future edition.
 		if(!is_dir(INPUT_DIR_PATH)) {
@@ -56,6 +53,7 @@ if(
 			require './regex.php';
 
 			$output = (object) array(
+				'date' => $post->date,
 				'class' => buildName($post->class),
 				'title' => $post->title,
 				'introduction' => runEditor($post->introduction, $regex),
@@ -92,8 +90,8 @@ if(
 		// Then list the post at the start of the array.
 		array_unshift($list, 
 			(object) array(
-				"date" => json_decode($_POST['post'])->date,
-				"title" => json_decode($_POST['post'])->title,
+				"date" => $post->date,
+				"title" => $post->title,
 				"dir" => DIR_NAME,
 				"isDraft" => $isDraft
 			)
