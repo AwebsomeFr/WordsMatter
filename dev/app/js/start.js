@@ -10,7 +10,7 @@
 	UI.notice = chess({
 		type: 'p',
 		attributes: {
-			id: 'notice'
+			class: 'wm-notice'
 		},
 	});
 
@@ -18,7 +18,7 @@
 	UI.dial = chess({
 		type: 'div',
 		attributes: {
-			id: 'dial',
+			class: 'wm-dial',
 		},
 		children: [
 			{
@@ -42,7 +42,7 @@
 	UI.status = chess({
 		type: 'div',
 		attributes: {
-			id: 'status'
+			class: 'wm-status'
 		},
 		html: '<svg viewBox="0 0 24 24"><path d="M14 12h-4v-12h4v12zm4.213-10.246l-1.213 1.599c2.984 1.732 5 4.955 5 8.647 0 5.514-4.486 10-10 10s-10-4.486-10-10c0-3.692 2.016-6.915 5-8.647l-1.213-1.599c-3.465 2.103-5.787 5.897-5.787 10.246 0 6.627 5.373 12 12 12s12-5.373 12-12c0-4.349-2.322-8.143-5.787-10.246z"/></svg>',
 		children: [
@@ -68,7 +68,7 @@
 	UI.nav = chess({
 		type: 'nav',
 		attributes: {
-			id: 'main-nav',
+			class: 'wm-nav',
 		}, 
 		children: [
 			{
@@ -88,7 +88,7 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button ws-required nav-trap-first",
+							class: "ws-required nav-trap-first",
 							onclick: "saveIntoLocalStorage()" 
 						},
 						html: '<span>↑</span>' + LAB.bt.save,
@@ -96,7 +96,7 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button ws-required",
+							class: "ws-required",
 							onclick: "deleteFromLocalStorage()" 
 						},
 						html: '<span>X</span>' + LAB.bt.delete,
@@ -104,7 +104,7 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button serv-required",
+							class: "serv-required",
 							onclick: "pushPost()" 
 						},
 						html: '<span>↑</span>' + LAB.bt.pushPost,
@@ -112,7 +112,7 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button serv-required",
+							class: "serv-required",
 							onclick: "getFiles()" 
 						},
 						html: '<span>↓</span>' + LAB.bt.listPost,
@@ -120,7 +120,6 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button",
 							onclick: "exportToFile()" 
 						},
 						html: '<span>↑</span>' + LAB.bt.exportPost,
@@ -128,8 +127,7 @@
 					{
 						type: 'label',
 						attributes: {
-							id: 'label-open-file',
-							class: 'nav-button'
+							id: 'label-open-file'
 						},
 						html: '<span>↓</span>' + LAB.bt.importPost,
 						children: [
@@ -146,7 +144,6 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button",
 							onclick: "toggleTheme()" 
 						},
 						html: '<span>☼</span>' + LAB.bt.setTheme,
@@ -154,7 +151,6 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button",
 							onclick: "setWidth()" 
 						},
 						html: '<span>↔</span>' + LAB.bt.setWidth,
@@ -162,7 +158,6 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button",
 							onclick: "setHeight()" 
 						},
 						html: '<span>↕</span>' + LAB.bt.setHeight,
@@ -170,7 +165,6 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button",
 							onclick: "openLink('./help.html')"
 						},
 						html: '<span>?</span>' + LAB.bt.doc,
@@ -178,7 +172,7 @@
 					{
 						type: 'button',
 						attributes: {
-							class: "nav-button nav-trap-last",
+							class: "nav-trap-last",
 							onclick: "openLink('https://awebsome.fr')" 
 						},
 						html: 
@@ -194,7 +188,7 @@
 	UI.output = chess({
 		type: 'article',
 		attributes: {
-			id: 'output',
+			class: 'wm-out',
 			onclick: 'toggleMenu(false)'
 		},
 		children: [
@@ -217,14 +211,14 @@
 	UI.input = chess({
 		type: 'article',
 		attributes: {
-			id: 'input',
+			class: 'wm-in',
 			onclick: 'toggleMenu(false)'
 		},
 		children: [
 			{
 				type: 'details',
 				attributes: {
-					class: 'in-config'
+					class: 'wm-in__config'
 				},
 				children: [
 					{
@@ -276,7 +270,7 @@
 			{
 				type: 'div',
 				attributes: {
-					class: 'in-content'
+					class: 'wm-in__content'
 				},
 				children: [
 					{
@@ -409,7 +403,7 @@
 
 		// Try to restore preferences. 
 		if(wsPref = localStorage.getItem('color-scheme')) {
-			if(wsPref === 'dark') {
+			if(wsPref === '--dark') {
 				toDarkTheme();
 			}			
 		}

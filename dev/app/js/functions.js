@@ -15,22 +15,22 @@ let marker = 0;
 
 	const toggleMenu = (boolean) => {
 		boolean ?
-			UI.nav.classList.add('visible'):
-			UI.nav.classList.remove('visible')
+			UI.nav.classList.add('--visible'):
+			UI.nav.classList.remove('--visible')
 	};
 
 	const toDarkTheme = () => {	
-		document.body.classList.add('dark');
-		savePref('color-scheme', 'dark');
+		document.body.classList.add('--dark');
+		savePref('color-scheme', '--dark');
 	}
 
 	const toLightTheme = () => {
-		document.body.classList.remove('dark');
-		savePref('color-scheme', 'light');
+		document.body.classList.remove('--dark');
+		savePref('color-scheme', '--light');
 	}
 
 	const toggleTheme = () => {
-		document.body.classList.contains('dark') ?
+		document.body.classList.contains('--dark') ?
 			toLightTheme():
 			toDarkTheme();
 	}
@@ -62,8 +62,8 @@ let marker = 0;
 		for(let width of [360, 540, 768, 1024, 1280, 'Max']) {
 			options += 
 				`<button onclick="
-					UI.main.setAttribute('class', 'mw${width}'),
-					savePref('max-width', 'mw${width}'),
+					UI.main.setAttribute('class', '--mw${width}'),
+					savePref('max-width', '--mw${width}'),
 					dial()">
 					${width}${isNaN(width) ? '': 'px'}
 				</button>`;
@@ -84,7 +84,7 @@ let marker = 0;
 		if(mess != undefined) {
 			
 			UI.dial.querySelector('div').innerHTML = mess;
-			UI.dial.classList.add('visible');
+			UI.dial.classList.add('--visible');
 
 			// Add a class to the latest button for focus trap.
 			let bts = UI.dial.getElementsByTagName('button');
@@ -96,7 +96,7 @@ let marker = 0;
 		}
 		
 		else {
-			UI.dial.classList.remove('visible');
+			UI.dial.classList.remove('--visible');
 		}
 
 		toggleMenu(false);
@@ -105,15 +105,15 @@ let marker = 0;
 
 	const setNotice = (notice, state) => {
 		dial();
-		UI.notice.setAttribute('class', '');
+		UI.notice.setAttribute('class', 'wm-notice');
 		UI.notice.textContent = notice;
-		UI.notice.setAttribute('class', 'visible ' + state);
+		UI.notice.setAttribute('class', 'wm-notice --visible ' + state);
 		setTimeout(() => {
-			UI.notice.setAttribute('class', '');
+			UI.notice.setAttribute('class', 'wm-notice');
 		}, 2500);
 	}
-	const badNotice = (notice) => setNotice(notice, 'bad');
-	const goodNotice = (notice) => setNotice(notice, 'good');
+	const badNotice = (notice) => setNotice(notice, '--bad');
+	const goodNotice = (notice) => setNotice(notice, '--good');
 
 /* --- Web storage API --- */
 
@@ -181,7 +181,7 @@ let marker = 0;
 					dial(
 						`<h2>${LAB.bt.delete}</h2>
 						<p> ${LAB.dial.confDelWs}</p> 
-						<button class="danger" onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
+						<button class="--danger" onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
 					);
 				
 				
@@ -311,7 +311,7 @@ let marker = 0;
 	
 			dial(
 				`<p>${LAB.dial.confDelServ}</p>
-				<button class="danger" onclick="deleteFromServer(true, '${dirName}')">${LAB.bt.confirm}</button>`
+				<button class="--danger" onclick="deleteFromServer(true, '${dirName}')">${LAB.bt.confirm}</button>`
 			); 
 
 		}
@@ -369,7 +369,7 @@ let marker = 0;
 					for(let file of files) {
 						message += `<li >
 							<button
-								class="danger"
+								class="--danger"
 								onclick="deleteFromServer(false, \'${file.dir}\')"
 								title="${LAB.bt.delete}">
 								X
@@ -482,7 +482,7 @@ let marker = 0;
 			sections: null
 		};
 		
-		let sectionElms = document.getElementsByClassName('in-section');		
+		let sectionElms = document.getElementsByClassName('wm-in__section');		
 		
 		if(sectionElms.length > 0) {
 
@@ -549,7 +549,7 @@ let marker = 0;
 		runEditor('in-intro');
 
 		// For each section...
-		for(let sectionElm of document.getElementsByClassName('in-section')) {
+		for(let sectionElm of document.getElementsByClassName('wm-in__section')) {
 			// ...Remove output part.
 			document.getElementById(sectionElm.id.replace('in', 'out')).remove();
 			// ...Remove input part.
@@ -588,7 +588,7 @@ let marker = 0;
 		let inputSecElm = chess({
 			type: 'section',
 			attributes: {
-				class: 'in-section',
+				class: 'wm-in__section',
 				id: 'in-sec-' + marker
 			}
 		});
@@ -676,7 +676,7 @@ let marker = 0;
 				type: 'button',
 				text: 'X',
 				attributes: {
-					class: 'danger',
+					class: '--danger',
 					title: LAB.bt.delSec
 				},
 				events: [
