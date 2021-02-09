@@ -25,6 +25,7 @@
 				type: 'button',
 				attributes: {
 					id: 'bt-close-dial',
+					class: 'dial-trap-first',
 					onclick: 'dial()'
 				},
 				text: LAB.bt.close 
@@ -89,7 +90,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-save-work",
-							class: "nav-button ws-required",
+							class: "nav-button ws-required nav-trap-first",
 							onclick: "saveIntoLocalStorage()" 
 						},
 						html: '<span>↑</span>' + LAB.bt.save,
@@ -188,7 +189,7 @@
 						type: 'button',
 						attributes: {
 							id: "bt-about-dev",
-							class: "nav-button",
+							class: "nav-button nav-trap-last",
 							onclick: "openLink('https://awebsome.fr')" 
 						},
 						html: 
@@ -341,19 +342,29 @@
 			dial();
 		}
 		
-		// Focus trap for main menu.
+		// Focus trap for dial & main menu.
 		if(e.code === 'Tab') {
+			
 			// Backward.
-			if(e.shiftKey) {
-				if(e.target.id === 'bt-save-work') {
-					document.getElementById('bt-about-dev').focus();
+			if(e.shiftKey) {		
+				if(e.target.classList.contains('dial-trap-first')) {
+					document.querySelector('.dial-trap-last').focus();
 					e.preventDefault();
 				}
+				else if(e.target.classList.contains('nav-trap-first')) {
+					document.querySelector('.nav-trap-last').focus();
+					e.preventDefault();
+				}
+
 			}
 			// Forward. 
 			else {
-				if(e.target.id === 'bt-about-dev') {
-					document.getElementById('bt-save-work').focus();
+				if(e.target.classList.contains('dial-trap-last')) {
+					document.querySelector('.dial-trap-first').focus();
+					e.preventDefault();
+				}
+				else if(e.target.classList.contains('nav-trap-last')) {
+					document.querySelector('.nav-trap-first').focus();
 					e.preventDefault();
 				}
 			}

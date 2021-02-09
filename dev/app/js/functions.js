@@ -83,6 +83,11 @@ let marker = 0;
 			UI.dial.querySelector('div').innerHTML = mess;
 			UI.main.style.opacity = '0.1';
 			UI.dial.classList.add('visible');
+
+			// Add a class to the latest button for focus trap.
+			let bts = UI.dial.getElementsByTagName('button');
+			bts[bts.length - 1].classList.add('dial-trap-last');
+
 		}
 		
 		else {
@@ -172,7 +177,7 @@ let marker = 0;
 
 					dial(
 						`<p> ${LAB.dial.confDelWs}</p> 
-						<button class="danger" onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
+						<button class="danger onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
 					);
 				
 				
@@ -377,7 +382,6 @@ let marker = 0;
 					message += '</ul>';
 					
 					dial(message);
-			
 				}
 
 				else {
