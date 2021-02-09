@@ -48,7 +48,8 @@ let marker = 0;
 		}
 
 		dial(
-			`<p>${LAB.dial.setHeight}</p>
+			`<h2>${LAB.bt.setHeight}</h2>
+			<p>${LAB.dial.setHeight}</p>
 			${options}`
 		);
 
@@ -69,7 +70,8 @@ let marker = 0;
 		}
 
 		dial(
-			`<p>${LAB.dial.setWidth}</p>
+			`<h2>${LAB.bt.setWidth}</h2>
+			<p>${LAB.dial.setWidth}</p>
 			${options}`
 		);
 
@@ -177,7 +179,8 @@ let marker = 0;
 
 
 					dial(
-						`<p> ${LAB.dial.confDelWs}</p> 
+						`<h2>${LAB.bt.delete}</h2>
+						<p> ${LAB.dial.confDelWs}</p> 
 						<button class="danger onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
 					);
 				
@@ -224,7 +227,8 @@ let marker = 0;
 					// New post ? Ask confirm push.
 					if(req.responseText === 'release') {
 						dial(
-							`<p>${LAB.dial.confPushServ}</p>
+							`<h2>${LAB.bt.pushPost}</h2>
+							<p>${LAB.dial.confPushServ}</p>
 							<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
 						);
 					}
@@ -232,7 +236,8 @@ let marker = 0;
 					// Existing post ? Ask confirm update.
 					else if(req.responseText === 'update') {
 						dial(
-							`<p>${LAB.dial.confUpdateServ}</p>
+							`<h2>${LAB.bt.pushPost}</h2>
+							<p>${LAB.dial.confUpdateServ}</p>
 							<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
 						);
 					}
@@ -358,7 +363,8 @@ let marker = 0;
 				if(files.length > 0) {
 
 					let message = 
-					`<p>${LAB.dial.editPost}</p>
+					`<h2>${LAB.bt.listPost}</h2>
+					<p>${LAB.dial.editPost}</p>
 					<ul>`;
 					for(let file of files) {
 						message += `<li >
@@ -404,7 +410,8 @@ let marker = 0;
 	const exportToFile = () => {
 
 		dial(
-			`<p>${LAB.dial.exportPost}</p>
+			`<h2>${LAB.bt.exportPost}</h2>
+			<p>${LAB.dial.exportPost}</p>
 			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>`
 		);
 
