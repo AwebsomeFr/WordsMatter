@@ -181,7 +181,7 @@ let marker = 0;
 					dial(
 						`<h2>${LAB.bt.delete}</h2>
 						<p> ${LAB.dial.confDelWs}</p> 
-						<button class="danger onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
+						<button class="danger" onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
 					);
 				
 				
@@ -419,7 +419,7 @@ let marker = 0;
 
 /* --- Core features --- */
 
-	function chess(obj) { // = Create HTML Elements Short Syntax.
+	const chess = (obj) => { // = Create HTML Elements Short Syntax.
 
 		let elm = document.createElement(obj.type); // REQUIRED. Define <tag> type.
 
@@ -474,9 +474,9 @@ let marker = 0;
 	const getPost = () => {
 		
 		let post = {
-			date: document.getElementById('art-date').value,
-			isDraft: document.getElementById('art-draft').checked,
-			class: document.getElementById('art-class').value,
+			date: document.getElementById('post-date').value,
+			isDraft: document.getElementById('post-draft').checked,
+			class: document.getElementById('post-class').value,
 			title: document.getElementById('in-h1').value,
 			introduction: document.getElementById('in-intro').value,
 			sections: null
@@ -507,11 +507,11 @@ let marker = 0;
 
 	const setPost = (post) => {
 
-		document.getElementById('art-date').value = post.date;
+		document.getElementById('post-date').value = post.date;
 
-		document.getElementById('art-draft').checked = post.isDraft;
+		document.getElementById('post-draft').checked = post.isDraft;
 		
-		document.getElementById('art-class').value = post.class;
+		document.getElementById('post-class').value = post.class;
 
 		document.getElementById('in-h1').value = post.title;
 		runEditor('in-h1');

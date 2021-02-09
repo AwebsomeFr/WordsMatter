@@ -428,7 +428,7 @@
 
 	@media screen and (max-width: 768px) {
 		
-		#bt-set-width {
+		.nav-button:nth-child(8) { /* Set width button. */
 			display: none;
 		}
 
@@ -436,7 +436,7 @@
 
 	@media screen and (min-width: 768px) {
 		
-		#bt-set-width {
+		.nav-button:nth-child(8) {
 			display: grid;
 		}
 

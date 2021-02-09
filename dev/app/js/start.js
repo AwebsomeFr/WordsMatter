@@ -24,7 +24,6 @@
 			{
 				type: 'button',
 				attributes: {
-					id: 'bt-close-dial',
 					class: 'dial-trap-first',
 					onclick: 'dial()'
 				},
@@ -89,7 +88,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-save-work",
 							class: "nav-button ws-required nav-trap-first",
 							onclick: "saveIntoLocalStorage()" 
 						},
@@ -98,7 +96,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-delete-work",
 							class: "nav-button ws-required",
 							onclick: "deleteFromLocalStorage()" 
 						},
@@ -107,7 +104,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-release-work",
 							class: "nav-button serv-required",
 							onclick: "pushPost()" 
 						},
@@ -116,7 +112,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-list-work",
 							class: "nav-button serv-required",
 							onclick: "getFiles()" 
 						},
@@ -125,7 +120,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-export-work",
 							class: "nav-button",
 							onclick: "exportToFile()" 
 						},
@@ -152,7 +146,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-switch-theme",
 							class: "nav-button",
 							onclick: "toggleTheme()" 
 						},
@@ -161,7 +154,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-set-width",
 							class: "nav-button",
 							onclick: "setWidth()" 
 						},
@@ -170,7 +162,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-set-height",
 							class: "nav-button",
 							onclick: "setHeight()" 
 						},
@@ -179,7 +170,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-read-help",
 							class: "nav-button",
 							onclick: "openLink('./help.html')"
 						},
@@ -188,7 +178,6 @@
 					{
 						type: 'button',
 						attributes: {
-							id: "bt-about-dev",
 							class: "nav-button nav-trap-last",
 							onclick: "openLink('https://awebsome.fr')" 
 						},
@@ -249,7 +238,7 @@
 							{
 								type: 'input',
 								attributes: {
-									id: 'art-class',
+									id: 'post-class',
 									type: 'text'
 								}
 							},
@@ -262,7 +251,7 @@
 							{
 								type: 'input',
 								attributes: {
-									id: 'art-date',
+									id: 'post-date',
 									type: 'date'
 								}
 							},
@@ -275,7 +264,7 @@
 							{
 								type: 'input',
 								attributes: {
-									id: 'art-draft',
+									id: 'post-draft',
 									type: 'checkbox'
 								}
 							}
