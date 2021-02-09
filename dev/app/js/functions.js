@@ -80,19 +80,20 @@ let marker = 0;
 	const dial = (mess) => {
 		
 		if(mess != undefined) {
+			
 			UI.dial.querySelector('div').innerHTML = mess;
-			UI.main.style.opacity = '0.1';
 			UI.dial.classList.add('visible');
 
 			// Add a class to the latest button for focus trap.
 			let bts = UI.dial.getElementsByTagName('button');
 			bts[bts.length - 1].classList.add('dial-trap-last');
+			
+			// Give focus to the first useful button (sometimes, focus is given to the first input).
+			bts[1].focus();
 
 		}
 		
 		else {
-			UI.dial.querySelector('div').innerHTML = '';
-			UI.main.style.opacity = '1';
 			UI.dial.classList.remove('visible');
 		}
 

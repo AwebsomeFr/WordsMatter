@@ -51,8 +51,8 @@
 		color: #fff;
 	}
 
-	button:hover, #label-open-file:hover { 
-		opacity: 0.75;
+	button:hover, button:focus, #label-open-file:hover { 
+		opacity: 0.85;
 	}
 
 /* --- body --- */
@@ -256,7 +256,7 @@
 			top: 0;
 			transform: translateY(-300px);
 			transition: transform 0.25s ease;
-			z-index: 2;
+			z-index: 1;
 		}
 
 		#notice.visible { 
@@ -282,24 +282,35 @@
 	/* #dial | body */
 	
 		#dial {
+			background-color: var(--color3);
+			bottom: 0;
 			color: var(--color5);
 			display: none;
-			max-height: 85vh;
-			max-width: 500px;
+			left: 0;
 			overflow-y: auto;
 			padding: 10px;
-			position: absolute;
-			width: 85%;
-			z-index: 2;
+			position: fixed;
+			right: 0;
+			top: 0;
+			z-index: 1;
 		}
-
+		
 		#dial.visible { 
-			display: block;
+			display: flex;
+			flex-direction: column;;
+		}
+		
+	/* #dial | content */
+
+		#dial h2 {
+			margin-top: 0;
 		}
 
 		#dial>div {
-			border-top: solid 1px var(--color1);
-			margin-top: 10px;
+			margin: auto;
+			max-height: 85vh;
+			width: 85%;
+			max-width: 500px;
 		}
 
 	/* #dial | close button */
