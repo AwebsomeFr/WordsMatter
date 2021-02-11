@@ -548,12 +548,12 @@ let marker = 0;
 		document.getElementById('in-intro').value = '';
 		runEditor('in-intro');
 
-		// For each section...
-		for(let sectionElm of document.getElementsByClassName('wm-in__section')) {
-			// ...Remove output part.
-			document.getElementById(sectionElm.id.replace('in', 'out')).remove();
-			// ...Remove input part.
-			sectionElm.remove();
+		// Reset sections.
+		const secElms = document.getElementsByClassName('wm-in__section');
+		while(secElms.length >= 1) {
+			const secElm = secElms[0]; 
+			secElms[0].remove(); // Remove input.
+			document.getElementById(secElm.id.replace('in', 'out')).remove(); // Remove output.
 		}
 
 	};
