@@ -1,9 +1,10 @@
-"use strict";
+'use strict';
 
-/* --- 1. Build the interface --- */
+/* --- START / Build the interface --- */
 
 	const UI = {};
 	
+	UI.body = document.body;
 	UI.main = chess({ type: 'main' });
 
 	// Notice.
@@ -89,7 +90,7 @@
 						type: 'button',
 						attributes: {
 							class: "ws-required nav-trap-first",
-							onclick: "saveIntoLocalStorage()" 
+							onclick: "pushLocalPost()" 
 						},
 						html: '<span>↑</span>' + LAB.bt.save,
 					},
@@ -97,7 +98,7 @@
 						type: 'button',
 						attributes: {
 							class: "ws-required",
-							onclick: "deleteFromLocalStorage()" 
+							onclick: "deleteLocalPost()" 
 						},
 						html: '<span>X</span>' + LAB.bt.delete,
 					},
@@ -113,7 +114,7 @@
 						type: 'button',
 						attributes: {
 							class: "serv-required",
-							onclick: "getFiles()" 
+							onclick: "getPosts()" 
 						},
 						html: '<span>↓</span>' + LAB.bt.listPost,
 					},
@@ -145,9 +146,9 @@
 						type: 'button',
 						attributes: {
 							class: "serv-required",
-							onclick: "openGallery()" 
+							onclick: "getImages()" 
 						},
-						html: '<span>░</span>' + LAB.bt.openGallery,
+						html: '<span>░</span>' + LAB.bt.getImages,
 					},
 					{
 						type: 'button',
@@ -173,7 +174,7 @@
 					{
 						type: 'button',
 						attributes: {
-							onclick: "openLink('./help.html')"
+							onclick: "window.open('./help.html')"
 						},
 						html: '<span>?</span>' + LAB.bt.doc,
 					},
@@ -181,7 +182,7 @@
 						type: 'button',
 						attributes: {
 							class: "nav-trap-last",
-							onclick: "openLink('https://awebsome.fr')" 
+							onclick: "window.open('https://awebsome.fr')" 
 						},
 						html: 
 						`<span><img src="./app/img/words-matter-logo-100px.png" alt="Logo WordsMatter" /></span>
@@ -365,7 +366,7 @@
 		else if(e.ctrlKey || e.metaKey) {
 			switch(e.code) {
 				case 'KeyS':
-					saveIntoLocalStorage();
+					pushLocalPost();
 					e.preventDefault();
 					break;
 				case 'KeyP':
@@ -373,67 +374,60 @@
 					e.preventDefault();
 					break;
 				case 'KeyO':
-					getFiles();
+					getPosts();
 					e.preventDefault();
 					break;
 			}
 		}
-	}
+	};
 
-	document.body.appendChild(UI.notice);
-	document.body.appendChild(UI.dial);
-	document.body.appendChild(UI.status);
+	UI.body.appendChild(UI.notice);
+	UI.body.appendChild(UI.dial);
+	UI.body.appendChild(UI.status);
 	UI.main.appendChild(UI.nav);
 	UI.main.appendChild(UI.output);
 	UI.main.appendChild(UI.input);
-	document.body.appendChild(UI.main);
+	UI.body.appendChild(UI.main);
 
 	document.documentElement.lang = LANG;
 
-/* --- 2. Enable features under conditions --- */
-
-	resetPost();
+/* --- START / Enable features under conditions --- */
 
 	// Is the Web Storage API available ?
 	if(localStorage) {
 		
-		// Enable WS features.
-		document.body.classList.add('ws-available');
+		// Enable features.
+		UI.body.classList.add('ws-available');
 
-		let wsData;
-
-		// Try to reload content.
-		if(wsData = localStorage.getItem('post')) {
-			importFromLocalStorage(JSON.parse(wsData));
+		// Try to reload content...
+		const wsData = localStorage.getItem('post');
+		if(wsData !== null) {
+			importPost(JSON.parse(wsData));
 		}
 
-		let wsPref;
-
-		// Try to restore preferences. 
-		if(wsPref = localStorage.getItem('color-scheme')) {
-			if(wsPref === '--dark') {
-				toDarkTheme();
-			}			
-		}
-		if(wsPref = localStorage.getItem('max-width')) {
-			UI.main.setAttribute('class', wsPref);
+		// ...To restore theme... 
+		const wsTheme = localStorage.getItem('theme');
+		if(wsTheme === '--dark') {
+			toDarkTheme();
+		}			
+		
+		// ...And max width.
+		const wsWidth = localStorage.getItem('max-width');
+		if(wsWidth !== null) {
+			UI.main.setAttribute('class', wsWidth);
 		}
 
 	}
 
 	// Is the server available ?
-	let req = createRequest(API_URL + 'init.php');
-	req.onload = () => {
-		let permission = req.responseText;
-		if(permission === 'true') {
-			// Enable features.
-			document.body.classList.add('serv-available');
+	ajaxManager('init', null, resp => {
+		if(resp === 'granted') {
+			UI.body.classList.add('serv-available'); // Enable features.
 		}
-	};
-	req.send('editorId=' + EDITOR_ID);
+	});
 
 	// Autoset viewport.
 	setViewportHeight();
 	window.onresize = () => {
 		setViewportHeight();
-	}
+	};

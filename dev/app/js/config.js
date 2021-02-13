@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /* --- To customize --- */
 
@@ -8,7 +8,7 @@
 	// The URL where the api directory is located. Please rename it (see the documentation).
 	const API_URL = './api/';
 
-	// Supported : fr.
+	// Supported : fr / en.
 	const LANG = 'en'; 
 
 /* --- i18n --- */
@@ -43,7 +43,7 @@
 		offline: 'offline',
 		online: 'online',
 		open: 'Open',
-		openGallery: 'Manage gallery',
+		getImages: 'Manage gallery',
 		pickImg: 'Or pick one here',
 		private: 'private',
 		published: 'published',
@@ -77,18 +77,16 @@
 		error: 'An error has occurred.',
 		load1: 'Post successfully loaded.',
 		serv0: 'Error while uploading: the post was not published.',
-		serv1: 'Message sent on the blog successfully.',
+		serv1: 'Post sent on the blog successfully.',
 		servContentY: 'Impossible: there is no post or draft on the blog yet.',
 		servDel0: 'Error while deleting blog post.',
 		servDel1: 'Post deleted from blog.',
 		servTitleY: 'Impossible: the post must have a title to be published or saved as a draft on the blog.',
-		servX: 'Unreachable server: the post cannot be sent to the blog. Check your internet connection.',
 		wsDel0: 'Error while deleting the post from the local memory of the web browser.',
 		wsDel1: 'Post deleted from the local memory of the web browser.',
 		wsDelY: 'Nothing to delete from the local memory of the web browser.',
 		wsSave0: 'Error while saving the post in the local memory of the web browser.',
 		wsSave1: 'Post saved in the local memory of the web browser.',
-		wsX: 'Post cannot be saved / deleted: The <i>Web Storage</i> API is unavailable.'
 	};
 
 	LAB.dial = {
@@ -133,7 +131,7 @@
 			offline: 'déconnecté',	
 			online: 'connecté',
 			open: 'Ouvrir',
-			openGallery: 'Gérer la galerie',
+			getImages: 'Gérer la galerie',
 			pickImg: 'Ou choisissez-en une ici',
 			private: 'privé',
 			published: 'publié',
@@ -171,13 +169,11 @@
 			servDel0: 'Erreur lors de la suppression du post du blog.',
 			servDel1: 'Post supprimé du blog.',
 			servTitleY: 'Impossible : le post doit avoir un titre pour être publié ou sauvegardé en tant que brouillon sur le blog.',
-			servX: 'Serveur injoignable : le post ne peut être envoyé vers le blog. Vérifiez votre connexion Internet.',
 			wsDel0: 'Erreur lors de la suppression du post de la mémoire locale du navigateur web.',
 			wsDel1: 'Post supprimé de la mémoire locale du navigateur web.',
 			wsDelY: 'Rien à supprimer de la mémoire locale du navigateur web.',
 			wsSave0: 'Erreur lors de l\'enregistrement du post dans la mémoire locale du navigateur web.',
 			wsSave1: 'Post enregistré dans la mémoire locale du navigateur web.',
-			wsX: 'Le post ne peut être sauvegardé / supprimé : l\'API <i>Web Storage</i> est indisponible.'
 		};
 
 		LAB.dial = {

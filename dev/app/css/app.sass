@@ -9,6 +9,14 @@
 	src: url("../fonts/Assistant-Bold.woff2") format('woff2')
 	font-weight: bold
 
+@keyframes visible
+	0%
+		transform: translateY(-300px)
+	15%, 85%
+		transform: initial
+	100%
+		transform: translateY(-300px)
+
 // Common states.
 
 .serv-required, .ws-require
@@ -125,6 +133,7 @@ main
 	top: 0
 	transform: translateY(-300px)
 	&.--visible 
+		animation: visible 3s ease 1 0s both
 		background-color: var(--color3)
 		box-sizing: border-box
 		font-weight: bold
@@ -132,7 +141,6 @@ main
 		padding: 10px
 		text-align: center
 		transform: initial
-		transition: transform 0.25s ease
 		z-index: 1
 		&.--good::before // Positive messages. 
 			color: var(--good-color)

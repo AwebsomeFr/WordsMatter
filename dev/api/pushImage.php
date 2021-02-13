@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 /* 
 Job : upload an image in the gallery.
 Return : 'success' if done.
-To : /app/js/functions.js | pushToGallery
+To : /app/js/functions.js | pushImage
 */
 
 if(isset($_FILES) && isset($_POST['editorId'])) {

@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 /* 
 Job : delete an image of the gallery.
 Return : 'success' if done.
-To : /app/js/functions.js | deleteFromGallery
+To : /app/js/functions.js | deleteImage
 */
 
 if(isset($_POST['picture']) && isset($_POST['editorId'])) {

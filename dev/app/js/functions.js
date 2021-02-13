@@ -1,50 +1,43 @@
-"use strict";
+'use strict';
 
-// These variables should not exist.
+// This global should not exist.
 let marker = 0;
 
-/* --- User Interface --- */
+/* --- START / UI functions --- */
 
 	const setViewportHeight = () => UI.main.style.height = window.innerHeight + 'px';
 
-	const savePref = (name, value) => {
-		if(localStorage) {
-			localStorage.setItem(name, value);
-		}
-	};
+	const savePref = (name, value) => localStorage.setItem(name, value);
 
-	const toggleMenu = (boolean) => {
-		boolean ?
-			UI.nav.classList.add('--visible'):
-			UI.nav.classList.remove('--visible')
-	};
+	const toggleMenu = boolean => boolean ? UI.nav.classList.add('--visible') : UI.nav.classList.remove('--visible');
 
+	const toggleTheme = () => UI.body.classList.contains('--dark') ? toLightTheme() : toDarkTheme();
+	
 	const toDarkTheme = () => {	
-		document.body.classList.add('--dark');
-		savePref('color-scheme', '--dark');
-	}
-
+		UI.body.classList.add('--dark');
+		savePref('theme', '--dark');
+	};
 	const toLightTheme = () => {
-		document.body.classList.remove('--dark');
-		savePref('color-scheme', '--light');
-	}
-
-	const toggleTheme = () => {
-		document.body.classList.contains('--dark') ?
-			toLightTheme():
-			toDarkTheme();
-	}
+		UI.body.classList.remove('--dark');
+		savePref('theme', '--light');
+	};
 
 	const setHeight = () => {
-		
-		let options = '';
-
-		for(let height of [
+	
+		const heights = [
 			['0.75fr 0.25fr', LAB.bt.advReading], 
 			['0.5fr 0.5fr', LAB.bt.balanced], 
 			['0.25fr 1.5fr', LAB.bt.advWriting]
-		]) {
-			options += `<button onclick="UI.main.style.gridTemplateRows = 'auto ${height[0]}', dial()">${height[1]}</button>`;
+		];
+		let options = '';
+
+		for(const height of heights) {
+			options += 
+				`<button onclick="
+					UI.main.style.gridTemplateRows = 'auto ${height[0]}', 
+					dial() ">
+					${height[1]}
+				</button>`;
 		}
 
 		dial(
@@ -57,14 +50,15 @@ let marker = 0;
 
 	const setWidth = () => {
 
+		const widths = [360, 540, 768, 1024, 1280, 'Max'];
 		let options = '';
 
-		for(let width of [360, 540, 768, 1024, 1280, 'Max']) {
+		for(const width of widths) {
 			options += 
 				`<button onclick="
 					UI.main.setAttribute('class', '--mw${width}'),
 					savePref('max-width', '--mw${width}'),
-					dial()">
+					dial() ">
 					${width}${isNaN(width) ? '': 'px'}
 				</button>`;
 		}
@@ -77,16 +71,12 @@ let marker = 0;
 
 	};
 
-	const openLink = (link) => window.open(link);
-
-	const dial = (mess) => {
+	const dial = mess => {
 		
-		if(mess != undefined) {
+		if(mess !== undefined) {
 			
 			UI.dial.querySelector('div').innerHTML = mess;
 			UI.dial.classList.add('--visible');
-
-			// TO IMPROVE !
 
 			let bts = UI.dial.getElementsByTagName('button');			
 			if(bts.length > 1) {				
@@ -107,113 +97,49 @@ let marker = 0;
 	};
 
 	const setNotice = (notice, state) => {
+		
 		dial();
 		UI.notice.setAttribute('class', 'wm-notice');
 		UI.notice.textContent = notice;
+		void UI.notice.offsetWidth;
 		UI.notice.setAttribute('class', 'wm-notice --visible ' + state);
-		setTimeout(() => {
-			UI.notice.setAttribute('class', 'wm-notice');
-		}, 2500);
-	}
-	const badNotice = (notice) => setNotice(notice, '--bad');
-	const goodNotice = (notice) => setNotice(notice, '--good');
-
-/* --- Web storage API --- */
-
-	const saveIntoLocalStorage = () => {
-
-		let datasContent = JSON.stringify(getPost());
-
-		if(localStorage) {			
-			
-			localStorage.setItem('post', datasContent);
-			
-			if(localStorage.getItem('post') === datasContent) {
-				goodNotice(LAB.notice.wsSave1);
-			}
-			
-			else {
-				badNotice(LAB.notice.wsSave0);
-			}
 		
+	};
+
+	const negNotice = notice => setNotice(notice, '--bad');
+
+	const posNotice = notice => setNotice(notice, '--good');
+
+/* --- START / Web storage functions --- */
+
+	const pushLocalPost = () => {
+
+		const datasContent = JSON.stringify(getPost());
+		localStorage.setItem('post', datasContent);			
+		localStorage.getItem('post') === datasContent ?
+			posNotice(LAB.notice.wsSave1):
+			negNotice(LAB.notice.wsSave0);
+		
+	};
+
+	const deleteLocalPost = () => {
+
+		if(localStorage.getItem('post')) {	
+			if(confirm(LAB.dial.confDelWs)) {
+				localStorage.removeItem('post');
+				!localStorage.getItem('post') ?
+					[resetPost(), posNotice(LAB.notice.wsDel1)]:
+					negNotice(LAB.notice.wsDel0);
+			}
 		}
 
 		else {
-			badNotice(LAB.notice.wsX);
+			negNotice(LAB.notice.wsDelY);
 		}
 
 	};
 
-	const importFromLocalStorage = (post) => {
-
-		resetPost();
-		setPost(post);
-		goodNotice(LAB.notice.load1);
-
-	};
-
-	const deleteFromLocalStorage = (validation = false) => {
-
-		// Web Storage available ?
-		if(localStorage) {
-
-			// Is there something to delete ?
-			if(localStorage.getItem('post')) {
-
-				// User confirmation ?
-				if(validation) {
-
-					// Proceed
-					localStorage.removeItem('post');
-
-					// Success ?
-					if(!localStorage.getItem('post')) {
-						resetPost();
-						goodNotice(LAB.notice.wsDel1);
-					}
-
-					else {
-						badNotice(LAB.notice.wsDel0);
-					}
-
-				}
-
-				else {
-
-
-					dial(
-						`<h2>${LAB.bt.delete}</h2>
-						<p> ${LAB.dial.confDelWs}</p> 
-						<button class="--danger" onclick="deleteFromLocalStorage(true)">${LAB.bt.confirm}</button>`	
-					);
-				
-				
-				}
-
-			}
-
-			else {
-				badNotice(LAB.notice.wsDelY);
-			}
-
-		}
-
-		else {
-			badNotice(LAB.notice.wsX);
-		}
-
-	};
-
-/* --- Server --- */
-
-	const createRequest = url => {
-
-		const req = new XMLHttpRequest();
-		req.open('POST', url, true);
-		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		return req;
-		
-	};
+/* --- START / Server functions (AJAX) --- */
 
 	const ajaxManager = (script /* string */, args /* array */, callback /* function */) => {
 		
@@ -235,299 +161,223 @@ let marker = 0;
 
 	};
 
+	/* --- Manage posts --- */
 
+		const pushPost = (validation = false) => {
 
+			// Has a title been specified ?
+			if(document.getElementById('out-h1').textContent.trim() != '') { 
 
+				ajaxManager(
+					'pushPost',
+					[{name: 'post', value: JSON.stringify(getPost())}, {name: 'validation', value: validation}],
+					resp => {
 
+						switch(resp) {
+						
+							case 'release': // New post ? Ask confirm push.
+								dial(
+									`<h2>${LAB.bt.pushPost}</h2>
+									<p>${LAB.dial.confPushServ}</p>
+									<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
+								);
+								break;
 
+							case 'update': // Existing post ? Ask confirm update.
+								dial(
+									`<h2>${LAB.bt.pushPost}</h2>
+									<p>${LAB.dial.confUpdateServ}</p>
+									<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
+								);
+								break;
 
+							case 'success':
+								posNotice(LAB.notice.serv1);
+								break;
 
+							default:
+								negNotice(LAB.notice.serv0);
 
-
-	const pushPost = (validation = false) => {
-
-		// Has a title been specified ?
-		if(document.getElementById('out-h1').textContent.trim() != '') { 
-
-			let req = createRequest(API_URL + 'push.php');
+						}
 				
-			req.onload = () => {
-
-				// Is the server available ?
-				if(req.status === 200) {
-
-					// New post ? Ask confirm push.
-					if(req.responseText === 'release') {
-						dial(
-							`<h2>${LAB.bt.pushPost}</h2>
-							<p>${LAB.dial.confPushServ}</p>
-							<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
-						);
 					}
 
-					// Existing post ? Ask confirm update.
-					else if(req.responseText === 'update') {
-						dial(
-							`<h2>${LAB.bt.pushPost}</h2>
-							<p>${LAB.dial.confUpdateServ}</p>
-							<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
-						);
-					}
-
-					// Success ?
-					else if(req.responseText === 'success') {
-						goodNotice(LAB.notice.serv1);
-					}
-
-					else {
-						badNotice(LAB.notice.serv0);
-					}
-				
-				}
-
-				else {
-					badNotice(LAB.notice.servX);
-				}
-
-			};
-
-			req.send('post=' + 
-				encodeURI( // Prevent unexpected php conversions when datas contain the % character (like %E, %F8, ...).
-					JSON.stringify(
-						getPost()
-					)
-				) 
-				+ '&editorId=' + EDITOR_ID 
-				+ '&validation=' + validation
-			);
-
-		}
-
-		else {
-			badNotice(LAB.notice.servTitleY);
-		}
-
-	};
-
-	const deleteFromServer = (validation = false, dirName) => {
-	
-		// User confirmation ?
-		if(validation) {
-
-			let req = createRequest(API_URL + 'delete.php');
-			req.onload = () => {
-
-				// Is the server available ?
-				if(req.status === 200) {
-
-					// Success ?
-					if(req.responseText === 'success') {
-						goodNotice(LAB.notice.servDel1); 
-					}
-
-					else {
-						badNotice(LAB.notice.servDel0); 
-					}
-
-				}
-
-			};
-
-			// Proceed.
-			req.send('editorId=' + EDITOR_ID + '&dirName=' + dirName);
-
-		}
-
-		else {
-
-	
-			dial(
-				`<p>${LAB.dial.confDelServ}</p>
-				<button class="--danger" onclick="deleteFromServer(true, '${dirName}')">${LAB.bt.confirm}</button>`
-			); 
-
-		}
-
-	};
-
-	const importFromFile = (file) => {
-
-		let reader = new FileReader();
-		
-		reader.onloadend = (e) => {
-
-			resetPost();
-			setPost(JSON.parse(e.target.result));
-			dial(LAB.dial.load1);
-
-			};
-
-		reader.readAsText(file);
-
-	};
-
-	const importFromServer = (dirName) => {
-
-		let req = createRequest(API_URL + 'open.php');
-		req.onload = () => {
-
-			if(req.status === 200) {
-
-				importFromLocalStorage(JSON.parse(req.responseText));
-
-			}
-
-		};
-
-		req.send('editorId=' + EDITOR_ID + '&dirName=' + dirName);
-
-	};
-
-	const getFiles = () => {
-
-		let req = createRequest(API_URL + 'get.php');
-		req.onload = () => {
-
-			if(req.status === 200) {
-
-				let files = JSON.parse(req.responseText);
-				
-				if(files.length > 0) {
-
-					let message = 
-					`<h2>${LAB.bt.listPost}</h2>
-					<p>${LAB.dial.editPost}</p>
-					<ul>`;
-					for(let file of files) {
-						message += `<li >
-							<button
-								class="--danger"
-								onclick="deleteFromServer(false, \'${file.dir}\')"
-								title="${LAB.bt.delete}">
-								X
-							</button>
-							<button 
-								onclick="importFromServer(\'${file.dir}\')"
-								title="${LAB.bt.open}"
-								value="${file.dir}">
-								${file.title} 
-								${file.isDraft ? 
-									`<span class="private"><br/>${LAB.bt.private}</span>` : 
-									`<span class="published"><br/>${LAB.bt.published}</span>`
-								}
-							</button>
-						</li>`;
-					}
-					message += '</ul>';
-					
-					dial(message);
-				}
-
-				else {
-					badNotice(LAB.notice.servContentY);
-				}
+				);
 
 			}
 
 			else {
-				badNotice(LAB.notice.servX);
+				negNotice(LAB.notice.servTitleY);
 			}
 
 		};
 
-		req.send('editorId=' + EDITOR_ID);
-
-	};
-
-	const exportToFile = () => {
-
-		dial(
-			`<h2>${LAB.bt.exportPost}</h2>
-			<p>${LAB.dial.exportPost}</p>
-			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>`
-		);
-
-	};
-
-	const openGallery = () => {
-
-		ajaxManager(
-			'openG',
-			null,
-			(resp) => {
-				
-				// Common part.
-				let dialBody = 
-				`<h2>${LAB.bt.openGallery}</h2>
-				<label>${LAB.bt.uploadImg}
-					<input 
-						accept="image/jpeg, image/png, image/webp"
-						onchange="pushToGallery(this.files[0])"
-						type="file"
-					/>
-				</label>
-				<p>${LAB.bt.pickImg}.</p>`;
-
-				// Only if there are already downloaded images. 
-				if(resp !== '[]') {
-					const medias = JSON.parse(resp);
-					// Start container.
-					dialBody += 
-						`<div class="wm-gallery">
-							<div>`;
-					// Item.
-					for(const media of medias) {
-						dialBody += 
-							`<div>
-								<button onclick="addFromGallery('${media.normalPath}')">${LAB.bt.add}</button>
-								<button 
-									class="--danger"
-									onclick="deleteFromGallery('${media.name}')"
-									title="${LAB.bt.delete}"	
-								>X</button>
-								<img loading="lazy" src="${media.thumbPath}" />
-								<p>${media.name}</p>
-							</div>`;
-					}
-					// End container.
-					dialBody += 
-						`</div>
-					</div>`;
-				}
-		
-				dial(dialBody);
-
-			});
-
-	};
-
-	const pushToGallery = file => {
-
-		ajaxManager(
-			'pushG',
-			[{ name: 'file', value: file }],
-			(resp) => resp === 'success' ? openGallery() : badNotice(LAB.notice.error)
-		);
-
-	};
-
-	const deleteFromGallery = picture => {
-
-		if(confirm(`${LAB.bt.delete} ${picture} ?`)) {
+		const getPosts = () => {
 
 			ajaxManager(
-				'deleteG',
-				[{ name: 'picture', value: picture }],
-				(resp) => resp === 'success' ? openGallery() : badNotice(LAB.notice.error)
+				'getPosts',
+				null,
+				resp => {
+
+					const posts = JSON.parse(resp);
+					
+					if(posts.length > 0) {
+
+						let dialBody = 
+							`<h2>${LAB.bt.listPost}</h2>
+							<p>${LAB.dial.editPost}</p>
+							<ul>`;
+
+						for(const post of posts) {
+							dialBody += 
+								`<li >
+									<button
+										class="--danger"
+										onclick="deletePost(\'${post.dir}\')"
+										title="${LAB.bt.delete}">
+										X
+									</button>
+									<button 
+										onclick="readPost(\'${post.dir}\')"
+										title="${LAB.bt.open}"
+										value="${post.dir}">
+										${post.title} 
+										${post.isDraft ? 
+											`<span class="private"><br/>${LAB.bt.private}</span>` : 
+											`<span class="published"><br/>${LAB.bt.published}</span>`
+										}
+									</button>
+								</li>`;
+						}
+						
+						dialBody += 
+							'</ul>';
+						
+						dial(dialBody);
+
+					}
+
+					else {
+						negNotice(LAB.notice.servContentY);
+					}
+
+				}
+
 			);
 
-		}
+		};
 
-	};
+		const readPost = post => {
 
-/* --- Core features --- */
+			ajaxManager(
+				'readPost',
+				[{ name: 'post', value: post }],
+				resp => importPost(JSON.parse(resp))
+			);
 
-	const chess = (obj) => { // = Create HTML Elements Short Syntax.
+		};
+
+		const deletePost = post => {
+		
+			if(confirm(LAB.dial.confDelServ)) {
+				ajaxManager(
+					'deletePost',
+					[{name: 'post', value: post}],
+					resp => resp === 'success' ? 
+						posNotice(LAB.notice.servDel1):
+						negNotice(LAB.notice.servDel0)
+				);
+			}
+
+		};
+
+	/* --- Manage images --- */
+
+		const pushImage = file => {
+
+			ajaxManager(
+				'pushImage',
+				[{ name: 'file', value: file }],
+				resp => resp === 'success' ? 
+					getImages():
+					negNotice(LAB.notice.error)
+			);
+
+		};
+
+		const getImages = () => {
+
+			ajaxManager(
+				'getImages',
+				null,
+				resp => {
+					
+					// Common part.
+					let dialBody = 
+						`<h2>${LAB.bt.getImages}</h2>
+						<label>${LAB.bt.uploadImg}
+							<input 
+								accept="image/jpeg, image/png, image/webp"
+								onchange="pushImage(this.files[0])"
+								type="file"
+							/>
+						</label>
+						<p>${LAB.bt.pickImg}.</p>`;
+
+					// Only if there are already downloaded images. 
+					if(resp !== '[]') {
+						const medias = JSON.parse(resp);
+						// Start container.
+						dialBody += 
+							`<div class="wm-gallery">
+								<div>`;
+						// Item.
+						for(const media of medias) {
+							dialBody += 
+								`<div>
+									<button onclick="addFromGallery('${media.normalPath}')">${LAB.bt.add}</button>
+									<button 
+										class="--danger"
+										onclick="deleteImage('${media.name}')"
+										title="${LAB.bt.delete}"	
+									>X</button>
+									<img loading="lazy" src="${media.thumbPath}" />
+									<p>${media.name}</p>
+								</div>`;
+						}
+						// End container.
+						dialBody += 
+							`</div>
+						</div>`;
+					}
+			
+					dial(dialBody);
+
+				}
+				
+			);
+
+		};
+
+		const deleteImage = picture => {
+
+			if(confirm(`${LAB.bt.delete} ${picture} ?`)) {
+
+				ajaxManager(
+					'deleteImage',
+					[{ name: 'picture', value: picture }],
+					resp => resp === 'success' ? 
+						getImages():
+						negNotice(LAB.notice.error)
+				);
+
+			}
+
+		};
+
+/* --- START / Core functions --- */
+
+	const chess = obj => { // = Create HTML Elements Short Syntax.
 
 		let elm = document.createElement(obj.type); // REQUIRED. Define <tag> type.
 
@@ -540,28 +390,28 @@ let marker = 0;
 		}
 
 		if(obj.attributes) { // OPTIONAL : define attributes (id, class, title, basic events...).
-			for(let attribute in obj.attributes) {
+			for(const attribute in obj.attributes) {
 				elm.setAttribute(attribute, obj.attributes[attribute]);
 			}
 		}
 		
 		if(obj.events) { // OPTIONAL : define advanced events.
-			for(let event of obj.events) {
+			for(const event of obj.events) {
 				elm.addEventListener(event.type, event.function);
 			}
 		}
 
 		if(obj.children) { // OPTIONAL : append children.	
-			for(let child of obj.children) {
+			for(const child of obj.children) {
 				elm.appendChild(chess(child));
 			}
 		}
 
 		return elm;
 
-	}
+	};
 
-	const runEditor = (inputId) => {
+	const runEditor = inputId => {
 
 		let inputElm = document.getElementById(inputId);
 		let outputElm = document.getElementById(inputId.replace('in', 'out')); 
@@ -576,6 +426,38 @@ let marker = 0;
 		}
 
 		outputElm.innerHTML = content;
+
+	};
+
+	const importPost = post => {
+
+		resetPost();
+		setPost(post);
+		posNotice(LAB.notice.load1);
+
+	};
+
+	const exportToFile = () => {
+
+		dial(
+			`<h2>${LAB.bt.exportPost}</h2>
+			<p>${LAB.dial.exportPost}</p>
+			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>`
+		);
+
+	};
+
+	const importFromFile = file => {
+
+		let reader = new FileReader();
+		
+		reader.onloadend = (e) => {
+			resetPost();
+			setPost(JSON.parse(e.target.result));
+			posNotice(LAB.notice.load1);
+		};
+
+		reader.readAsText(file);
 
 	};
 
@@ -849,13 +731,13 @@ let marker = 0;
 			case 'strong': case 'em':
 				formElm.body =
 					`<label for="inline-value">${LAB.input.txtToTransf}</label>
-					<input id="inline-value" type="text" value="${input}" required />`
+					<input id="inline-value" type="text" value="${input}" required />`;
 				break;
 
 			case 'ol': case 'ul':
 				formElm.body =
 					`<label for="list-values">${LAB.input.list}</label>
-					<textarea id="list-values" required>${input}</textarea>`
+					<textarea id="list-values" required>${input}</textarea>`;
 				break;
 
 			case 'a':
@@ -884,7 +766,7 @@ let marker = 0;
 					<input id="fig-alt" type="text" required />`;
 				break;
 
-		};
+		}
 
 		dial(
 			formElm.header +
@@ -894,7 +776,7 @@ let marker = 0;
 
 		// Give the focus on the first input or textarea available.
 		if(object.tag === 'ol' || object.tag === 'ul') {
-			document.querySelector('#dial textarea').focus()
+			document.querySelector('#dial textarea').focus();
 		}
 		else {
 			document.querySelector('#dial input').focus();
@@ -925,7 +807,7 @@ let marker = 0;
 				case 'ol':
 				case 'ul':
 					let nScore = object.tag === 'ol' ? '__' : '_'; 
-					output = '\n'
+					output = '\n';
 					for(let elm of e.target.elements[0].value.split('\n')) { 
 						if(elm.trim() !== '') {
 							output += `${nScore} ${elm.trim()}\n`; 
@@ -945,7 +827,7 @@ let marker = 0;
 					output = `![${e.target.elements[2].value}|${e.target.elements[1].value}](${e.target.elements[0].value})`;
 					break;
 
-			};
+			}
 
 			// Replace input by output.
 			targetElm.value = 
