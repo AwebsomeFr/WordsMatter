@@ -144,6 +144,14 @@
 					{
 						type: 'button',
 						attributes: {
+							class: "serv-required",
+							onclick: "openGallery()" 
+						},
+						html: '<span>░</span>' + LAB.bt.openGallery,
+					},
+					{
+						type: 'button',
+						attributes: {
 							onclick: "toggleTheme()" 
 						},
 						html: '<span>☼</span>' + LAB.bt.setTheme,

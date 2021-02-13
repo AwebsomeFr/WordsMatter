@@ -16,6 +16,7 @@
 	const LAB = {};
 	
 	LAB.bt = {
+		add: 'Add',
 		addA: 'Add a hyperlink',
 		addEm: 'Add emphasic text ',
 		addFig: 'Add a figure',
@@ -42,9 +43,12 @@
 		offline: 'offline',
 		online: 'online',
 		open: 'Open',
+		openGallery: 'Manage gallery',
+		pickImg: 'Or pick one here',
 		private: 'private',
 		published: 'published',
 		pushPost: 'Push to the blog',
+		uploadImg: 'Upload an image (formats accepted: JPEG, PNG, WEBP / maximum file size: 1Mb).',
 		save: 'Save',
 		setHeight: 'Adjust height',
 		setTheme: 'Light theme / dark theme',
@@ -70,6 +74,7 @@
 
 	// 0: fail, 1: success, X: unavailable, Y: empty.
 	LAB.notice = {
+		error: 'An error has occurred.',
 		load1: 'Post successfully loaded.',
 		serv0: 'Error while uploading: the post was not published.',
 		serv1: 'Message sent on the blog successfully.',
@@ -101,15 +106,16 @@
 	if(LANG === 'fr') {
 		
 		LAB.bt = {
-			addA: 'Créer un lien hypertexte',
-			addEm: 'Créer du texte emphasique',
-			addFig: 'Créer une figure',
-			addHx: 'Créer un sous-titre de niveau ',
-			addImg: 'Créer une image',
-			addOl: 'Créer une liste ordonnée',
+			add: 'Ajouter',
+			addA: 'Ajouter un lien hypertexte',
+			addEm: 'Ajouter du texte emphasique',
+			addFig: 'Ajouter une figure',
+			addHx: 'Ajouter un sous-titre de niveau ',
+			addImg: 'Ajouter une image',
+			addOl: 'Ajouter une liste ordonnée',
 			addSec: 'Ajouter une section',
-			addStr: 'Créer du texte important',
-			addUl: 'Créer une liste non ordonnée',
+			addStr: 'Ajouter du texte important',
+			addUl: 'Ajouter une liste non ordonnée',
 			advReading: 'Avantager lecture',
 			advWriting: 'Avantager écriture',
 			awb: 'WordsMatter est proposé avec enthousiasme par',	
@@ -127,9 +133,12 @@
 			offline: 'déconnecté',	
 			online: 'connecté',
 			open: 'Ouvrir',
+			openGallery: 'Gérer la galerie',
+			pickImg: 'Ou choisissez-en une ici',
 			private: 'privé',
 			published: 'publié',
 			pushPost: 'Envoyer vers le blog',
+			uploadImg: 'Charger une image (formats acceptés: JPEG, PNG, WEBP / taille de fichier maximale : 1Mo)',
 			save: 'Sauvegarder',
 			setHeight: 'Ajuster la hauteur',
 			setTheme: 'Thème clair / thème sombre',
@@ -154,6 +163,7 @@
 		};
 
 		LAB.notice = {
+			error: 'Une erreur est survenue.',
 			load1: 'Post chargé avec succès.',
 			serv0: 'Erreur lors de la mise en ligne : le post n\'a pas été publié.',
 			serv1: 'Post envoyé avec succès vers le blog.',

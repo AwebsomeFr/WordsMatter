@@ -158,14 +158,16 @@ main
 		z-index: 1
 		h2
 			margin-top: 0
+			border-bottom: solid 1px
 		> button // Close button.
-			display: block
-			margin-left: auto
+			position: fixed
+			top: 10px
+			right: 10px
 		>div
 			margin: auto
 			max-height: 85vh
 			width: 85%
-			max-width: 500px
+			max-width: 768px
 		label, input, textarea // Interactive elements.
 			display: block
 			margin: 10px 0
@@ -186,6 +188,36 @@ main
 					color: var(--bad-color)
 				.published
 					color: var(--good-color)
+
+.wm-gallery
+	margin-top: 15px
+	max-height: 50vh
+	overflow-y: auto
+	scrollbar-color: var(--color1) var(--color4)
+	scrollbar-width: thin
+	> div
+		display: grid
+		justify-content: center
+		grid-template-columns: repeat(auto-fit, minmax(50px, 140px))
+		@media screen and (min-width: 768px)
+			grid-template-columns: repeat(auto-fit, minmax(50px, 250px))
+		> div 	
+			display: grid
+			grid-template-columns: 1fr 1fr
+			margin: 10px
+			opacity: 0.85
+			&:hover
+				opacity: 1
+	p
+		grid-column: 1 / 3
+		margin-top: 5px
+		text-align: center
+	img
+		grid-column: 1 / 3
+		height: 100px
+		margin-top: 1px
+		object-fit: cover
+		width: 100%
 
 .wm-nav
 	display: flex
@@ -210,7 +242,7 @@ main
 				font-size: 1.25em
 				font-weight: normal
 				text-align: center
-		button:nth-child(8) // "Adjust width" button.
+		button:nth-child(9) // "Adjust width" button.
 			display: none
 			@media screen and (min-width: 768px)
 				display: grid	

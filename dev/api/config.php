@@ -18,6 +18,8 @@ to the server for the first time. */
 define('INPUT_DIR', '../blog/drafts'); 
 // Directory where the generated files will be placed.
 define('OUTPUT_DIR', '../blog/posts'); 
+// Directory where the user medias will be placed.
+define('GALLERY_DIR', '../blog/medias');
 // File where the list of published articles will be saved.
 define('POSTS_INDEX', '../blog/index.json');
 

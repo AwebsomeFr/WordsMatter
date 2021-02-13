@@ -86,12 +86,15 @@ let marker = 0;
 			UI.dial.querySelector('div').innerHTML = mess;
 			UI.dial.classList.add('--visible');
 
-			// Add a class to the latest button for focus trap.
-			let bts = UI.dial.getElementsByTagName('button');
-			bts[bts.length - 1].classList.add('dial-trap-last');
-			
-			// Give focus to the first useful button (sometimes, focus is given to the first input).
-			bts[1].focus();
+			// TO IMPROVE !
+
+			let bts = UI.dial.getElementsByTagName('button');			
+			if(bts.length > 1) {				
+				// Add a class to the latest button for focus trap.
+				bts[bts.length - 1].classList.add('dial-trap-last');
+				// Give focus to the first useful button (sometimes, focus is given to the first input).
+				bts[1].focus();
+			}
 
 		}
 		
@@ -203,14 +206,43 @@ let marker = 0;
 
 /* --- Server --- */
 
-	const createRequest = (url) => {
+	const createRequest = url => {
 
-		let req = new XMLHttpRequest();
+		const req = new XMLHttpRequest();
 		req.open('POST', url, true);
 		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		return req;
 		
 	};
+
+	const ajaxManager = (script /* string */, args /* array */, callback /* function */) => {
+		
+		let req = new XMLHttpRequest();
+
+		req.open('POST', API_URL + script + '.php', true);
+		req.onload = () => callback(req.responseText);
+
+		let formData = new FormData();
+		formData.append('editorId', EDITOR_ID);
+
+		if(args !== null) {
+			for(let arg of args) {
+				formData.append(arg.name, arg.value);
+			}
+		}
+		
+		req.send(formData);
+
+	};
+
+
+
+
+
+
+
+
+
 
 	const pushPost = (validation = false) => {
 
@@ -417,6 +449,82 @@ let marker = 0;
 
 	};
 
+	const openGallery = () => {
+
+		ajaxManager(
+			'openG',
+			null,
+			(resp) => {
+				
+				// Common part.
+				let dialBody = 
+				`<h2>${LAB.bt.openGallery}</h2>
+				<label>${LAB.bt.uploadImg}
+					<input 
+						accept="image/jpeg, image/png, image/webp"
+						onchange="pushToGallery(this.files[0])"
+						type="file"
+					/>
+				</label>
+				<p>${LAB.bt.pickImg}.</p>`;
+
+				// Only if there are already downloaded images. 
+				if(resp !== '[]') {
+					const medias = JSON.parse(resp);
+					// Start container.
+					dialBody += 
+						`<div class="wm-gallery">
+							<div>`;
+					// Item.
+					for(const media of medias) {
+						dialBody += 
+							`<div>
+								<button onclick="addFromGallery('${media.normalPath}')">${LAB.bt.add}</button>
+								<button 
+									class="--danger"
+									onclick="deleteFromGallery('${media.name}')"
+									title="${LAB.bt.delete}"	
+								>X</button>
+								<img loading="lazy" src="${media.thumbPath}" />
+								<p>${media.name}</p>
+							</div>`;
+					}
+					// End container.
+					dialBody += 
+						`</div>
+					</div>`;
+				}
+		
+				dial(dialBody);
+
+			});
+
+	};
+
+	const pushToGallery = file => {
+
+		ajaxManager(
+			'pushG',
+			[{ name: 'file', value: file }],
+			(resp) => resp === 'success' ? openGallery() : badNotice(LAB.notice.error)
+		);
+
+	};
+
+	const deleteFromGallery = picture => {
+
+		if(confirm(`${LAB.bt.delete} ${picture} ?`)) {
+
+			ajaxManager(
+				'deleteG',
+				[{ name: 'picture', value: picture }],
+				(resp) => resp === 'success' ? openGallery() : badNotice(LAB.notice.error)
+			);
+
+		}
+
+	};
+
 /* --- Core features --- */
 
 	const chess = (obj) => { // = Create HTML Elements Short Syntax.
@@ -555,6 +663,16 @@ let marker = 0;
 			secElms[0].remove(); // Remove input.
 			document.getElementById(secElm.id.replace('in', 'out')).remove(); // Remove output.
 		}
+
+	};
+
+	const addFromGallery = picPath => {
+
+		dial();
+		let targetElm = document.getElementsByTagName('textarea');
+		targetElm = targetElm[targetElm.length -1];
+		targetElm.value += `![alternative](${picPath})`;
+		runEditor(targetElm.id);
 
 	};
 
