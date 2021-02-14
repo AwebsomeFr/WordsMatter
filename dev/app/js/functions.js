@@ -75,10 +75,10 @@ let marker = 0;
 		
 		if(mess !== undefined) {
 			
-			UI.dial.querySelector('div').innerHTML = mess;
+			_.Q('div', UI.dial).innerHTML = mess;
 			UI.dial.classList.add('--visible');
 
-			let bts = UI.dial.getElementsByTagName('button');			
+			let bts = _.T('button', UI.dial);			
 			if(bts.length > 1) {				
 				// Add a class to the latest button for focus trap.
 				bts[bts.length - 1].classList.add('dial-trap-last');
@@ -117,23 +117,23 @@ let marker = 0;
 		const getPost = () => {
 			
 			let post = {
-				date: document.getElementById('post-date').value,
-				isDraft: document.getElementById('post-draft').checked,
-				class: document.getElementById('post-class').value,
-				title: document.getElementById('in-h1').value,
-				introduction: document.getElementById('in-intro').value,
+				date: _.I('post-date').value,
+				isDraft: _.I('post-draft').checked,
+				class: _.I('post-class').value,
+				title: _.I('in-h1').value,
+				introduction: _.I('in-intro').value,
 				sections: null
 			};
 			
-			const secElms = document.getElementsByClassName('wm-in__section');
+			const secElms = _.C('wm-in__section');
 
 			if(secElms.length > 0) {
 				post.sections = [];
 				for(const secElm of secElms) {
 					post.sections.push(
 						{
-							title: secElm.querySelector('input').value,
-							content: secElm.querySelector('textarea').value,
+							title: _.Q('input', secElm).value,
+							content: _.Q('textarea', secElm).value,
 						}
 					);
 				}
@@ -151,14 +151,14 @@ let marker = 0;
 				emptyPost();
 	
 				// Restore values.
-				document.getElementById('post-date').value = post.date;
-				document.getElementById('post-draft').checked = post.isDraft;	
-				document.getElementById('post-class').value = post.class;
+				_.I('post-date').value = post.date;
+				_.I('post-draft').checked = post.isDraft;	
+				_.I('post-class').value = post.class;
 	
-				document.getElementById('in-h1').value = post.title;
+				_.I('in-h1').value = post.title;
 				runEditor('in-h1');
 	
-				document.getElementById('in-intro').value = post.introduction;
+				_.I('in-intro').value = post.introduction;
 				runEditor('in-intro');
 	
 				if(post.sections) {
@@ -166,12 +166,12 @@ let marker = 0;
 					for(const sec of post.sections) {
 						
 						let currentMarker = marker;
-						document.getElementById('bt-add-section').click();
+						_.I('bt-add-section').click();
 	
-						document.getElementById('in-sec-title-' + currentMarker).value = sec.title;
+						_.I('in-sec-title-' + currentMarker).value = sec.title;
 						runEditor('in-sec-title-' + currentMarker);
 	
-						document.getElementById('in-sec-content-' + currentMarker).value = sec.content;
+						_.I('in-sec-content-' + currentMarker).value = sec.content;
 						runEditor('in-sec-content-' + currentMarker);
 	
 					}
@@ -190,17 +190,17 @@ let marker = 0;
 
 		const emptyPost = () => {
 
-			document.getElementById('in-h1').value = '';
+			_.I('in-h1').value = '';
 			runEditor('in-h1');
 			
-			document.getElementById('in-intro').value = '';
+			_.I('in-intro').value = '';
 			runEditor('in-intro');
 
-			const secElms = document.getElementsByClassName('wm-in__section');
+			const secElms = _.C('wm-in__section');
 			while(secElms.length >= 1) {
 				const secElm = secElms[0]; 
 				secElms[0].remove(); // Remove input.
-				document.getElementById(secElm.id.replace('in', 'out')).remove(); // Remove output.
+				_.I(secElm.id.replace('in', 'out')).remove(); // Remove output.
 			}
 
 		};
@@ -340,7 +340,7 @@ let marker = 0;
 		const pushPost = (validation = false) => {
 
 			// Has a title been specified ?
-			if(document.getElementById('out-h1').textContent.trim() != '') { 
+			if(_.I('out-h1').textContent.trim() != '') { 
 
 				ajaxManager(
 					'pushPost',
@@ -488,11 +488,25 @@ let marker = 0;
 
 /* --- Build things --- */
 
-	const chess = obj => { // = Create HTML Elements Short Syntax.
+	/* 
+	ghess (Get HTML Elements Short Syntax), by Awebsome.
+	https://github.com/AwebsomeFr/ghess
+	*/
+	const _ = {
+		Q: (ref, root = document) => root.querySelector(ref),
+		I: (ref, root = document) => root.getElementById(ref),
+		C: (ref, root = document) => root.getElementsByClassName(ref),
+		T: (ref, root = document) => root.getElementsByTagName(ref)
+	};
 
-		let elm = document.createElement(obj.type); // REQUIRED. Define <tag> type.
+	/* 
+	chess (Create HTML Elements Short Syntax), by Awebsome.
+	https://github.com/AwebsomeFr/chess
+	*/
+	const chess = obj => { 
 
-		// OPTIONAL : define textual or HTML content. Only one is permitted.	
+		let elm = document.createElement(obj.type); 
+
 		if(obj.text) {
 			elm.textContent = obj.text;
 		}
@@ -500,19 +514,19 @@ let marker = 0;
 			elm.innerHTML = obj.html;
 		}
 
-		if(obj.attributes) { // OPTIONAL : define attributes (id, class, title, basic events...).
+		if(obj.attributes) {
 			for(const attribute in obj.attributes) {
 				elm.setAttribute(attribute, obj.attributes[attribute]);
 			}
 		}
 		
-		if(obj.events) { // OPTIONAL : define advanced events.
+		if(obj.events) {
 			for(const event of obj.events) {
 				elm.addEventListener(event.type, event.function);
 			}
 		}
 
-		if(obj.children) { // OPTIONAL : append children.	
+		if(obj.children) {
 			for(const child of obj.children) {
 				elm.appendChild(chess(child));
 			}
@@ -524,16 +538,14 @@ let marker = 0;
 
 	const runEditor = inputId => {
 
-		let inputElm = document.getElementById(inputId);
-		let outputElm = document.getElementById(inputId.replace('in', 'out')); 
+		let inputElm = _.I(inputId);
+		let outputElm = _.I(inputId.replace('in', 'out')); 
 		let content = inputElm.value.replace(/(<([^>]+)>)/ig, ''); // Striping source tags to prevent unexpected HTML.	
 
 		if(inputElm.type === 'textarea') {
-			
-			for(let regex of REGEX) {
+			for(const regex of REGEX) {
 				content = content.replace(regex.desc, regex.output);
 			}
-
 		}
 
 		outputElm.innerHTML = content;
@@ -543,7 +555,7 @@ let marker = 0;
 	const addFromGallery = picPath => {
 
 		dial();
-		let targetElm = document.getElementsByTagName('textarea');
+		let targetElm = _.T('textarea');
 		targetElm = targetElm[targetElm.length -1];
 		targetElm.value += `![alternative](${picPath})`;
 		runEditor(targetElm.id);
@@ -628,7 +640,7 @@ let marker = 0;
 					events: [
 						{
 							type: 'click',
-							function: () => formatContent(inputSecElm.querySelector('textarea'), { title: LAB.bt.addHx + i, tag: 'h' + i })
+							function: () => formatContent(_.Q('textarea', inputSecElm), { title: LAB.bt.addHx + i, tag: 'h' + i })
 						}
 					]
 				})
@@ -655,7 +667,7 @@ let marker = 0;
 					events: [
 						{
 							type: 'click',
-							function: () => formatContent(inputSecElm.querySelector('textarea'), elmToCreate)
+							function: () => formatContent(_.Q('textarea', inputSecElm), elmToCreate)
 						}
 					]
 				})
@@ -677,8 +689,8 @@ let marker = 0;
 						function: () => {
 							if(confirm(LAB.dial.confDelSec))
 								{
-									document.getElementById('in-sec-' + currentMarker).remove();
-									document.getElementById('out-sec-' + currentMarker).remove();
+									_.I('in-sec-' + currentMarker).remove();
+									_.I('out-sec-' + currentMarker).remove();
 								}
 
 						}
@@ -687,7 +699,7 @@ let marker = 0;
 			})
 	);
 
-		UI.input.querySelector('div').appendChild(inputSecElm);
+		_.Q('div', UI.input).appendChild(inputSecElm);
 		
 		// Scroll down and focus to the new section.
 		document.location.replace(document.location.pathname + '#in-sec-title-' + marker);
@@ -768,14 +780,14 @@ let marker = 0;
 
 		// Give the focus on the first input or textarea available.
 		if(object.tag === 'ol' || object.tag === 'ul') {
-			document.querySelector('.wm-dial textarea').focus();
+			_.Q('.wm-dial textarea').focus();
 		}
 		else {
-			document.querySelector('.wm-dial input').focus();
+			_.Q('.wm-dial input').focus();
 		}
 
 		// Build the corresponding output when the form is submitted.
-		document.querySelector('.wm-dial form').onsubmit = (e) => {
+		_.Q('.wm-dial form').onsubmit = (e) => {
 
 			let output;
 

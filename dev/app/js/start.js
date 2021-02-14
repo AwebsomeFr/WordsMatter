@@ -419,7 +419,7 @@
 
 	}
 
-	// Is the server available ?
+	// Is the API available ?
 	ajaxManager('init', null, resp => {
 		if(resp === 'granted') {
 			UI.body.classList.add('serv-available'); // Enable features.
