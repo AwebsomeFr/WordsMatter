@@ -225,7 +225,7 @@
 			output: (ct) => {
 				let dt = ct.substring(2, ct.length -1).split('](');
 				dt[0] = dt[0].split('|');
-				return dt[0].length > 1 ? // Is there a legend ?
+				return dt[0].length > 1 ? // Is there a legend?
 					`<figure>
 						<img src="${dt[1]}" alt="${dt[0][0]}" />
 						<figcaption>${dt[0][1]}</figcaption>

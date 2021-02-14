@@ -339,7 +339,7 @@ let marker = 0;
 
 		const pushPost = (validation = false) => {
 
-			// Has a title been specified ?
+			// Has a title been specified?
 			if(_.I('out-h1').textContent.trim() != '') { 
 
 				ajaxManager(
@@ -349,7 +349,7 @@ let marker = 0;
 
 						switch(resp) {
 						
-							case 'release': // New post ? Ask confirm push.
+							case 'release': // New post? Ask confirm push.
 								dial(
 									`<h2>${LAB.bt.pushPost}</h2>
 									<p>${LAB.dial.confPushServ}</p>
@@ -357,7 +357,7 @@ let marker = 0;
 								);
 								break;
 
-							case 'update': // Existing post ? Ask confirm update.
+							case 'update': // Existing post? Ask confirm update.
 								dial(
 									`<h2>${LAB.bt.pushPost}</h2>
 									<p>${LAB.dial.confUpdateServ}</p>

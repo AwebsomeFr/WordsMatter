@@ -1,6 +1,6 @@
 'use strict';
 
-/* --- START / Build the interface --- */
+/* --- Build the user interface --- */
 
 	const UI = {};
 	
@@ -326,7 +326,7 @@
 		]
 	});
 	
-	// Keyboard navigation
+	// Keyboard navigation.
 	document.onkeydown = (e) => {
 		
 		// Close dial with Escape.
@@ -391,9 +391,9 @@
 
 	document.documentElement.lang = LANG;
 
-/* --- START / Enable features under conditions --- */
+/* --- Enable features under conditions --- */
 
-	// Is the Web Storage API available ?
+	// Is the Web Storage API available?
 	if(localStorage) {
 		
 		// Enable features.
@@ -419,7 +419,7 @@
 
 	}
 
-	// Is the API available ?
+	// Is the API available?
 	ajaxManager('init', null, resp => {
 		if(resp === 'granted') {
 			UI.body.classList.add('serv-available'); // Enable features.
