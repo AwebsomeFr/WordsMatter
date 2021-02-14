@@ -3,7 +3,7 @@
 // This global should not exist.
 let marker = 0;
 
-/* --- START / UI functions --- */
+/* --- User interface --- */
 
 	const setViewportHeight = () => UI.main.style.height = window.innerHeight + 'px';
 
@@ -110,105 +110,165 @@ let marker = 0;
 
 	const posNotice = notice => setNotice(notice, '--good');
 
-/* --- START / Web storage functions --- */
+/* --- Manage posts --- */
 
-	const pushLocalPost = () => {
+	/* --- Commons --- */
 
-		const datasContent = JSON.stringify(getPost());
-		localStorage.setItem('post', datasContent);			
-		localStorage.getItem('post') === datasContent ?
-			posNotice(LAB.notice.wsSave1):
-			negNotice(LAB.notice.wsSave0);
-		
-	};
+		const getPost = () => {
+			
+			let post = {
+				date: document.getElementById('post-date').value,
+				isDraft: document.getElementById('post-draft').checked,
+				class: document.getElementById('post-class').value,
+				title: document.getElementById('in-h1').value,
+				introduction: document.getElementById('in-intro').value,
+				sections: null
+			};
+			
+			const secElms = document.getElementsByClassName('wm-in__section');
 
-	const deleteLocalPost = () => {
-
-		if(localStorage.getItem('post')) {	
-			if(confirm(LAB.dial.confDelWs)) {
-				localStorage.removeItem('post');
-				!localStorage.getItem('post') ?
-					[resetPost(), posNotice(LAB.notice.wsDel1)]:
-					negNotice(LAB.notice.wsDel0);
-			}
-		}
-
-		else {
-			negNotice(LAB.notice.wsDelY);
-		}
-
-	};
-
-/* --- START / Server functions (AJAX) --- */
-
-	const ajaxManager = (script /* string */, args /* array */, callback /* function */) => {
-		
-		let req = new XMLHttpRequest();
-
-		req.open('POST', API_URL + script + '.php', true);
-		req.onload = () => callback(req.responseText);
-
-		let formData = new FormData();
-		formData.append('editorId', EDITOR_ID);
-
-		if(args !== null) {
-			for(let arg of args) {
-				formData.append(arg.name, arg.value);
-			}
-		}
-		
-		req.send(formData);
-
-	};
-
-	/* --- Manage posts --- */
-
-		const pushPost = (validation = false) => {
-
-			// Has a title been specified ?
-			if(document.getElementById('out-h1').textContent.trim() != '') { 
-
-				ajaxManager(
-					'pushPost',
-					[{name: 'post', value: JSON.stringify(getPost())}, {name: 'validation', value: validation}],
-					resp => {
-
-						switch(resp) {
-						
-							case 'release': // New post ? Ask confirm push.
-								dial(
-									`<h2>${LAB.bt.pushPost}</h2>
-									<p>${LAB.dial.confPushServ}</p>
-									<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
-								);
-								break;
-
-							case 'update': // Existing post ? Ask confirm update.
-								dial(
-									`<h2>${LAB.bt.pushPost}</h2>
-									<p>${LAB.dial.confUpdateServ}</p>
-									<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
-								);
-								break;
-
-							case 'success':
-								posNotice(LAB.notice.serv1);
-								break;
-
-							default:
-								negNotice(LAB.notice.serv0);
-
+			if(secElms.length > 0) {
+				post.sections = [];
+				for(const secElm of secElms) {
+					post.sections.push(
+						{
+							title: secElm.querySelector('input').value,
+							content: secElm.querySelector('textarea').value,
 						}
+					);
+				}
+			}
+			
+			return post;
+			
+		};
+
+		const setPost = input => {
+
+			try {
+
+				const post = JSON.parse(input);
+				emptyPost();
+	
+				// Restore values.
+				document.getElementById('post-date').value = post.date;
+				document.getElementById('post-draft').checked = post.isDraft;	
+				document.getElementById('post-class').value = post.class;
+	
+				document.getElementById('in-h1').value = post.title;
+				runEditor('in-h1');
+	
+				document.getElementById('in-intro').value = post.introduction;
+				runEditor('in-intro');
+	
+				if(post.sections) {
 				
+					for(const sec of post.sections) {
+						
+						let currentMarker = marker;
+						document.getElementById('bt-add-section').click();
+	
+						document.getElementById('in-sec-title-' + currentMarker).value = sec.title;
+						runEditor('in-sec-title-' + currentMarker);
+	
+						document.getElementById('in-sec-content-' + currentMarker).value = sec.content;
+						runEditor('in-sec-content-' + currentMarker);
+	
 					}
+	
+				}
 
-				);
+				posNotice(LAB.notice.load1);
 
+			}
+
+			catch(e) {
+				negNotice(LAB.notice.load0);
+			}
+			
+		};
+
+		const emptyPost = () => {
+
+			document.getElementById('in-h1').value = '';
+			runEditor('in-h1');
+			
+			document.getElementById('in-intro').value = '';
+			runEditor('in-intro');
+
+			const secElms = document.getElementsByClassName('wm-in__section');
+			while(secElms.length >= 1) {
+				const secElm = secElms[0]; 
+				secElms[0].remove(); // Remove input.
+				document.getElementById(secElm.id.replace('in', 'out')).remove(); // Remove output.
+			}
+
+		};
+
+	/* --- With Web Storage API --- */
+
+		const pushLocalPost = () => {
+
+			const datasContent = JSON.stringify(getPost());
+			localStorage.setItem('post', datasContent);			
+			localStorage.getItem('post') === datasContent ?
+				posNotice(LAB.notice.wsSave1):
+				negNotice(LAB.notice.wsSave0);
+			
+		};
+
+		const deleteLocalPost = () => {
+
+			if(localStorage.getItem('post')) {	
+				if(confirm(LAB.dial.confDelWs)) {
+					localStorage.removeItem('post');
+					!localStorage.getItem('post') ?
+						[emptyPost(), posNotice(LAB.notice.wsDel1)]:
+						negNotice(LAB.notice.wsDel0);
+				}
 			}
 
 			else {
-				negNotice(LAB.notice.servTitleY);
+				negNotice(LAB.notice.wsDelY);
 			}
+
+		};
+
+	/* --- With files --- */
+
+		const exportPost = () => dial(
+			`<h2>${LAB.bt.exportPost}</h2>
+			<p>${LAB.dial.exportPost}</p>
+			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>`
+		);
+
+		const importPost = file => {
+
+			let reader = new FileReader();		
+			reader.onloadend = e => setPost(e.target.result);
+			reader.readAsText(file);
+
+		};
+
+	/* --- With the API --- */
+
+		const ajaxManager = (script /* string */, args /* array */, callback /* function */) => {
+			
+			let req = new XMLHttpRequest();
+
+			req.open('POST', API_URL + script + '.php', true);
+			req.onload = () => callback(req.responseText);
+
+			let formData = new FormData();
+			formData.append('editorId', EDITOR_ID);
+
+			if(args !== null) {
+				for(let arg of args) {
+					formData.append(arg.name, arg.value);
+				}
+			}
+			
+			req.send(formData);
 
 		};
 
@@ -272,8 +332,57 @@ let marker = 0;
 			ajaxManager(
 				'readPost',
 				[{ name: 'post', value: post }],
-				resp => importPost(JSON.parse(resp))
+				resp => setPost(resp)
 			);
+
+		};
+
+		const pushPost = (validation = false) => {
+
+			// Has a title been specified ?
+			if(document.getElementById('out-h1').textContent.trim() != '') { 
+
+				ajaxManager(
+					'pushPost',
+					[{name: 'post', value: JSON.stringify(getPost())}, {name: 'validation', value: validation}],
+					resp => {
+
+						switch(resp) {
+						
+							case 'release': // New post ? Ask confirm push.
+								dial(
+									`<h2>${LAB.bt.pushPost}</h2>
+									<p>${LAB.dial.confPushServ}</p>
+									<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
+								);
+								break;
+
+							case 'update': // Existing post ? Ask confirm update.
+								dial(
+									`<h2>${LAB.bt.pushPost}</h2>
+									<p>${LAB.dial.confUpdateServ}</p>
+									<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
+								);
+								break;
+
+							case 'success':
+								posNotice(LAB.notice.serv1);
+								break;
+
+							default:
+								negNotice(LAB.notice.serv0);
+
+						}
+				
+					}
+
+				);
+
+			}
+
+			else {
+				negNotice(LAB.notice.servTitleY);
+			}
 
 		};
 
@@ -291,19 +400,9 @@ let marker = 0;
 
 		};
 
-	/* --- Manage images --- */
+/* --- Manage images --- */
 
-		const pushImage = file => {
-
-			ajaxManager(
-				'pushImage',
-				[{ name: 'file', value: file }],
-				resp => resp === 'success' ? 
-					getImages():
-					negNotice(LAB.notice.error)
-			);
-
-		};
+	/* --- With the API --- */
 
 		const getImages = () => {
 
@@ -359,6 +458,18 @@ let marker = 0;
 
 		};
 
+		const pushImage = file => {
+
+			ajaxManager(
+				'pushImage',
+				[{ name: 'file', value: file }],
+				resp => resp === 'success' ? 
+					getImages():
+					negNotice(LAB.notice.error)
+			);
+
+		};
+
 		const deleteImage = picture => {
 
 			if(confirm(`${LAB.bt.delete} ${picture} ?`)) {
@@ -375,7 +486,7 @@ let marker = 0;
 
 		};
 
-/* --- START / Core functions --- */
+/* --- Build things --- */
 
 	const chess = obj => { // = Create HTML Elements Short Syntax.
 
@@ -426,125 +537,6 @@ let marker = 0;
 		}
 
 		outputElm.innerHTML = content;
-
-	};
-
-	const importPost = post => {
-
-		resetPost();
-		setPost(post);
-		posNotice(LAB.notice.load1);
-
-	};
-
-	const exportToFile = () => {
-
-		dial(
-			`<h2>${LAB.bt.exportPost}</h2>
-			<p>${LAB.dial.exportPost}</p>
-			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>`
-		);
-
-	};
-
-	const importFromFile = file => {
-
-		let reader = new FileReader();
-		
-		reader.onloadend = (e) => {
-			resetPost();
-			setPost(JSON.parse(e.target.result));
-			posNotice(LAB.notice.load1);
-		};
-
-		reader.readAsText(file);
-
-	};
-
-	const getPost = () => {
-		
-		let post = {
-			date: document.getElementById('post-date').value,
-			isDraft: document.getElementById('post-draft').checked,
-			class: document.getElementById('post-class').value,
-			title: document.getElementById('in-h1').value,
-			introduction: document.getElementById('in-intro').value,
-			sections: null
-		};
-		
-		let sectionElms = document.getElementsByClassName('wm-in__section');		
-		
-		if(sectionElms.length > 0) {
-
-			post.sections = [];
-			
-			for(let sectionElm of sectionElms) {
-				
-				post.sections.push(
-					{
-						title: sectionElm.querySelector('input').value,
-						content: sectionElm.querySelector('textarea').value,
-					}
-				);
-
-			}
-
-		}
-		
-		return post;
-		
-	};
-
-	const setPost = (post) => {
-
-		document.getElementById('post-date').value = post.date;
-
-		document.getElementById('post-draft').checked = post.isDraft;
-		
-		document.getElementById('post-class').value = post.class;
-
-		document.getElementById('in-h1').value = post.title;
-		runEditor('in-h1');
-
-		document.getElementById('in-intro').value = post.introduction;
-		runEditor('in-intro');
-
-		if(post.sections) {
-		
-			for(let section of post.sections) {
-				
-				let currentMarker = marker;
-				document.getElementById('bt-add-section').click();
-
-				document.getElementById('in-sec-title-' + currentMarker).value = section.title;
-				runEditor('in-sec-title-' + currentMarker);
-
-				document.getElementById('in-sec-content-' + currentMarker).value = section.content;
-				runEditor('in-sec-content-' + currentMarker);
-
-			}
-
-		}
-
-	};
-
-	const resetPost = () => {
-
-		// Reset main title.
-		document.getElementById('in-h1').value = '';
-		runEditor('in-h1');
-		
-		// Reset introduction.
-		document.getElementById('in-intro').value = '';
-		runEditor('in-intro');
-
-		// Reset sections.
-		const secElms = document.getElementsByClassName('wm-in__section');
-		while(secElms.length >= 1) {
-			const secElm = secElms[0]; 
-			secElms[0].remove(); // Remove input.
-			document.getElementById(secElm.id.replace('in', 'out')).remove(); // Remove output.
-		}
 
 	};
 
@@ -776,14 +768,14 @@ let marker = 0;
 
 		// Give the focus on the first input or textarea available.
 		if(object.tag === 'ol' || object.tag === 'ul') {
-			document.querySelector('#dial textarea').focus();
+			document.querySelector('.wm-dial textarea').focus();
 		}
 		else {
-			document.querySelector('#dial input').focus();
+			document.querySelector('.wm-dial input').focus();
 		}
 
 		// Build the corresponding output when the form is submitted.
-		document.querySelector('#dial form').onsubmit = (e) => {
+		document.querySelector('.wm-dial form').onsubmit = (e) => {
 
 			let output;
 

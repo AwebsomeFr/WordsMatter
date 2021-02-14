@@ -121,7 +121,7 @@
 					{
 						type: 'button',
 						attributes: {
-							onclick: "exportToFile()" 
+							onclick: "exportPost()" 
 						},
 						html: '<span>↑</span>' + LAB.bt.exportPost,
 					},
@@ -130,13 +130,13 @@
 						attributes: {
 							id: 'label-open-file'
 						},
-						html: '<span>↓</span>' + LAB.bt.importPost,
+						html: '<span>↓</span>' + LAB.bt.loadPost,
 						children: [
 							{
 								type: 'input',
 								attributes: {
 									accept: 'text/plain',
-									onchange: 'importFromFile(this.files[0])',
+									onchange: 'importPost(this.files[0])',
 									type: 'file'
 								}
 							}
@@ -400,9 +400,9 @@
 		UI.body.classList.add('ws-available');
 
 		// Try to reload content...
-		const wsData = localStorage.getItem('post');
-		if(wsData !== null) {
-			importPost(JSON.parse(wsData));
+		const wsPost = localStorage.getItem('post');
+		if(wsPost !== null) {
+			setPost(wsPost);
 		}
 
 		// ...To restore theme... 

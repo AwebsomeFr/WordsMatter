@@ -37,7 +37,7 @@
 		delete: 'Delete',
 		doc: 'Documentation',
 		exportPost: 'Export to .txt file',
-		importPost: 'Import from .txt file',
+		loadPost: 'Import from .txt file',
 		listPost: 'Edit from the blog',
 		menu: 'Menu',
 		offline: 'offline',
@@ -75,6 +75,7 @@
 	// 0: fail, 1: success, X: unavailable, Y: empty.
 	LAB.notice = {
 		error: 'An error has occurred.',
+		load0: 'Error while loading post.',
 		load1: 'Post successfully loaded.',
 		serv0: 'Error while uploading: the post was not published.',
 		serv1: 'Post sent on the blog successfully.',
@@ -125,7 +126,7 @@
 			delete: 'Supprimer',
 			doc: 'Documentation',
 			exportPost: 'Exporter vers fichier .txt',
-			importPost: 'Importer depuis fichier .txt',
+			loadPost: 'Importer depuis fichier .txt',
 			listPost: 'Modifier depuis le blog',
 			menu: 'Menu',
 			offline: 'déconnecté',	
@@ -162,6 +163,7 @@
 
 		LAB.notice = {
 			error: 'Une erreur est survenue.',
+			load0: 'Erreur pendant le chargement du post.',
 			load1: 'Post chargé avec succès.',
 			serv0: 'Erreur lors de la mise en ligne : le post n\'a pas été publié.',
 			serv1: 'Post envoyé avec succès vers le blog.',
