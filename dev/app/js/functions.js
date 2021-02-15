@@ -99,10 +99,10 @@ let marker = 0;
 	const setNotice = (notice, state) => {
 		
 		dial();
-		UI.notice.setAttribute('class', 'wm-notice');
+		UI.notice.setAttribute('class', 'notice');
 		UI.notice.textContent = notice;
 		void UI.notice.offsetWidth;
-		UI.notice.setAttribute('class', 'wm-notice --visible ' + state);
+		UI.notice.setAttribute('class', 'notice --visible ' + state);
 		
 	};
 
@@ -125,7 +125,7 @@ let marker = 0;
 				sections: null
 			};
 			
-			const secElms = _.C('wm-in__section');
+			const secElms = _.C('in__section');
 
 			if(secElms.length > 0) {
 				post.sections = [];
@@ -196,7 +196,7 @@ let marker = 0;
 			_.I('in-intro').value = '';
 			runEditor('in-intro');
 
-			const secElms = _.C('wm-in__section');
+			const secElms = _.C('in__section');
 			while(secElms.length >= 1) {
 				const secElm = secElms[0]; 
 				secElms[0].remove(); // Remove input.
@@ -428,7 +428,7 @@ let marker = 0;
 						const medias = JSON.parse(resp);
 						// Start container.
 						dialBody += 
-							`<div class="wm-gallery">
+							`<div class="gallery">
 								<div>`;
 						// Item.
 						for(const media of medias) {
@@ -592,7 +592,7 @@ let marker = 0;
 		let inputSecElm = chess({
 			type: 'section',
 			attributes: {
-				class: 'wm-in__section',
+				class: 'in__section',
 				id: 'in-sec-' + marker
 			}
 		});
@@ -780,14 +780,14 @@ let marker = 0;
 
 		// Give the focus on the first input or textarea available.
 		if(object.tag === 'ol' || object.tag === 'ul') {
-			_.Q('.wm-dial textarea').focus();
+			_.Q('.dial textarea').focus();
 		}
 		else {
-			_.Q('.wm-dial input').focus();
+			_.Q('.dial input').focus();
 		}
 
 		// Build the corresponding output when the form is submitted.
-		_.Q('.wm-dial form').onsubmit = (e) => {
+		_.Q('.dial form').onsubmit = (e) => {
 
 			let output;
 

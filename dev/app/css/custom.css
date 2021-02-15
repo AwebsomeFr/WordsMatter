@@ -1,0 +1,35 @@
+/* 
+	
+	In WordsMatter, .out is the primary container used to display formatted content. 
+	You can copy and paste some styles from the blog AS CHILDREN of .out to see them applied live.
+	Here is the basic HTML structure :
+
+	<article class="out">
+		<h1>...</h1>
+		<div class="art-intro">...</div>
+		<section>
+			<h2>...</h2>
+			<div>...</div>
+		</section>
+		<section>
+			<h2>...</h2>
+			<div>...</div>
+		</section>
+		...
+	</article>
+
+*/
+
+.out {
+	overflow-y: auto; /* Don't delete or overwrite this value ! */
+}
+
+.out {
+	padding: 0 10px;
+	scrollbar-color: var(--color1) var(--color4);
+	scrollbar-width: thin;
+}
+
+.out a {
+	color: var(--color1);
+}
