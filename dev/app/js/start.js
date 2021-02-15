@@ -390,6 +390,8 @@
 	UI.body.appendChild(UI.main);
 
 	document.documentElement.lang = LANG;
+	document.head.children[6].textContent = LAB.meta.title; // Meta title.
+	document.head.children[4].setAttribute('content', LAB.meta.desc); // Meta description.
 
 /* --- Enable features under conditions --- */
 
