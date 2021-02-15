@@ -125,7 +125,7 @@ let marker = 0;
 				sections: null
 			};
 			
-			const secElms = _.C('in__section');
+			const secElms = _.C('in-sec');
 
 			if(secElms.length > 0) {
 				post.sections = [];
@@ -168,8 +168,8 @@ let marker = 0;
 						let currentMarker = marker;
 						_.I('bt-add-section').click();
 	
-						_.I('in-sec-title-' + currentMarker).value = sec.title;
-						runEditor('in-sec-title-' + currentMarker);
+						_.I('in-sec-h2-' + currentMarker).value = sec.title;
+						runEditor('in-sec-h2-' + currentMarker);
 	
 						_.I('in-sec-content-' + currentMarker).value = sec.content;
 						runEditor('in-sec-content-' + currentMarker);
@@ -196,7 +196,7 @@ let marker = 0;
 			_.I('in-intro').value = '';
 			runEditor('in-intro');
 
-			const secElms = _.C('in__section');
+			const secElms = _.C('in-sec');
 			while(secElms.length >= 1) {
 				const secElm = secElms[0]; 
 				secElms[0].remove(); // Remove input.
@@ -576,7 +576,7 @@ let marker = 0;
 					{ 
 						type: 'h2',
 						attributes: {
-							id: 'out-sec-title-' + marker
+							id: 'out-sec-h2-' + marker
 						}
 					},
 					{ 
@@ -592,13 +592,13 @@ let marker = 0;
 		let inputSecElm = chess({
 			type: 'section',
 			attributes: {
-				class: 'in__section',
+				class: 'in-sec',
 				id: 'in-sec-' + marker
 			}
 		});
 
 		for (let elmToCreate of [
-			{ type: 'input', id: 'in-sec-title-' + marker, placeholder: LAB.input.h2 },
+			{ type: 'input', id: 'in-sec-h2-' + marker, placeholder: LAB.input.h2 },
 			{ type: 'textarea', id: 'in-sec-content-' + marker, placeholder: LAB.input.secContent }
 
 		]){
@@ -702,7 +702,7 @@ let marker = 0;
 		_.Q('div', UI.input).appendChild(inputSecElm);
 		
 		// Scroll down and focus to the new section.
-		document.location.replace(document.location.pathname + '#in-sec-title-' + marker);
+		document.location.replace(document.location.pathname + '#in-sec-h2-' + marker);
 		inputSecElm.children[1].focus();
 	
 		marker++;

@@ -53,8 +53,9 @@
 		color: var(--color5);
 		font-family: inherit;
 		font-size: 1em;
-		margin: 1px;
+		margin: 2px;
 		padding: 8px;
+		border-radius: 3px;
 	}
 
 	button, #label-open-file {
@@ -106,7 +107,7 @@
 		grid-template-rows: auto 1fr 1fr;
 		max-width: 100%;
 		min-width: 360px;
-		padding: 1px;
+		padding: 2px;
 		width: 100%;
 	}
 	--mw1024 { max-width: 1024px; }
@@ -191,8 +192,8 @@
 	.dial.--visible > button {
 		height: 40px;
 		position: fixed;
-		right: 1px;
-		top: 1px;
+		right: 2px;
+		top: 2px;
 		width: 100px;
 	}
 	.dial.--visible > div {
@@ -213,7 +214,7 @@
 	}
 	.dial.--visible ul li {
 		display: grid;
-		grid-template-columns: 30px 1fr;
+		grid-template-columns: 40px 1fr;
 	}
 	.dial.--visible ul li button:last-child {
 		text-align: left;
@@ -276,6 +277,9 @@
 		display: flex;
 		justify-content: flex-end;
 	}
+	.nav p {
+		margin: 0
+	}
 	.nav > button {
 		height: 40px;
 		width: 100px;
@@ -288,70 +292,86 @@
 		display: initial;
 		position: fixed;
 	}
-	.nav.--visible > div button, .nav.--visible > div label {
+	.nav > div button, .nav label {
 		align-items: center;
 		display: grid;
 		gap: 5px;
 		grid-template-columns: 30px auto;
 		text-align: left;
-		width: 320px;
+		width: 300px;
+		margin: 4px;
 	}
-	.nav.--visible > div button span, .nav.--visible > div label span {
+	.nav span {
 		color: var(--color5);
 		font-size: 1.25em;
 		font-weight: normal;
 		text-align: center;
 	}
-	.nav.--visible > div button:nth-child(9) {
+	.nav > div button:nth-child(9) {
 		display: none;
 	}
-	@media screen and (min-width: 768px) {
-		.nav.--visible > div button:nth-child(9) {
-			display: grid;
-		}
-	}
-	.nav.--visible > div button:last-of-type {
+	.nav > div button:last-of-type {
 		font-weight: normal;
 		gap: 10px;
 		grid-template-columns: 50px auto;
 		line-height: 20px;
 	}
-	.nav.--visible > div button:last-of-type img {
+	.nav img {
 		width: 50px;
 		display: block;
 	}
-	.nav.--visible > div input {
+	.nav input {
 		position: absolute;
 		top: -100vh;
+	}
+	@media screen and (min-width: 768px) {
+		.nav > div button:nth-child(9) {
+			display: grid;
+		}
+	}
+	@media screen and (max-height: 600px) {
+		.nav.--visible > div {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+		.nav > div > button, .nav label, #label-open-file {
+			margin: 2px;
+			width: initial;
+			font-size: 0.95em;
+		}
+		.nav > div > button:last-child {
+			display: none;
+		}
 	}
 
  /* Post edition. */
 
-	.in__content {
-		display: flex;
-		flex-direction: column;
-	}
-	.in__config {
+	.config {
 		padding: 10px;
 	}
-	.in__config summary {
+	.config summary {
 		font-weight: bold;
 		color: var(--color1);
 	}
-	.in__config label {
+	.config label {
 		position: initial !important;
 		display: block;
 		margin: 15px 10px 10px 10px;
 	}
-	.in__config label:last-child {
+	.config label:last-child {
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: start;
 	}
-	.in__config input {
+	.config input {
 		display: block;
 		margin-right: 5px;
 		max-width: 125px;
+	}
+	
+	.in-content {
+		display: flex;
+		flex-direction: column;
 	}
 	.in label {
 		left: -9999px;
@@ -364,11 +384,11 @@
 		scrollbar-color: var(--color1) var(--color4);
 		scrollbar-width: thin;
 	}
-	.in__section {
+	.in-sec {
 		display: grid;
 		grid-template-areas: "title title title" "but but content" "but but content" "but but content" "but but content" "but but content" "but but content";
 		grid-template-columns: repeat(2, 40px) 1fr;
 	}
-	.in__section input {
+	.in-sec input {
 		grid-area: title;
 	}

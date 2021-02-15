@@ -227,7 +227,7 @@
 			{
 				type: 'details',
 				attributes: {
-					class: 'in__config'
+					class: 'config'
 				},
 				children: [
 					{
@@ -279,7 +279,7 @@
 			{
 				type: 'div',
 				attributes: {
-					class: 'in__content'
+					class: 'in-content'
 				},
 				children: [
 					{
