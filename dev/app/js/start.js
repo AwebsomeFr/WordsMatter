@@ -33,7 +33,7 @@
 			{
 				type: 'div',
 				attributes: {
-					id: 'dial-content'
+					class: 'dial-content'
 				}
 			}
 		]
@@ -241,8 +241,7 @@
 							{
 								type: 'input',
 								attributes: {
-									id: 'post-class',
-									type: 'text'
+									id: 'post-class'
 								}
 							},
 						],
@@ -279,7 +278,7 @@
 			{
 				type: 'div',
 				attributes: {
-					class: 'in-content'
+					class: 'content'
 				},
 				children: [
 					{
@@ -294,8 +293,7 @@
 						attributes: {
 							id: 'in-h1',
 							oninput: 'runEditor(\'in-h1\')',
-							placeholder: LAB.input.h1,
-							type: 'text'
+							placeholder: LAB.input.h1
 						}
 					},
 					{
@@ -365,16 +363,20 @@
 		// Shortcuts.
 		else if(e.ctrlKey || e.metaKey) {
 			switch(e.code) {
-				case 'KeyS':
-					pushLocalPost();
+				case 'KeyG':
+					getImages();
+					e.preventDefault();
+					break;
+				case 'KeyO':
+					getPosts();
 					e.preventDefault();
 					break;
 				case 'KeyP':
 					pushPost();
 					e.preventDefault();
 					break;
-				case 'KeyO':
-					getPosts();
+				case 'KeyS':
+					pushLocalPost();
 					e.preventDefault();
 					break;
 			}

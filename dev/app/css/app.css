@@ -57,7 +57,9 @@
 		padding: 8px;
 		border-radius: 3px;
 	}
-
+	textarea {
+		resize: vertical;
+	}
 	button, #label-open-file {
 		color: var(--color1);
 		cursor: pointer;
@@ -110,11 +112,11 @@
 		padding: 2px;
 		width: 100%;
 	}
-	--mw1024 { max-width: 1024px; }
-	--mw1280 { max-width: 1280px; }
-	--mw360 { max-width: 360px; }
-	--mw540 { max-width: 540px; }
-	--mw768 { max-width: 768px; }
+	.--mw1024px { max-width: 1024px; }
+	.--mw1280px { max-width: 1280px; }
+	.--mw360px { max-width: 360px; }
+	.--mw540px { max-width: 540px; }
+	.--mw768px { max-width: 768px; }
 
 	.in {
 		display: flex;
@@ -169,13 +171,10 @@
 /* Advanced message, requiring user action. */
 
 	.dial {
-		display: none;
-	}
-	.dial.--visible {
 		background-color: var(--color3);
 		bottom: 0;
 		color: var(--color5);
-		display: flex;
+		display: none;
 		flex-direction: column;
 		left: 0;
 		overflow-y: auto;
@@ -185,48 +184,52 @@
 		top: 0;
 		z-index: 1;
 	}
-	.dial.--visible h2 {
+	.dial.--visible {
+		display: flex;
+	}
+	.dial h2 {
 		margin-top: 0;
 		border-bottom: solid 1px;
 	}
-	.dial.--visible > button {
+	.dial > button {
 		height: 40px;
 		position: fixed;
 		right: 2px;
 		top: 2px;
 		width: 100px;
 	}
-	.dial.--visible > div {
+	.dial > div {
 		margin: auto;
 		max-height: 85vh;
 		width: 85%;
 		max-width: 768px;
 	}
-	.dial.--visible label, .dial.--visible input, .dial.--visible textarea {
+	.dial label, .dial input, .dial textarea {
 		display: block;
 		margin: 10px 0;
 		width: 100%;
 		box-sizing: border-box;
 	}
-	.dial.--visible ul {
+	.dial ul {
 		padding-left: 10px;
 		list-style-type: none;
 	}
-	.dial.--visible ul li {
+	.dial li {
 		display: grid;
 		grid-template-columns: 40px 1fr;
 	}
-	.dial.--visible ul li button:last-child {
+	.dial li button:last-child {
 		text-align: left;
 	}
-	.dial.--visible ul li .private, .dial.--visible ul li .published {
+	.private, .published {
+		display: block;
 		font-weight: normal;
 		font-size: 0.85em;
 	}
-	.dial.--visible ul li .private {
+	.private {
 		color: var(--bad-color);
 	}
-	.dial.--visible ul li .published {
+	.published {
 		color: var(--good-color);
 	}
 
@@ -251,7 +254,7 @@
 	}
 	.gallery > div > div {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 40px 1fr;
 		margin: 10px;
 		opacity: 0.85;
 	}
@@ -369,7 +372,7 @@
 		max-width: 125px;
 	}
 	
-	.in-content {
+	.content {
 		display: flex;
 		flex-direction: column;
 	}

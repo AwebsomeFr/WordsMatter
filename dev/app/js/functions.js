@@ -24,68 +24,85 @@ let marker = 0;
 
 	const setHeight = () => {
 	
-		const heights = [
+		const HEIGHTS = [
 			['0.75fr 0.25fr', LAB.bt.advReading], 
 			['0.5fr 0.5fr', LAB.bt.balanced], 
 			['0.25fr 1.5fr', LAB.bt.advWriting]
 		];
-		let options = '';
 
-		for(const height of heights) {
-			options += 
-				`<button onclick="
-					UI.main.style.gridTemplateRows = 'auto ${height[0]}', 
-					dial() ">
-					${height[1]}
-				</button>`;
+		let dialBody = `
+		
+			<h2>${LAB.bt.setHeight}</h2>
+			<p>${LAB.dial.setHeight}</p>
+			
+		`;
+
+		for(let i = 0, l = HEIGHTS.length; i < l; i++) {
+
+			dialBody += `
+				<button 
+					class="${i === (l - 1) ? 'dial-trap-last' : '' }"
+					onclick="UI.main.style.gridTemplateRows = 'auto ${HEIGHTS[i][0]}', 
+					dial()">
+					${HEIGHTS[i][1]}
+				</button>
+			`;
+
 		}
 
-		dial(
-			`<h2>${LAB.bt.setHeight}</h2>
-			<p>${LAB.dial.setHeight}</p>
-			${options}`
-		);
-
+		dial(dialBody);
+		
 	};
 
 	const setWidth = () => {
 
-		const widths = [360, 540, 768, 1024, 1280, 'Max'];
-		let options = '';
+		const WIDTHS = ['360px', '540px', '768px', '1024px', '1280px', 'Max'];
+		
+		let dialBody = 
+			`<h2>${LAB.bt.setWidth}</h2>
+			<p>${LAB.dial.setWidth}</p>`;
+		
+		for(let i = 0, l = WIDTHS.length; i < l; i++) {
 
-		for(const width of widths) {
-			options += 
-				`<button onclick="
-					UI.main.setAttribute('class', '--mw${width}'),
-					savePref('max-width', '--mw${width}'),
-					dial() ">
-					${width}${isNaN(width) ? '': 'px'}
-				</button>`;
+			dialBody += `
+				<button 
+					class="${i === (l - 1) ? 'dial-trap-last' : '' }"
+					onclick="UI.main.setAttribute('class', '--mw${WIDTHS[i]}'),
+					savePref('max-width', '--mw${WIDTHS[i]}'),
+					dial()">
+					${WIDTHS[i]}
+				</button>
+			`;
+
 		}
 
-		dial(
-			`<h2>${LAB.bt.setWidth}</h2>
-			<p>${LAB.dial.setWidth}</p>
-			${options}`
-		);
+		dial(dialBody);
 
 	};
 
-	const dial = mess => {
+	const dial = content => {
 		
-		if(mess !== undefined) {
+		if(content !== undefined) {
 			
-			_.Q('div', UI.dial).innerHTML = mess;
+			// Build content.
+			_.Q('div', UI.dial).innerHTML = content;
+
+			// Display. 
 			UI.dial.classList.add('--visible');
+	
+			// Give focus at the first interactive element available.			
+			let elm;
 
-			let bts = _.T('button', UI.dial);			
-			if(bts.length > 1) {				
-				// Add a class to the latest button for focus trap.
-				bts[bts.length - 1].classList.add('dial-trap-last');
-				// Give focus to the first useful button (sometimes, focus is given to the first input).
-				bts[1].focus();
+			if(elm = _.Q('.dial-content input')) {
+				elm.focus();
 			}
-
+			else if(elm = _.Q('.dial-content textarea')) {
+				elm.focus();
+			}
+			else if(elm = _.Q('.dial-content button')) {
+				elm.focus();
+			}
+			
 		}
 		
 		else {
@@ -236,11 +253,12 @@ let marker = 0;
 
 	/* --- With files --- */
 
-		const exportPost = () => dial(
-			`<h2>${LAB.bt.exportPost}</h2>
+		const exportPost = () => dial(`
+			<h2>${LAB.bt.exportPost}</h2>
 			<p>${LAB.dial.exportPost}</p>
-			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>`
-		);
+			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>
+			<button class='dial-trap-last' onclick='dial()'>${LAB.bt.close}</button>
+		`);
 
 		const importPost = file => {
 
@@ -279,39 +297,41 @@ let marker = 0;
 				null,
 				resp => {
 
-					const posts = JSON.parse(resp);
+					const POSTS = JSON.parse(resp);
 					
-					if(posts.length > 0) {
+					if(POSTS.length > 0) {
 
-						let dialBody = 
-							`<h2>${LAB.bt.listPost}</h2>
+						let dialBody = `
+							<h2>${LAB.bt.listPost}</h2>
 							<p>${LAB.dial.editPost}</p>
-							<ul>`;
+							<ul>
+						`;
 
-						for(const post of posts) {
-							dialBody += 
-								`<li >
+						for(let i = 0, l = POSTS.length; i < l; i++) {
+							dialBody += `	
+								<li>
 									<button
 										class="--danger"
-										onclick="deletePost(\'${post.dir}\')"
+										onclick="deletePost(\'${POSTS[i].dir}\')"
 										title="${LAB.bt.delete}">
 										X
 									</button>
 									<button 
-										onclick="readPost(\'${post.dir}\')"
+										class="${i === (l - 1) ? 'dial-trap-last' : '' }"
+										onclick="readPost(\'${POSTS[i].dir}\')"
 										title="${LAB.bt.open}"
-										value="${post.dir}">
-										${post.title} 
-										${post.isDraft ? 
-											`<span class="private"><br/>${LAB.bt.private}</span>` : 
-											`<span class="published"><br/>${LAB.bt.published}</span>`
+										value="${POSTS[i].dir}">
+										${POSTS[i].title} 
+										${POSTS[i].isDraft ? 
+											`<span class="private">${LAB.bt.private}</span>` : 
+											`<span class="published">${LAB.bt.published}</span>`
 										}
 									</button>
-								</li>`;
+								</li>
+							`;
 						}
 						
-						dialBody += 
-							'</ul>';
+						dialBody += '</ul>';
 						
 						dial(dialBody);
 
@@ -353,7 +373,7 @@ let marker = 0;
 								dial(
 									`<h2>${LAB.bt.pushPost}</h2>
 									<p>${LAB.dial.confPushServ}</p>
-									<button onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
+									<button class="dial-trap-last" onclick="pushPost(true)">${LAB.bt.confirm}</button>`,						
 								);
 								break;
 
@@ -361,7 +381,7 @@ let marker = 0;
 								dial(
 									`<h2>${LAB.bt.pushPost}</h2>
 									<p>${LAB.dial.confUpdateServ}</p>
-									<button onclick="pushPost(true)">${LAB.bt.update}</button>`,
+									<button class="dial-trap-last" onclick="pushPost(true)">${LAB.bt.update}</button>`,
 								);
 								break;
 
@@ -411,43 +431,53 @@ let marker = 0;
 				null,
 				resp => {
 					
-					// Common part.
-					let dialBody = 
-						`<h2>${LAB.bt.getImages}</h2>
-						<label>${LAB.bt.uploadImg}
+					let dialBody = `
+						<h2>${LAB.bt.getImages}</h2>
+						<label>
+							<h3>${LAB.bt.addImg}</h3>
 							<input 
 								accept="image/jpeg, image/png, image/webp"
+								class="${resp === '[]' ? 'dial-trap-last' : '' }"
 								onchange="pushImage(this.files[0])"
-								type="file"
-							/>
+								type="file" />
+							${LAB.bt.condImg}
 						</label>
-						<p>${LAB.bt.pickImg}.</p>`;
+					`;
 
 					// Only if there are already downloaded images. 
 					if(resp !== '[]') {
-						const medias = JSON.parse(resp);
-						// Start container.
-						dialBody += 
-							`<div class="gallery">
-								<div>`;
-						// Item.
-						for(const media of medias) {
-							dialBody += 
-								`<div>
-									<button onclick="addFromGallery('${media.normalPath}')">${LAB.bt.add}</button>
+						
+						const MEDIAS = JSON.parse(resp);
+						
+						dialBody += `
+							<h3>${LAB.bt.availImg}</h3>
+							<div class="gallery">
+								<div>
+						`;
+
+						for(let i = 0, l = MEDIAS.length; i < l; i++) {
+							dialBody += ` 
+								<div>	
+									<p>${MEDIAS[i].name}</p>	
+									<img loading="lazy" src="${MEDIAS[i].thumbPath}" />
 									<button 
 										class="--danger"
-										onclick="deleteImage('${media.name}')"
-										title="${LAB.bt.delete}"	
-									>X</button>
-									<img loading="lazy" src="${media.thumbPath}" />
-									<p>${media.name}</p>
-								</div>`;
-						}
-						// End container.
-						dialBody += 
-							`</div>
-						</div>`;
+										onclick="deleteImage('${MEDIAS[i].name}')"
+										title="${LAB.bt.delete}">
+										X
+									</button>
+									<button
+										class="${i === (l - 1) ? 'dial-trap-last' : '' }" 
+										onclick="addFromGallery('${MEDIAS[i].normalPath}')">
+										${LAB.bt.add}
+									</button>
+								</div>
+						`;}
+						
+						dialBody += `
+							</div>
+						</div>
+						`;
 					}
 			
 					dial(dialBody);
@@ -648,7 +678,7 @@ let marker = 0;
 		}
 
 		// Quick insertion for strong, em, ol, ul, a, img, figure.
-		for(let elmToCreate of [
+		for(const elmToCreate of [
 			{ text: 'str', title: LAB.bt.addStr, tag: 'strong' },
 			{ text: 'em', title: LAB.bt.addEm, tag: 'em' },
 			{ text: 'ol', title: LAB.bt.addOl, tag: 'ol' },
@@ -711,83 +741,90 @@ let marker = 0;
 
 	const formatContent = (targetElm, object) => {
 
-		// Form parts.
-		let formElm = {
-			header: '<form><h2>' + object.title + '</h2>',
-			body : '', // Declared into the next switch.
-			footer: `<button type="submit">${LAB.bt.confirm}</button></form`	
-		};
+		// Get user input from highlighted text ('' if empty).
+		const input = targetElm.value.substring(targetElm.selectionStart, targetElm.selectionEnd);
+		const urlRegex = /^https?/i;
 
-		// Case 1 : Input comes from highlighted text.
-		// Case 2 : Input will come from modal.
-		let input = targetElm.value.substring(targetElm.selectionStart, targetElm.selectionEnd);
-		let urlRegex = /^https?/i;
+		let dialBody = `<form><h2>${object.title}</h2>`;
 
-		// Body of the form.
 		switch(object.tag) {
 
-			case 'h3': case 'h4': case 'h5': case 'h6':
-				formElm.body =
-					`<label for="h-value">${LAB.input.txtToTransf}</label>
-					<input id="h-value" type="text" value="${input}" required />`;
+			case 'h3': 
+			case 'h4': 
+			case 'h5': 
+			case 'h6':
+				dialBody +=
+					`<label>
+						${LAB.input.txtToTransf}
+						<input focus value="${input}" required />
+					</label>`;
 				break;
 
-			case 'strong': case 'em':
-				formElm.body =
-					`<label for="inline-value">${LAB.input.txtToTransf}</label>
-					<input id="inline-value" type="text" value="${input}" required />`;
+			case 'strong': 
+			case 'em':
+				dialBody +=
+					`<label>
+						${LAB.input.txtToTransf}
+						<input value="${input}" required />
+					</label>`;
 				break;
 
-			case 'ol': case 'ul':
-				formElm.body =
-					`<label for="list-values">${LAB.input.list}</label>
-					<textarea id="list-values" required>${input}</textarea>`;
+			case 'ol': 
+			case 'ul':
+				dialBody +=
+					`<label>
+						${LAB.input.list}
+						<textarea required>${input}</textarea>
+					</label>`;
 				break;
 
 			case 'a':
-				formElm.body =
-					`<label for="a-value">${LAB.input.url}</label>
-					<input id="a-value" type="text" placeholder="https://example.com" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="a-label">${LAB.input.lab}</label>
-					<input id="a-label" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
+				dialBody +=
+					`<label>
+						${LAB.input.url}
+						<input placeholder="https://example.com" value="${input.match(urlRegex) != null ? input : ''}" required />
+					</label>
+					<label>
+						${LAB.input.lab}
+						<input value="${input.match(urlRegex) != null ? '' : input}" required />
+					</label>`;
 				break;
 
 			case 'img':
-				formElm.body =
-					`<label for="img-src">${LAB.input.url}</label>
-					<input id="img-src" type="text" placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="img-alt">${LAB.input.imgAlt}</label>
-					<input id="img-alt" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />`;
+				dialBody +=
+					`<label>
+						${LAB.input.url}
+						<input placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />		
+					</label>
+					<label>
+						${LAB.input.imgAlt}
+						<input value="${input.match(urlRegex) != null ? '' : input}" required />
+					</label>`;
 				break;
 
 			case 'figure':
-				formElm.body =
-					`<label for="fig-src">${LAB.input.url}</label>
-					<input id="fig-src" type="text" placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
-					<label for="fig-legend">${LAB.input.imgLeg}</label>
-					<input id="fig-legend" type="text" value="${input.match(urlRegex) != null ? '' : input}" required />
-					<label for="fig-alt">${LAB.input.imgAlt}</label>
-					<input id="fig-alt" type="text" required />`;
+				dialBody +=
+					`<label>
+						${LAB.input.url}
+						<input placeholder="https://example.com/image.png" value="${input.match(urlRegex) != null ? input : ''}" required />
+					</label>
+					<label>
+						${LAB.input.imgLeg}
+						<input value="${input.match(urlRegex) != null ? '' : input}" required />
+					</label>
+					<label>
+						${LAB.input.imgAlt}
+						<input required />
+					</label>`;
 				break;
 
 		}
 
-		dial(
-			formElm.header +
-			formElm.body +
-			formElm.footer
-		);
-
-		// Give the focus on the first input or textarea available.
-		if(object.tag === 'ol' || object.tag === 'ul') {
-			_.Q('.dial textarea').focus();
-		}
-		else {
-			_.Q('.dial input').focus();
-		}
+		dialBody += `<button class="dial-trap-last" type="submit">${LAB.bt.confirm}</button></form>`;
+		dial(dialBody);
 
 		// Build the corresponding output when the form is submitted.
-		_.Q('.dial form').onsubmit = (e) => {
+		_.Q('.dial form').onsubmit = e => {
 
 			let output;
 
@@ -810,7 +847,7 @@ let marker = 0;
 
 				case 'ol':
 				case 'ul':
-					let nScore = object.tag === 'ol' ? '__' : '_'; 
+					const nScore = object.tag === 'ol' ? '__' : '_'; 
 					output = '\n';
 					for(let elm of e.target.elements[0].value.split('\n')) { 
 						if(elm.trim() !== '') {
