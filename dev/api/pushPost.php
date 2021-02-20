@@ -5,9 +5,9 @@ ini_set('html_errors', false);
 error_reporting(E_ALL);
 
 /* 
-Job : push a post to the server.
-Return : 'success' if done.
-To : /app/js/functions.js | pushPost
+	Job : push a post to the server.
+	Return : 'success' if done.
+	To : /app/js/functions.js | pushPost
 */
 
 if(isset($_POST['editorId']) && isset($_POST['post']) && isset($_POST['validation'])) {
@@ -61,7 +61,6 @@ if(isset($_POST['editorId']) && isset($_POST['post']) && isset($_POST['validatio
 
 				$output = (object) array(
 					'date' => $post->date,
-					'class' => buildName($post->class),
 					'title' => $post->title,
 					'introduction' => runEditor($post->introduction, $regex),
 					'sections' => []
@@ -97,10 +96,10 @@ if(isset($_POST['editorId']) && isset($_POST['post']) && isset($_POST['validatio
 			// Then list the post at the start of the array.
 			array_unshift($list, 
 				(object) array(
-					"date" => $post->date,
-					"title" => $post->title,
-					"dir" => DIR_NAME,
-					"isDraft" => $isDraft
+					'date' => $post->date,
+					'title' => $post->title,
+					'dir' => DIR_NAME,
+					'isDraft' => $isDraft
 				)
 			);
 			file_put_contents(POSTS_INDEX, json_encode($list));

@@ -5,9 +5,9 @@ ini_set('html_errors', false);
 error_reporting(E_ALL);
 
 /* 
-Job : upload an image in the gallery.
-Return : 'success' if done.
-To : /app/js/functions.js | pushImage
+	Job : upload an image in the gallery.
+	Return : 'success' if done.
+	To : /app/js/functions.js | pushImage
 */
 
 if(isset($_FILES) && isset($_POST['editorId'])) {

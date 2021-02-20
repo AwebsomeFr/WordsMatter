@@ -136,7 +136,6 @@ let marker = 0;
 			let post = {
 				date: _.I('post-date').value,
 				isDraft: _.I('post-draft').checked,
-				class: _.I('post-class').value,
 				title: _.I('in-h1').value,
 				introduction: _.I('in-intro').value,
 				sections: null
@@ -170,7 +169,6 @@ let marker = 0;
 				// Restore values.
 				_.I('post-date').value = post.date;
 				_.I('post-draft').checked = post.isDraft;	
-				_.I('post-class').value = post.class;
 	
 				_.I('in-h1').value = post.title;
 				runEditor('in-h1');
@@ -731,7 +729,7 @@ let marker = 0;
 			})
 	);
 
-		_.Q('div', UI.input).appendChild(inputSecElm);
+		_.Q('.content').appendChild(inputSecElm);
 		
 		// Scroll down and focus to the new section.
 		document.location.replace(document.location.pathname + '#in-sec-h2-' + marker);

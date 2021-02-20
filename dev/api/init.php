@@ -1,9 +1,9 @@
 <?php 
 
 /* 
-Job : Check that the application matches the API and create necessary files and directories. 
-Return : 'granted' if OK.
-To : /app/js/start.js
+	Job : Check that the application matches the API and create necessary files and directories. 
+	Return : 'granted' if OK.
+	To : /app/js/start.js
 */
 
 if(isset($_POST['editorId'])) {

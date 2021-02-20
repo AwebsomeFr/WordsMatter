@@ -47,9 +47,9 @@ const LAB = {
 		update: 'Mettre à jour'
 	},
 	input: {
-		postClass: 'Classe (optionnelle)',
-		postDate: 'Date de publication',
-		postDraft: 'Sauvegarder en tant que brouillon ?',
+		postClass: 'Classe',
+		postDate: 'Publié le',
+		postDraft: 'Brouillon ?',
 		imgAlt: 'Description (alternative)',
 		secContent: 'Contenu de section',
 		h1: 'Titre du post (h1)',

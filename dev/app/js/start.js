@@ -225,28 +225,11 @@
 		},
 		children: [
 			{
-				type: 'details',
+				type: 'div',
 				attributes: {
 					class: 'config'
 				},
 				children: [
-					{
-						type: 'summary',
-						text: LAB.bt.configuration
-
-					},
-					{
-						type: 'label',
-						children: [
-							{
-								type: 'input',
-								attributes: {
-									id: 'post-class'
-								}
-							},
-						],
-						text: LAB.input.postClass
-					},
 					{
 						type: 'label',
 						children: [
@@ -256,7 +239,7 @@
 									id: 'post-date',
 									type: 'date'
 								}
-							},
+							}
 						],
 						text: LAB.input.postDate
 					},
@@ -272,7 +255,7 @@
 							}
 						],
 						text: LAB.input.postDraft
-					},
+					}
 				]
 			},
 			{

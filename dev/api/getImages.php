@@ -5,9 +5,9 @@ ini_set('html_errors', false);
 error_reporting(E_ALL);
 
 /* 
-Job : browse and return the content of the gallery.
-Return : a JSON containing the content of the gallery. 
-To : /app/js/functions.js | getImages
+	Job : browse and return the content of the gallery.
+	Return : a JSON containing the content of the gallery. 
+	To : /app/js/functions.js | getImages
 */
 
 if(isset($_POST['editorId'])) {

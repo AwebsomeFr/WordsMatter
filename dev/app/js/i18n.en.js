@@ -47,9 +47,9 @@ const LAB = {
 		update: 'Update'
 	},
 	input: {
-		postClass: 'Class (optional)',
+		postClass: 'Class',
 		postDate: 'Publication date',
-		postDraft: 'Save as a draft ?',
+		postDraft: 'Draft ?',
 		imgAlt: 'Description (alternative)',
 		secContent: 'Content of the section',
 		h1: 'Title of the post (h1)',

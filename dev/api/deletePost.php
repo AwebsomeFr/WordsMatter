@@ -5,9 +5,9 @@ ini_set('html_errors', false);
 error_reporting(E_ALL);
 
 /* 
-Job : delete a post from the server.
-Return : 'success' if done.
-To : /app/js/functions.js | deletePost
+	Job : delete a post from the server.
+	Return : 'success' if done.
+	To : /app/js/functions.js | deletePost
 */
 
 if(isset($_POST['editorId']) && isset($_POST['post'])) {
