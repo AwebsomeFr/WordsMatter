@@ -27,8 +27,8 @@ if(isset($_POST['editorId'])) {
 	
 			array_push(
 				$files, array(
-					'normalPath' => GALLERY_DIR . '/normals/' . $item,
-					'thumbPath' => GALLERY_DIR . '/thumbs/' . $item,
+					'normalPath' => R_GALLERY_DIR . '/normals/' . $item,
+					'thumbPath' => R_GALLERY_DIR . '/thumbs/' . $item,
 					'name' => $item
 				) 
 			);

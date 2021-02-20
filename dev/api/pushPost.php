@@ -21,7 +21,7 @@ if(isset($_POST['editorId']) && isset($_POST['post']) && isset($_POST['validatio
 			
 		define('DIR_NAME', buildName($post->title)); // Name of the post, represented by its parent directory.
 		define('OUTPUT_DIR_PATH', OUTPUT_DIR . '/' . DIR_NAME); 
-		define('OUTPUT_FILE_NAME', 'index' . $extension);
+		define('OUTPUT_FILE_NAME', 'index' . EXTENSION);
 		define('INPUT_DIR_PATH', INPUT_DIR . '/' . DIR_NAME); 
 		define('INPUT_FILE_NAME', 'draft.txt');
 		

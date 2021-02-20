@@ -20,8 +20,8 @@ if(isset($_POST['editorId'])) {
 		}
 		if(!is_dir(GALLERY_DIR)) {
 			mkdir(GALLERY_DIR, 0777, true);
-			mkdir(GALLERY_DIR . '/thumbs', 0777, true);
-			mkdir(GALLERY_DIR . '/normals', 0777, true);
+			mkdir(GALLERY_DIR . '/thumbs/', 0777, true);
+			mkdir(GALLERY_DIR . '/normals/', 0777, true);
 	
 		}
 		if(!file_exists(POSTS_INDEX)) {

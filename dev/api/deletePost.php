@@ -18,7 +18,7 @@ if(isset($_POST['editorId']) && isset($_POST['post'])) {
 
 		define('DIR_NAME', $_POST['post']);
 		define('OUTPUT_DIR_PATH', OUTPUT_DIR . '/' . DIR_NAME); 
-		define('OUTPUT_FILE_NAME', 'index' . $extension);
+		define('OUTPUT_FILE_NAME', 'index' . EXTENSION);
 		define('INPUT_DIR_PATH', INPUT_DIR . '/' . DIR_NAME); 
 		define('INPUT_FILE_NAME', 'draft.txt');
 
