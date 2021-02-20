@@ -186,7 +186,7 @@
 						},
 						html: 
 						`<span><img src="./app/img/words-matter-logo-100px.png" alt="Logo WordsMatter" /></span>
-						<p>${LAB.bt.awb} <u>Awebsome</u>.</p>`
+						<p>${LAB.bt.awb} <u>Awebsome</u></p>`
 					}
 				]
 			}
@@ -309,7 +309,7 @@
 
 	UI.body.appendChild(UI.notice);
 	UI.body.appendChild(UI.dial);
-	UI.body.appendChild(UI.status);
+	UI.main.appendChild(UI.status);
 	UI.main.appendChild(UI.nav);
 	UI.main.appendChild(UI.output);
 	UI.main.appendChild(UI.input);

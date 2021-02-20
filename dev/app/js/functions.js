@@ -205,6 +205,9 @@ let marker = 0;
 
 		const emptyPost = () => {
 
+			_.I('post-date').value = '';
+			_.I('post-draft').checked = false;
+
 			_.I('in-h1').value = '';
 			runEditor('in-h1');
 			

@@ -105,11 +105,11 @@
 	main {
 		box-sizing: border-box;
 		display: grid;
-		gap: 2px;
+		gap: 8px;
 		grid-template-rows: auto 1fr 1fr;
 		max-width: 100%;
 		min-width: 300px;
-		padding: 2px;
+		padding: 8px;
 		width: 100%;
 	}
 	.--mw1024px { max-width: 1024px; }
@@ -130,15 +130,15 @@
 /* Show if connected or not to the API. */
 
 .status {
-	position: fixed;
 	display: flex;
-	top: -5px;
-	left: 15px;
+	margin-left: 8px;
+	position: absolute;
+	top: 0;
 }
 .status svg {
 	fill: var(--bad-color);
-	margin-right: 5px;
-	width: 15px;
+	margin-right: 4px;
+	width: 16px;
 }
 
 /* Simple message, no action required. */
@@ -154,7 +154,7 @@
 		box-sizing: border-box;
 		font-weight: bold;
 		margin: 0;
-		padding: 10px;
+		padding: 8px;
 		text-align: center;
 		transform: initial;
 		z-index: 1;
@@ -178,7 +178,7 @@
 		flex-direction: column;
 		left: 0;
 		overflow-y: auto;
-		padding: 10px;
+		padding: 8px;
 		position: fixed;
 		right: 0;
 		top: 0;
@@ -194,8 +194,9 @@
 	.dial > button {
 		height: 40px;
 		position: fixed;
-		right: 2px;
-		top: 2px;
+		margin: 0;
+		right: 8px;
+		top: 8px;
 		width: 100px;
 	}
 	.dial-content {
@@ -208,11 +209,11 @@
 	.dial label, .dial input, .dial textarea {
 		box-sizing: border-box;
 		display: block;
-		margin: 10px 0;
+		margin: 8px 0;
 		width: 100%;
 	}
 	.dial label > input {
-		margin-top: 2px;
+		margin-top: 4px;
 	}
 	.dial ul { /* .getposts-ul, .getimages-ul, .exportpost-ul */
 		border: solid 1px var(--color4);
@@ -269,6 +270,7 @@
 		margin: 0
 	}
 	.nav > button {
+		margin: 0;
 		height: 40px;
 		width: 100px;
 	}
@@ -283,7 +285,7 @@
 	.nav > div button, .nav label {
 		align-items: center;
 		display: grid;
-		gap: 5px;
+		gap: 8px;
 		grid-template-columns: 30px auto;
 		text-align: left;
 		width: 300px;
@@ -300,7 +302,7 @@
 	}
 	.nav > div button:last-of-type {
 		font-weight: normal;
-		gap: 10px;
+		gap: 8px;
 		grid-template-columns: 50px auto;
 		line-height: 20px;
 	}
@@ -337,8 +339,8 @@
 	.config {
 		display: flex;
 		flex-wrap: wrap;
-		margin-bottom: 4px;
-		margin-left: 4px;
+		padding: 4px 0;
+		border-top: solid 1px var(--color4);
 	}
 	.config label {
 		align-items: center;
@@ -353,13 +355,14 @@
 	}
 	.config input {
 		margin-left: 4px;
-		padding: 3px 8px;	
+		padding: 4px 8px;	
 	}
 
 	.content {
 		display: flex;
 		flex-direction: column;
 	}
+
 	.in label {
 		left: -9999px;
 		position: absolute;

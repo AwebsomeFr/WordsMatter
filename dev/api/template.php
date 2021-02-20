@@ -11,7 +11,7 @@ function buildPost ($output) {
 		'<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />' .
 		'<title>' . $output->title . '</title>' .
 	'</head>' .
-	'<body class="' . $output->class . '">' .
+	'<body>' .
 		'<main>' .
 			'<article>' .
 				'<h1>' . $output->title . '</h1>' .
