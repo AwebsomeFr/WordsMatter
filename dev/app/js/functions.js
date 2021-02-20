@@ -256,7 +256,9 @@ let marker = 0;
 		const exportPost = () => dial(`
 			<h2>${LAB.bt.exportPost}</h2>
 			<p>${LAB.dial.exportPost}</p>
-			<p style="color:var(--color1)">${JSON.stringify(getPost())}</p>
+			<ul class="exportpost-ul">
+				<li>${JSON.stringify(getPost())}</li>
+			</ul>
 			<button class='dial-trap-last' onclick='dial()'>${LAB.bt.close}</button>
 		`);
 
@@ -304,7 +306,7 @@ let marker = 0;
 						let dialBody = `
 							<h2>${LAB.bt.listPost}</h2>
 							<p>${LAB.dial.editPost}</p>
-							<ul>
+							<ul class="getposts-ul">
 						`;
 
 						for(let i = 0, l = POSTS.length; i < l; i++) {
@@ -452,12 +454,12 @@ let marker = 0;
 						dialBody += `
 							<h3>${LAB.bt.availImg}</h3>
 							<div class="gallery">
-								<div>
+								<ul class="getimages-ul">
 						`;
 
 						for(let i = 0, l = MEDIAS.length; i < l; i++) {
 							dialBody += ` 
-								<div>	
+								<li>	
 									<p>${MEDIAS[i].name}</p>	
 									<img loading="lazy" src="${MEDIAS[i].thumbPath}" />
 									<button 
@@ -471,11 +473,11 @@ let marker = 0;
 										onclick="addFromGallery('${MEDIAS[i].normalPath}')">
 										${LAB.bt.add}
 									</button>
-								</div>
+								</li>
 						`;}
 						
 						dialBody += `
-							</div>
+							</ul>
 						</div>
 						`;
 					}
