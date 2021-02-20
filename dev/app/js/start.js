@@ -306,8 +306,56 @@
 			}
 		]
 	});
-	
-	// Keyboard navigation.
+
+	UI.body.appendChild(UI.notice);
+	UI.body.appendChild(UI.dial);
+	UI.body.appendChild(UI.status);
+	UI.main.appendChild(UI.nav);
+	UI.main.appendChild(UI.output);
+	UI.main.appendChild(UI.input);
+	UI.body.appendChild(UI.main);
+
+	document.documentElement.lang = LANG;
+	document.head.children[6].textContent = LAB.meta.title; // Meta title.
+	document.head.children[4].setAttribute('content', LAB.meta.desc); // Meta description.
+
+/* --- Enable features under conditions --- */
+
+	// Is the Web Storage API available?
+	if(localStorage) {
+		
+		// Enable features.
+		UI.body.classList.add('ws-available');
+
+		// Try to restore content, theme and max width.
+		const wsPost = localStorage.getItem('post');
+		if(wsPost !== null) {
+			setPost(wsPost);
+		}
+		const wsTheme = localStorage.getItem('theme');
+		if(wsTheme === '--dark') {
+			toDarkTheme();
+		}			
+		const wsWidth = localStorage.getItem('max-width');
+		if(wsWidth !== null) {
+			UI.main.setAttribute('class', wsWidth);
+		}
+
+	}
+
+	// Is the WordsMatterAPI available?
+	ajaxManager('init', null, resp => {
+		if(resp === 'granted') {
+			UI.body.classList.add('serv-available'); // Enable features.
+		}
+	});
+
+	// Autoset viewport.
+	window.onresize = () => setViewportHeight();
+	setViewportHeight();
+
+/* --- Keyboard navigation. --- */
+
 	document.onkeydown = (e) => {
 		
 		// Close dial with Escape.
@@ -345,76 +393,35 @@
 
 		// Shortcuts.
 		else if(e.ctrlKey || e.metaKey) {
-			switch(e.code) {
-				case 'KeyG':
-					getImages();
-					e.preventDefault();
-					break;
-				case 'KeyO':
-					getPosts();
-					e.preventDefault();
-					break;
-				case 'KeyP':
-					pushPost();
-					e.preventDefault();
-					break;
-				case 'KeyS':
-					pushLocalPost();
-					e.preventDefault();
-					break;
+
+			// Only work if the Web Storage API available.
+			if(UI.body.classList.contains('ws-available')) {
+				switch(e.code) {
+					case 'KeyS':
+						pushLocalPost();
+						e.preventDefault();
+						break;
+				}
 			}
-		}
-	};
-
-	UI.body.appendChild(UI.notice);
-	UI.body.appendChild(UI.dial);
-	UI.body.appendChild(UI.status);
-	UI.main.appendChild(UI.nav);
-	UI.main.appendChild(UI.output);
-	UI.main.appendChild(UI.input);
-	UI.body.appendChild(UI.main);
-
-	document.documentElement.lang = LANG;
-	document.head.children[6].textContent = LAB.meta.title; // Meta title.
-	document.head.children[4].setAttribute('content', LAB.meta.desc); // Meta description.
-
-/* --- Enable features under conditions --- */
-
-	// Is the Web Storage API available?
-	if(localStorage) {
+			
+			// Only work if the WordsMatter API is available.
+			if(UI.body.classList.contains('serv-available')) {
+				switch(e.code) {
+					case 'KeyG':
+						getImages();
+						e.preventDefault();
+						break;	
+					case 'KeyO':
+						getPosts();
+						e.preventDefault();
+						break;
+					case 'KeyP':
+						pushPost();
+						e.preventDefault();
+						break;
+				}
+			}
 		
-		// Enable features.
-		UI.body.classList.add('ws-available');
-
-		// Try to reload content...
-		const wsPost = localStorage.getItem('post');
-		if(wsPost !== null) {
-			setPost(wsPost);
 		}
-
-		// ...To restore theme... 
-		const wsTheme = localStorage.getItem('theme');
-		if(wsTheme === '--dark') {
-			toDarkTheme();
-		}			
 		
-		// ...And max width.
-		const wsWidth = localStorage.getItem('max-width');
-		if(wsWidth !== null) {
-			UI.main.setAttribute('class', wsWidth);
-		}
-
-	}
-
-	// Is the API available?
-	ajaxManager('init', null, resp => {
-		if(resp === 'granted') {
-			UI.body.classList.add('serv-available'); // Enable features.
-		}
-	});
-
-	// Autoset viewport.
-	setViewportHeight();
-	window.onresize = () => {
-		setViewportHeight();
 	};
