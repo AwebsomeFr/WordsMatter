@@ -241,7 +241,7 @@
 								}
 							}
 						],
-						text: LAB.input.postDate
+						text: LAB.input.date
 					},
 					{
 						type: 'label',
@@ -254,7 +254,7 @@
 								}
 							}
 						],
-						text: LAB.input.postDraft
+						text: LAB.input.draft
 					}
 				]
 			},
@@ -275,8 +275,10 @@
 						type: 'input',
 						attributes: {
 							id: 'in-h1',
+							onfocus: 'lastActiveSec = this.parentNode',
 							oninput: 'runEditor(\'in-h1\')',
-							placeholder: LAB.input.h1
+							placeholder: LAB.input.h1,
+							autofocus: true
 						}
 					},
 					{
@@ -290,6 +292,7 @@
 						type: 'textarea',
 						attributes: {
 							id: 'in-intro',
+							onfocus: 'lastActiveSec = this.parentNode',
 							oninput: 'runEditor(\'in-intro\')',
 							placeholder: LAB.input.secIntro
 						}

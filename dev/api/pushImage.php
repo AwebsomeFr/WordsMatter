@@ -31,7 +31,7 @@ if(isset($_FILES) && isset($_POST['editorId'])) {
 				$filename = str_replace('-.', '.', $filename); 
 				
 				define('IMG_THUMB_PATH', GALLERY_DIR . '/thumbs/' . $filename);
-				define('IMG_THUMB_SIZE', 220);
+				define('IMG_THUMB_SIZE', 200);
 	
 				define('IMG_NORMAL_PATH', GALLERY_DIR . '/normals/' . $filename);
 		

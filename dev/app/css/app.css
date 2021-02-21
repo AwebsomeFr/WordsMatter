@@ -191,6 +191,10 @@
 		margin-top: 0;
 		border-bottom: solid 1px;
 	}
+	.dial h4 {
+		margin-bottom: 8px;
+		margin-top: 0;
+	}
 	.dial > button {
 		height: 40px;
 		position: fixed;
@@ -220,8 +224,8 @@
 		border-bottom: none;
 		box-sizing: border-box;
 		display: grid;
-		gap: 16px;
-		grid-template-columns: repeat(auto-fit, 220px);
+		gap: 32px;
+		grid-template-columns: repeat(auto-fit, 200px);
 		justify-content: center;
 		list-style-type: none;
 		max-height: 50vh;
@@ -242,7 +246,7 @@
 		border-radius: 3px;
 		display: block;
 		height: 100px;
-		margin: -14px 2px 4px 2px;
+		margin: 8px 2px -8px 2px;
 		object-fit: cover;
 		width: 100%;
 	}

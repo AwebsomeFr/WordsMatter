@@ -1,6 +1,7 @@
 'use strict';
 
 let marker = 0;
+let lastActiveSec; // Used to track user progress and find where images should add from the gallery. 
 
 /* --- User interface --- */
 
@@ -459,9 +460,8 @@ let marker = 0;
 
 						for(let i = 0, l = MEDIAS.length; i < l; i++) {
 							dialBody += ` 
-								<li>	
-									<p>${MEDIAS[i].name}</p>	
-									<img loading="lazy" src="${MEDIAS[i].thumbPath}" />
+								<li>
+									<h4>${MEDIAS[i].name}</h4>
 									<button 
 										class="--danger"
 										onclick="deleteImage('${MEDIAS[i].name}')"
@@ -469,10 +469,16 @@ let marker = 0;
 										X
 									</button>
 									<button
+										onclick="window.open('${MEDIAS[i].normalPath}')">
+										${LAB.bt.see}
+									</button>
+									<button
 										class="${i === (l - 1) ? 'dial-trap-last' : '' }" 
-										onclick="addFromGallery('${MEDIAS[i].normalPath}')">
+										onclick="addImage('${MEDIAS[i].normalPath}')">
 										${LAB.bt.add}
 									</button>
+									<img loading="lazy" src="${MEDIAS[i].thumbPath}" />
+									<p><b>URL</b> ${MEDIAS[i].normalPath}</p>
 								</li>
 						`;}
 						
@@ -584,13 +590,13 @@ let marker = 0;
 
 	};
 
-	const addFromGallery = picPath => {
+	const addImage = picPath => {
 
 		dial();
-		let targetElm = _.T('textarea');
-		targetElm = targetElm[targetElm.length -1];
-		targetElm.value += `![alternative](${picPath})`;
-		runEditor(targetElm.id);
+
+		let target = _.Q('textarea', lastActiveSec);
+		target.value += `![alternative](${picPath})`;
+		runEditor(target.id);
 
 	};
 
@@ -649,7 +655,8 @@ let marker = 0;
 						type: elmToCreate.type,
 						attributes: {
 							id: elmToCreate.id,
-							oninput: 'runEditor(this.attributes.id.value)',
+							onfocus: 'lastActiveSec = this.parentNode',
+							oninput: 'runEditor(this.attributes.id.value)',	
 							placeholder: elmToCreate.placeholder,
 							type: 'text',
 						},
