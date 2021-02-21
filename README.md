@@ -1,3 +1,5 @@
+**ATTENTION : CE DOCUMENT N'EST PLUS A JOUR.**
+
 # WordsMatter
 
 > Rédigez depuis l'Application ; partagez grâce à l'API connectée. WordsMatter est un module de gestion de blog 100% autonome, libre et gratuit. Son efficience en fait une alternative écoresponsable aux Systèmes de Gestion de Contenu traditionnels (CMS).
@@ -106,7 +108,7 @@ Les deux premiers contiennent des constantes à personnaliser avant tout lanceme
     *   `EDITOR_ID` doit être égale à la constante du même nom décrite ci-dessus.
     *   `INPUT_DIR` indique où les backups et les brouillons seront sauvegardés pour édition ultérieure. S'il n'existe pas, ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.
     *   `OUTPUT_DIR` indique où les posts formatés et publiés sur le site web seront stockés. S'il n'existe pas, ce dossier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.
-    *   `POSTS_INDEX` indique un fichier au format .json où seront listés les posts avec leur titre, leur nom de fichier, leur dernière date d'édition et leur statut (brouillon ou non). S'il n'existe pas, ce fichier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.
+    *   `JSON_INDEX` indique un fichier au format .json où seront listés les posts avec leur titre, leur nom de fichier, leur dernière date d'édition et leur statut (brouillon ou non). S'il n'existe pas, ce fichier sera automatiquement créé par WordsMatter lors de sa première connexion avec l'API.
     *   `SITE_TYPE` précise le format de sortie des fichiers. La valeur par défaut, 'static', produit des fichiers HTML à la manière des générateurs de sites statiques, sans toutefois (encore) reconstruire le site tout entier. Une valeur 'dynamic' génère des fichiers PHP et donc, des pages dynamiques.
 
 Quelques points **importants** à retenir :
