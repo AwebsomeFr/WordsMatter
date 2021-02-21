@@ -1,6 +1,5 @@
 'use strict';
 
-// This global should not exist.
 let marker = 0;
 
 /* --- User interface --- */

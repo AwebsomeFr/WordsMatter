@@ -24,8 +24,12 @@ if(isset($_POST['editorId'])) {
 			mkdir(GALLERY_DIR . '/normals/', 0777, true);
 	
 		}
-		if(!file_exists(POSTS_INDEX)) {
-			file_put_contents(POSTS_INDEX, '[]');
+		if(!file_exists(JSON_INDEX)) {
+			file_put_contents(JSON_INDEX, '[]');
+		}
+
+		if(!file_exists(HTML_INDEX)) {
+			file_put_contents(HTML_INDEX, '');
 		}
 	
 		echo 'granted';

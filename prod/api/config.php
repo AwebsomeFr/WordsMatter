@@ -1,1 +1,2 @@
-<?php  define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC'); define('INPUT_DIR', '../blog/drafts'); define('OUTPUT_DIR', '../blog/posts'); define('GALLERY_DIR', '../blog/medias'); define('POSTS_INDEX', '../blog/index.json'); define('R_GALLERY_DIR', '/blog/medias'); define('EXTENSION', '.html');
+<?php
+ define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC'); define('INPUT_DIR', '../blog/drafts'); define('OUTPUT_DIR', '../blog/posts'); define('GALLERY_DIR', '../blog/medias'); define('JSON_INDEX', '../blog/index.json'); define('HTML_INDEX', '../blog/index.html'); define('R_GALLERY_DIR', '/blog/medias'); define('OUTPUT_FILENAME', 'index.html'); define('INPUT_FILENAME', 'draft.txt');

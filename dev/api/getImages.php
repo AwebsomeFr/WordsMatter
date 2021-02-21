@@ -1,9 +1,5 @@
 <?php 
 
-ini_set('display_errors', true);
-ini_set('html_errors', false);
-error_reporting(E_ALL);
-
 /* 
 	Job : browse and return the content of the gallery.
 	Return : a JSON containing the content of the gallery. 
@@ -16,7 +12,7 @@ if(isset($_POST['editorId'])) {
 	
 	 if($_POST['editorId'] === EDITOR_ID) {
 	
-		$files = [];
+		$images = [];
 	
 		foreach(
 			array_diff(
@@ -26,7 +22,7 @@ if(isset($_POST['editorId'])) {
 		as $item) {
 	
 			array_push(
-				$files, array(
+				$images, array(
 					'normalPath' => R_GALLERY_DIR . '/normals/' . $item,
 					'thumbPath' => R_GALLERY_DIR . '/thumbs/' . $item,
 					'name' => $item
@@ -35,7 +31,7 @@ if(isset($_POST['editorId'])) {
 		
 		}
 		
-		echo json_encode($files);
+		echo json_encode($images);
 		
 	}
 

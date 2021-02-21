@@ -1,9 +1,5 @@
 <?php 
 
-ini_set('display_errors', true);
-ini_set('html_errors', false);
-error_reporting(E_ALL);
-
 /* 
 	Job : upload an image in the gallery.
 	Return : 'success' if done.

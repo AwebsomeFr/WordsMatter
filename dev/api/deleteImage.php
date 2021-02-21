@@ -1,13 +1,9 @@
 <?php
 
-ini_set('display_errors', true);
-ini_set('html_errors', false);
-error_reporting(E_ALL);
-
 /* 
-Job : delete an image of the gallery.
-Return : 'success' if done.
-To : /app/js/functions.js | deleteImage
+	Job : delete an image of the gallery.
+	Return : 'success' if done.
+	To : /app/js/functions.js | deleteImage
 */
 
 if(isset($_POST['picture']) && isset($_POST['editorId'])) {

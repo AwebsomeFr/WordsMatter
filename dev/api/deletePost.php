@@ -1,9 +1,5 @@
 <?php
 
-ini_set('display_errors', true);
-ini_set('html_errors', false);
-error_reporting(E_ALL);
-
 /* 
 	Job : delete a post from the server.
 	Return : 'success' if done.
@@ -16,37 +12,45 @@ if(isset($_POST['editorId']) && isset($_POST['post'])) {
 
 	if($_POST['editorId'] === EDITOR_ID) {
 
-		define('DIR_NAME', $_POST['post']);
-		define('OUTPUT_DIR_PATH', OUTPUT_DIR . '/' . DIR_NAME); 
-		define('OUTPUT_FILE_NAME', 'index' . EXTENSION);
-		define('INPUT_DIR_PATH', INPUT_DIR . '/' . DIR_NAME); 
-		define('INPUT_FILE_NAME', 'draft.txt');
-
-		// Delete output content.
-		if(is_dir(OUTPUT_DIR_PATH)) {
-			if(is_file(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME)) {
-				unlink(OUTPUT_DIR_PATH . '/' . OUTPUT_FILE_NAME);
-			}
-			rmdir(OUTPUT_DIR_PATH);
-		}
+		define('POST_DIR_NAME', $_POST['post']); // name-of-the-post/index.html
+		define('POST_OUTPUT_DIR', OUTPUT_DIR . '/' . POST_DIR_NAME); // path/to/outputs/name-of-the-post/index.html
+		define('POST_INPUT_DIR', INPUT_DIR . '/' . POST_DIR_NAME); // path/to/inputs/name-of-the-post/draft.txt
 
 		// Delete input content.
-		if(is_dir(INPUT_DIR_PATH)) {
-			if(is_file(INPUT_DIR_PATH . '/' . INPUT_FILE_NAME)) {
-				unlink(INPUT_DIR_PATH . '/' . INPUT_FILE_NAME);
+		
+			if(is_dir(POST_INPUT_DIR)) {
+				if(is_file(POST_INPUT_DIR . '/' . INPUT_FILENAME)) {
+					unlink(POST_INPUT_DIR . '/' . INPUT_FILENAME);
+				}
+				rmdir(POST_INPUT_DIR);
 			}
-			rmdir(INPUT_DIR_PATH);
-		}
+
+		// Delete output content.
+	
+			if(is_dir(POST_OUTPUT_DIR)) {
+				if(is_file(POST_OUTPUT_DIR . '/' . OUTPUT_FILENAME)) {
+					unlink(POST_OUTPUT_DIR . '/' . OUTPUT_FILENAME);
+				}
+				rmdir(POST_OUTPUT_DIR);
+			}
+	
+		// Update the JSON index.
+		
+			$posts = json_decode(file_get_contents(JSON_INDEX));
 			
-		// Delete the element from the JSON index.
-		$posts = json_decode(file_get_contents(POSTS_INDEX));
-		for($i = 0, $l = count($posts); $i < $l; $i++) {
-			if($posts[$i]->dir === $_POST['post']) {
-				array_splice($posts, $i, 1);
-				break;
+			for($i = 0, $l = count($posts); $i < $l; $i++) {
+				if($posts[$i]->dir === $_POST['post']) {
+					array_splice($posts, $i, 1);
+					break;
+				}
 			}
-		}
-		file_put_contents(POSTS_INDEX, json_encode($posts));
+			
+			file_put_contents(JSON_INDEX, json_encode($posts));
+
+		// Update the HTML index.
+		
+			require './tpl-index.php';
+			file_put_contents(HTML_INDEX, buildHtmlIndex($posts));
 
 		echo 'success';
 
