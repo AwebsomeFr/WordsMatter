@@ -10,7 +10,7 @@
 
 	// The following directories / files will be created by WordsMatter.
 
-	// Relative paths only.
+	// Relative paths only, starting from the API location.
 
 		define('INPUT_DIR', '../blog/drafts'); // Where will be copied the drafts (public or not). 
 		define('OUTPUT_DIR', '../blog/posts'); // Where the generated files will be copied.
@@ -20,7 +20,10 @@
 
 	// Absolute paths only.
 
-		define('R_GALLERY_DIR', '/blog/medias'); // From where the medias will be readed.
+		define('R_GALLERY_DIR', 'http://dev.wordsmatter/blog/medias'); // From where the medias will be readed.
+		// The example above is the local url I use to work on this project.
+		// The most common url for local development with Apache looks like to 'http://localhost/path/to/medias'.
+		// Example for production : 'https://your-website.com/path/to/medias
 
 // FILENAMES
 
