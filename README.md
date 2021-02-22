@@ -1,4 +1,5 @@
 **ATTENTION : CE DOCUMENT N'EST PLUS A JOUR.**
+**La version 3 de WordsMatter est en cours de finalisation ; vous devriez sans doute l'attendre avant d'utiliser WordsMatter.**
 
 # WordsMatter
 
