@@ -219,6 +219,11 @@
 	.dial label > input {
 		margin-top: 4px;
 	}
+	.dial input[type="checkbox"] {
+		display: inline-block;
+		margin-right: 4px;
+		width: initial;
+	}
 	.dial ul { /* .getposts-ul, .getimages-ul, .exportpost-ul */
 		border: solid 1px var(--color4);
 		border-bottom: none;

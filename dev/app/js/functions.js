@@ -441,9 +441,16 @@ let lastActiveSec; // Used to track user progress and find where images should a
 							<input 
 								accept="image/jpeg, image/png, image/webp"
 								class="${resp === '[]' ? 'dial-trap-last' : '' }"
-								onchange="pushImage(this.files[0])"
+								onchange="pushImage(
+									this.files[0], 
+									this.parentNode.parentNode.children[3].children[0].checked
+								)"
 								type="file" />
-							${LAB.bt.condImg}
+						</label>
+						${LAB.bt.condImg}
+						<label>
+							<input type="checkbox" checked />
+							${LAB.input.compress}
 						</label>
 					`;
 
@@ -496,11 +503,14 @@ let lastActiveSec; // Used to track user progress and find where images should a
 
 		};
 
-		const pushImage = file => {
+		const pushImage = (file, compress) => {
 
 			ajaxManager(
 				'pushImage',
-				[{ name: 'file', value: file }],
+				[
+					{ name: 'file', value: file },
+					{ name: 'compress', value: compress }
+				],
 				resp => resp === 'success' ? 
 					getImages():
 					negNotice(LAB.notice.error)
