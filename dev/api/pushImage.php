@@ -13,7 +13,7 @@ if(isset($_FILES) && isset($_POST['editorId']) && isset($_POST['compress'])) {
 	if($_POST['editorId'] === EDITOR_ID) { 
 
 		// Is the file size less than 1Mb ?
-		if($_FILES['file']['size'] <= 1000000) {
+		if($_FILES['file']['size'] <= IMG_MAX_SIZE) {
 
 			$compress = $_POST['compress'];
 
@@ -33,10 +33,8 @@ if(isset($_FILES) && isset($_POST['editorId']) && isset($_POST['compress'])) {
 				$filename = str_replace('-.', '.', $filename); 
 				
 				define('IMG_THUMB_PATH', GALLERY_DIR . '/thumbs/' . $filename);
-				define('IMG_THUMB_SIZE', 200);
-	
 				define('IMG_NORMAL_PATH', GALLERY_DIR . '/normals/' . $filename);
-				define('IMG_NORMAL_SIZE', 768);
+				
 				
 				move_uploaded_file($_FILES['file']['tmp_name'], IMG_NORMAL_PATH);
 
