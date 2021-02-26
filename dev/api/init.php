@@ -27,7 +27,6 @@ if(isset($_POST['editorId'])) {
 		if(!file_exists(JSON_INDEX)) {
 			file_put_contents(JSON_INDEX, '[]');
 		}
-
 		if(!file_exists(HTML_INDEX)) {
 			file_put_contents(HTML_INDEX, '');
 		}

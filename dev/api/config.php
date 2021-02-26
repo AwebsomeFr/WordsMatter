@@ -1,37 +1,33 @@
-<?php 
+<?php // Need more ? Visit : https://awebsome.fr/blog-awebsome/creer-un-blog-ecoresponsable-avec-wordsmatter/ (fr)
 
-// ID
-	 
-	// Must be equal to the id specified in 'app/js/config.js'. 
-	// For safety reasons, create your own and complex ID. 
-	define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC'); 
+// Must be equal to the id specified in 'app/js/config.js'. 
+// For safety reasons, create your own and complex ID.
+define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC'); 
 
-// PATHS
+// Relative path, starting from the API location.
+define('BLOG_PATH', '../blog'); 
 
-	// The following directories / files will be created by WordsMatter.
+// Absolute path from where the images will be readed.
+// The example below is the local url I use to work on this project.
+// The most common url for local development with Apache looks like to http://localhost/path/to/images.
+// For production, it should look like to https://your-website.com/blog/images.
+define('R_GALLERY_DIR', 'http://dev.wordsmatter/blog/images');
 
-	// Relative paths only, starting from the API location.
+// DO NOT CHANGE THE FOLLOWING VALUES WITHOUT KNOWING EXACTLY WHAT YOU ARE DOING.
+// (Developer? That's cool, me too)
 
-		define('INPUT_DIR', '../blog/drafts'); // Where will be copied the drafts (public or not). 
-		define('OUTPUT_DIR', '../blog/posts'); // Where the generated files will be copied.
-		define('GALLERY_DIR', '../blog/medias'); // Where the medias will be copied.	
-		define('JSON_INDEX', '../blog/index.json'); // Where all posts will be indexed for the app (public or not).	
-		define('HTML_INDEX', '../blog/index.html'); // Where published posts will be listed for the users. 
+// DIRECTORIES
+define('INPUT_DIR', BLOG_PATH . '/drafts'); // Where will be copied the drafts (public or not).
+define('OUTPUT_DIR', BLOG_PATH . '/posts'); // Where the generated files will be copied.
+define('GALLERY_DIR', BLOG_PATH . '/images'); // Where the images will be copied.
 
-	// Absolute paths only.
-
-		define('R_GALLERY_DIR', 'http://dev.wordsmatter/blog/medias'); // From where the medias will be readed.
-		// The example above is the local url I use to work on this project.
-		// The most common url for local development with Apache looks like to 'http://localhost/path/to/medias'.
-		// Example for production : 'https://your-website.com/path/to/medias
-
-// FILENAMES
-
-	define('INPUT_FILENAME', 'draft.txt');
-	define('OUTPUT_FILENAME', 'index.html'); // If your template needs it, you can choose to use PHP instead of HTML.
+// FILES
+define('JSON_INDEX', BLOG_PATH . '/index.json'); // Where all posts, public or not, will be indexed for the app.
+define('HTML_INDEX', BLOG_PATH . '/index.html'); // Where published posts will be listed for the users. 
+define('INPUT_FILENAME', 'draft.txt'); // Default name for the drafts.
+define('OUTPUT_FILENAME', 'index.html'); // Default name for the posts.
 
 // GALLERY PRESETS
-
-	define('IMG_MAX_SIZE', 1000000); // 1Mb by default. Please stay reasonable (and consider server limitations) !
-	define('IMG_NORMAL_SIZE', 768); // Maximum width applied to images loaded in the gallery. 
-	define('IMG_THUMB_SIZE', 200); // Should not change: the application limits the display to 200px.
+define('IMG_MAX_SIZE', 1000000); // 1Mb by default. Please stay reasonable (and consider server limitations) !
+define('IMG_NORMAL_SIZE', 768); // Maximum width applied to images loaded in the gallery. 
+define('IMG_THUMB_SIZE', 200); // Should not change: the application limits the display to 200px.
