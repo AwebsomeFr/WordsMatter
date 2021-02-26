@@ -252,6 +252,10 @@
 	.dial .exportpost-ul, .exportpost-ul li {
 		display: block;
 	}
+	.dial pre {
+		white-space: pre-wrap; 
+		word-wrap: break-word;
+	}
 	.dial img {
 		border-radius: 3px;
 		display: block;

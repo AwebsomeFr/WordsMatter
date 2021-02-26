@@ -258,7 +258,7 @@ let lastActiveSec; // Used to track user progress and find where images should a
 			<h2>${LAB.bt.exportPost}</h2>
 			<p>${LAB.dial.exportPost}</p>
 			<ul class="exportpost-ul">
-				<li>${JSON.stringify(getPost())}</li>
+				<li><pre>${JSON.stringify(getPost())}</pre></li>
 			</ul>
 			<button class='dial-trap-last' onclick='dial()'>${LAB.bt.close}</button>
 		`);
