@@ -206,8 +206,8 @@
 	.dial-content {
 		margin: auto;
 		max-height: 85vh;
-		max-width: 768px;
-		width: 85%;
+		width: 95%;
+		max-width: 1192px;
 		word-wrap: break-word;
 	}
 	.dial label, .dial input, .dial textarea {
@@ -238,6 +238,11 @@
 		padding: 30px;
 		scrollbar-color: var(--color1) var(--color4);
 		scrollbar-width: thin;
+	}
+	@media screen and (min-width: 540px) {
+		.dial ul {
+			justify-content: initial;
+		}
 	}
 	.getposts-ul li {
 		display: grid;
