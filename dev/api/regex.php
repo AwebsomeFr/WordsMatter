@@ -1,6 +1,6 @@
 <?php $regex = [
 	[ // <br>
-		'desc' => '/\s{2}\n/i',
+		'desc' => '/\s{2}\n/',
 		'output' => function ($ct) {
 			return '<br/>';
 		}
@@ -11,38 +11,20 @@
 			return '```';
 		}
 	],
-	[ // Only inline elements (strong, em, img) should be enclosed in a <p>.
+	[ // Only inline elements should be enclosed in a <p>.
 		'desc' => '/^(?!3_|4_|5_|6_|_\s|__\s|\!\[[^\]]+\]\([^\)]+\)).+$/m',
 		'output' => function ($ct) {
 			return '<p>' . $ct[0] . '</p>';
 		}
 	],
-	[ // <h3>	
-		'desc' => '/^3_.+$/mi', // 3_title
+	[ // <h3> / <h4> / <h5> / <h6>
+		'desc' => '/^(3|4|5|6)_(?!\s).+/m', // n_title
 		'output' => function ($ct) {
-			return '<h3>' . substr($ct[0], 2) . '</h3>';
-		} 
-	],
-	[ // <h4>
-		'desc' => '/^4_.+$/mi', // 4_title
-		'output' => function ($ct) {
-			return '<h4>' . substr($ct[0], 2) . '</h4>';
-		} 
-	],
-	[ // <h5>
-		'desc' => '/^5_.+$/mi', // 5_title
-		'output' => function ($ct) {
-			return '<h5>' . substr($ct[0], 2) . '</h5>';
-		} 
-	],
-	[ // <h6>
-		'desc' => '/^6_.+$/mi', // 6_title
-		'output' => function ($ct) {
-			return '<h6>' . substr($ct[0], 2) . '</h6>';
+			return '<h' . $ct[0][0] . '>' . substr($ct[0], 2) . '</h' . $ct[0][0] . '>';
 		} 
 	],
 	[ // <img> / <figure>
-		'desc' => '/\!\[[^\]]+\]\([^\)]+\)/i', // ![alt|legend](img_url)
+		'desc' => '/\!\[[^\]]+\]\([^\)]+\)/', // ![alt|legend](img_url)
 		'output' => function ($ct) {
 			$dt = explode('](', substr($ct[0], 2, -1));
 			$dt[0] = explode('|', $dt[0]); 
@@ -56,20 +38,20 @@
 		}
 	],
 	[ // <a>
-		'desc' => '/\[[^\]]+\]\([^\)]+\)/i', // [label](url)
+		'desc' => '/\[[^\]]+\]\([^\)]+\)/', // [label](url)
 		'output' => function ($ct) {
 			$dt = explode('](', substr($ct[0], 1, -1));
 			return '<a href="' . $dt[1] . '">' . $dt[0] . '</a>';
 		}
 	],
 	[ // <ol>
-		'desc' => '/(^__\s.*\n){1,}/im',
+		'desc' => '/(^__\s.*\n){1,}/m',
 		'output' => function ($ct) {
 			return '<ol>' . $ct[0] . '</ol>';
 		}
 	],
 	[ // <li>
-		'desc' => '/^(<ol>)?__\s.+/im', // __ ordered list item (the first element will be preceeding by <ol>)
+		'desc' => '/^(<ol>)?__\s.+/m', // __ ordered list item (the first element will be preceeding by <ol>)
 		'output' => function ($ct) {
 			return strpos($ct[0], '<ol>__') === 0 ?
 				'<ol><li>' . substr($ct[0], 7) . '</li>' :
@@ -77,13 +59,13 @@
 		}
 	],
 	[ // <ul>
-		'desc' => '/(^_\s.*\n){1,}/im',
+		'desc' => '/(^_\s.*\n){1,}/m',
 		'output' => function ($ct) {
 			return '<ul>' . $ct[0] . '</ul>';
 		}
 	],
 	[ // <li>
-		'desc' => '/^(<ul>)?_\s.+/im', // _ unordered list item (the first element will be preceeding by <ul>)
+		'desc' => '/^(<ul>)?_\s.+/m', // _ unordered list item (the first element will be preceeding by <ul>)
 		'output' => function ($ct) {
 			return strpos($ct[0], '<ul>_') === 0 ?
 				'<ul><li>' . substr($ct[0], 6) . '</li>' :

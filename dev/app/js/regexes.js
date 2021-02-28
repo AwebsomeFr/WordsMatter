@@ -7,28 +7,17 @@ const REGEX = [
 		desc: /\\_/g, // \_
 		output: ct => '```'
 	},
-	{ // Only inline elements (strong, em, img) should be enclosed in a <p>.
+	{ // Only inline elements should be enclosed in a <p>.
 		desc: /^(?!3_|4_|5_|6_|_\s|__\s|\!\[[^\]]+\]\([^\)]+\)).+$/gm, 
 		output: ct => `<p>${ct}</p>`
 	},
-	{ // <h3>
-		desc: /^3_.+$/gim, // 3_title
-		output: ct => `<h3>${ct.substring(2)}</h3>`
-	},
-	{ // <h4>
-		desc: /^4_.+$/gim, // 4_title
-		output: ct => `<h4>${ct.substring(2)}</h4>`
-	},
-	{ // <h5>
-		desc: /^5_.+$/gim, // 5_title
-		output: ct => `<h5>${ct.substring(2)}</h5>`
-	},
-	{ // <h6>
-		desc: /^6_.+$/gim, // 6_title
-		output: ct => `<h6>${ct.substring(2)}</h6>`
+	{ // <h3> / <h4> / <h5> / <h6>
+		desc: /^(3|4|5|6)_(?!\s).+/gm, // n_title
+		output: ct => `<h${ct[0]}>${ct.substring(2)}</h${ct[0]}>`
+	
 	},
 	{ // <img> / <figure>
-		desc: /\!\[[^\]]+\]\([^\)]+\)/gi, // ![alt|legend](img_url)
+		desc: /\!\[[^\]]+\]\([^\)]+\)/g, // ![alt|legend](img_url)
 		output: ct => {
 			let dt = ct.substring(2, ct.length -1).split('](');
 			dt[0] = dt[0].split('|');
@@ -41,29 +30,29 @@ const REGEX = [
 		}
 	},
 	{ // <a>
-		desc: /\[[^\]]+\]\([^\)]+\)/gi, // [label](url)
+		desc: /\[[^\]]+\]\([^\)]+\)/g, // [label](url)
 		output: ct => {
 			let dt = ct.substring(1, ct.length - 1).split('](');
 			return `<a href="${dt[1]}">${dt[0]}</a>`;
 		}
 	},
 	{ // <ol>
-		desc: /(^__\s.*\n){1,}/gim,
+		desc: /(^__\s.*\n){1,}/gm,
 		output: ct => `<ol>${ct}</ol>`
 	},
 	{ // <li>
-		desc: /^(<ol>)?__\s.+/gim, // __ ordered list item (the first element will be preceeding by <ol>)
+		desc: /^(<ol>)?__\s.+/gm, // __ ordered list item (the first element will be preceeding by <ol>)
 		output: ct =>
 			ct.startsWith('<ol>__') ?
 				`<ol><li>${ct.substring(7,ct.length)}</li>` :
 				`<li>${ct.substring(3,ct.length)}</li>`
 	},
 	{ // <ul>
-		desc: /(^_\s.*\n){1,}/gim,
+		desc: /(^_\s.*\n){1,}/gm,
 		output: ct => `<ul>${ct}</ul>`
 	},
 	{ // <li>
-		desc: /^(<ul>)?_\s.+/gim, // _ unordered list items (the first element will be preceeding by <ul>)
+		desc: /^(<ul>)?_\s.+/gm, // _ unordered list items (the first element will be preceeding by <ul>)
 		output: ct =>
 			ct.startsWith('<ul>_') ?
 				`<ul><li>${ct.substring(6,ct.length)}</li>` :
