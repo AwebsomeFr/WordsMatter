@@ -75,13 +75,13 @@
 	[ // <strong>
 		'desc' => '/(__)(?!\s)(.+?[_]*)\1/', // (space)__strong text__
 		'output' => function ($ct) {
-			return ' <strong>' . substr($ct[0], 2, -2) . '</strong>';
+			return '<strong>' . substr($ct[0], 2, -2) . '</strong>';
 		}
 	],
 	[ // <em>
 		'desc' => '/(_)(?!\s)(.+?)\1/', // (space)_emphasic text_
 		'output' => function ($ct) {
-			return ' <em>' . substr($ct[0], 1, -1) . '</em>';
+			return '<em>' . substr($ct[0], 1, -1) . '</em>';
 		}
 	],
 	[ // (escaped underscores)

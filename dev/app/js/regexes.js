@@ -60,11 +60,11 @@ const REGEX = [
 	},
 	{ // <strong>
 		desc: /(__)(?!\s)(.+?[_]*)\1/g, // __strong text__
-		output: ct => ` <strong>${ct.substring(2, ct.length - 2)}</strong>`
+		output: ct => `<strong>${ct.substring(2, ct.length - 2)}</strong>`
 	},
 	{ // <em>
 		desc: /(_)(?!\s)(.+?)\1/g, // _emphasic text_
-		output: ct => ` <em>${ct.substring(1, ct.length - 1)}</em>`
+		output: ct => `<em>${ct.substring(1, ct.length - 1)}</em>`
 	},
 	{ // (escaped underscores)
 		desc: /```/g,
