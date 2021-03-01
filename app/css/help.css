@@ -1,0 +1,104 @@
+/* resources */
+
+	@font-face {
+		font-display: swap;
+		font-family: "Assistant";
+		src: url("../fonts/Assistant-Medium.woff2") format('woff2');
+	}
+	@font-face {
+		font-display: swap;
+		font-family: "Assistant";
+		src: url("../fonts/Assistant-Bold.woff2") format('woff2');
+		font-weight: bold;
+	}
+
+/* containers */
+
+	body {
+		color: #222;
+		font-family: "Assistant", sans-serif;
+		line-height: 25px;
+		margin: 0;
+	}
+	main {
+		margin: auto;
+		max-width: 960px;
+		padding: 30px;
+	}
+
+/* text */
+
+	h1 {
+		line-height: 40px;
+		margin-top: 0;
+	}
+	h2 {
+		border-left: solid 8px #F59561;
+		margin-bottom: 16px;
+		margin-top: 40px;
+		padding-left: 8px;
+	
+	}
+	article > h3 {
+		margin-top: 32px;
+		margin-bottom: 0;
+		color: #333
+	}
+	.g h6, .g h5, .g h4, .g h3 {
+		margin: 0;
+	}
+	.n { /* n is for notice */
+		color: #666;
+		display: block;
+		font-style: italic;
+		margin: 0;
+	}
+	.n::before {
+		content: "!";
+		font-weight: bold;
+		padding-right: 5px;
+	}
+	.g {
+		display: grid;
+		gap: 16px;
+	}
+	@media screen and (min-width: 1024px) {
+		.g {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.h { /* h is for help with background */
+		border: solid 1px #eee;	
+		color: #000;
+		font-size: 1.25em;
+		margin: 0;
+		padding: 15px;
+	}
+	.h i {
+		color: #666;
+		font-style: normal;
+		font-weight: normal;
+	}
+	ul {
+		list-style-type: square;	
+	}
+	a {
+		color: inherit;
+	}
+
+/* medias */
+	
+	figcaption {
+		text-align: center;
+	}
+	img {
+		display: block;
+		margin: 30px auto;
+		max-width: 100%;
+	}
+	svg {
+		fill: inherit;
+		margin: 5px;
+		vertical-align: middle;
+		width: 20px;
+	}

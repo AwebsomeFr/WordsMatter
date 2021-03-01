@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<link rel="icon" href="./app/img/words-matter-favicon.png" />
+	<link rel="stylesheet" type="text/css" href="./app/css/help.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+	<title>WordsMatter | Utiliser l'Application</title>
+</head>
+<body>
+	<main>
+		<h1>WordsMatter | Utiliser l'Application</h1>
+		<h2>Sommaire</h2>
+		<ul>
+			<li><a href="#install">Installation</a></li>
+			<li><a href="#ui">Interface utilisateur</a></li>
+			<li><a href="#menu">Menu principal</a></li>
+			<li><a href="#syntax">Syntaxe</a></li>
+		</ul>
+		<article id="install">
+			<h2>Installation</h2>
+			<p>Cette documentation traite exclusivement de l'utilisation de l'Application WordsMatter. Pour savoir comment installer et configurer l'Application et l'API WordsMatter, consulter le post "<a href="https://awebsome.fr/blog-awebsome/creer-un-blog-ecoresponsable-avec-wordsmatter/">Créer un blog écoresponsable avec WordsMatter</a>" (fr) publié par <a href="https://awebsome.fr">Awebsome</a> ou le README technique du <a href="https://github.com/AwebsomeFr/WordsMatter/">dépôt GitHub</a> (fr).</p> 
+		</article>
+		<article id="ui">
+			<h2>Interface utilisateur</h2>
+			<p>L'interface utilisateur de l'Application WordsMatter est divisée en deux zones.</p>
+			<p>La partie supérieure de l'écran est l'<strong>espace de prévisualisation</strong>, la partie inférieure, l'<strong>espace de rédaction</strong>.<br/>
+			Rédiger depuis l'espace de rédaction ; l'espace de prévisualisation livre, en temps réel, un aperçu de la mise en forme générée.</p>
+			<p>Le <strong>menu principal</strong> est accessible depuis le coin supérieur droit de l'écran avec le bouton Menu.</p>
+			<p>Dans le coin opposé, l'<strong>indicateur de connexion</strong> <svg viewBox="0 0 24 24"><title>Indicateur de connexion à l'API</title><path d="M14 12h-4v-12h4v12zm4.213-10.246l-1.213 1.599c2.984 1.732 5 4.955 5 8.647 0 5.514-4.486 10-10 10s-10-4.486-10-10c0-3.692 2.016-6.915 5-8.647l-1.213-1.599c-3.465 2.103-5.787 5.897-5.787 10.246 0 6.627 5.373 12 12 12s12-5.373 12-12c0-4.349-2.322-8.143-5.787-10.246z" /></svg> précise si l'Application a pu se connecter ou non à son API au lancement.</p>	
+		</article>
+		<article id="menu">
+			<h2>Menu principal</h2>
+			
+			<h3>Sauvegarder (<kbd>CTRL + S</kbd>)</h3>
+			<p>Enregistre le post à l'écran dans la mémoire locale du navigateur Web.</p>
+			<p class="n">Il ne peut y avoir qu'un seul post ainsi sauvegardé.</p>
+			<p class="n">Le post sera restauré à l'ouverture de l'Application WordsMatter.</p>
+			<p class="n">API Web Storage requise.</p>
+			
+			<h3>Supprimer</h3>
+			<p>Supprime le post sauvegardé (à l'écran ou non) de la mémoire locale du navigateur Web.</p>
+			<p class="n">API Web Storage requise.</p>
+			
+			<h3>Envoyer vers le blog (<kbd>CTRL + P</kbd>)</h3>
+			<p>Initie la transmission du post à l'écran pour publication ou sauvegarde en tant que brouillon sur le blog.</p>
+			<p class="n">API WordsMatter requise.</p>
+			
+			<h3>Modifier depuis le blog (<kbd>CTRL + O</kbd>)</h3>
+			<p>Liste les posts et brouillons du blog pour édition ou suppression.</p>
+			<p class="n">API WordsMatter requise.</p>
+			
+			<h3>Exporter vers fichier .txt</h3>
+			<p>Fournit le contenu brut du post à l'écran pour sauvegarde manuelle dans un fichier .txt.</p>
+			
+			<h3>Importer depuis fichier .txt</h3>
+			<p>Recharge à l'écran un post depuis un fichier .txt créé avec l'option précédente.</p>
+			<p class="n">Le contenu à l'écran sera écrasé par le celui importé.</p>
+			
+			<h3>Gérer la galerie (<kbd>CTRL + G</kbd>)</h3>
+			<p>Permet d'approvisionner et de supprimer les images de la galerie du blog.</p>
+			<p class="n">API WordsMatter requise.</p>
+
+			<h3>Thème clair / thème sombre</h3>
+			<p>Bascule entre thème clair et thème sombre.</p>
+			
+			<h3>Ajuster la largeur</h3>
+			<p>Permet de régler la largeur d'écran occupée.</p>
+			<p class="n">Requiert une largeur d'écran au moins égale à 768px.</p>
+			
+			<h3>Ajuster la hauteur</h3>
+			<p>Permet de régler la distribution des espaces de rédaction et de prévisualisation en hauteur.</p>
+			
+			<h3>Documentation</h3>
+			<p>Affiche cette aide.</p>
+
+		</article>
+		<article id="syntax">
+
+			<h2>Syntaxe</h2>
+			<p>WordsMatter reprend certains codes de <a href="https://daringfireball.net/projects/markdown/">Markdown</a> et apporte ses propres subtilités.<br/>
+			Les exemples ci-dessous détaillent la syntaxe à respecter et montrent le rendu par défaut propre à chaque mise en forme.</p>
+
+			<h3>Titre du post</h3>
+			<p>Renseigner le champ textuel dont le label est "Titre du post (h1)".</p>
+			<p class="n">Requis pour la mise en ligne sur le blog.</p>
+
+			<h3>Titre de section</h3>
+			<p>Renseigner le champ textuel supérieur à chaque section dont le label est "Titre de section (h2)".</p>
+
+			<h3>Sous-titre de section</h3>
+			<p>Boutons "h3" / "h4" / "h5" / "h6", ou texte à transformer, en début de ligne, immédiatement précédé du niveau de titre souhaité et d'un tiret bas.</p>
+			<div class="g">
+				<div>
+					<p class="h">3_<i>titre h3</i><br/>
+					4_<i>titre h4</i><br/>
+					5_<i>titre h5</i><br/>
+					6_<i>titre h6</i></p>
+				</div>
+				<div>
+					<h3>titre h3</h3>
+					<h4>titre h4</h4>
+					<h5>titre h5</h5>
+					<h6>titre h6</h6>
+				</div>
+			</div>
+			
+			<h3>Nouveau paragraphe</h3>
+			<p>Presser la touche <kbd>[Enter]</kbd> une fois.</p>
+			
+			<h3>Retour à la ligne</h3>
+			<p>Taper deux espaces en fin de ligne...<br/>
+			...Avant de presser la touche <kbd>[Enter]</kbd> une fois.</p>
+	
+			<h3>Texte important</h3>
+			<p>Bouton "str", ou texte à transformer immédiatement précédé et suivi de deux tirets bas.</p>
+			<div class="g">
+				<p class="h">__<i>texte important</i>__</p>
+				<p><strong>texte important</strong></p>
+			</div>
+
+			<h3>Texte avec emphase</h3>
+			<p>Bouton "em", ou texte à transformer immédiatement précédé et suivi d'un tiret bas.</p>
+			<div class="g">
+				<p class="h">_<i>texte avec emphase</i>_</p>
+				<p><em>texte avec emphase</em></p>
+			</div>
+			
+			<h3>Liste ordonnée</h3>
+			<p>Bouton "ol" (où chaque nouvelle ligne fait office de délimiteur), ou texte à transformer précédé de deux tirets bas et d'un espace en début de ligne.</p>
+			<div class="g">
+				<p class="h">
+					__ <i>élément n°1</i><br/>
+					__ <i>élément n°2</i><br/>
+					__ <i>...</i>
+				</p>
+				<ol>
+					<li>élément n°1</li>
+					<li>élément n°2</li>
+					<li>...</li>
+				</ol>
+			</div>
+			
+			<h3>Liste non ordonnée</h3>
+			<p>Bouton "ul" (où chaque nouvelle ligne fait office de délimiteur), ou texte à transformer précédé d'un tiret bas et d'un espace en début de ligne.</p>
+			<div class="g">
+				<p class="h">
+					_ <i>élément n°1</i><br/>
+					_ <i>élément n°2</i><br/>
+					_ <i>...</i>
+				</p>
+				<ul>
+					<li>élément n°1</li>
+					<li>élément n°2</li>
+					<li>...</li>
+				</ul>
+			</div>
+			
+			<h3>Lien hypertexte</h3>
+			<p>Bouton "a", ou texte à transformer, d'abord entre crochets pour le libellé, puis immédiatement entre parenthèses pour le lien.</p>
+			<div class="g">
+				<p class="h">[<i>Libellé du lien</i>](<i>https://domaine-cible.fr</i>)</p>
+				<p><a href="https://domaine-cible.fr">Libellé du lien</a></p>
+			</div>
+
+			<h3>Image</h3>			
+			<p>Bouton "img", ou texte à transformer précédé d'un point d'exclamation, alternative de l'image entre crochets, lien entre parenthèses.</p>
+			<div class="g">
+				<p class="h">![<i>logo WordsMatter</i>](<i>/app/img/words-matter-logo-100px.png</i>)</p>
+				<img alt="logo WordsMatter" src="/app/img/words-matter-logo-100px.png" />
+			</div>
+			
+			<h3>Image avec légende</h3>
+			<p>Bouton "fig", ou texte à transformer précédé d'un point d'exclamation, alternative et légende de l'image entre crochets et délimitées par un séparateur vertical, lien entre parenthèses.</p>
+			<div class="g">
+				<p class="h">![<i>logo WordsMatter</i>|<i>Le logo du projet WordsMatter</i>](<i>/app/img/words-matter-logo-100px.png</i>)</p>
+				<figure>
+					<img alt="logo WordsMatter" src="/app/img/words-matter-logo-100px.png" />
+					<figcaption>Le logo du projet WordsMatter</figcaption>
+				</figure>
+			</div>
+
+			<h3>Tiret bas</h3>
+			<p>Le tiret bas (_) est considéré comme <strong>spécial</strong>. Précédé d'un antislash, il peut toutefois s'utiliser en tant que tel.</p>
+			<div class="g">
+				<p class="h">\_<i>nom</i>\_<i>de</i>\_<i>fichier</i></p>
+				<p>nom_de_fichier</p>
+			</div>
+			<p>Dans le cas contraire, il peut être interprété et donner lieu à des résultat inattendus.</p>
+			<div class="g">
+				<p class="h">\_<i>nom</i>_<i>de</i>_<i>fichier</i></p>
+				<p>nom<em>de</em>fichier</p>
+			</div>
+
+		</article>
+	</main>
+</body>
+</html>

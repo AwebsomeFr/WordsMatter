@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" href="./app/img/words-matter-favicon.png" />
+	<link rel="stylesheet" type="text/css" href="./app/css/help.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+	<title>WordsMatter | Use the Application</title>
+</head>
+<body>
+	<main>
+		<h1>WordsMatter | Use the Application</h1>
+		<h2>Table of content</h2>
+		<ul>
+			<li><a href="#install">Installation</a></li>
+			<li><a href="#ui">User interface</a></li>
+			<li><a href="#menu">Main menu</a></li>
+			<li><a href="#syntax">Syntax</a></li>
+		</ul>
+		<article id="install">
+			<h2>Installation</h2>
+			<p>This documentation deals exclusively with the use of the WordsMatter Application. To learn how to install and configure the WordsMatter Application and API, see the post "<a href="https://awebsome.fr/blog-awebsome/creer-un-blog-ecoresponsable-avec-wordsmatter/">Créer un blog écoresponsable avec WordsMatter</a>" (fr) published by <a href="https://awebsome.fr">Awebsome</a> or the technical README of the <a href="https://github.com/AwebsomeFr/WordsMatter/">GitHub repository</a> (fr).</p> 
+		</article>
+		<article id="ui">
+			<h2>User interface</h2>
+			<p>The user interface of the WordsMatter Application is divided into two areas.</p>
+			<p>The upper part of the screen is the <strong>preview area</strong>, the lower part is the <strong>writing area</strong>.<br/>
+            Write from the writing space; the preview area delivers, in real time, a preview of the generated layout.</p>
+			<p>The <strong>main menu</strong> is accessible from the upper right corner of the screen with the Menu button. </p>
+			<p>In the opposite corner, the <strong>connexion indicator</strong> <svg viewBox="0 0 24 24"><title>Indicateur de connexion à l'API</title><path d="M14 12h-4v-12h4v12zm4.213-10.246l-1.213 1.599c2.984 1.732 5 4.955 5 8.647 0 5.514-4.486 10-10 10s-10-4.486-10-10c0-3.692 2.016-6.915 5-8.647l-1.213-1.599c-3.465 2.103-5.787 5.897-5.787 10.246 0 6.627 5.373 12 12 12s12-5.373 12-12c0-4.349-2.322-8.143-5.787-10.246z" /></svg> specifies whether or not the Application was able to connect to its API at launch.</p>	
+		</article>
+		<article id="menu">
+			<h2>Main menu</h2>
+			
+			<h3>Save (<kbd>CTRL + S</kbd>)</h3>
+			<p>Save the on-screen publication to the web browser's local memory. </p>
+			<p class="n">There can only be one post saved in this way.</p>
+			<p class="n">The post will be restored when opening the WordsMatter Application.</p>
+			<p class="n">Web Storage API required.</p>
+			
+			<h3>Delete</h3>
+			<p>Delete the saved post (on screen or not) from the local memory of the web browser.</p>
+			<p class="n">Web Storage API required.</p>
+			
+			<h3>Push to the blog (<kbd>CTRL + P</kbd>)</h3>
+			<p>Start sending the on-screen post for posting or saving as a draft on the blog.</p>
+			<p class="n">WordsMatter API required.</p>
+			
+			<h3>Edit from the blog (<kbd>CTRL + O</kbd>)</h3>
+			<p>List blog posts and drafts for editing or deletion.</p>
+			<p class="n">WordsMatter API required.</p>
+			
+			<h3>Export to .txt file</h3>
+			<p>Provides the raw content of the screen post for manual saving to a .txt file.</p>
+			
+			<h3>Import from .txt file</h3>
+			<p>Reloads on screen a post from a .txt file created with the previous option. </p>
+			<p class="n">The content on the screen will be overwritten by the imported one. </p>
+			
+			<h3>Manage gallery (<kbd>CTRL + G</kbd>)</h3>
+			<p>Allows adding and removing images from the gallery.</p>
+			<p class="n">WordsMatter API required.</p>
+
+			<h3>Light theme / dark theme</h3>
+			<p>Switch between light theme and dark theme.</p>
+			
+			<h3>Adjust width</h3>
+			<p>Set the occupied screen width.</p>
+			<p class="n">Requires a screen width of at least 768px.</p>
+			
+			<h3>Adjust height</h3>
+			<p>Set the distribution of the writing and preview spaces in height.</p>
+			
+			<h3>Documentation</h3>
+			<p>Show this help.</p>
+
+		</article>
+		<article id="syntax">
+
+			<h2>Syntax</h2>
+			<p>WordsMatter uses some <a href="https://daringfireball.net/projects/markdown/">Markdown</a> but brings its own subtleties.<br/>
+            The examples below detail the syntax to respect and show the default rendering specific to each formatting.</p>
+
+			<h3>Title of the post</h3>
+			<p>Fill in the text field whose label is "Title of the post (h1)".</p>
+			<p class="n">Required for posting on the blog. </p>
+
+			<h3>Section title</h3>
+			<p>Fill in the text field(s) whose label is "Title of the section (h2)".</p>
+
+			<h3>Section subtitle </h3>
+			<p>Buttons "h3" / "h4" / "h5" / "h6", or text to transform, at the beginning of the line, immediately preceded by the desired title level and an underscore.</p>
+			<div class="g">
+				<div>
+					<p class="h">3_<i>title h3</i><br/>
+					4_<i>title h4</i><br/>
+					5_<i>title h5</i><br/>
+					6_<i>title h6</i></p>
+				</div>
+				<div>
+					<h3>title h3</h3>
+					<h4>title h4</h4>
+					<h5>title h5</h5>
+					<h6>title h6</h6>
+				</div>
+			</div>
+			
+			<h3>New paragraph</h3>
+			<p>Press the <kbd>[Enter]</kbd> key once.</p>
+			
+			<h3>Line break</h3>
+			<p>Type two spaces at the end of the line ...<br/>
+			... before pressing the <kbd>[Enter]</kbd> key once.</p>
+	
+			<h3>Strong text</h3>
+			<p>"Str" button, or text to transform immediately preceded and followed by two underscores.</p>
+			<div class="g">
+				<p class="h">__<i>strong text</i>__</p>
+				<p><strong>strong text</strong></p>
+			</div>
+
+			<h3>Emphasic text</h3>
+			<p>"Em" button, or text to transform immediately preceded and followed by an underscore. </p>
+			<div class="g">
+				<p class="h">_<i>emphasic text</i>_</p>
+				<p><em>emphasic text</em></p>
+			</div>
+			
+			<h3>Ordered list</h3>
+			<p>Button "ol" (where each new line acts as delimiter), or text to transform preceded by two underscores and a space at the beginning of the line. </p>
+			<div class="g">
+				<p class="h">
+					__ <i>element n°1</i><br/>
+					__ <i>element n°2</i><br/>
+					__ <i>...</i>
+				</p>
+				<ol>
+					<li>element n°1</li>
+					<li>element n°2</li>
+					<li>...</li>
+				</ol>
+			</div>
+			
+			<h3>Unordered list</h3>
+			<p>Button "ul" (where each new line acts as delimiter), or text to transform preceded by an underscore and a space at the beginning of the line.</p>
+			<div class="g">
+				<p class="h">
+					_ <i>element n°1</i><br/>
+					_ <i>element n°2</i><br/>
+					_ <i>...</i>
+				</p>
+				<ul>
+					<li>element n°1</li>
+					<li>element n°2</li>
+					<li>...</li>
+				</ul>
+			</div>
+			
+			<h3>Hyperlink</h3>
+			<p>Button "a", or text to transform, first in brackets for the label, then immediately in parentheses for the link.</p>
+			<div class="g">
+				<p class="h">[<i>Label of the link</i>](<i>https://targeted-domain.com</i>)</p>
+				<p><a href="https://targeted-domain.com">Label of the link</a></p>
+			</div>
+
+			<h3>Image</h3>			
+			<p>"Img" button, or text to transform preceded by an exclamation point, alternative of the image between brackets, link between brackets. </p>
+			<div class="g">
+				<p class="h">![<i>WordsMatter logo</i>](<i>/app/img/words-matter-logo-100px.png</i>)</p>
+				<img alt="WordsMatter logo" src="/app/img/words-matter-logo-100px.png" />
+			</div>
+			
+			<h3>Image with legend</h3>
+			<p>Button "fig", or text to transform preceded by an exclamation point, alternative and caption of the image between brackets and delimited by a vertical separator, link between parentheses.</p>
+			<div class="g">
+				<p class="h">![<i>WordsMatter logo</i>|<i>The WordsMatter's logo</i>](<i>/app/img/words-matter-logo-100px.png</i>)</p>
+				<figure>
+					<img alt="WordsMatter logo" src="/app/img/words-matter-logo-100px.png" />
+					<figcaption>The WordsMatter's logo</figcaption>
+				</figure>
+			</div>
+
+			<h3>Underscore</h3>
+			<p>The underscore (_) is considered <strong>special</strong>. Preceded by a backslash, it can however be used as such.</p> 		
+			<div class="g">
+				<p class="h">\_<i>name</i>\_<i>of</i>\_<i>file</i></p>
+				<p>name_of_file</p>
+			</div>
+			<p>Otherwise, it can be interpreted and give rise to unexpected results.</p>
+			<div class="g">
+				<p class="h">\_<i>name</i>_<i>of</i>_<i>file</i></p>
+				<p>name<em>of</em>file</p>
+			</div>
+
+		</article>
+	</main>
+</body>
+</html>
