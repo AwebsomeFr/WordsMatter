@@ -43,7 +43,7 @@ Par défaut, WordsMatter est livré sans thème (texte noir sur fond blanc pour 
 
 ### Essayer / Obtenir
 * Envie de pratiquer l'Application ? Vous pouvez [essayer l'éditeur en mode déconnecté](https://awebsomefr.github.io/WordsMatter/)*.
-* Pour la théorie,  le mieux est encore de [consulter la documentation utilisateur](https://awebsomefr.github.io/WordsMatter/app/help.html)*.
+* Pour la théorie,  le mieux est encore de [consulter la documentation utilisateur](https://awebsomefr.github.io/WordsMatter/app/help.fr.html)*.
 * Les plus curieux peuvent [explorer le code source du projet](https://github.com/AwebsomeFr/WordsMatter)*.
 * Et même aller jusqu'à [__télécharger WordsMatter__](https://github.com/AwebsomeFr/WordsMatter/archive/master.zip)*.
 
