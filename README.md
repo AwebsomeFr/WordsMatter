@@ -42,8 +42,8 @@ Si vous êtes à l'aise avec l'informatique, connaissez les concepts fondamentau
 Par défaut, WordsMatter est livré sans thème (texte noir sur fond blanc pour le blog généré). Ce n'est pas gênant en soi, mais vous souhaiterez certainement changer cela. À cette fin, la maîtrise des langages HTML et CSS est impérative.
 
 ### Essayer / Obtenir
-* Envie de pratiquer l'Application ? Vous pouvez [essayer l'éditeur en mode déconnecté](https://awebsomefr.github.io/WordsMatter/prod/index.html)*.
-* Pour la théorie,  le mieux est encore de [consulter la documentation utilisateur](https://awebsomefr.github.io/WordsMatter/prod/help.html)*.
+* Envie de pratiquer l'Application ? Vous pouvez [essayer l'éditeur en mode déconnecté](https://awebsomefr.github.io/WordsMatter/)*.
+* Pour la théorie,  le mieux est encore de [consulter la documentation utilisateur](https://awebsomefr.github.io/WordsMatter/app/help.html)*.
 * Les plus curieux peuvent [explorer le code source du projet](https://github.com/AwebsomeFr/WordsMatter)*.
 * Et même aller jusqu'à [__télécharger WordsMatter__](https://github.com/AwebsomeFr/WordsMatter/archive/master.zip)*.
 
