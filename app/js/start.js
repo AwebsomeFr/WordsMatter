@@ -174,7 +174,7 @@
 					{
 						type: 'button',
 						attributes: {
-							onclick: "window.open('./help." + LANG + ".html')"
+							onclick: "window.open('./app/help." + LANG + ".html')"
 						},
 						html: '<span>?</span>' + LAB.bt.doc,
 					},
