@@ -34,8 +34,7 @@ if(isset($_FILES) && isset($_POST['editorId']) && isset($_POST['compress'])) {
 				
 				define('IMG_THUMB_PATH', GALLERY_DIR . '/thumbs/' . $filename);
 				define('IMG_NORMAL_PATH', GALLERY_DIR . '/normals/' . $filename);
-				
-				
+						
 				move_uploaded_file($_FILES['file']['tmp_name'], IMG_NORMAL_PATH);
 
 				switch(IMG_TYPE) {
@@ -71,21 +70,21 @@ if(isset($_FILES) && isset($_POST['editorId']) && isset($_POST['compress'])) {
 					case 'image/png':
 						imagepng($thumb, IMG_THUMB_PATH, 9);
 						$compress === "true" ?		
-							imagepng($orig, IMG_NORMAL_PATH,9):
+							[imagetruecolortopalette($orig, false, 255), imagepng($orig, IMG_NORMAL_PATH, 9)]:
 							imagepng($orig, IMG_NORMAL_PATH);
 							break;
 
 					case 'image/jpeg':
-						imagejpeg($thumb, IMG_THUMB_PATH, 75);
+						imagejpeg($thumb, IMG_THUMB_PATH, 60);
 						$compress === "true" ?		
-							imagejpeg($orig, IMG_NORMAL_PATH,85):
+							imagejpeg($orig, IMG_NORMAL_PATH, 70):
 							imagejpeg($orig, IMG_NORMAL_PATH);
 							break;
 
 					case 'image/webp':
-						imagewebp($thumb, IMG_THUMB_PATH, 75);
+						imagewebp($thumb, IMG_THUMB_PATH, 60);
 						$compress === "true" ?		
-							imagewebp($orig, IMG_NORMAL_PATH,85):
+							imagewebp($orig, IMG_NORMAL_PATH, 70):
 							imagewebp($orig, IMG_NORMAL_PATH);
 							break;
 
