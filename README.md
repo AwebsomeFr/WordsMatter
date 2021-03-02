@@ -17,7 +17,6 @@ Pour __tout savoir__ du projet WordsMatter, consultez l'article [Créer un blog 
   * Une interface... Au service de l'utilisateur
   * Une journée (extra)ordinaire avec WordsMatter
   * (bien) Rédiger grâce à l'Application
-  * Une image vaut mieux que mille mots (ou pas)
 * WordsMatter suffit-il à créer un blog écoresponsable ?
 
 ## Installer et configurer WordsMatter
