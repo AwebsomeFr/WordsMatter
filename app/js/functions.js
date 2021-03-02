@@ -469,16 +469,16 @@ let lastActiveSec; // Used to track user progress and find where images should a
 										X
 									</button>
 									<button
-										onclick="window.open('${MEDIAS[i].normalPath}')">
+										onclick="window.open('${MEDIAS[i].lImgPath}')">
 										${LAB.bt.see}
 									</button>
 									<button
 										class="${i === (l - 1) ? 'dial-trap-last' : '' }" 
-										onclick="addImage('${MEDIAS[i].normalPath}')">
+										onclick="addImage('${MEDIAS[i].sImgPath}')">
 										${LAB.bt.add}
 									</button>
-									<img loading="lazy" src="${MEDIAS[i].thumbPath}" />
-									<p><b>URL</b> ${MEDIAS[i].normalPath}</p>
+									<img loading="lazy" src="${MEDIAS[i].sImgPath}" />
+									<p><b>URL</b> ${MEDIAS[i].sImgPath}</p>
 								</li>
 						`;}
 						

@@ -23,8 +23,8 @@ if(isset($_POST['editorId'])) {
 	
 			array_push(
 				$images, array(
-					'normalPath' => R_GALLERY_DIR . '/m/' . $item,
-					'thumbPath' => R_GALLERY_DIR . '/s/' . $item,
+					'sImgPath' => R_GALLERY_DIR . '/s/' . $item,
+					'lImgPath' => R_GALLERY_DIR . '/l/' . $item,
 					'name' => $item
 				) 
 			);
