@@ -1,7 +1,7 @@
 <?php // Need more ? Visit : https://awebsome.fr/blog-awebsome/creer-un-blog-ecoresponsable-avec-wordsmatter/ (fr)
 
 // Must be equal to the id specified in 'app/js/config.js'. 
-// For safety reasons, create your own and complex ID.
+// For safety reasons, create your own ID.
 define('EDITOR_ID', 'editor-tjJshBE63cSDDYkEeSZ8NNrNkdHDm5vUuCktkzS24f3uXesgeC'); 
 
 // Relative path, starting from the API location.
@@ -19,7 +19,7 @@ define('R_GALLERY_DIR', 'http://dev.wordsmatter/blog/images');
 // DIRECTORIES
 define('INPUT_DIR', BLOG_PATH . '/drafts'); // Where will be copied the drafts (public or not).
 define('OUTPUT_DIR', BLOG_PATH . '/posts'); // Where the generated files will be copied.
-define('GALLERY_DIR', BLOG_PATH . '/images'); // Where the images will be copied.
+define('GALLERY_DIR', BLOG_PATH . '/images'); // Where the images will be copied / Must point to R_GALLERY_DIR.
 
 // FILES
 define('JSON_INDEX', BLOG_PATH . '/index.json'); // Where all posts, public or not, will be indexed for the app.
@@ -28,6 +28,7 @@ define('INPUT_FILENAME', 'draft.txt'); // Default name for the drafts.
 define('OUTPUT_FILENAME', 'index.html'); // Default name for the posts.
 
 // GALLERY PRESETS
-define('IMG_MAX_SIZE', 1000000); // 1Mb by default. Please stay reasonable (and consider server limitations) !
-define('IMG_NORMAL_SIZE', 768); // Maximum width applied to images loaded in the gallery. 
-define('IMG_THUMB_SIZE', 200); // Should not change: the application limits the display to 200px.
+define('IMG_MAX_SIZE', 1000000); // 1Mb by default.
+define('IMG_S_SIZE', 540); 
+define('IMG_M_SIZE', 768); 
+define('IMG_L_SIZE', 1024); 

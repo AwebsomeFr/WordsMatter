@@ -26,14 +26,41 @@
 	[ // <img> / <figure>
 		'desc' => '/\!\[[^\]]+\]\([^\)]+\)/', // ![alt|legend](img_url)
 		'output' => function ($ct) {
+			
 			$dt = explode('](', substr($ct[0], 2, -1));
-			$dt[0] = explode('|', $dt[0]); 
-			return count($dt[0]) > 1 ? // Is there a legend ?
-				'<figure>' .
-					'<img loading="lazy" src="' . $dt[1] . '" alt="' . $dt[0][0] . '" />' .
-					'<figcaption>' .	 $dt[0][1] . '</figcaption>' .
-				'</figure>' :
-				'<img loading="lazy" src="' . $dt[1] . '" alt="' . $dt[0][0] . '" />';
+			$inf = explode('|', $dt[0]);
+			$url = $dt[1];
+
+			$html = '';
+			$html .= count($inf) > 1 ? '<figure>' : '';	
+
+			// If from gallery, use responsive images.
+			if(strpos($url, R_GALLERY_DIR) !== false) {
+				$fn = explode('/', $url);
+				$fn = $fn[(count($fn) -1)];
+				$urls = array(
+					's' => R_GALLERY_DIR . '/s/' . $fn, 
+					'm' => R_GALLERY_DIR . '/m/' . $fn, 
+					'l' => R_GALLERY_DIR . '/l/' . $fn
+				);
+				$html .= 
+					'<picture>' .
+						'<source srcset="' . $urls['l'] . '" media="(min-width:' . IMG_L_SIZE . 'px)">' .
+						'<source srcset="' . $urls['m'] . '" media="(min-width:' . IMG_M_SIZE . 'px)">' .
+						'<img loading="lazy" src="' . $urls['s'] . '" alt="' . $inf[0] . '" />' .
+					'</picture>';
+			}
+
+			// Else, use external link as it.
+			else { 
+				$html .= '<img loading="lazy" src="' . $url . '" alt="' . $inf[0] . '" />';
+			}
+		
+			$html .= count($inf) > 1 ? 
+					'<figcaption>' .	 $inf[1] . '</figcaption>
+				</figure>' : '';
+
+			return $html;
 
 		}
 	],

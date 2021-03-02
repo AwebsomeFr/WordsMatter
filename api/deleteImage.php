@@ -13,8 +13,9 @@ if(isset($_POST['picture']) && isset($_POST['editorId'])) {
 	if($_POST['editorId'] === EDITOR_ID) { 
 		
 		if(
-			unlink(GALLERY_DIR . '/thumbs/' . $_POST['picture']) &&
-			unlink(GALLERY_DIR . '/normals/' . $_POST['picture'])
+			unlink(GALLERY_DIR . '/s/' . $_POST['picture']) &&
+			unlink(GALLERY_DIR . '/m/' . $_POST['picture']) &&
+			unlink(GALLERY_DIR . '/l/' . $_POST['picture'])
 		) {
 		   
 			echo 'success';

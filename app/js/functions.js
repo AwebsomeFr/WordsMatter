@@ -441,17 +441,10 @@ let lastActiveSec; // Used to track user progress and find where images should a
 							<input 
 								accept="image/jpeg, image/png, image/webp"
 								class="${resp === '[]' ? 'dial-trap-last' : '' }"
-								onchange="pushImage(
-									this.files[0], 
-									this.parentNode.parentNode.children[3].children[0].checked
-								)"
+								onchange="pushImage(this.files[0])"
 								type="file" />
 						</label>
 						${LAB.bt.condImg}
-						<label>
-							<input type="checkbox" checked />
-							${LAB.input.compress}
-						</label>
 					`;
 
 					// Only if there are already downloaded images. 

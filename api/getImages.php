@@ -16,15 +16,15 @@ if(isset($_POST['editorId'])) {
 	
 		foreach(
 			array_diff(
-				scandir(GALLERY_DIR . '/thumbs'), 
+				scandir(GALLERY_DIR . '/s'), 
 				array('..', '.')
 			) 
 		as $item) {
 	
 			array_push(
 				$images, array(
-					'normalPath' => R_GALLERY_DIR . '/normals/' . $item,
-					'thumbPath' => R_GALLERY_DIR . '/thumbs/' . $item,
+					'normalPath' => R_GALLERY_DIR . '/m/' . $item,
+					'thumbPath' => R_GALLERY_DIR . '/s/' . $item,
 					'name' => $item
 				) 
 			);

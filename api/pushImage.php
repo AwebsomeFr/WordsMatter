@@ -6,7 +6,7 @@
 	To : /app/js/functions.js | pushImage
 */
 
-if(isset($_FILES) && isset($_POST['editorId']) && isset($_POST['compress'])) {
+if(isset($_FILES) && isset($_POST['editorId'])) {
 
 	require './config.php';
 
@@ -14,8 +14,6 @@ if(isset($_FILES) && isset($_POST['editorId']) && isset($_POST['compress'])) {
 
 		// Is the file size less than 1Mb ?
 		if($_FILES['file']['size'] <= IMG_MAX_SIZE) {
-
-			$compress = $_POST['compress'];
 
 			define('IMG_TYPE', $_FILES['file']['type']);
 	
@@ -32,61 +30,68 @@ if(isset($_FILES) && isset($_POST['editorId']) && isset($_POST['compress'])) {
 				// Remove dash before extension.
 				$filename = str_replace('-.', '.', $filename); 
 				
-				define('IMG_THUMB_PATH', GALLERY_DIR . '/thumbs/' . $filename);
-				define('IMG_NORMAL_PATH', GALLERY_DIR . '/normals/' . $filename);
-						
-				move_uploaded_file($_FILES['file']['tmp_name'], IMG_NORMAL_PATH);
+				define('IMG_S_PATH', GALLERY_DIR . '/s/' . $filename);
+				define('IMG_M_PATH', GALLERY_DIR . '/m/' . $filename);
+				define('IMG_L_PATH', GALLERY_DIR . '/l/' . $filename);
+
+				move_uploaded_file($_FILES['file']['tmp_name'], IMG_M_PATH);
 
 				switch(IMG_TYPE) {
 							
 					case 'image/png':
-						$thumb = imagecreatefrompng(IMG_NORMAL_PATH);
-						$orig = imagecreatefrompng(IMG_NORMAL_PATH);
+						$s = imagecreatefrompng(IMG_M_PATH);
+						$m = imagecreatefrompng(IMG_M_PATH);
+						$l = imagecreatefrompng(IMG_M_PATH);
 						break;
 
 					case 'image/jpeg':
-						$thumb = imagecreatefromjpeg(IMG_NORMAL_PATH);
-						$orig = imagecreatefromjpeg(IMG_NORMAL_PATH);
+						$s = imagecreatefromjpeg(IMG_M_PATH);
+						$m = imagecreatefromjpeg(IMG_M_PATH);
+						$l = imagecreatefromjpeg(IMG_M_PATH);
 						break;
 
 					case 'image/webp':
-						$thumb = imagecreatefromwebp(IMG_NORMAL_PATH);
-						$orig = imagecreatefromwebp(IMG_NORMAL_PATH);
+						$s = imagecreatefromwebp(IMG_M_PATH);
+						$m = imagecreatefromwebp(IMG_M_PATH);
+						$l = imagecreatefromwebp(IMG_M_PATH);
 						break;
 
 				}
 
 				// Scale if more than...
-				if(imagesx($thumb) > IMG_THUMB_SIZE) {
-					$thumb = imagescale($thumb, IMG_THUMB_SIZE);
+				if(imagesx($s) > IMG_S_SIZE) {
+					$s = imagescale($s, IMG_S_SIZE);
 				}
-				if(imagesx($orig) > IMG_NORMAL_SIZE) {
-					$orig = imagescale($orig, IMG_NORMAL_SIZE);
+				if(imagesx($m) > IMG_M_SIZE) {
+					$m = imagescale($m, IMG_M_SIZE);
+				}
+				if(imagesx($l) > IMG_L_SIZE) {
+					$l = imagescale($l, IMG_L_SIZE);
 				}
 
 				// Export with compression (or not).
 				switch(IMG_TYPE) {
 							
 					case 'image/png':
-						imagepng($thumb, IMG_THUMB_PATH, 9);
-						$compress === "true" ?		
-							[imagetruecolortopalette($orig, false, 255), imagepng($orig, IMG_NORMAL_PATH, 9)]:
-							imagepng($orig, IMG_NORMAL_PATH);
-							break;
+						imagetruecolortopalette($s, false, 255);
+						imagepng($s, IMG_S_PATH, 9);
+						imagetruecolortopalette($m, false, 255);
+						imagepng($m, IMG_M_PATH, 9);
+						imagetruecolortopalette($l, false, 255);
+						imagepng($l, IMG_L_PATH, 9);
+						break;
 
 					case 'image/jpeg':
-						imagejpeg($thumb, IMG_THUMB_PATH, 60);
-						$compress === "true" ?		
-							imagejpeg($orig, IMG_NORMAL_PATH, 70):
-							imagejpeg($orig, IMG_NORMAL_PATH);
-							break;
+						imagejpeg($s, IMG_S_PATH, 60);
+						imagejpeg($m, IMG_M_PATH, 70);
+						imagejpeg($l, IMG_L_PATH, 70);
+						break;
 
 					case 'image/webp':
-						imagewebp($thumb, IMG_THUMB_PATH, 60);
-						$compress === "true" ?		
-							imagewebp($orig, IMG_NORMAL_PATH, 70):
-							imagewebp($orig, IMG_NORMAL_PATH);
-							break;
+						imagewebp($s, IMG_S_PATH, 60);
+						imagewebp($m, IMG_M_PATH, 70);
+						imagewebp($l, IMG_L_PATH, 70);
+						break;
 
 				}
 

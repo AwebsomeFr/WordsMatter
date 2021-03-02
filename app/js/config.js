@@ -66,7 +66,6 @@ if(LANG === 'fr') {
 	};
 
 	LAB.input = {
-		compress: 'Compresser ?',
 		date: 'Publié le',
 		draft: 'Brouillon ?',
 		h1: 'Titre du post (h1)',
@@ -162,7 +161,6 @@ if(LANG === 'en') {
 	};
 
 	LAB.input = {
-		compress: 'Compress?',
 		date: 'Publication date',
 		draft: 'Draft ?',
 		h1: 'Title of the post (h1)',
