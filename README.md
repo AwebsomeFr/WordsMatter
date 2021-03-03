@@ -113,7 +113,7 @@ C'est le modèle de page par défaut auquel est injecté le HTML valide lors de 
 
 ...
 
-Pour le reste, il faudra creuser ! Le projet comporte au final __peu de fichiers__ ; tous les scripts et fonctions ont __un intitulé explicite__ ; le code source est __commenté__ lorsque que cela est utile. Votre exploration devrait s'en trouver facilitée. 
+Pour le reste, il faudra creuser ! Le projet comporte au final __peu de fichiers__ ; tous les scripts et fonctions ont __un intitulé explicite__ ; le code source est __commenté__ lorsque cela est utile. Votre exploration devrait s'en trouver facilitée. 
 
 ### Licence
 Dans l'intérêt de l'__efficience__, de l'__inclusion__ et de la __sobriété numérique__, [WordsMatter est proposé sous licence GNU GPL version 3 ou ultérieure](https://www.gnu.org/licenses/gpl-3.0.en.html).
