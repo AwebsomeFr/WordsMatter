@@ -71,7 +71,7 @@ Pour lancer l'Application WordsMatter en __mode connecté__, atteignez ce même 
 L'Application et l'API sont prévues pour échanger dès lors que leurs identifiants concordent. Parce que l'identifiant de l'Application transite en clair, il est recommandé d'utiliser WordsMatter uniquement dans un contexte HTTPS afin de limiter le risque d'interception d'informations lors de la connexion avec l'API.
 
 #### Cross-origin resource sharing
-Afin qu'Application et API puissent échanger, les requêtes CORS doivent être autorisées côté serveur. Le dossier `api` contient un fichier `.htaccess` configuré en ce sens (fichier caché).
+Afin qu'Application et API puissent échanger, les requêtes CORS doivent être autorisées côté serveur. L'API est configurée pour envoyer l'entête "Access-Control-Allow-Origin" adéquat au client.
 
 #### Protection de l'API
 Pour se prémunir des attaques de force brute, il est vivement conseillé de renommer le dossier `api`. Ce nom de dossier devant constituer une URL valide, certains caractères sont exclus d'office ; le mieux est de combiner minuscules, majuscules et chiffres dans la longueur. Par exemple, un intitulé de 50 caractères tel que "KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpw" pourrait donner lieu à une URL imprévisible telle que "https://votre-site-.fr/KguZ5n9vnXh4saDpe65LcmgzybjLcTG9wdqveEkwWvFx5eZLpw". Pour que cette protection soit efficace, pensez à interdire l'exploration de l'arborescence du site (directive `Options -Indexes` ou autre à la racine de votre serveur) !
