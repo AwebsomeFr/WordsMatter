@@ -1,4 +1,4 @@
-<?php
+<?php header('Access-Control-Allow-Origin: *');
 
 /* 
 	Job : read and return the content of the selected post from its draft.

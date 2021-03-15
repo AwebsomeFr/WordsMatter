@@ -1,4 +1,4 @@
-<?php
+<?php header('Access-Control-Allow-Origin: *');
 
 /* 
 	Job : get the list of the posts on the server.

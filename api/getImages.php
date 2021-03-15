@@ -1,4 +1,4 @@
-<?php 
+<?php header('Access-Control-Allow-Origin: *');
 
 /* 
 	Job : browse and return the content of the gallery.

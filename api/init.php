@@ -1,4 +1,4 @@
-<?php 
+<?php header('Access-Control-Allow-Origin: *');
 
 /* 
 	Job : Check that the application matches the API and create necessary files and directories. 
