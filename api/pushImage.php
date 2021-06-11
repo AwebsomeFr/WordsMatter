@@ -24,7 +24,7 @@ if(isset($_FILES) && isset($_POST['editorId'])) {
 			) {
 				
 				// Delete all forbidden characters by dashes.
-				$filename = str_replace(['<', '>', ':', '/', '\\', '|', '?', '*', '\"', '(', ')'], '-', $_FILES['file']['name']);
+				$filename = str_replace([' ', '<', '>', ':', '/', '\\', '|', '?', '*', '\"', '(', ')'], '-', $_FILES['file']['name']);
 				// Convert multiple dashes to simple dash.
 				$filename = preg_replace('/\-{2,}/', '-', $filename);
 				// Remove dash before extension.
